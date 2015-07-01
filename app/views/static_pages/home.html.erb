@@ -1,0 +1,11 @@
+<h1>Home</h1>
+<p>
+  This is the home page.
+  It may end up being the only page, if Fractions is a single-page application.
+</p>
+<% if signed_in? %>
+  (you are signed in) TODO render page content
+  <!-- <%= render "layouts/home.html.erb" %> -->
+<% else %>
+  (you are not signed in) TODO render sign-in/sign-up suggestion
+<% end %>
