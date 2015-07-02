@@ -1,5 +1,8 @@
 <div id="user-form">
   <h1>Sign In</h1>
+  <div class="dev-info">
+    This page will send a request to the Mojang api to get the UUID for a given username, and fill in the "user[uuid]" field accordingly.  The response will also include a username with the correct case.
+  </div>
   <form id="user_form" action="<%= session_url %>" method="post">
     <input type="text" name="user[username]" value="<%= @user.username %>" placeholder="username">
     <input type="hidden" name="user[uuid]" value="">

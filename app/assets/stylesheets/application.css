@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+div.dev-info {
+  background-color: yellow;
+  width: 80%;
+}

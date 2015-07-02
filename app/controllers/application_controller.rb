@@ -26,13 +26,15 @@ class ApplicationController < ActionController::Base
 
   def must_be_signed_in
     unless signed_in?
+      # TODO display flash message
       redirect_to new_session_url
     end
   end
 
   def must_not_be_signed_in
     if signed_in?
-      redirect_to current_user
+      # TODO display flash message
+      redirect_to root_url
     end
   end
 end
