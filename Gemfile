@@ -9,7 +9,9 @@ end
 
 platform :ruby do
   gem 'sqlite3'
-  gem 'therubyracer'
+  # TODO sort out therubyracer problems
+  gem 'therubyracer', '0.12.1'
+  # gem 'libv8', '3.16.14.7'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -48,6 +50,7 @@ group :development, :test do
     gem 'spring'
     gem 'better_errors'
     gem 'binding_of_caller'
+    gem 'pry-rails'
   end
 end
 

@@ -3,3 +3,7 @@ When players log into the Minecraft server, check for changes to username and up
 This could be done through the Rails application, but a secret API key would be needed.  Otherwise, access database directly
 
 An in-game command is needed to reclaim stolen accounts.
+
+
+What if Regions and Positions could join Wars, too?
+It would make sense for the controller of a region to be able to 

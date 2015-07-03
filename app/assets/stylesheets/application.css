@@ -18,3 +18,13 @@ div.dev-info {
   background-color: yellow;
   width: 80%;
 }
+
+/*notes about things that will appear conditionally*/
+div.object-show-private {
+  background-color: pink;
+}
+
+/*notes about things that will appear to everyone*/
+div.object-show-public {
+  background-color: orange;
+}

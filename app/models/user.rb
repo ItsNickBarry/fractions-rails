@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
+  after_initialize :ensure_session_token
+
   validates :username, :uuid, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
 
-  after_initialize :ensure_session_token
+  has_many :characters
 
   def self.find_by_credentials(params)
     user = User.find_by(uuid: params[:uuid])
