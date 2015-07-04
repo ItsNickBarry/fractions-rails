@@ -17,4 +17,4 @@
 /tmp
 
 # Do not include generated .war file
-fractions.war
+*.war
