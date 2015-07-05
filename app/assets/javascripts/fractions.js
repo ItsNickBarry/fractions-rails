@@ -4,7 +4,8 @@ window.Fractions = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    new Fractions.Routers.Router($('#main'));
+    Backbone.history.start();
   }
 };
 
