@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: characters
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  name       :string           not null
+#  gender     :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Character < ActiveRecord::Base
   after_initialize :ensure_gender
 
@@ -7,6 +19,8 @@ class Character < ActiveRecord::Base
   # TODO allow unspecified gender?
 
   belongs_to :user
+  has_many :banishments
+  has_many :banishing_fractions, through: :banishments, source: :fraction
 
   private
 

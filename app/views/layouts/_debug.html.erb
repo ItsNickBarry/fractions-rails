@@ -2,4 +2,6 @@
   controller_name: <%= controller_name %>
   <br>
   action_name: <%= action_name %>
+  <br>
+  current_user: <%= signed_in? ? current_user.username : false %>
 </div>

@@ -6,14 +6,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # TODO remove test sign in code
-    if session_params[:username].downcase == "itsnickbarry"
-      @user = User.find_by(username: "ItsNickBarry")
-    else
-      @user = User.find_by_credentials(session_params)
-    end
+    @user = User.find_by_credentials(session_params)
     if @user
-      if @user.username.downcase == session_params[:username]
+      if @user.username == session_params[:username]
         sign_in! @user
         redirect_to root_url
       else

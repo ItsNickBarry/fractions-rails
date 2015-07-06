@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706001516) do
+ActiveRecord::Schema.define(version: 20150706032347) do
+
+  create_table "banishments", force: :cascade do |t|
+    t.integer  "character_id", null: false
+    t.integer  "fraction_id",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "banishments", ["character_id", "fraction_id"], name: "index_banishments_on_character_id_and_fraction_id", unique: true
+  add_index "banishments", ["fraction_id"], name: "index_banishments_on_fraction_id"
 
   create_table "characters", force: :cascade do |t|
     t.integer  "user_id",    null: false

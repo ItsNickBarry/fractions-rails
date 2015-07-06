@@ -16,7 +16,6 @@
 
 div.dev-info {
   background-color: yellow;
-  width: 80%;
 }
 
 /*notes about things that will appear conditionally*/
@@ -31,5 +30,5 @@ div.object-show-public {
 
 #header, #footer {
   border: 1px solid black;
-  padding: 4px;
+  padding: 10px;
 }
