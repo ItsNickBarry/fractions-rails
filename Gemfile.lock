@@ -41,6 +41,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    ancestry (2.1.0)
+      activerecord (>= 3.0.0)
     arel (6.0.0)
     backbone-on-rails (1.1.2.1)
       eco
@@ -188,6 +190,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
+  ancestry
   backbone-on-rails
   bcrypt (~> 3.1.7)
   better_errors
