@@ -1,18 +1,10 @@
-<div id="user-form">
+<div id="sign-up">
   <h1>Sign Up</h1>
   <div class="dev-info">
     This page will send a request to the Mojang api to get the UUID for a given username, and fill in the "user[uuid]" field accordingly.  The response will also include a username with the correct case.
   </div>
-  <form id="user_form" action="<%= users_url %>" method="post">
-    <input type="text" name="user[username]" value="<%= @user.username %>" placeholder="username">
-    <input type="hidden" name="user[uuid]" value="">
-    <br>
-    <input type="password" name="user[password]" placeholder="password">
-    <br>
-    <input type="submit" value="Submit">
 
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  </form>
-  <br>
+  <%= render partial: 'layouts/user_form.html.erb', locals: { url: users_url }%>
+
   Have an account? <%= link_to "Sign In", new_session_url %>
 </div>
