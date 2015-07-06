@@ -1,3 +1,12 @@
 <div id="header">
-  HEADER
+  <!-- TODO use nav element -->
+  <!-- TODO use click events to follow links -->
+  <%= link_to "Home", '#/' %>
+  <% if signed_in? %>
+    | <%= link_to "Sign Out", session_url, method: "delete" %>
+    | <%= link_to current_user.username, '#/users/' + current_user.id.to_s %>
+  <% else %>
+    | <%= link_to "Sign Up", new_user_url %>
+    | <%= link_to "Sign In", new_session_url %>
+  <% end %>
 </div>

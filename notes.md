@@ -6,4 +6,16 @@ An in-game command is needed to reclaim stolen accounts.
 
 
 What if Regions and Positions could join Wars, too?
-It would make sense for the controller of a region to be able to 
+It would make sense for the controller of a region to be able to
+
+
+Need to track active character per user
+user.active_character_id attribute:
+-only have to update user object when this is changed
+-cannot get list of active characters
+
+character.active attribute:
+-bad
+
+join table:
+-weird
