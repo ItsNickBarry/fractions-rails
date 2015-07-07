@@ -28,8 +28,8 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
     this.characters.each(this.addCharacter.bind(this));
   },
 
-  addCharacter: function (project) {
-    var view = new Fractions.Views.CharacterListItem({ model: project});
+  addCharacter: function (character) {
+    var view = new Fractions.Views.CharacterListItem({ model: character});
     this.addSubview('#characters', view);
   }
 });

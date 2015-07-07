@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
+
+  # TODO static pages and custom routes
+  get 'about', to: 'static_pages#about'
+  get 'nickbarry', to: redirect('https://github.com/itsnickbarry')
+
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
 
