@@ -12,7 +12,7 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ user: this.model });
+    var content = this.template({ character: this.model });
     this.$el.html(content);
     return this;
   },

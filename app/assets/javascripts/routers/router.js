@@ -3,8 +3,8 @@ Fractions.Routers.Router = Backbone.Router.extend({
     '': 'root',
     'users/:id': 'userShow',
     'characters/:id': 'characterShow',
-    // 'fractions/:id': 'fractionShow',
-    // 'positions/:id': 'positionShow',
+    'fractions/:id': 'fractionShow',
+    'positions/:id': 'positionShow',
     // 'electorates/:id': 'electorateShow',
     // 'regions/:id': 'regionShow',
     // 'plots/:id': 'plotShow'
@@ -30,6 +30,20 @@ Fractions.Routers.Router = Backbone.Router.extend({
     var character = new Fractions.Models.Character({ id: id });
     character.fetch();
     var view = new Fractions.Views.CharacterShow({ model: character });
+    this.swapView(view);
+  },
+
+  fractionShow: function (id) {
+    var fraction = new Fractions.Models.Fraction({ id: id });
+    fraction.fetch();
+    var view = new Fractions.Views.FractionShow({ model: fraction });
+    this.swapView(view);
+  },
+
+  positionShow: function (id) {
+    var position = new Fractions.Models.Position({ id: id });
+    position.fetch();
+    var view = new Fractions.Views.PositionShow({ model: position });
     this.swapView(view);
   },
 
