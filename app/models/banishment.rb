@@ -14,7 +14,7 @@ class Banishment < ActiveRecord::Base
   validates :character, :fraction, presence: true
   # TODO add message
   validates :character_id, uniqueness: { scope: :fraction_id,
-     message: ""}
+    message: ""}
 
   belongs_to :character
   belongs_to :fraction

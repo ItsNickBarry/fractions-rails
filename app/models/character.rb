@@ -22,6 +22,9 @@ class Character < ActiveRecord::Base
   has_many :banishments
   has_many :banishing_fractions, through: :banishments, source: :fraction
 
+  has_many :position_memberships
+  has_many :positions, through: :position_memberships
+
   private
 
     def ensure_gender

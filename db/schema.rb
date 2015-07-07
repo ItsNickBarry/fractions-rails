@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706032347) do
+ActiveRecord::Schema.define(version: 20150707001951) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -43,6 +43,26 @@ ActiveRecord::Schema.define(version: 20150706032347) do
 
   add_index "fractions", ["ancestry"], name: "index_fractions_on_ancestry"
   add_index "fractions", ["name"], name: "index_fractions_on_name", unique: true
+
+  create_table "position_memberships", force: :cascade do |t|
+    t.integer  "character_id", null: false
+    t.integer  "position_id",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "position_memberships", ["character_id", "position_id"], name: "index_position_memberships_on_character_id_and_position_id", unique: true
+  add_index "position_memberships", ["position_id"], name: "index_position_memberships_on_position_id"
+
+  create_table "positions", force: :cascade do |t|
+    t.integer  "fraction_id", null: false
+    t.string   "name",        null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "positions", ["fraction_id"], name: "index_positions_on_fraction_id"
+  add_index "positions", ["name", "fraction_id"], name: "index_positions_on_name_and_fraction_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
