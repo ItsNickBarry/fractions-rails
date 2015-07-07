@@ -1,7 +1,6 @@
 Fractions.Views.PositionsNew = Backbone.View.extend({
-  template: JST["positions_new"],
-  // tagName: 'form',
-  // className: 'form-list-item',
+  template: JST['positions_new'],
+  className: 'fractions-object-element fractions-object-new fractions-object-position',
 
   events: {
     'submit form': 'submit'
@@ -23,7 +22,7 @@ Fractions.Views.PositionsNew = Backbone.View.extend({
 
     var params = $(event.currentTarget).serializeJSON();
     params.position.fraction_id = this.fraction.escape('id');
-    this.collection.create(params["position"], { wait: true })
+    this.collection.create(params['position'], { wait: true })
     this.render();
   }
 });

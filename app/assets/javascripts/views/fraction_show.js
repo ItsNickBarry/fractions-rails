@@ -1,5 +1,6 @@
 Fractions.Views.FractionShow = Backbone.CompositeView.extend({
-  template: JST["fraction_show"],
+  template: JST['fraction_show'],
+  className: 'fractions-object-element fractions-object-show fractions-object-fraction',
 
   events: {
 
@@ -7,8 +8,8 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.positions = this.model.positions();
-    this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.positions, "add remove", this.addPosition);
+    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.positions, 'add remove', this.addPosition);
   },
 
   render: function () {

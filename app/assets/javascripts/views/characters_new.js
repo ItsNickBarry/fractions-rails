@@ -1,7 +1,6 @@
 Fractions.Views.CharactersNew = Backbone.View.extend({
-  template: JST["characters_new"],
-  // tagName: 'form',
-  // className: 'form-list-item',
+  template: JST['characters_new'],
+  className: 'fractions-object-element fractions-object-new fractions-object-character',
 
   events: {
     'submit form': 'submit'
@@ -15,12 +14,12 @@ Fractions.Views.CharactersNew = Backbone.View.extend({
 
   submit: function (event) {
     // event.preventDefault();
-    // var params = this.$el.serializeJSON()["character"];
+    // var params = this.$el.serializeJSON()['character'];
     // this.collection.create(params, { wait: true })
     // this.render();
     // event.preventDefault();
     // debugger
-    // var params = $(event.currentTarget).serializeJSON()["character"];
+    // var params = $(event.currentTarget).serializeJSON()['character'];
     // var newCharacter = new Fractions.Models.Character(params);
     // var characters = this.collection;
     // newCharacter.save({}, {
@@ -33,7 +32,7 @@ Fractions.Views.CharactersNew = Backbone.View.extend({
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    var character = new Fractions.Models.Character(params["character"]);
+    var character = new Fractions.Models.Character(params['character']);
     character.save({}, {
       success: function () {
         view.collection.add(character);

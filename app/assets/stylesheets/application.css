@@ -32,3 +32,35 @@ div.object-show-public {
   border: 1px solid black;
   padding: 10px;
 }
+
+.fractions-object-user {
+  background-color: red;
+}
+
+.fractions-object-character {
+  background-color: cyan;
+}
+
+.fractions-object-fraction {
+  background-color: green;
+}
+.fractions-object-position {
+  background-color: orange;
+}
+
+.fractions-object-list-item {
+
+}
+
+.fractions-object-new {
+
+}
+
+.fractions-object-show {
+
+}
+
+.fractions-object-element {
+  padding: 4px;
+  margin: 1px;
+}

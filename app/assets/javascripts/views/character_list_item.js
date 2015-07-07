@@ -1,6 +1,6 @@
 Fractions.Views.CharacterListItem = Backbone.View.extend({
-  template: JST["character_list_item"],
-  className: "character-list-item",
+  template: JST['character_list_item'],
+  className: 'fractions-object-element fractions-object-list-item fractions-object-character',
 
   events: {
     // 'click': 'show'
@@ -17,6 +17,6 @@ Fractions.Views.CharacterListItem = Backbone.View.extend({
   },
 
   // show: function (event) {
-  //   Backbone.history.navigate("/characters/" + this.model.get("id"), { trigger: true });
+  //   Backbone.history.navigate('/characters/' + this.model.get('id'), { trigger: true });
   // }
 });

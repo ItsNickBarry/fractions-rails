@@ -1,6 +1,6 @@
 Fractions.Views.PositionListItem = Backbone.View.extend({
-  template: JST["position_list_item"],
-  className: "position-list-item",
+  template: JST['position_list_item'],
+  className: 'fractions-object-element fractions-object-list-item fractions-object-position',
 
   events: {
     // 'click': 'show'
@@ -17,6 +17,6 @@ Fractions.Views.PositionListItem = Backbone.View.extend({
   },
 
   // show: function (event) {
-  //   Backbone.history.navigate("/positions/" + this.model.get("id"), { trigger: true });
+  //   Backbone.history.navigate('/positions/' + this.model.get('id'), { trigger: true });
   // }
 });
