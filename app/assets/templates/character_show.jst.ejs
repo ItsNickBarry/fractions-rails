@@ -1,3 +1,10 @@
 <p>
   This is a character page
 </p>
+<h1>Character: <%= character.get("name") %></h1>
+<div class="fractions-object-user">
+  belongs to:
+  <a href=<%= "#/users/" + character.user().escape("id") %>>
+    <%= character.user().escape("username") %>
+  </div>
+</p>
