@@ -6,7 +6,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
     'fractions/:id': 'fractionShow',
     'positions/:id': 'positionShow',
     // 'electorates/:id': 'electorateShow',
-    // 'regions/:id': 'regionShow',
+    'regions/:id': 'regionShow',
     // 'plots/:id': 'plotShow'
   },
 

@@ -22,7 +22,7 @@ class Api::PositionsController < ApplicationController
   private
 
     def position_params
-      params.require(:position).permit(:name, :gender, :fraction_id)
+      params.require(:position).permit(:name, :fraction_id)
     end
 
     def find_or_initialize_position

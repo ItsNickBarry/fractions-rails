@@ -16,4 +16,5 @@ class Fraction < ActiveRecord::Base
   has_many :banishments
   has_many :banished_characters, through: :banishments, source: :character
   has_many :positions
+  has_many :regions
 end

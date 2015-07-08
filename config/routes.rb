@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :characters, only: [:show, :index, :create]
     resources :fractions, only: [:show, :index, :create]
     resources :positions, only: [:show, :index, :create, :destroy]
+    resources :regions, only: [:show, :index, :create, :destroy]
   end
 end

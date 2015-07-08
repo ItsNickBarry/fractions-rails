@@ -11,7 +11,7 @@ Fractions.Models.Position = Backbone.Model.extend({
 
   characters: function () {
     if (!this._characters) {
-      this._characters = new Fractions.Collections.Characters([], { fraction: this })
+      this._characters = new Fractions.Collections.Characters([], { fraction: this });
     }
     return this._characters;
   }

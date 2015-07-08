@@ -1,6 +1,6 @@
 Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
   template: JST['character_show'],
-  className: 'fractions-object-element fractions-object-TYPEcharacter-show fractions-object-character',
+  className: 'fractions-object-element fractions-object-show fractions-object-character',
 
   events: {
 

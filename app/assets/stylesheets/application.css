@@ -34,7 +34,7 @@ div.object-show-public {
 }
 
 .fractions-object-user {
-  background-color: red;
+  background-color: pink;
 }
 
 .fractions-object-character {
@@ -46,6 +46,10 @@ div.object-show-public {
 }
 .fractions-object-position {
   background-color: orange;
+}
+
+.fractions-object-region {
+  background-color: red;
 }
 
 .fractions-object-list-item {
