@@ -8,7 +8,7 @@ Fractions.Models.Fraction = Backbone.Model.extend({
       delete response.positions;
     }
     if (response.regions) {
-      this.region().set(response.regions, { parse: true });
+      this.regions().set(response.regions, { parse: true });
       delete response.regions;
     }
     return response;

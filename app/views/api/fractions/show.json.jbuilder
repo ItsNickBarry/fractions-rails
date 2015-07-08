@@ -9,6 +9,6 @@ end
 #   json.extract! electorate, :id, :name
 # end
 
-# json.regions @fraction.regions do |region|
-#   json.extract! region, :id, :name
-# end
+json.regions @fraction.regions do |region|
+  json.extract! region, :id, :name
+end
