@@ -1,5 +1,5 @@
-Fractions.Models.Position = Backbone.Model.extend({
-  urlRoot: '/api/positions',
+Fractions.Models.Electorate = Backbone.Model.extend({
+  urlRoot: '/api/electorates',
 
   parse: function (response) {
     if (response.characters) {

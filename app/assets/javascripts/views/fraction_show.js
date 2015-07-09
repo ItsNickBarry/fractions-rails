@@ -7,22 +7,44 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
+    this.electorates = this.model.electorates();
     this.positions = this.model.positions();
     this.regions = this.model.regions();
-    
+
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.positions, 'add remove', this.addPosition);
-    this.listenTo(this.regions, 'add remove', this.addRegion);
+
+    this.listenTo(this.electorates, 'add', this.addElectorate);
+    this.listenTo(this.electorates, 'remove', this.removeElectorate);
+    this.listenTo(this.positions, 'add', this.addPosition);
+    this.listenTo(this.positions, 'remove', this.removePosition);
+    this.listenTo(this.regions, 'add', this.addRegion);
+    this.listenTo(this.regions, 'remove', this.removeRegion);
   },
 
   render: function () {
     var content = this.template({ fraction: this.model });
     this.$el.html(content);
+    this.renderElectoratesNew();
+    this.renderElectorates();
     this.renderPositionsNew();
     this.renderPositions();
     this.renderRegionsNew();
     this.renderRegions();
     return this;
+  },
+
+  renderElectoratesNew: function () {
+    var view = new Fractions.Views.ElectoratesNew({ collection: this.electorates, fraction: this.model });
+    this.addSubview('#electorates-new', view);
+  },
+
+  renderElectorates: function () {
+    this.electorates.each(this.addElectorate.bind(this));
+  },
+
+  addElectorate: function (electorate) {
+    var view = new Fractions.Views.ElectorateListItem({ model: electorate });
+    this.addSubview('#electorates', view);
   },
 
   renderPositionsNew: function () {
@@ -52,4 +74,12 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     var view = new Fractions.Views.RegionListItem({ model: region });
     this.addSubview('#regions', view);
   },
+
+  // TODO add remove methods for each collection
+  // removeRegion: function (region) {
+  //   var subview = _.find(this.subviews("#regions"), function (subview) {
+  //     return subview.model === region;
+  //   });
+  //   this.removeSubview(".regions", subview);
+  // },
 });

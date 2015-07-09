@@ -18,3 +18,5 @@
 
 # Do not include generated .war file
 *.war
+
+colors.js

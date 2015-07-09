@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # TODO rate-limit login requests
     @user = User.find_by_credentials(session_params)
     if @user
       if @user.username == session_params[:username]

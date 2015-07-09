@@ -11,7 +11,7 @@ Fractions.Models.User = Backbone.Model.extend({
 
   characters: function () {
     if (!this._characters) {
-      this._characters = new Fractions.Collections.Characters([], { user: this });
+      this._characters = new Fractions.Collections.Characters();
     }
     return this._characters;
   }

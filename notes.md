@@ -22,3 +22,7 @@ character.active attribute:
 
 join table:
 -weird
+
+
+
+User Backbone model change event to highlight changed things
