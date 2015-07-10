@@ -15,6 +15,7 @@
 //= require jquery.serializejson.min
 //= require underscore
 //= require backbone
+//= require d3
 //= require composite_view
 //= require fractions
 //= require_tree ../templates

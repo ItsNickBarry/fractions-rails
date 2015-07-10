@@ -1,6 +1,7 @@
 Fractions.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'root',
+    'map': 'map',
     'characters/:id': 'characterShow',
     'electorates/:id': 'electorateShow',
     'fractions/:id': 'fractionShow',
@@ -16,6 +17,13 @@ Fractions.Routers.Router = Backbone.Router.extend({
 
   root: function () {
     var view = new Fractions.Views.Root();
+    this.swapView(view);
+  },
+
+  map: function () {
+    // TODO pass objects into Map view?
+    // perhaps pass in a Map object?
+    var view = new Fractions.Views.Map();
     this.swapView(view);
   },
 
