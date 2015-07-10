@@ -40,4 +40,7 @@ class Fraction < ActiveRecord::Base
   has_many :positions
   has_many :electorates
   has_many :regions
+
+  belongs_to :founder, polymorphic: true
+  has_many :founded_fractions, as: :founder, foreign_key: :founder_id, class_name: 'Fraction'
 end

@@ -13,6 +13,7 @@
 class Character < ActiveRecord::Base
   after_initialize :ensure_gender
 
+  validates :user, presence: true
   validates :name, presence: true, uniqueness: true
   validates :gender, presence: true
   # TODO validate that gender matches "FEMALE", "MALE", or "UNSPECIFIED"
@@ -26,6 +27,8 @@ class Character < ActiveRecord::Base
   has_many :positions, through: :position_memberships
 
   has_many :fractions, through: :position_memberships, source: :fraction
+
+  has_many :founded_fractions, as: :founder, foreign_key: :founder_id, class_name: 'Fraction'
 
   private
 
