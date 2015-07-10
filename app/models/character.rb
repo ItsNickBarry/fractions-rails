@@ -25,6 +25,8 @@ class Character < ActiveRecord::Base
   has_many :position_memberships
   has_many :positions, through: :position_memberships
 
+  has_many :fractions, through: :position_memberships, source: :fraction
+
   private
 
     def ensure_gender

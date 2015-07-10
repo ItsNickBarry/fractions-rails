@@ -7,4 +7,6 @@ class PositionMembership < ActiveRecord::Base
 
   belongs_to :character
   belongs_to :position
+
+  has_one :fraction, through: :position
 end
