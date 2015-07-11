@@ -18,4 +18,5 @@ class Region < ActiveRecord::Base
     message: ""}
 
   belongs_to :fraction
+  has_many :plots
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710194201) do
+ActiveRecord::Schema.define(version: 20150711185038) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 20150710194201) do
   add_index "fractions", ["founder_type", "founder_id"], name: "index_fractions_on_founder_type_and_founder_id"
   add_index "fractions", ["name"], name: "index_fractions_on_name", unique: true
 
+  create_table "plots", force: :cascade do |t|
+    t.integer  "region_id"
+    t.integer  "world_id",   null: false
+    t.integer  "x",          null: false
+    t.integer  "z",          null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "plots", ["region_id"], name: "index_plots_on_region_id"
+  add_index "plots", ["world_id", "x", "z"], name: "index_plots_on_world_id_and_x_and_z", unique: true
+  add_index "plots", ["x"], name: "index_plots_on_x"
+  add_index "plots", ["z"], name: "index_plots_on_z"
+
   create_table "position_memberships", force: :cascade do |t|
     t.integer  "character_id", null: false
     t.integer  "position_id",  null: false
@@ -99,5 +113,11 @@ ActiveRecord::Schema.define(version: 20150710194201) do
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username"
   add_index "users", ["uuid"], name: "index_users_on_uuid", unique: true
+
+  create_table "worlds", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
