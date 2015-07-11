@@ -13,6 +13,7 @@
 
 class Fraction < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
+  validates :founder, presence: true
 
   has_ancestry
   # parent           Returns the parent of the record, nil for a root node
@@ -46,4 +47,14 @@ class Fraction < ActiveRecord::Base
 
   belongs_to :founder, polymorphic: true
   has_many :founded_fractions, as: :founder, foreign_key: :founder_id, class_name: 'Fraction'
+
+  after_create :create_default_objects
+
+  private
+
+    def create_default_objects
+      electorates.create(name: "Majority")
+      positions.create(name: "Citizens")
+      regions.create(name: "Commons")
+    end
 end
