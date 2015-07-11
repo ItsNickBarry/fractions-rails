@@ -22,8 +22,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
 
   map: function () {
     // TODO pass objects into Map view?
-    // perhaps pass in a Map object?
-    var view = new Fractions.Views.Map();
+    var view = new Fractions.Views.MapShow();
     this.swapView(view);
   },
 
