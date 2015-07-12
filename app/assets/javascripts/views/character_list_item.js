@@ -1,9 +1,9 @@
 Fractions.Views.CharacterListItem = Backbone.View.extend({
-  template: JST['character_list_item'],
+  template: JST['list_item'],
   className: 'fractions-object-element fractions-object-list-item fractions-object-character',
 
   events: {
-    // 'click': 'show'
+    'click': 'show'
   },
 
   initialize: function () {
@@ -11,12 +11,12 @@ Fractions.Views.CharacterListItem = Backbone.View.extend({
   },
 
   render: function () {
-    var content = this.template({ character: this.model });
+    var content = this.template({ model: this.model });
     this.$el.html(content);
     return this;
   },
 
-  // show: function (event) {
-  //   Backbone.history.navigate('/characters/' + this.model.get('id'), { trigger: true });
-  // }
+  show: function (event) {
+    Backbone.history.navigate('/characters/' + this.model.get('id'), { trigger: true });
+  }
 });

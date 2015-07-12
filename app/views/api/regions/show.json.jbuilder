@@ -3,5 +3,5 @@ json.name @region.name
 
 json.fraction do
   json.id @region.fraction.id
-  json.username @region.fraction.name
+  json.name @region.fraction.name
 end

@@ -48,13 +48,18 @@ class Fraction < ActiveRecord::Base
   belongs_to :founder, polymorphic: true
   has_many :founded_fractions, as: :founder, foreign_key: :founder_id, class_name: 'Fraction'
 
-  after_create :create_default_objects
+  after_create :setup_default_objects
 
   private
 
-    def create_default_objects
+    def setup_default_objects
       electorates.create(name: "Majority")
       positions.create(name: "Citizens")
       regions.create(name: "Commons")
+      assign_authorizations
+    end
+
+    def assign_authorizations
+      # TODO
     end
 end

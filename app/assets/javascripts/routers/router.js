@@ -61,6 +61,13 @@ Fractions.Routers.Router = Backbone.Router.extend({
     this.swapView(view);
   },
 
+  regionShow: function (id) {
+    var region = new Fractions.Models.Region({ id: id });
+    region.fetch();
+    var view = new Fractions.Views.RegionShow({ model: region });
+    this.swapView(view);
+  },
+
   swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;

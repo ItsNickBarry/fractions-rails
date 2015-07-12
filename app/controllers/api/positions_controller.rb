@@ -3,9 +3,8 @@ class Api::PositionsController < ApplicationController
   before_action :find_or_initialize_position, except: [:create, :index]
 
   def create
-    # debugger
-    # @fraction = Fraction.find(params[])
-    @position = Fraction.find(position_params[:fraction_id]).positions.new(position_params);
+    @fraction = Fraction.find(position_params[:fraction_id])
+    @position = @fraction.positions.new(position_params);
 
     # TODO complex position initialization
     # needs authorizations

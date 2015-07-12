@@ -1,9 +1,9 @@
 Fractions.Views.FractionListItem = Backbone.View.extend({
-  template: JST['fraction_list_item'],
+  template: JST['list_item'],
   className: 'fractions-object-element fractions-object-list-item fractions-object-fraction',
 
   events: {
-    
+    'click': 'show'
   },
 
   initialize: function () {
@@ -11,8 +11,12 @@ Fractions.Views.FractionListItem = Backbone.View.extend({
   },
 
   render: function () {
-    var content = this.template({ fraction: this.model });
+    var content = this.template({ model: this.model });
     this.$el.html(content);
     return this;
   },
+
+  show: function (event) {
+    Backbone.history.navigate('/fractions/' + this.model.get('id'), { trigger: true });
+  }
 });
