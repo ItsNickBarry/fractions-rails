@@ -26,7 +26,7 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
   },
 
   renderFractionsNew: function () {
-    var view = new Fractions.Views.FractionsNew({ collection: this.fractions, character: this.model });
+    var view = new Fractions.Views.FractionsNew({ collection: this.fractions, founder: this.model });
     this.addSubview('#fractions-new', view);
   },
 

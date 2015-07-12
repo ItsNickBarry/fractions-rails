@@ -1,8 +1,13 @@
 Fractions.Models.Fraction = Backbone.Model.extend({
+  class: 'Fraction',
   urlRoot: '/api/fractions',
 
   parse: function (response) {
     // TODO refactor this into a loop
+    if (response.children) {
+      this.children().set(response.children, { parse: true });
+      delete response.children;
+    }
     if (response.electorates) {
       this.electorates().set(response.electorates, { parse: true });
       delete response.electorates;
@@ -16,6 +21,13 @@ Fractions.Models.Fraction = Backbone.Model.extend({
       delete response.regions;
     }
     return response;
+  },
+
+  children: function () {
+    if (!this._children) {
+      this._children = new Fractions.Collections.Fractions();
+    }
+    return this._children;
   },
 
   electorates: function () {

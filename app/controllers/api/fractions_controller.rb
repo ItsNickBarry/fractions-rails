@@ -3,8 +3,9 @@ class Api::FractionsController < ApplicationController
   before_action :find_or_initialize_fraction, except: [:create, :index]
 
   def create
-    # TODO this assumes that a character is creating fraction
-    @fraction = current_user.active_character.founded_fractions.new(fraction_params);
+    @founder = params[:founder_type].constantize.find(params[:founder_id])
+    # TODO make sure current_user.active_characer is allowed to do this
+    @fraction = @founder.founded_fractions.new(fraction_params);
     # TODO complex fraction initialization
     # needs authorizations
     if @fraction.save

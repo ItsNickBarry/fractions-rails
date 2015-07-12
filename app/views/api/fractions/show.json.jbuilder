@@ -4,6 +4,10 @@ json.name @fraction.name
 json.founder @fraction.founder.name
 json.founded_at @fraction.created_at
 
+json.children @fraction.children do |child|
+  json.extract! child, :id, :name
+end
+
 json.electorates @fraction.electorates do |electorate|
   json.extract! electorate, :id, :name
 end

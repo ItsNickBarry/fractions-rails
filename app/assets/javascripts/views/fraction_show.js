@@ -7,12 +7,15 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
+    this.children = this.model.children();
     this.electorates = this.model.electorates();
     this.positions = this.model.positions();
     this.regions = this.model.regions();
 
     this.listenTo(this.model, 'sync', this.render);
 
+    this.listenTo(this.children, 'add', this.addChild);
+    this.listenTo(this.children, 'remove', this.removeChild);
     this.listenTo(this.electorates, 'add', this.addElectorate);
     this.listenTo(this.electorates, 'remove', this.removeElectorate);
     this.listenTo(this.positions, 'add', this.addPosition);
@@ -24,6 +27,8 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({ fraction: this.model });
     this.$el.html(content);
+    this.renderChildNew();
+    this.renderChildren();
     this.renderElectoratesNew();
     this.renderElectorates();
     this.renderPositionsNew();
@@ -31,6 +36,20 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     this.renderRegionsNew();
     this.renderRegions();
     return this;
+  },
+
+  renderChildNew: function () {
+    var view = new Fractions.Views.FractionsNew({ collection: this.children, founder: this.model });
+    this.addSubview('#children-new', view);
+  },
+
+  renderChildren: function () {
+    this.children.each(this.addChild.bind(this));
+  },
+
+  addChild: function (child) {
+    var view = new Fractions.Views.FractionListItem({ model: child });
+    this.addSubview('#children', view);
   },
 
   renderElectoratesNew: function () {

@@ -7,7 +7,7 @@ Fractions.Views.FractionsNew = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.character = options.character;
+    this.founder = options.founder;
   },
 
   render: function () {
@@ -17,11 +17,11 @@ Fractions.Views.FractionsNew = Backbone.View.extend({
   },
 
   submit: function (event) {
-    var view = this;
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    params.fraction.character_id = this.character.escape('id');
+    params.fraction.founder_id = this.founder.escape('id');
+    params.fraction.founder_type = this.founder.class;
     this.collection.create(params['fraction'], { wait: true })
     this.render();
   }

@@ -38,4 +38,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def must_have_active_character
+    # TODO ensure that there is an active character for most actions
+    signed_in? && current_user.active_character
+  end
 end
