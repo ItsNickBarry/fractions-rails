@@ -6,7 +6,7 @@ Fractions.Views.MapShow = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    // Backbone.history.navigate('//map', { trigger: false });
+    // Backbone.history.navigate('map', { trigger: false });
   },
 
   render: function () {
@@ -14,9 +14,9 @@ Fractions.Views.MapShow = Backbone.CompositeView.extend({
     this.$el.html(content);
 
     var d3El = d3.selectAll(this.$el.find('#map').toArray());
-    this.map = new Fractions.Map(d3El);
+    this.map = new Fractions.D3Views.Map(d3El);
     this.map.render();
-    
+
     return this;
   },
 });

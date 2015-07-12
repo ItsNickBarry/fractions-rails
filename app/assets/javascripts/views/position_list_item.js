@@ -17,6 +17,6 @@ Fractions.Views.PositionListItem = Backbone.View.extend({
   },
 
   show: function (event) {
-    Backbone.history.navigate('/positions/' + this.model.get('id'), { trigger: true });
+    Backbone.history.navigate('positions/' + this.model.get('id'), { trigger: true });
   }
 });

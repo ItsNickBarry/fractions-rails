@@ -17,6 +17,6 @@ Fractions.Views.ElectorateListItem = Backbone.View.extend({
   },
 
   show: function (event) {
-    Backbone.history.navigate('/electorates/' + this.model.get('id'), { trigger: true });
+    Backbone.history.navigate('electorates/' + this.model.get('id'), { trigger: true });
   }
 });

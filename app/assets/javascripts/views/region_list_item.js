@@ -17,6 +17,6 @@ Fractions.Views.RegionListItem = Backbone.View.extend({
   },
 
   show: function (event) {
-    Backbone.history.navigate('/regions/' + this.model.get('id'), { trigger: true });
+    Backbone.history.navigate('regions/' + this.model.get('id'), { trigger: true });
   }
 });

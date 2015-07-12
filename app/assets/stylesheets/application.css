@@ -14,24 +14,18 @@
  *= require_self
  */
 
-div.dev-info {
-  background-color: yellow;
-}
-
-/*notes about things that will appear conditionally*/
-div.object-show-private {
-  background-color: pink;
-}
-
-/*notes about things that will appear to everyone*/
-div.object-show-public {
-  background-color: orange;
-}
-
-#header, #footer {
-  border: 1px solid black;
+header, footer {
+  font-size: 24px;
   padding: 10px;
 }
+
+header a, footer a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
 
 .fractions-object-user {
   background-color: pink;
@@ -57,7 +51,7 @@ div.object-show-public {
 }
 
 .fractions-object-list-item {
-
+  cursor: pointer;
 }
 
 .fractions-object-new {
@@ -71,4 +65,9 @@ div.object-show-public {
 .fractions-object-element {
   padding: 4px;
   margin: 1px;
+}
+
+.fractions-object-list-item-name {
+  font-style: italic;
+  font-weight: 600;
 }

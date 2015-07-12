@@ -5,7 +5,7 @@ class Api::CharactersController < ApplicationController
   def create
     @character = current_user.characters.new(character_params);
     if @character.save
-      render @character
+      render :show
     else
       render @character.errors.full_messages, status: 422
     end

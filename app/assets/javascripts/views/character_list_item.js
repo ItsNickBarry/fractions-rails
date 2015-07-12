@@ -17,6 +17,6 @@ Fractions.Views.CharacterListItem = Backbone.View.extend({
   },
 
   show: function (event) {
-    Backbone.history.navigate('/characters/' + this.model.get('id'), { trigger: true });
+    Backbone.history.navigate('characters/' + this.model.get('id'), { trigger: true });
   }
 });

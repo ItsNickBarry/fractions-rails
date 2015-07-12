@@ -29,6 +29,15 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def active_character
+    # TODO find the actual active character
+    if self.characters.count > 0
+      return self.characters.first
+    else
+      # TODO problem
+    end
+  end
+
   def password
     @password
   end
