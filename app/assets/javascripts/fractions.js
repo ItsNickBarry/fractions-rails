@@ -5,7 +5,7 @@ window.Fractions = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new Fractions.Routers.Router($('#main'));
+    new Fractions.Routers.Router({ $pagesEl: $('#main') });
     Backbone.history.start();
   }
 };

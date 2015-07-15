@@ -1,7 +1,7 @@
 Fractions.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'root',
-    'map': 'map',
+    'map': 'mapShow',
     'characters/:id': 'characterShow',
     'electorates/:id': 'electorateShow',
     'fractions/:id': 'fractionShow',
@@ -11,8 +11,8 @@ Fractions.Routers.Router = Backbone.Router.extend({
     'users/:id': 'userShow',
   },
 
-  initialize: function ($rootEl) {
-    this.$rootEl = $rootEl;
+  initialize: function (options) {
+    this.$pagesEl = options.$pagesEl;
   },
 
   root: function () {
@@ -20,7 +20,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
     this.swapView(view);
   },
 
-  map: function () {
+  mapShow: function () {
     // TODO pass objects into Map view?
     var view = new Fractions.Views.MapShow();
     this.swapView(view);
@@ -71,6 +71,6 @@ Fractions.Routers.Router = Backbone.Router.extend({
   swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
-    this.$rootEl.html(view.render().$el);
+    this.$pagesEl.html(view.render().$el);
   }
 });

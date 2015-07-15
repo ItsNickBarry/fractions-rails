@@ -40,6 +40,7 @@ class Fraction < ActiveRecord::Base
   # depth            Return the depth of the node, root nodes are at depth 0
   has_many :banishments
   has_many :banished_characters, through: :banishments, source: :character
+  has_many :characters, through: :positions
   has_many :positions
   has_many :electorates
   has_many :regions
@@ -53,9 +54,9 @@ class Fraction < ActiveRecord::Base
   private
 
     def setup_default_objects
-      electorates.create(name: "Majority")
-      positions.create(name: "Citizens")
-      regions.create(name: "Commons")
+      electorates.create(name: "DEFAULT")
+      positions.create(name: "DEFAULT")
+      regions.create(name: "DEFAULT")
       assign_authorizations
     end
 

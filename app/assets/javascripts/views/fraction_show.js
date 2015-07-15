@@ -39,6 +39,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   renderChildNew: function () {
+    // TODO pass in founded_fractions collection instead
     var view = new Fractions.Views.FractionsNew({ collection: this.children, founder: this.model });
     this.addSubview('#children-new', view);
   },
