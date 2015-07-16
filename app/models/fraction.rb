@@ -47,9 +47,15 @@ class Fraction < ActiveRecord::Base
   has_many :plots, through: :regions
 
   belongs_to :founder, polymorphic: true
-  has_many :founded_fractions, as: :founder, foreign_key: :founder_id, class_name: 'Fraction'
+  has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 
   after_create :setup_default_objects
+
+  # TODO these authorizations are delegated to all of a Fraction's positions
+  has_many :land_authorizations, as: :authorizee
+
+  has_many :government_authorizations, as: :authorizer
+
 
   private
 

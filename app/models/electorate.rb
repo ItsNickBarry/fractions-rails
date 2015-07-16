@@ -21,4 +21,7 @@ class Electorate < ActiveRecord::Base
 
   # has_many :electorate_memberships
   # has_many :characters, through: :electorate_memberships
+
+  has_many :government_authorizations, as: :authorizer
+  has_many :government_authorizations, as: :authorizee
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711185038) do
+ActiveRecord::Schema.define(version: 20150715212122) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -56,6 +56,29 @@ ActiveRecord::Schema.define(version: 20150711185038) do
   add_index "fractions", ["ancestry"], name: "index_fractions_on_ancestry"
   add_index "fractions", ["founder_type", "founder_id"], name: "index_fractions_on_founder_type_and_founder_id"
   add_index "fractions", ["name"], name: "index_fractions_on_name", unique: true
+
+  create_table "government_authorizations", force: :cascade do |t|
+    t.integer  "authorizer_id"
+    t.string   "authorizer_type"
+    t.integer  "authorizee_id"
+    t.string   "authorizee_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "government_authorizations", ["authorizee_type", "authorizee_id"], name: "index_government_authorizations_on_authorizee"
+  add_index "government_authorizations", ["authorizer_type", "authorizer_id"], name: "index_government_authorizations_on_authorizer"
+
+  create_table "land_authorizations", force: :cascade do |t|
+    t.integer  "region_id",       null: false
+    t.integer  "authorizee_id"
+    t.string   "authorizee_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "land_authorizations", ["authorizee_type", "authorizee_id"], name: "index_land_authorizations_on_authorizee_type_and_authorizee_id"
+  add_index "land_authorizations", ["region_id"], name: "index_land_authorizations_on_region_id"
 
   create_table "plots", force: :cascade do |t|
     t.integer  "region_id"

@@ -19,4 +19,7 @@ class Region < ActiveRecord::Base
 
   belongs_to :fraction
   has_many :plots
+
+  has_many :land_authorizations
+  has_many :government_authorizations, as: :authorizer
 end

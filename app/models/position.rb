@@ -21,4 +21,10 @@ class Position < ActiveRecord::Base
 
   has_many :position_memberships
   has_many :characters, through: :position_memberships
+
+  has_many :land_authorizations, as: :authorizee
+
+  has_many :government_authorizations, as: :authorizer
+  has_many :government_authorizations, as: :authorizee
+
 end
