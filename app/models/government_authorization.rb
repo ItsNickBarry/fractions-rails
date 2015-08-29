@@ -14,8 +14,18 @@
 class GovernmentAuthorization < ActiveRecord::Base
   # TODO reference authorization type/name
   # TODO validate uniqueness in scope of authorizer/authorizee/type
-  validates :authorizer, :authorizee, presence: true
-  
+  validates :authorizer, :authorizee, :authorization_type, presence: true
+
+  validate :authorizer_has_authorization_type
+
   belongs_to :authorizer, polymorphic: true
   belongs_to :authorizee, polymorphic: true
+
+  private
+
+    def authorizer_has_authorization_type
+      unless authorizer.class.authorization_types.include? self.authorization_type.to_sym
+        errors.add(:authorization_type, "is not valid for authorizer")
+      end
+    end
 end

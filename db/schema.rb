@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715212122) do
+ActiveRecord::Schema.define(version: 20150829002726) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -62,8 +62,9 @@ ActiveRecord::Schema.define(version: 20150715212122) do
     t.string   "authorizer_type"
     t.integer  "authorizee_id"
     t.string   "authorizee_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "authorization_type", null: false
   end
 
   add_index "government_authorizations", ["authorizee_type", "authorizee_id"], name: "index_government_authorizations_on_authorizee"

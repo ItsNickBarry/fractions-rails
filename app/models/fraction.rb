@@ -56,6 +56,16 @@ class Fraction < ActiveRecord::Base
 
   has_many :government_authorizations, as: :authorizer
 
+  def self.authorization_types
+    [
+      :banish_character,
+      :create_electorate,
+      :create_fraction,
+      :create_position,
+      :create_region,
+      :unbanish_character
+    ]
+  end
 
   private
 
