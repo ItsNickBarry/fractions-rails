@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829002726) do
+ActiveRecord::Schema.define(version: 20150829220612) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -71,15 +71,16 @@ ActiveRecord::Schema.define(version: 20150829002726) do
   add_index "government_authorizations", ["authorizer_type", "authorizer_id"], name: "index_government_authorizations_on_authorizer"
 
   create_table "land_authorizations", force: :cascade do |t|
-    t.integer  "region_id",       null: false
+    t.integer  "authorizer_id",      null: false
     t.integer  "authorizee_id"
     t.string   "authorizee_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "authorization_type", null: false
   end
 
   add_index "land_authorizations", ["authorizee_type", "authorizee_id"], name: "index_land_authorizations_on_authorizee_type_and_authorizee_id"
-  add_index "land_authorizations", ["region_id"], name: "index_land_authorizations_on_region_id"
+  add_index "land_authorizations", ["authorizer_id"], name: "index_land_authorizations_on_authorizer_id"
 
   create_table "plots", force: :cascade do |t|
     t.integer  "region_id"

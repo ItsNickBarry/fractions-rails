@@ -2,12 +2,13 @@
 #
 # Table name: land_authorizations
 #
-#  id              :integer          not null, primary key
-#  region_id       :integer          not null
-#  authorizee_id   :integer
-#  authorizee_type :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                 :integer          not null, primary key
+#  authorizer_id      :integer          not null
+#  authorizee_id      :integer
+#  authorizee_type    :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  authorization_type :string           not null
 #
 
 require 'test_helper'
