@@ -30,7 +30,7 @@ Fractions.Views.PositionShow = Backbone.CompositeView.extend({
   },
 
   addCharacter: function (character) {
-    var view = new Fractions.Views.CharacterListItem({ model: character });
+    var view = new Fractions.Views.ListItem({ model: character, urlFragmentBase: 'characters/' });
     this.addSubview('#characters', view);
   }
 });

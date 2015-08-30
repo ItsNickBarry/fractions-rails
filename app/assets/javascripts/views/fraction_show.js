@@ -49,7 +49,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addChild: function (child) {
-    var view = new Fractions.Views.FractionListItem({ model: child });
+    var view = new Fractions.Views.ListItem({ model: child, urlFragmentBase: 'fractions/' });
     this.addSubview('#children', view);
   },
 
@@ -63,7 +63,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addElectorate: function (electorate) {
-    var view = new Fractions.Views.ElectorateListItem({ model: electorate });
+    var view = new Fractions.Views.ListItem({ model: electorate, urlFragmentBase: 'electorates/' });
     this.addSubview('#electorates', view);
   },
 
@@ -77,7 +77,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addPosition: function (position) {
-    var view = new Fractions.Views.PositionListItem({ model: position });
+    var view = new Fractions.Views.ListItem({ model: position, urlFragmentBase: 'positions/' });
     this.addSubview('#positions', view);
   },
 
@@ -91,7 +91,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addRegion: function (region) {
-    var view = new Fractions.Views.RegionListItem({ model: region });
+    var view = new Fractions.Views.ListItem({ model: region, urlFragmentBase: 'regions/' });
     this.addSubview('#regions', view);
   },
 

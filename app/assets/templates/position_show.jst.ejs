@@ -1,3 +1,4 @@
-<h1>Position in <%= position.fraction().escape("name") %>: <%= position.escape("name") %></h1>
+<h1>Position: <%= position.escape("name") %></h1>
+<a href=<%= "#/fractions/" + position.fraction().escape("id") %>><%= position.fraction().escape("name") %></a>
 <div id="characters-new"></div>
 <div id="characters"></div>

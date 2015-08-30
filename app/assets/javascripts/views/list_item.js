@@ -1,12 +1,13 @@
-Fractions.Views.ElectorateListItem = Backbone.View.extend({
+Fractions.Views.ListItem = Backbone.View.extend({
   template: JST['list_item'],
-  className: 'fractions-object-element fractions-object-list-item fractions-object-electorate',
+  className: 'fractions-object-list-item',
 
   events: {
     'click': 'show'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.urlFragmentBase = options.urlFragmentBase;
     this.listenTo(this.model, 'sync', this.render);
   },
 
@@ -17,6 +18,6 @@ Fractions.Views.ElectorateListItem = Backbone.View.extend({
   },
 
   show: function (event) {
-    Backbone.history.navigate('electorates/' + this.model.get('id'), { trigger: true });
+    Backbone.history.navigate(this.urlFragmentBase + this.model.get('id'), { trigger: true });
   }
 });
