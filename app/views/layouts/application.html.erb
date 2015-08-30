@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Fractions</title>
+  <meta name="description" content="The Fractions plugin, for Minecraft">
+  <meta name="author" content="Nick Barry">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.png'%>
 </head>
 <body>
-  <%= render "layouts/header.html.erb" %>
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/header.html.erb" %>
+    </div>
 
-  <%= render "layouts/messages.html.erb" %>
+    <div class="row">
+      <%= render "layouts/messages.html.erb" %>
+    </div>
 
-  <%= yield %>
+    <div class="row">
+      <%= yield %>
+    </div>
 
-  <%= render "layouts/footer.html.erb" %>
+    <div class="row">
+      <%= render "layouts/footer.html.erb" %>
+    </div>
+  </div>
 </body>
 </html>
