@@ -6,6 +6,10 @@ Fractions.Models.Fraction = Backbone.Model.extend({
   parse: function (response) {
     // TODO refactor this into a loop
     // TODO parse founder and parent models
+    if (response.founded_fractions) {
+      this.foundedFractions().set(response.founded_fractions, { parse: true });
+      delete response.founded_fractions;
+    }
     if (response.children) {
       this.children().set(response.children, { parse: true });
       delete response.children;
@@ -23,6 +27,13 @@ Fractions.Models.Fraction = Backbone.Model.extend({
       delete response.regions;
     }
     return response;
+  },
+
+  foundedFractions: function () {
+    if (!this._foundedFractions) {
+      this._foundedFractions = new Fractions.Collections.Fractions();
+    }
+    return this._foundedFractions;
   },
 
   children: function () {

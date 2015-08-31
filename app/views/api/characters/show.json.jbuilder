@@ -1,6 +1,10 @@
 json.id @character.id
 json.name @character.name
 
+json.founded_fractions @character.founded_fractions do |fraction|
+  json.extract! fraction, :id, :name
+end
+
 json.fractions @character.fractions do |fraction|
   json.extract! fraction, :id, :name
 end

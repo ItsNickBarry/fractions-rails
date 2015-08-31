@@ -7,6 +7,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
+    this.foundedFractions = this.model.foundedFractions();
     this.children = this.model.children();
     this.electorates = this.model.electorates();
     this.positions = this.model.positions();
@@ -14,6 +15,8 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, 'sync', this.render);
 
+    this.listenTo(this.foundedFractions, 'add', this.addFoundedFraction);
+    this.listenTo(this.foundedFractions, 'remove', this.removeFoundedFraction);
     this.listenTo(this.children, 'add', this.addChild);
     this.listenTo(this.children, 'remove', this.removeChild);
     this.listenTo(this.electorates, 'add', this.addElectorate);
@@ -27,7 +30,9 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({ fraction: this.model });
     this.$el.html(content);
-    this.renderChildNew();
+    this.renderFoundedFractionsNew();
+    this.renderFoundedFractions();
+    // this.renderChildNew();
     this.renderChildren();
     this.renderElectoratesNew();
     this.renderElectorates();
@@ -50,6 +55,20 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   addChild: function (child) {
     var view = new Fractions.Views.ListItem({ model: child });
     this.addSubview('#children-list', view);
+  },
+
+  renderFoundedFractionsNew: function () {
+    var view = new Fractions.Views.FractionsNew({ collection: this.foundedFractions, founder: this.model });
+    this.addSubview('#founded-fractions-new', view);
+  },
+
+  renderFoundedFractions: function () {
+    this.foundedFractions.each(this.addFoundedFraction.bind(this));
+  },
+
+  addFoundedFraction: function (child) {
+    var view = new Fractions.Views.ListItem({ model: child });
+    this.addSubview('#founded-fractions-list', view);
   },
 
   renderElectoratesNew: function () {

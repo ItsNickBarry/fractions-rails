@@ -3,6 +3,7 @@ class Api::FractionsController < ApplicationController
   before_action :find_or_initialize_fraction, except: [:create, :index]
 
   def create
+    debugger
     @founder = params[:founder_type].constantize.find(params[:founder_id])
     # TODO make sure current_user.active_character is allowed to do this
     @fraction = @founder.founded_fractions.new(fraction_params);

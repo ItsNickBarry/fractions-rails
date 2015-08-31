@@ -20,9 +20,10 @@ Fractions.Views.FractionsNew = Backbone.View.extend({
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    params.fraction.founder_id = this.founder.escape('id');
-    params.fraction.founder_type = this.founder.class;
-    this.collection.create(params['fraction'], { wait: true })
+    params.founder_id = this.founder.escape('id');
+    params.founder_type = this.founder.class;
+    // TODO make sure to add to founded_fractions collection, non necessarily the child/member fractions
+    this.collection.create(params, { wait: true })
     this.render();
   }
 });

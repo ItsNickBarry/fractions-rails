@@ -4,6 +4,10 @@ Fractions.Models.Character = Backbone.Model.extend({
   urlRoot: '/api/characters',
 
   parse: function (response) {
+    if (response.founded_fractions) {
+      this.foundedFractions().set(response.founded_fractions, { parse: true });
+      delete response.founded_fractions;
+    }
     if (response.fractions) {
       this.fractions().set(response.fractions, { parse: true });
       delete response.fractions;
@@ -21,6 +25,13 @@ Fractions.Models.Character = Backbone.Model.extend({
   //   }
   //   return this._electorates;
   // },
+
+  foundedFractions: function () {
+    if (!this._foundedFractions) {
+      this._foundedFractions = new Fractions.Collections.Fractions();
+    }
+    return this._foundedFractions;
+  },
 
   fractions: function () {
     if (!this._fractions) {
