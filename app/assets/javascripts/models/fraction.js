@@ -5,6 +5,7 @@ Fractions.Models.Fraction = Backbone.Model.extend({
 
   parse: function (response) {
     // TODO refactor this into a loop
+    // TODO parse founder and parent models
     if (response.children) {
       this.children().set(response.children, { parse: true });
       delete response.children;

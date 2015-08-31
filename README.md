@@ -6,3 +6,4 @@ Backbone
 D3
 SerializeJSON
 CompositeView
+Skeleton

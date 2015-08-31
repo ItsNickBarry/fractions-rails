@@ -1,6 +1,7 @@
 Fractions.Views.ListItem = Backbone.View.extend({
   template: JST['list_item'],
   className: 'fractions-object-list-item',
+  tagName: 'li',
 
   events: {
     'click': 'show'

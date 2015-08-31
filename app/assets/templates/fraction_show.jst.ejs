@@ -1,14 +1,46 @@
-<h1>Fraction: <%= fraction.get("name") %></h1>
-<div id="electorates">
-  <div id="electorates-new"></div>
-  <div id="electorates-list"></div>
-</div><div id="positions">
-  <div id="positions-new"></div>
-  <div id="positions-list"></div>
-</div><div id="regions">
-  <div id="regions-new"></div>
-  <div id="regions-list"></div>
-</div><div id="children">
-  <div id="children-new"></div>
-  <div id="children-list"></div>
+<h1>Fraction: <%= fraction.escape("name") %></h1>
+founder: <%= fraction.escape("founder") %>
+<div id="electorates" class="fractions-object-electorate">
+  <h3>Electorates</h3>
+  <div class="row">
+    <div class="six columns">
+      <div id="electorates-new"></div>
+    </div>
+    <div class="six columns">
+      <ul id="electorates-list"></ul>
+    </div>
+  </div>
+</div>
+<div id="positions" class="fractions-object-position">
+  <h3>Positions</h3>
+  <div class="row">
+    <div class="six columns">
+      <div id="positions-new"></div>
+    </div>
+    <div class="six columns">
+      <ul id="positions-list"></ul>
+    </div>
+  </div>
+</div>
+<div id="regions" class="fractions-object-region">
+  <h3>Regions</h3>
+  <div class="row">
+    <div class="six columns">
+      <div id="regions-new"></div>
+    </div>
+    <div class="six columns">
+      <ul id="regions-list"></ul>
+    </div>
+  </div>
+</div>
+<div id="children" class="fractions-object-fraction">
+  <h3>Child Fractions</h3>
+  <div class="row">
+    <div class="six columns">
+      <div id="children-new"></div>
+    </div>
+    <div class="six columns">
+      <ul id="children-list"></ul>
+    </div>
+  </div>
 </div>

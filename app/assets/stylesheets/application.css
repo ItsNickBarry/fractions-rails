@@ -27,8 +27,6 @@
 }*/
 
 
-
-
 .fractions-object-user {
   background-color: pink;
 }
@@ -64,10 +62,10 @@
 
 }
 
-.fractions-object-element {
+/*.fractions-object-element {
   padding: 4px;
   margin: 1px;
-}
+}*/
 
 .fractions-object-list-item-name {
   font-style: italic;
