@@ -1,5 +1,6 @@
 Fractions.Models.Character = Backbone.Model.extend({
   class: 'Character',
+  urlFragmentRoot: '/characters',
   urlRoot: '/api/characters',
 
   parse: function (response) {

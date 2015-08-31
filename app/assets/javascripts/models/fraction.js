@@ -1,5 +1,6 @@
 Fractions.Models.Fraction = Backbone.Model.extend({
   class: 'Fraction',
+  urlFragmentRoot: '/fractions',
   urlRoot: '/api/fractions',
 
   parse: function (response) {

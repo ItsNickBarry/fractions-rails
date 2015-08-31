@@ -1,4 +1,5 @@
 Fractions.Models.Position = Backbone.Model.extend({
+  urlFragmentRoot: '/positions',
   urlRoot: '/api/positions',
 
   parse: function (response) {

@@ -31,7 +31,7 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addCharacter: function (character) {
-    var view = new Fractions.Views.ListItem({ model: character, urlFragmentBase: 'characters/' });
-    this.addSubview('#characters', view);
+    var view = new Fractions.Views.ListItem({ model: character });
+    this.addSubview('#characters-list', view);
   }
 });

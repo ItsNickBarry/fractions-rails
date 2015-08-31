@@ -1,4 +1,5 @@
 Fractions.Models.Electorate = Backbone.Model.extend({
+  urlFragmentRoot: '/electorates',
   urlRoot: '/api/electorates',
 
   parse: function (response) {

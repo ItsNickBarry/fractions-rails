@@ -1,4 +1,5 @@
 Fractions.Models.User = Backbone.Model.extend({
+  urlFragmentRoot: '/users',
   urlRoot: '/api/users',
 
   parse: function (response) {

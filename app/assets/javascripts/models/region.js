@@ -1,4 +1,5 @@
 Fractions.Models.Region = Backbone.Model.extend({
+  urlFragmentRoot: '/regions',
   urlRoot: '/api/regions',
 
   parse: function (response) {
