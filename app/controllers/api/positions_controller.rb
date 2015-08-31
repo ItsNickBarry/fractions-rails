@@ -6,8 +6,7 @@ class Api::PositionsController < ApplicationController
     @fraction = Fraction.find(position_params[:fraction_id])
     @position = @fraction.positions.new(position_params);
 
-    # TODO complex position initialization
-    # needs authorizations
+    # TODO complex position initialization, including authorizations
     if @position.save
       render :show
     else

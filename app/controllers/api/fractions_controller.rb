@@ -4,12 +4,10 @@ class Api::FractionsController < ApplicationController
 
   def create
     @founder = params[:founder_type].constantize.find(params[:founder_id])
-    # TODO make sure current_user.active_characer is allowed to do this
+    # TODO make sure current_user.active_character is allowed to do this
     @fraction = @founder.founded_fractions.new(fraction_params);
-    # TODO complex fraction initialization
-    # needs authorizations
+    # TODO complex fraction initialization, including authorizations
     if @fraction.save
-      # TODO is @fraction okay, or should it render the whole :show jbuilder?
       render :show
     else
       render @fraction.errors.full_messages, status: 422

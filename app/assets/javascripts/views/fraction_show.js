@@ -39,7 +39,6 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   renderChildNew: function () {
-    // TODO pass in founded_fractions collection instead
     var view = new Fractions.Views.FractionsNew({ collection: this.children, founder: this.model });
     this.addSubview('#children-new', view);
   },
@@ -95,7 +94,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     this.addSubview('#regions-list', view);
   },
 
-  // TODO add remove methods for each collection
+  // TODO add remove methods for each collection ?
   // removeRegion: function (region) {
   //   var subview = _.find(this.subviews("#regions"), function (subview) {
   //     return subview.model === region;

@@ -9,7 +9,6 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.characters = this.model.characters();
     this.listenTo(this.model, 'sync', this.render);
-    // TODO character does not show up in list when added
     this.listenTo(this.characters, 'add remove', this.addCharacter);
   },
 

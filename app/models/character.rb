@@ -16,8 +16,7 @@ class Character < ActiveRecord::Base
   validates :user, presence: true
   validates :name, presence: true, uniqueness: true
   validates :gender, presence: true
-  # TODO validate that gender matches "FEMALE", "MALE", or "UNSPECIFIED"
-  # TODO allow unspecified gender?
+  validate :gender_is_valid
 
   belongs_to :user
   has_many :banishments
@@ -34,5 +33,10 @@ class Character < ActiveRecord::Base
 
     def ensure_gender
       self.gender ||= "UNSPECIFIED"
+    end
+
+    def gender_is_valid
+      # TODO allow unspecified gender?
+      errors.add(:gender, "must be \"FEMALE\", \"MALE\", or \"UNSPECIFIED\"")
     end
 end

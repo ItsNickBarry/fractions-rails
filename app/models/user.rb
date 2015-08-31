@@ -15,8 +15,9 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   validates :username, :uuid, :password_digest, :session_token, presence: true, uniqueness: true
-  # TODO validate that user isn't too stupid
   validates :password, length: { minimum: 8, allow_nil: true }
+  validate :password_does_not_match_username
+  # TODO validate :password_is_not_among_top_10000
 
   has_many :characters
 
@@ -61,5 +62,9 @@ class User < ActiveRecord::Base
 
     def ensure_session_token
       self.session_token ||= self.class.generate_session_token
+    end
+
+    def password_does_not_match_username
+      errors.add(:password, "must not match username") if self.password == self.username
     end
 end

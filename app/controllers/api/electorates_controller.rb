@@ -3,12 +3,9 @@ class Api::ElectoratesController < ApplicationController
   before_action :find_or_initialize_electorate, except: [:create, :index]
 
   def create
-    # debugger
-    # @fraction = Fraction.find(params[])
     @electorate = Fraction.find(electorate_params[:fraction_id]).electorates.new(electorate_params);
 
-    # TODO complex electorate initialization
-    # needs authorizations
+    # TODO complex electorate initialization, including authorizations
     if @electorate.save
       render :show
     else

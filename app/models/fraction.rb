@@ -58,12 +58,32 @@ class Fraction < ActiveRecord::Base
 
   def self.authorization_types
     [
-      :banish_character,
-      :create_electorate,
-      :create_fraction,
-      :create_position,
-      :create_region,
-      :unbanish_character
+      :character_banish,
+      :character_invite,
+      :character_unbanish,
+
+      :child_connect,
+      :child_create,
+      :child_disconnect,
+
+      :electorate_create,
+      :electorate_destroy,
+
+      :position_create,
+      :position_destroy,
+
+      :parent_connect,
+      :parent_disconnect,
+
+      :region_create,
+      :region_destroy,
+
+      :war_declare,
+      :war_join,
+      :war_surrender,
+
+
+      :root # TODO use explicit 'root' authorization?
     ]
   end
 

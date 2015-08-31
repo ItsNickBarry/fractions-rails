@@ -5,8 +5,7 @@ class Api::RegionsController < ApplicationController
   def create
     @region = Fraction.find(region_params[:fraction_id]).regions.new(region_params);
 
-    # TODO complex region initialization
-    # needs authorizations
+    # TODO complex region initialization, including authorizations
     if @region.save
       render :show
     else
