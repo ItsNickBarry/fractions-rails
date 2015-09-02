@@ -24,6 +24,7 @@ class Position < ActiveRecord::Base
 
   has_many :land_authorizations, as: :authorizee
 
+  # TODO differentiate between given/received authorizations
   has_many :government_authorizations, as: :authorizer
   has_many :government_authorizations, as: :authorizee
 

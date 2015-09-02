@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :signed_in?
 
+  def current_character
+    return nil if current_user.nil?
+    @current_character ||= current_user.current_character
+  end
+
   def current_user
     return nil if session["session_token"].nil?
     @current_user ||= User.where(session_token: session["session_token"]).first

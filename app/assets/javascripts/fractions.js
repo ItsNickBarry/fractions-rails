@@ -5,8 +5,14 @@ window.Fractions = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new Fractions.Routers.Router({ $pagesEl: $('#main') });
-    Backbone.history.start();
+    // TODO keep track of currentUser/session, fetch at appropriate time
+    Fractions.session = new Fractions.Models.Session();
+    Fractions.session.fetch({
+      success: function (model, response, options) {
+        new Fractions.Routers.Router({ $pagesEl: $('#main') });
+        Backbone.history.start();
+      }
+    });
   }
 };
 

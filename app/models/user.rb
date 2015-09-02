@@ -2,13 +2,14 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string
-#  uuid            :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                   :integer          not null, primary key
+#  username             :string
+#  uuid                 :string           not null
+#  password_digest      :string           not null
+#  session_token        :string           not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  current_character_id :integer
 #
 
 class User < ActiveRecord::Base
@@ -16,10 +17,12 @@ class User < ActiveRecord::Base
 
   validates :username, :uuid, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
+  validate :owns_current_character
   validate :password_does_not_match_username
   # TODO validate :password_is_not_among_top_10000
 
   has_many :characters
+  belongs_to :current_character, class_name: 'Character'
 
   def self.find_by_credentials(params)
     user = User.find_by(uuid: params[:uuid])
@@ -28,15 +31,6 @@ class User < ActiveRecord::Base
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64
-  end
-
-  def active_character
-    # TODO find the actual active character
-    if self.characters.count > 0
-      return self.characters.first
-    else
-      # TODO problem
-    end
   end
 
   def password
@@ -62,6 +56,13 @@ class User < ActiveRecord::Base
 
     def ensure_session_token
       self.session_token ||= self.class.generate_session_token
+    end
+
+    def owns_current_character
+      return if self.current_character_id.nil?
+      unless current_character && current_character.user.id == self.id
+        errors.add(:current_character_id, "does not belong to user")
+      end
     end
 
     def password_does_not_match_username

@@ -12,17 +12,5 @@ It would make sense for the controller of a region to be able to
 What if Positions didn't need a Fraction?  Players could form Positions ("Groups") to loosely organize themselves.  Later, these Positions could be assimilated into Fractions.  Conquered, perhaps?
 
 
-Need to track active character per user
-user.active_character_id attribute:
--only have to update user object when this is changed
--cannot get list of active characters
-
-character.active attribute:
--bad
-
-join table:
--weird
-
-
 
 User Backbone model change event to highlight changed things

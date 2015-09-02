@@ -29,6 +29,9 @@ class Character < ActiveRecord::Base
 
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 
+  # has_many :government_authorizations ... TODO get this from positions/ electorates
+  # has_many :land_authorizations ... TODO get this from positions/ fractions
+
   private
 
     def ensure_gender
@@ -37,6 +40,8 @@ class Character < ActiveRecord::Base
 
     def gender_is_valid
       # TODO allow unspecified gender?
-      errors.add(:gender, "must be \"FEMALE\", \"MALE\", or \"UNSPECIFIED\"")
+      unless ['FEMALE', 'MALE', 'UNSPECIFIED'].include? self.gender
+        errors.add(:gender, "must be \"FEMALE\", \"MALE\", or \"UNSPECIFIED\"")
+      end
     end
 end

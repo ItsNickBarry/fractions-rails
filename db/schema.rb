@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829220612) do
+ActiveRecord::Schema.define(version: 20150902225600) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -128,11 +128,12 @@ ActiveRecord::Schema.define(version: 20150829220612) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "uuid",            null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "uuid",                 null: false
+    t.string   "password_digest",      null: false
+    t.string   "session_token",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "current_character_id"
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true
