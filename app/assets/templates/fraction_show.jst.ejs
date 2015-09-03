@@ -1,5 +1,9 @@
 <h1>Fraction: <%= fraction.escape("name") %></h1>
-founder: <%= fraction.escape("founder") %>
+
+founder: <a href=<%= fraction.founder().urlFragment() %>><%= fraction.founder().escape("name") %></a>
+<br>
+parent: <a href=<%= fraction.parent().urlFragment() %>><%= fraction.parent().escape("name") %></a>
+
 <div id="electorates" class="fractions-object-electorate">
   <h3>Electorates</h3>
   <div class="row">

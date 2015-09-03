@@ -27,10 +27,10 @@ Fractions.Models.Character = Backbone.Model.extend({
   // },
 
   foundedFractions: function () {
-    if (!this._foundedFractions) {
-      this._foundedFractions = new Fractions.Collections.Fractions();
+    if (!this._founded_fractions) {
+      this._founded_fractions = new Fractions.Collections.Fractions();
     }
-    return this._foundedFractions;
+    return this._founded_fractions;
   },
 
   fractions: function () {

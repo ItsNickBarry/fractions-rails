@@ -3,9 +3,21 @@ Fractions.Models.Fraction = Backbone.Model.extend({
   urlFragmentRoot: '/fractions',
   urlRoot: '/api/fractions',
 
+  urlFragment: function () {
+    return '#' + this.urlFragmentRoot + '/' + this.get('id');
+  },
+
   parse: function (response) {
     // TODO refactor this into a loop
     // TODO parse founder and parent models
+    if (response.founder) {
+      this.founder().set(response.founder);
+      delete response.founder;
+    }
+    if (response.parent) {
+      this.parent().set(response.parent);
+      delete response.parent;
+    }
     if (response.founded_fractions) {
       this.foundedFractions().set(response.founded_fractions, { parse: true });
       delete response.founded_fractions;
@@ -29,11 +41,25 @@ Fractions.Models.Fraction = Backbone.Model.extend({
     return response;
   },
 
-  foundedFractions: function () {
-    if (!this._foundedFractions) {
-      this._foundedFractions = new Fractions.Collections.Fractions();
+  founder: function (type) {
+    if (!this._founder) {
+      this._founder = new Fractions.Models.Founder();
     }
-    return this._foundedFractions;
+    return this._founder
+  },
+
+  parent: function () {
+    if (!this._parent) {
+      this._parent = new Fractions.Models.Fraction();
+    }
+    return this._parent;
+  },
+
+  foundedFractions: function () {
+    if (!this._founded_fractions) {
+      this._founded_fractions = new Fractions.Collections.Fractions();
+    }
+    return this._founded_fractions;
   },
 
   children: function () {

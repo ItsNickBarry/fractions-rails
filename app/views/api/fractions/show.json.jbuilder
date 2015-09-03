@@ -1,5 +1,4 @@
-json.id @fraction.id
-json.name @fraction.name
+json.extract! @fraction, :id, :name, :founder_type
 
 json.root do
   json.extract! @fraction.root, :id, :name
@@ -10,7 +9,7 @@ json.parent do
 end if @fraction.parent
 
 json.founder do
-  json.type @fraction.founder_type
+  json.class @fraction.founder_type
   json.extract! @fraction.founder, :id, :name
 end
 json.founded_at @fraction.created_at
