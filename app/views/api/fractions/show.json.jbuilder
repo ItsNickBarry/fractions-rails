@@ -1,12 +1,16 @@
 json.extract! @fraction, :id, :name, :founder_type
 
-json.root do
-  json.extract! @fraction.root, :id, :name
-end unless @fraction.root?
+unless @fraction.root?
+  json.root do
+    json.extract! @fraction.root, :id, :name
+  end
+end
 
-json.parent do
-  json.extract! @fraction.parent, :id, :name
-end if @fraction.parent
+if @fraction.parent
+  json.parent do
+    json.extract! @fraction.parent, :id, :name
+  end
+end
 
 json.founder do
   json.class @fraction.founder_type
@@ -33,3 +37,5 @@ end
 json.regions @fraction.regions do |region|
   json.extract! region, :id, :name
 end
+
+json.partial! 'api/government_authorizations/current_character_government_authorizations', authorizee: @fraction
