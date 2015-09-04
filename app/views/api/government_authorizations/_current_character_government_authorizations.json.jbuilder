@@ -1,5 +1,5 @@
-if current_character
-  json.government_authorizations do
+json.government_authorizations do
+  if current_character
     json.executable authorizee.authorizes? current_character, :execute do |government_authorization|
       json.extract! government_authorization, :authorization_type
     end
@@ -11,9 +11,9 @@ if current_character
     json.votable do
       # TODO electorate-vote-noncallable authorizations
     end
+  else
+    json.executable []
+    json.callable []
+    json.votable []
   end
-else
-  json.executable []
-  json.callable []
-  json.votable []
 end
