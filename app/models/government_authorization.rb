@@ -17,16 +17,17 @@ class GovernmentAuthorization < ActiveRecord::Base
   # TODO validate uniqueness in scope of authorizer/authorizee/authorization_type
   validates :authorizer, :authorizee, :authorization_type, presence: true
 
-  validate :authorizer_has_authorization_type
+  validate :authorizer_has_government_authorization_type
 
   belongs_to :authorizer, polymorphic: true
   belongs_to :authorizee, polymorphic: true
 
   private
 
-    def authorizer_has_authorization_type
+    def authorizer_has_government_authorization_type
+      # if authorization_type is nil, invalidation has already occurred
       return if authorization_type.nil?
-      unless authorizer.class.authorization_types.include? self.authorization_type.to_sym
+      unless authorizer.class.government_authorization_types.include? self.authorization_type.to_sym
         errors.add(:authorization_type, "is not valid for authorizer")
       end
     end

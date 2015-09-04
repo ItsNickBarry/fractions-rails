@@ -32,9 +32,55 @@ module Governable
     SQL
   end
 
-  private
+  module ClassMethods
+    def government_authorization_types
+      {
+        Electorate => [
 
-    def test
-      debugger
+        ],
+
+        Fraction => [
+          # inter-fraction relationships
+          :child_connect,
+          :child_create,
+          :child_disconnect,
+
+          :parent_connect,
+          :parent_disconnect,
+
+          # component objects
+          :electorate_create,
+          :electorate_destroy,
+
+          :position_create,
+          :position_destroy,
+
+          :region_create,
+          :region_destroy,
+
+
+          :character_banish,
+          :character_invite,
+          :character_unbanish,
+
+          :war_declare,
+          :war_join,
+          :war_surrender,
+
+          # self
+          # :self_...
+
+          :root # TODO use explicit 'root' authorization?
+        ],
+
+        Position => [
+
+        ],
+
+        Region => [
+          
+        ]
+      }[self]
     end
+  end
 end

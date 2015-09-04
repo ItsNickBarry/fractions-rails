@@ -55,42 +55,6 @@ class Fraction < ActiveRecord::Base
   # TODO these authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations, as: :authorizee
 
-  def self.authorization_types
-    [
-      # inter-fraction relationships
-      :child_connect,
-      :child_create,
-      :child_disconnect,
-
-      :parent_connect,
-      :parent_disconnect,
-
-      # component objects
-      :electorate_create,
-      :electorate_destroy,
-
-      :position_create,
-      :position_destroy,
-
-      :region_create,
-      :region_destroy,
-
-
-      :character_banish,
-      :character_invite,
-      :character_unbanish,
-
-      :war_declare,
-      :war_join,
-      :war_surrender,
-
-      # self
-      # :self_...
-
-      :root # TODO use explicit 'root' authorization?
-    ]
-  end
-
   private
 
     def setup_default_objects
