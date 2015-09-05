@@ -2,7 +2,7 @@
   <%= link_to "Home", '/#/' %>
   <% if signed_in? %>
     | <%= link_to "Sign Out", session_url, method: "delete" %>
-    | <%= link_to current_user.username, '/#users/' + current_user.id.to_s %>
+    | <%= link_to "Account (#{current_user.username})", '/#users/' + current_user.id.to_s %>
     <% if current_character %>
       | <%= link_to current_character.name, '/#characters/' + current_character.id.to_s %>
     <% end %>

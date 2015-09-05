@@ -1,4 +1,5 @@
-Fractions.Models.Fraction = Backbone.Model.extend({
+Fractions.Models.Fraction = Backbone.Model.extend(
+Fractions.Concerns.Governable).extend({
   class: 'Fraction',
   urlFragmentRoot: '/fractions',
   urlRoot: '/api/fractions',
@@ -8,8 +9,7 @@ Fractions.Models.Fraction = Backbone.Model.extend({
   },
 
   parse: function (response) {
-    // TODO refactor this into a loop
-    // TODO parse founder and parent models
+    // TODO parse: true for founder and parent models?
     if (response.founder) {
       this.founder().set(response.founder);
       delete response.founder;
@@ -41,7 +41,7 @@ Fractions.Models.Fraction = Backbone.Model.extend({
     return response;
   },
 
-  founder: function (type) {
+  founder: function () {
     if (!this._founder) {
       this._founder = new Fractions.Models.Founder();
     }

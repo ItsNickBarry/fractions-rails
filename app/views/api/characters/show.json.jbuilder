@@ -1,5 +1,4 @@
-json.id @character.id
-json.name @character.name
+json.extract! @character, :id, :name, :gender
 
 json.founded_fractions @character.founded_fractions do |fraction|
   json.extract! fraction, :id, :name

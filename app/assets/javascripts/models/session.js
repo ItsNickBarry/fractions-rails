@@ -10,6 +10,14 @@ Fractions.Models.Session = Backbone.Model.extend({
 
   parse: function (response) {
     // TODO parse currentCharacter and currentUser
+    if (response.current_character) {
+      this.currentCharacter().set(response.current_character);
+      delete response.current_character;
+    }
+    if (response.current_user) {
+      this.currentUser().set(response.current_user);
+      delete response.current_user;
+    }
   },
 
   currentCharacter: function () {

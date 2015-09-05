@@ -1,5 +1,6 @@
 window.Fractions = {
   D3Views: {},
+  Concerns: {},
   Models: {},
   Collections: {},
   Views: {},

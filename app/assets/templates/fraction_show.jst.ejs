@@ -1,14 +1,23 @@
-<h1>Fraction: <%= fraction.escape("name") %></h1>
+<h1><%= fraction.escape("name") %>,
+<% if (fraction.parent().escape('id')) { %>
+  a fraction of <a href=<%= fraction.parent().urlFragment() %>><%= fraction.parent().escape("name") %></a>
+<% } else { %>
+  an independent realm
+<% } %>
+</h1>
 
-founder: <a href=<%= fraction.founder().urlFragment() %>><%= fraction.founder().escape("name") %></a>
-<br>
-parent: <a href=<%= fraction.parent().urlFragment() %>><%= fraction.parent().escape("name") %></a>
+<h2>Founded by
+<% if (fraction.get('founder_type') === 'Fraction') { %>
+  the fraction
+<% } %>
+<a href=<%= fraction.founder().urlFragment() %>><%= fraction.founder().escape("name") %></a>
+</h2>
 
 <div id="electorates" class="fractions-object-electorate">
   <h3>Electorates</h3>
   <div class="row">
     <div class="six columns">
-      <div id="electorates-new"></div>
+      <div id="electorates-new" style="<%= fraction.executable('electorate_create') ? '' : 'display: none' %>"></div>
     </div>
     <div class="six columns">
       <ul id="electorates-list"></ul>

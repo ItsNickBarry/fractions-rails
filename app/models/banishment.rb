@@ -13,7 +13,7 @@ class Banishment < ActiveRecord::Base
   # TODO dependent destroy
   validates :character, :fraction, presence: true
   # TODO add message
-  validates :character_id, uniqueness: { scope: :fraction_id,
+  validates :character, uniqueness: { scope: :fraction,
     message: ""}
 
   belongs_to :character
