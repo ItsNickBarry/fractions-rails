@@ -1,6 +1,9 @@
 <h1><%= fraction.escape("name") %>,
 <% if (fraction.parent().escape('id')) { %>
   a fraction of <a href=<%= fraction.parent().urlFragment() %>><%= fraction.parent().escape("name") %></a>
+  <% if (fraction.parent().escape('id') !== fraction.root().escape('id')) { %>
+   in the realm of <a href=<%= fraction.root().urlFragment() %>><%= fraction.root().escape("name") %></a>
+  <% } %>
 <% } else { %>
   an independent realm
 <% } %>
@@ -17,7 +20,7 @@
   <h3>Electorates</h3>
   <div class="row">
     <div class="six columns">
-      <div id="electorates-new" style="<%= fraction.executable('electorate_create') ? '' : 'display: none' %>"></div>
+      <div id="electorates-new"></div>
     </div>
     <div class="six columns">
       <ul id="electorates-list"></ul>

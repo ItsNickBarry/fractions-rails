@@ -7,6 +7,8 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
+    // TODO remove global
+    window.fff = this.model;
     this.foundedFractions = this.model.foundedFractions();
     this.children = this.model.children();
     this.electorates = this.model.electorates();

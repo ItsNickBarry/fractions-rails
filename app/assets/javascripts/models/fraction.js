@@ -18,6 +18,10 @@ Fractions.Concerns.Governable).extend({
       this.parent().set(response.parent);
       delete response.parent;
     }
+    if (response.root) {
+      this.root().set(response.root);
+      delete response.root;
+    }
     if (response.founded_fractions) {
       this.foundedFractions().set(response.founded_fractions, { parse: true });
       delete response.founded_fractions;
@@ -53,6 +57,13 @@ Fractions.Concerns.Governable).extend({
       this._parent = new Fractions.Models.Fraction();
     }
     return this._parent;
+  },
+
+  root: function () {
+    if (!this._root) {
+      this._root = new Fractions.Models.Fraction();
+    }
+    return this._root;
   },
 
   foundedFractions: function () {
