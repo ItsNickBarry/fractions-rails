@@ -16,6 +16,7 @@ class Fraction < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :founder, presence: true
 
+  # TODO add orphan_strategy and cache_depth
   has_ancestry
   # parent           Returns the parent of the record, nil for a root node
   # parent_id        Returns the id of the parent of the record, nil for a root node

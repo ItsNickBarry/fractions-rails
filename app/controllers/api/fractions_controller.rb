@@ -2,8 +2,11 @@ class Api::FractionsController < ApplicationController
   before_action :must_be_signed_in, except: [:show, :index]
   before_action :find_or_initialize_fraction, except: [:create, :index]
 
+  def index
+    @fractions = Fraction.roots
+  end
+
   def create
-    debugger
     @founder = params[:founder_type].constantize.find(params[:founder_id])
     # TODO make sure current_user.active_character is allowed to do this
     @fraction = @founder.founded_fractions.new(fraction_params);
