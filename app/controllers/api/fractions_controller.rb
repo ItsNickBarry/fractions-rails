@@ -8,7 +8,7 @@ class Api::FractionsController < ApplicationController
 
   def create
     @founder = params[:founder_type].constantize.find(params[:founder_id])
-    # TODO make sure current_user.active_character is allowed to do this
+    # TODO make sure current_user.active_character is allowed to do this, on behalf of founder if founder is a fraction
     @fraction = @founder.founded_fractions.new(fraction_params);
     # TODO complex fraction initialization, including authorizations
     if @fraction.save

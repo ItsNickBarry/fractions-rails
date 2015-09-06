@@ -13,23 +13,42 @@ module Governable
     # has_many :government_votable_characters, through: :government_authorized_electorates, source: :voters
   end
 
-  def authorizes? (character, authorization_level, authorization_type = nil)
-    raise "Invalid authorization level" unless [:execute, :call, :vote].include? authorization_level
-    authorizee_type = authorization_level == :execute ? 'position' : 'electorate'
+  def authorizes (character, authorization_level, authorization_type = nil)
+    authorizee_class = {
+      execute: Position,
+      call: Electorate,
+      vote: Electorate
+    }[authorization_level] || (raise "Invalid authorization level")
 
-    GovernmentAuthorization.find_by_sql([<<-SQL, { authorizer_id: self.id, authorizer_type: self.class, character_id: character.id }])
+    replacements = {
+      authorizer_id: self.id,
+      authorizer_type: self.class.to_s,
+      authorizee_type: authorizee_class.to_s,
+      authorization_type: authorization_type,
+      character_id: character.id,
+      authorizee_table: authorizee_class.table_name,
+      authorizee_memberships_table: authorizee_class.to_s.downcase + '_memberships',
+      authorizee_reference_column: authorizee_class.to_s.downcase + '_id'
+    }
+
+    # select and parse all government authorizations the character has
+    # TODO retain authorizee_id and authorizee_type, to identify through which authorizees the character is authorized
+    # TODO maybe this should just return the position/electorate?  is the government authorization itself really useful?
+    GovernmentAuthorization.find_by_sql([<<-SQL, replacements])
       SELECT government_authorizations.*
-        FROM #{authorizee_type}_memberships
-        JOIN #{authorizee_type}s
-        ON #{authorizee_type}s.id = #{authorizee_type}_memberships.#{authorizee_type}_id
-        JOIN government_authorizations
-        ON government_authorizations.authorizee_type = '#{authorizee_type.capitalize}'
-          AND government_authorizations.authorizee_id = #{authorizee_type}s.id
+        FROM government_authorizations
+        JOIN :authorizee_memberships_table
+          ON :authorizee_memberships_table.:authorizee_reference_column = government_authorizations.authorizee_id
+            AND government_authorizations.authorizee_type = :authorizee_type
         WHERE government_authorizations.authorizer_type = :authorizer_type
           AND government_authorizations.authorizer_id = :authorizer_id
-          AND #{authorizee_type}_memberships.character_id = :character_id
-          -- AND electorate_memberships.TODO whether or not electorate_membership includes vote-calling power
+          AND :authorizee_memberships_table.character_id = :character_id
+          #{'AND government_authorizations.authorization_type LIKE :authorization_type' if authorization_type}
     SQL
+  end
+
+  def authorizes? (character, authorization_level, authorization_type = nil)
+    authorizes(character, authorization_level, authorization_type).any?
   end
 
   module ClassMethods
