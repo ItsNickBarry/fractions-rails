@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902225600) do
+ActiveRecord::Schema.define(version: 20150907201532) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -45,12 +45,13 @@ ActiveRecord::Schema.define(version: 20150902225600) do
   add_index "electorates", ["name", "fraction_id"], name: "index_electorates_on_name_and_fraction_id", unique: true
 
   create_table "fractions", force: :cascade do |t|
-    t.string   "name",         null: false
+    t.string   "name",                       null: false
     t.string   "ancestry"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "founder_id"
-    t.string   "founder_type"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "founder_id",                 null: false
+    t.string   "founder_type",               null: false
+    t.integer  "ancestry_depth", default: 0
   end
 
   add_index "fractions", ["ancestry"], name: "index_fractions_on_ancestry"
@@ -58,22 +59,21 @@ ActiveRecord::Schema.define(version: 20150902225600) do
   add_index "fractions", ["name"], name: "index_fractions_on_name", unique: true
 
   create_table "government_authorizations", force: :cascade do |t|
-    t.integer  "authorizer_id"
-    t.string   "authorizer_type"
-    t.integer  "authorizee_id"
-    t.string   "authorizee_type"
+    t.integer  "authorizer_id",      null: false
+    t.string   "authorizer_type",    null: false
+    t.integer  "authorizee_id",      null: false
+    t.string   "authorizee_type",    null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "authorization_type", null: false
   end
 
-  add_index "government_authorizations", ["authorizee_type", "authorizee_id"], name: "index_government_authorizations_on_authorizee"
-  add_index "government_authorizations", ["authorizer_type", "authorizer_id"], name: "index_government_authorizations_on_authorizer"
+  add_index "government_authorizations", ["authorizer_type", "authorizer_id", "authorizee_type", "authorizee_id", "authorization_type"], name: "index_government_authorizations_uniquely", unique: true
 
   create_table "land_authorizations", force: :cascade do |t|
     t.integer  "authorizer_id",      null: false
-    t.integer  "authorizee_id"
-    t.string   "authorizee_type"
+    t.integer  "authorizee_id",      null: false
+    t.string   "authorizee_type",    null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "authorization_type", null: false
