@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907201532) do
+ActiveRecord::Schema.define(version: 20150907203728) do
 
   create_table "banishments", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20150907201532) do
   add_index "characters", ["name"], name: "index_characters_on_name", unique: true
   add_index "characters", ["user_id"], name: "index_characters_on_user_id"
 
+  create_table "electorate_memberships", force: :cascade do |t|
+    t.integer  "member_id",     null: false
+    t.string   "member_type",   null: false
+    t.integer  "electorate_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "electorate_memberships", ["member_type", "member_id", "electorate_id"], name: "index_electorate_memberships_uniquely", unique: true
+
   create_table "electorates", force: :cascade do |t|
     t.integer  "fraction_id", null: false
     t.string   "name",        null: false
@@ -45,13 +55,12 @@ ActiveRecord::Schema.define(version: 20150907201532) do
   add_index "electorates", ["name", "fraction_id"], name: "index_electorates_on_name_and_fraction_id", unique: true
 
   create_table "fractions", force: :cascade do |t|
-    t.string   "name",                       null: false
+    t.string   "name",         null: false
     t.string   "ancestry"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "founder_id",                 null: false
-    t.string   "founder_type",               null: false
-    t.integer  "ancestry_depth", default: 0
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "founder_id",   null: false
+    t.string   "founder_type", null: false
   end
 
   add_index "fractions", ["ancestry"], name: "index_fractions_on_ancestry"
@@ -79,7 +88,7 @@ ActiveRecord::Schema.define(version: 20150907201532) do
     t.string   "authorization_type", null: false
   end
 
-  add_index "land_authorizations", ["authorizee_type", "authorizee_id"], name: "index_land_authorizations_on_authorizee_type_and_authorizee_id"
+  add_index "land_authorizations", ["authorizee_type", "authorizee_id"], name: "index_land_authorizations_on_authorizee"
   add_index "land_authorizations", ["authorizer_id"], name: "index_land_authorizations_on_authorizer_id"
 
   create_table "plots", force: :cascade do |t|
