@@ -7,8 +7,8 @@
 #  ancestry     :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  founder_id   :integer
-#  founder_type :string
+#  founder_id   :integer          not null
+#  founder_type :string           not null
 #
 
 require 'test_helper'
