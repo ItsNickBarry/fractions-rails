@@ -10,7 +10,7 @@ class Api::PositionsController < ApplicationController
     if @position.save
       render :show
     else
-      render @position.errors.full_messages, status: 422
+      render json: @position.errors.full_messages, status: 422
     end
   end
 

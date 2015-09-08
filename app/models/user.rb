@@ -52,6 +52,11 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  def can_create_character?
+    # TODO user create character conditions
+    characters.length < 10
+  end
+
   private
 
     def ensure_session_token

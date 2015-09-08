@@ -45,10 +45,10 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  renderChildNew: function () {
-    var view = new Fractions.Views.FractionsNew({ collection: this.children, founder: this.model });
-    this.addSubview('#children-new', view);
-  },
+  // renderChildNew: function () {
+  //   var view = new Fractions.Views.FractionsNew({ collection: this.children, founder: this.model });
+  //   this.addSubview('#children-new', view);
+  // },
 
   renderChildren: function () {
     this.children.each(this.addChild.bind(this));
@@ -60,7 +60,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   renderFoundedFractionsNew: function () {
-    var view = new Fractions.Views.FractionsNew({ collection: this.foundedFractions, founder: this.model });
+    var view = new Fractions.Views.FractionsNew({ childFractions: this.children, foundedFractions: this.foundedFractions, founder: this.model });
     this.addSubview('#founded-fractions-new', view);
   },
 

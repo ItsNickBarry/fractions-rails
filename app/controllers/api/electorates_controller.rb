@@ -9,7 +9,7 @@ class Api::ElectoratesController < ApplicationController
     if @electorate.save
       render :show
     else
-      render @electorate.errors.full_messages, status: 422
+      render json: @electorate.errors.full_messages, status: 422
     end
   end
 

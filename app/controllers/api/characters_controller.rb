@@ -3,11 +3,17 @@ class Api::CharactersController < ApplicationController
   before_action :find_or_initialize_character, except: [:create, :index]
 
   def create
+
+    unless current_user.can_create_character?
+      render json: "#{current_user.username} cannot create a character", status: 422
+      return
+    end
+
     @character = current_user.characters.new(character_params);
     if @character.save
       render :show
     else
-      render @character.errors.full_messages, status: 422
+      render json: @character.errors.full_messages, status: 422
     end
   end
 

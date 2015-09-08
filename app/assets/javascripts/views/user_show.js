@@ -21,7 +21,7 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   renderCharactersNew: function () {
-    var view = new Fractions.Views.CharactersNew({ collection: this.characters });
+    var view = new Fractions.Views.CharactersNew({ userCharacters: this.characters });
     this.addSubview('#characters-new', view);
   },
 

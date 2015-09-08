@@ -9,7 +9,7 @@ class Api::RegionsController < ApplicationController
     if @region.save
       render :show
     else
-      render @region.errors.full_messages, status: 422
+      render json: @region.errors.full_messages, status: 422
     end
   end
 
