@@ -45,8 +45,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def must_have_active_character
+  def must_have_current_character
     # TODO ensure that there is an active character for most actions
-    signed_in? && current_user.active_character
+    unless signed_in? && current_user.current_character
+      render json: "Must have current character", status: 422
+    end
   end
 end

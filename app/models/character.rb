@@ -32,6 +32,10 @@ class Character < ActiveRecord::Base
   # has_many :government_authorizations ... TODO get this from positions/ electorates
   # has_many :land_authorizations ... TODO get this from positions/ fractions
 
+  def can_found_fraction?
+    true # TODO character found fraction conditions
+  end
+
   private
 
     def ensure_gender
