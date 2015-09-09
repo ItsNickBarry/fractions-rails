@@ -10,6 +10,10 @@
 #
 
 class Banishment < ActiveRecord::Base
+  # TODO npc soldiers will attack banished characters on sight, npc laborers will run away
+  # toggle "hostile"/"peaceful" banishment with attribute?
+  # TODO realm-wide banishments?  option related to fraction centralization?
+  # TODO on create, kick character from fraction's positions
   # TODO dependent destroy
   validates :character, :fraction, presence: true
   # TODO add message
