@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class UsersController < ApplicationController
   before_action :must_not_be_signed_in, only: [:new, :create]
 
@@ -9,13 +7,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    mojang_api_url = "https://api.mojang.com/users/profiles/minecraft/#{ @user.username }"
-    mojang_api_response = JSON.parse(open(mojang_api_url).string)
+    verified_params = verify_params! user_params
 
-    @user.username = mojang_api_response["name"]
-    @user.uuid = mojang_api_response["id"]
-
+    @user = User.new(verified_params)
     if @user.save
       # TODO display activation instructions
       # sign_in!(@user)
