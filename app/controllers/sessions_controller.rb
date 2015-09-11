@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class SessionsController < ApplicationController
   before_action :must_not_be_signed_in, only: [:new, :create]
 
@@ -6,10 +8,17 @@ class SessionsController < ApplicationController
   end
 
   def create
+    verified_session_params = session_params
+    mojang_api_url = "https://api.mojang.com/users/profiles/minecraft/#{ verified_session_params["username"] }"
+    mojang_api_response = JSON.parse(open(mojang_api_url).string)
+
+    verified_session_params["username"] = mojang_api_response["name"]
+    verified_session_params["uuid"] = mojang_api_response["id"]
+
     # TODO rate-limit login requests
-    @user = User.find_by_credentials(session_params)
+    @user = User.find_by_credentials(verified_session_params)
     if @user
-      if @user.username == session_params[:username]
+      if @user.username == verified_session_params[:username]
         sign_in! @user
         redirect_to root_url
       else
@@ -31,6 +40,6 @@ class SessionsController < ApplicationController
   private
 
     def session_params
-      params.require(:user).permit(:username, :uuid, :password)
+      params.require(:user).permit(:username, :password)
     end
 end
