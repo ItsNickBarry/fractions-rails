@@ -4,10 +4,13 @@
 #
 #  id            :integer          not null, primary key
 #  electorate_id :integer          not null
+#  position_id   :integer          not null
+#  caller        :boolean          default(FALSE), not null
+#  electoral     :boolean          default(FALSE), not null
+#  absolute      :boolean          default(FALSE), not null
+#  weight        :float            default(1.0), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  member_type   :string
-#  member_id     :integer
 #
 
 class ElectorateMembership < ActiveRecord::Base

@@ -61,7 +61,7 @@ module Governable
         Fraction => [
           # inter-fraction relationships
           :child_connect,
-          :child_create, # TODO create non-child fractions? (like Liberia)
+          :child_create,
           :child_disconnect,
           :fraction_create,
 

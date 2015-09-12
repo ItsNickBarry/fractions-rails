@@ -9,11 +9,11 @@ module Verifiable
 
     def verify_params!
       profile = MojangApiConnection.get_profile_given_username(user_params[:username])
-      if profile
+      if profile.is_a? Hash
         @verified_params = user_params.merge(profile)
       else
         @user = User.new(user_params)
-        flash.now[:errors] = ["Not a Minecraft username"]
+        flash.now[:errors] = [profile]
         render :new
       end
     end

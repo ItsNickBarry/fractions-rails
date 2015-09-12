@@ -78,12 +78,12 @@ class User < ActiveRecord::Base
     def verify_params!
       if self.uuid.nil?
         profile = MojangApiConnection.get_profile_given_username(self.username)
-        if profile
+        if profile.is_a? Hash
           self.username = profile['username']
           self.uuid = profile['uuid']
           self.attributes.merge!(profile)
         else
-          errors.add(:username, "is not a Minecraft username")
+          errors.add(profile)
         end
       end
     end

@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_character, :current_user, :signed_in?
 
+  # def actable...
+  #   # TODO signed_in? && current_user.activated? && current_user.has_active_character?
+  #   # TODO make helper method
+  # end
+
   def current_character
     return nil if current_user.nil?
     @current_character ||= current_user.current_character

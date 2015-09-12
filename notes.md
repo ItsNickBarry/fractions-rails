@@ -14,3 +14,12 @@ What if Positions didn't need a Fraction?  Players could form Positions ("Groups
 
 
 User Backbone model change event to highlight changed things
+
+
+Get skins given username from this pattern:
+s3.amazonaws.com/MinecraftSkins/USERNAME.png
+
+https://github.com/ion1/minecraft-avatars
+
+or this (1 per user per minute, must parse from other response):
+http://textures.minecraft.net/texture/57677818a0b7d74d46bb5cdc483622ad1520ab3fedb995e619d069de6f6b
