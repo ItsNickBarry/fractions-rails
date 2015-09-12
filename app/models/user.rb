@@ -12,8 +12,11 @@
 #  current_character_id :integer
 #
 
+require 'open-uri'
+
 class User < ActiveRecord::Base
   after_initialize :ensure_session_token
+  before_validation :verify_params!
 
   validates :username, :uuid, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
@@ -72,5 +75,15 @@ class User < ActiveRecord::Base
 
     def password_does_not_match_username
       errors.add(:password, "must not match username") if self.password == self.username
+    end
+
+    def verify_params!
+      if self.uuid.nil?
+        mojang_api_url = "https://api.mojang.com/users/profiles/minecraft/#{ self.username }"
+        mojang_api_response = JSON.parse(open(mojang_api_url).string)
+
+        self.username = mojang_api_response["name"]
+        self.uuid = mojang_api_response["id"]
+      end
     end
 end
