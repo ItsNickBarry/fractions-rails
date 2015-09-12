@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  include Verifiable
+
   before_action :must_not_be_signed_in, only: [:new, :create]
+  before_action :verify_params!, only: [:create]
 
   def new
     @user = User.new
@@ -7,9 +10,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    verified_params = verify_params! user_params
-
-    @user = User.new(verified_params)
+    @user = User.new(@verified_params)
     if @user.save
       # TODO display activation instructions
       # sign_in!(@user)
@@ -20,10 +21,4 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  private
-
-    def user_params
-      params.require(:user).permit(:username, :password)
-    end
 end

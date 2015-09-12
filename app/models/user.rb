@@ -12,8 +12,6 @@
 #  current_character_id :integer
 #
 
-require 'open-uri'
-
 class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   before_validation :verify_params!
@@ -79,11 +77,14 @@ class User < ActiveRecord::Base
 
     def verify_params!
       if self.uuid.nil?
-        mojang_api_url = "https://api.mojang.com/users/profiles/minecraft/#{ self.username }"
-        mojang_api_response = JSON.parse(open(mojang_api_url).string)
-
-        self.username = mojang_api_response["name"]
-        self.uuid = mojang_api_response["id"]
+        profile = MojangApiConnection.get_profile_given_username(self.username)
+        if profile
+          self.username = profile['username']
+          self.uuid = profile['uuid']
+          self.attributes.merge!(profile)
+        else
+          errors.add(:username, "is not a Minecraft username")
+        end
       end
     end
 end

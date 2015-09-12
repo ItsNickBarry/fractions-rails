@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -52,15 +50,5 @@ class ApplicationController < ActionController::Base
     unless signed_in? && current_user.current_character
       render json: "Must have current character", status: 422
     end
-  end
-
-  def verify_params!(params)
-    mojang_api_url = "https://api.mojang.com/users/profiles/minecraft/#{ params["username"] }"
-    mojang_api_response = JSON.parse(open(mojang_api_url).string)
-
-    params["username"] = mojang_api_response["name"]
-    params["uuid"] = mojang_api_response["id"]
-
-    params
   end
 end
