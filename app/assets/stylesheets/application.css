@@ -26,6 +26,14 @@
   color: black;
 }*/
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 
 .fractions-object-user {
   background-color: pink;
@@ -67,7 +75,8 @@
   margin: 1px;
 }*/
 
-.fractions-object-list-item-name {
-  font-style: italic;
+li.fractions-object-list-item:hover {
+  /*font-style: italic;*/
   font-weight: 600;
+  background-color: white;
 }
