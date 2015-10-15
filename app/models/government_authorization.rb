@@ -22,6 +22,12 @@ class GovernmentAuthorization < ActiveRecord::Base
   belongs_to :authorizer, polymorphic: true
   belongs_to :authorizee, polymorphic: true
 
+  # ####
+  # TODO delegatable authorizations
+  # has_many :delegated_government_authorizations
+  # has_many :delegated_authorizees, through: :delegated_government_authorizations
+  # ####
+
   private
 
     def authorizer_has_government_authorization_type

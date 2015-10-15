@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   include Verifiable
 
   before_action :must_not_be_signed_in, only: [:new, :create]
-  before_action :verify_params!, only: [:create]
 
   def new
     @user = User.new

@@ -2,14 +2,13 @@ class SessionsController < ApplicationController
   include Verifiable
 
   before_action :must_not_be_signed_in, only: [:new, :create]
-  before_action :verify_params!, only: [:create]
 
   def new
     @user = User.new
   end
 
   def create
-    # TODO rate-limit login requests
+    # TODO rate-limit login requests, maybe on MojangApiConnection
     @user = User.find_by_credentials(@verified_params)
     if @user
       if @user.username != @verified_params[:username]
@@ -28,6 +27,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out!
-    redirect_to new_session_url
+    redirect_to root_url
   end
 end

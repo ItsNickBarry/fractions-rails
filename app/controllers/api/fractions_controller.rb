@@ -12,16 +12,16 @@ class Api::FractionsController < ApplicationController
 
     if @founder.is_a? Fraction
       unless @founder.authorizes? current_character, :execute, :fraction_create
-        render json: "#{@founder.name} does not authorize #{current_character.name} to create child fractions on its behalf", status: 422
+        render json: "#{ @founder.name } does not authorize #{ current_character.name } to create child fractions on its behalf", status: 422
         return
       end
     elsif @founder.is_a? Character
       unless @founder.id == current_character.id
-        render json: "#{current_character.name} cannot found a fraction on behalf of #{@founder.name}", status: 422
+        render json: "#{ current_character.name } cannot found a fraction on behalf of #{ @founder.name }", status: 422
         return
       end
       unless @founder.can_found_fraction?
-        render json: "#{@founder.name} cannot found a fraction", status: 422
+        render json: "#{ @founder.name } cannot found a fraction", status: 422
         return
       end
     else
@@ -33,12 +33,12 @@ class Api::FractionsController < ApplicationController
     # TODO complex fraction initialization, including authorizations
     if params[:fraction][:make_child]
       unless @founder.authorizes? current_character, :execute, :child_connect
-        render json: "#{@founder.name} does not authorize #{current_character.name} to connect child fractions", status: 422
+        render json: "#{ @founder.name } does not authorize #{ current_character.name } to connect child fractions", status: 422
         return
       end
       @fraction.assign_attributes parent: @founder
     end
-    # conditionally set @fraction as child of @founder fraction (not necessarily; Liberia)
+
     if @fraction.save
       render :show
     else

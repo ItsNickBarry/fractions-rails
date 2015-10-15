@@ -88,7 +88,7 @@ module Governable
           :war_surrender,
 
           # self
-          # :self_...
+          :self_manage,
 
           :root # TODO use explicit 'root' authorization?
         ],
