@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # TODO this doesn't need to use @verified_params, because attributes are verified on the User model, before valiation
     @user = User.new(@verified_params)
     if @user.save
       # TODO display activation instructions

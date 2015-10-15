@@ -14,12 +14,12 @@
 
 class User < ActiveRecord::Base
   after_initialize :ensure_session_token
-  before_validation :verify_params!
+  before_validation :ensure_username_and_uuid
 
   validates :username, :uuid, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
   validate :owns_current_character
-  validate :password_does_not_match_username
+  validate :password_must_not_match_username
   # TODO validate :password_is_not_among_top_10000
 
   has_many :characters
@@ -64,18 +64,7 @@ class User < ActiveRecord::Base
       self.session_token ||= self.class.generate_session_token
     end
 
-    def owns_current_character
-      return if self.current_character_id.nil?
-      unless current_character && current_character.user.id == self.id
-        errors.add(:current_character_id, "does not belong to user")
-      end
-    end
-
-    def password_does_not_match_username
-      errors.add(:password, "must not match username") if self.password == self.username
-    end
-
-    def verify_params!
+    def ensure_username_and_uuid
       if self.uuid.nil?
         profile = MojangApiConnection.get_profile_given_username(self.username)
         if profile.is_a? Hash
@@ -86,5 +75,16 @@ class User < ActiveRecord::Base
           errors.add(profile)
         end
       end
+    end
+
+    def owns_current_character
+      return if self.current_character_id.nil?
+      unless current_character && current_character.user.id == self.id
+        errors.add(:current_character_id, "does not belong to user")
+      end
+    end
+
+    def password_must_not_match_username
+      errors.add(:password, "must not match username") if self.password == self.username
     end
 end
