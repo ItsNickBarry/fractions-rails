@@ -1,7 +1,7 @@
 <div id="sign-up">
   <h1>Sign Up</h1>
 
-  <%= render partial: 'layouts/user_form.html.erb', locals: { url: users_url }%>
+  <%= render partial: 'layouts/user_form', locals: { url: users_url }%>
 
   Have an account? <%= link_to "Sign In", new_session_url %>
 </div>
