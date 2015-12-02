@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   has_many :characters
   belongs_to :current_character, class_name: 'Character'
 
+  def self.digest(password)
+    BCrypt::Password.create(password)
+  end
+
   def self.find_by_credentials(params)
     user = User.find_by(uuid: params[:uuid])
     user.try(:is_password?, params[:password]) ? user : nil
@@ -40,7 +44,7 @@ class User < ActiveRecord::Base
 
   def password=(password)
     @password = password
-    self.password_digest = BCrypt::Password.create(password)
+    self.password_digest = User.digest(password)
   end
 
   def is_password?(password)
@@ -70,7 +74,6 @@ class User < ActiveRecord::Base
         if profile.is_a? Hash
           self.username = profile['username']
           self.uuid = profile['uuid']
-          self.attributes.merge!(profile)
         else
           errors.add(profile)
         end
