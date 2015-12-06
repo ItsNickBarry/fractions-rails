@@ -89,6 +89,8 @@ class User < ActiveRecord::Base
     end
 
     def password_must_not_match_username
-      errors.add(:password, "must not match username") if self.password == self.username
+      if self.password && self.password.downcase == self.username.downcase
+        errors.add(:password, "must not match username")
+      end
     end
 end

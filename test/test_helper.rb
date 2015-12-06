@@ -16,4 +16,8 @@ class ActiveSupport::TestCase
     username = user.is_a?(User) ? user.username : user
     post session_path, user: { username: username, password: password }
   end
+
+  def persisted_user
+    users(:notch)
+  end
 end
