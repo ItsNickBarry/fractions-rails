@@ -12,14 +12,10 @@
 #  current_character_id :integer
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-# one: {}
-# column: value
-#
-# two: {}
-#  column: value
+# Usernames are not guaranteed to remain unchanged
+# Do not use ItsNickBarry as a fixture; account is used for username/uuid verification testing
+notch:
+  username: Notch
+  uuid: 069a79f444e94726a5befca90e38aaf5
+  password_digest: <%= User.digest('password') %>
+  session_token: <%= User.generate_session_token %>

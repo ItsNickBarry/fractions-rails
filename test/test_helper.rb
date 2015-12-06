@@ -8,5 +8,12 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def is_signed_in?
+    !!session[:session_token]
+  end
+
+  def sign_in_as(user, password = 'password')
+    username = user.is_a?(User) ? user.username : user
+    post session_path, user: { username: username, password: password }
+  end
 end

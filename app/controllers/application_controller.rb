@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return nil if session["session_token"].nil?
-    @current_user ||= User.where(session_token: session["session_token"]).first
+    return nil if session[:session_token].nil?
+    @current_user ||= User.where(session_token: session[:session_token]).first
   end
 
   def signed_in?
@@ -26,12 +26,12 @@ class ApplicationController < ActionController::Base
   def sign_in!(user)
     user.reset_session_token!
     @current_user = user
-    session["session_token"] = user.session_token;
+    session[:session_token] = user.session_token;
   end
 
   def sign_out!
     current_user.reset_session_token! if current_user
-    session["session_token"] = nil
+    session[:session_token] = nil
   end
 
   def must_be_signed_in
