@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_credentials(params)
+    # TODO query Mojang API here?
     user = User.find_by(uuid: params[:uuid])
     user.try(:is_password?, params[:password]) ? user : nil
   end
@@ -70,12 +71,12 @@ class User < ActiveRecord::Base
 
     def ensure_username_and_uuid
       if self.uuid.nil?
-        profile = MojangApiConnection.get_profile_given_username(self.username)
-        if profile.is_a? Hash
-          self.username = profile['username']
-          self.uuid = profile['uuid']
+        response = MojangApiConnection.get_profile_given_username(self.username)
+        if response.is_a? Hash
+          self.username = response[:username]
+          self.uuid = response[:uuid]
         else
-          errors.add(profile)
+          errors.add(:base, response)
         end
       end
     end

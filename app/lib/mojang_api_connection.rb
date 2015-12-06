@@ -9,7 +9,7 @@ class MojangApiConnection
       "Cannot communicate with Mojang server"
     else
       if response.status[0] == '200'
-        parse(response)
+        map_to_user_attributes(response)
       elsif response.status[0] == '204'
         "Not a Minecraft username: #{ username }"
       else
@@ -23,8 +23,8 @@ class MojangApiConnection
 
   private
 
-    def self.parse(response)
+    def self.map_to_user_attributes(response)
       json = JSON.parse(response.string)
-      { 'username' => json['name'], 'uuid' => json['id'] }
+      { username: json['name'], uuid: json['id'] }
     end
 end

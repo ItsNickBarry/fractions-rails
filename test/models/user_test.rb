@@ -16,12 +16,12 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test 'should fetch uuid' do
-    user = User.create(username: 'itsnickbarry')
-    assert_equal user.uuid, 'df5903fbd8e942dcbb3d82b085af5af1', 'did not fetch uuid'
+    user = User.create(username: 'itsnickbarry', password: 'password')
+    assert_equal 'df5903fbd8e942dcbb3d82b085af5af1', user.uuid
   end
 
   test 'should update username case' do
-    user = User.create(username: 'itsnickbarry')
-    assert_equal user.username, 'ItsNickBarry', 'did not update username case'
+    user = User.create(username: 'itsnickbarry', password: 'password')
+    assert_equal 'ItsNickBarry', user.username
   end
 end
