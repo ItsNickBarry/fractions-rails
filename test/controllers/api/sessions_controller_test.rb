@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  # test 'the truth' do
-  #   assert true
+  # test 'should get show' do
+  #   get api_session_url
   # end
 end

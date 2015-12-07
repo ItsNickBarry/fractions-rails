@@ -20,4 +20,14 @@ class ActiveSupport::TestCase
   def persisted_user
     users(:notch)
   end
+
+  def mojang_staff
+    [
+      users(:dinnerbone),
+      users(:jeb),
+      users(:minecraftchick),
+      users(:notch),
+      users(:xlson)
+    ]
+  end
 end

@@ -44,7 +44,7 @@ class MojangApiConnection
 
     def self.username_from_name_history(response)
       json = JSON.parse(response.string)
-      json[0]['name']
+      { username: json[0]['name'] }
     end
 
     def self.user_attributes_from_profile(response)

@@ -35,8 +35,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'ItsNickBarry', @user.username
   end
 
-  # TODO username should be sort of unique
-
   test 'password should not match username' do
     @user.password = @user.username
     assert_not @user.valid?
@@ -75,6 +73,16 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  # TODO validate owns current character
+  test 'should be owner of current character' do
+    skip 'should own current character'
+  end
 
+  test 'valid user should set conflicting usernames equal to uuids' do
+    conflicting_user = users(:notch)
+    conflicting_user.update_attribute(:username, 'ItsNickBarry')
+
+    assert @user.valid?
+
+    assert_equal conflicting_user.uuid, User.find(conflicting_user.id).username
+  end
 end

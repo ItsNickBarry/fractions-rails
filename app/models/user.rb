@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   before_validation :ensure_username_and_uuid
 
-  validates :username, :uuid, :password_digest, :session_token, presence: true, uniqueness: true
+  validates :username, presence: true
+  validates :uuid, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
   validate :owns_current_character
   validate :password_must_not_match_username
@@ -30,7 +31,6 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_credentials(params)
-    # TODO query Mojang API here?
     user = User.find_by(uuid: params[:uuid])
     user.try(:is_password?, params[:password]) ? user : nil
   end
@@ -66,18 +66,30 @@ class User < ActiveRecord::Base
   private
 
     def ensure_session_token
-      self.session_token ||= self.class.generate_session_token
+      self.session_token ||= User.generate_session_token
     end
 
     def ensure_username_and_uuid
       if self.uuid.nil?
         response = MojangApiConnection.get_profile_given_username(self.username)
-        if response.is_a? Hash
-          self.username = response[:username]
-          self.uuid = response[:uuid]
-        else
-          errors.add(:base, response)
+      else
+        response = MojangApiConnection.get_username_given_uuid(self.uuid)
+      end
+
+      if response.is_a? Hash
+        username = response[:username]
+        uuid = self.uuid || response[:uuid]
+
+        conflicting_user = User.find_by(username: username)
+
+        if conflicting_user && conflicting_user != self
+          # TODO determine whether it is safe to update_attribute without validation
+          conflicting_user.update_attribute(:username, conflicting_user.uuid)
         end
+        self.username = username
+        self.uuid = uuid
+      else
+        errors.add(:base, response)
       end
     end
 

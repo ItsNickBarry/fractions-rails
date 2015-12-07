@@ -6,7 +6,7 @@ class SignInTest < ActionDispatch::IntegrationTest
   end
 
   test 'sign in with invalid credentials' do
-    sign_in_as(@user, password: '')
+    sign_in_as(@user, '')
     assert_not flash.empty?
     get root_path
     assert flash.empty?
@@ -41,8 +41,8 @@ class SignInTest < ActionDispatch::IntegrationTest
     sign_in_as(actual_username)
 
     assert is_signed_in?
+    assert_not_nil User.find_by(username: actual_username)
+    follow_redirect!
     assert_not flash.empty?
-    get root_path
-    assert flash.empty?
   end
 end

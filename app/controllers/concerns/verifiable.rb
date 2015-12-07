@@ -8,12 +8,12 @@ module Verifiable
   private
 
     def verify_params!
-      profile = MojangApiConnection.get_profile_given_username(user_params[:username])
-      if profile.is_a? Hash
-        @verified_params = user_params.merge(profile)
+      response = MojangApiConnection.get_profile_given_username(user_params[:username])
+      if response.is_a? Hash
+        @verified_params = user_params.merge(response)
       else
         @user = User.new(user_params)
-        flash.now[:errors] = [profile]
+        flash.now[:errors] = [response]
         render :new
       end
     end
