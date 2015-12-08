@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    response = MojangApiConnection.get_profile_given_username(user_params[:username])
+    response = MojangApiConnection.profile_given_username(user_params[:username])
     if response.is_a? Hash
       @user = User.find_by_credentials(response[:uuid], user_params[:password])
       if @user

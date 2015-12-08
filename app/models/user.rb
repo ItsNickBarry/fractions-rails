@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
 
     def ensure_username_and_uuid
       unless self.persisted?
-        response = MojangApiConnection.get_profile_given_username(self.username)
+        response = MojangApiConnection.profile_given_username(self.username)
 
         if response.is_a? Hash
           self.username = response[:username]
