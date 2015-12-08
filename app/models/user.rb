@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(password)
   end
 
-  def self.find_by_credentials(params)
-    user = User.find_by(uuid: params[:uuid])
-    user.try(:is_password?, params[:password]) ? user : nil
+  def self.find_by_credentials(uuid, password)
+    user = User.find_by(uuid: uuid)
+    user.try(:is_password?, password) ? user : nil
   end
 
   def self.generate_session_token
@@ -53,14 +53,17 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    self.session_token = User.generate_session_token
-    self.save!
+    self.update_attributes(session_token: User.generate_session_token)
     self.session_token
   end
 
   def can_create_character?
     # TODO user create character conditions
     characters.length < 10
+  end
+
+  def overwrite_username!
+    self.update_attributes(username: self.uuid)
   end
 
   private
@@ -70,26 +73,17 @@ class User < ActiveRecord::Base
     end
 
     def ensure_username_and_uuid
-      if self.uuid.nil?
+      unless self.persisted?
         response = MojangApiConnection.get_profile_given_username(self.username)
-      else
-        response = MojangApiConnection.get_username_given_uuid(self.uuid)
-      end
 
-      if response.is_a? Hash
-        username = response[:username]
-        uuid = self.uuid || response[:uuid]
+        if response.is_a? Hash
+          self.username = response[:username]
+          self.uuid = response[:uuid]
 
-        conflicting_user = User.find_by(username: username)
-
-        if conflicting_user && conflicting_user != self
-          # TODO determine whether it is safe to update_attribute without validation
-          conflicting_user.update_attribute(:username, conflicting_user.uuid)
+          User.find_by(username: self.username).try(:overwrite_username!)
+        else
+          errors.add(:base, response)
         end
-        self.username = username
-        self.uuid = uuid
-      else
-        errors.add(:base, response)
       end
     end
 

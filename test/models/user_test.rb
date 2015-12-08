@@ -51,7 +51,7 @@ class UserTest < ActiveSupport::TestCase
 
   test 'uuid should be present or fetched before validation if nil' do
     assert_nil @user.uuid
-    assert @user.valid?
+    assert @user.save!
     assert_equal 'df5903fbd8e942dcbb3d82b085af5af1', @user.uuid
     @user.uuid = ''
     assert_not @user.valid?
@@ -59,6 +59,7 @@ class UserTest < ActiveSupport::TestCase
 
   test 'uuid should be unique' do
     other_user = persisted_user
+    assert @user.save!
     @user.uuid = other_user.uuid
     assert_not @user.valid?
   end
