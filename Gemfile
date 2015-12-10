@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'backbone-on-rails'
 gem 'd3-rails'
 gem 'ancestry'
+gem 'curb'
 
 # TODO don't use WEBrick
 # Use Unicorn as the app server

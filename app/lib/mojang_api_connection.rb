@@ -1,17 +1,15 @@
-require 'open-uri'
-
 class MojangApiConnection
 
   def self.profile_given_username(username)
-    return "Invalid Minecraft username: #{ username }" unless valid_username? username
+    return invalid_username(username) unless valid_username? username
 
-    response = open(profile_url(username))
+    response = Curl::Easy.perform(profile_url(username))
     rescue
       communication_error
     else
-      if response.status[0] == '200'
-        user_attributes_from_profile(response)
-      elsif response.status[0] == '204'
+      if response.response_code == 200
+        parse_profile(response)
+      elsif response.response_code == 204
         invalid_username(username)
       else
         unexpected_status_code(response)
@@ -28,8 +26,8 @@ class MojangApiConnection
 
   private
 
-    def self.user_attributes_from_profile(response)
-      json = JSON.parse(response.string)
+    def self.parse_profile(response)
+      json = JSON.parse(response.body)
       { username: json['name'], uuid: json['id'] }
     end
 
@@ -46,6 +44,6 @@ class MojangApiConnection
     end
 
     def self.unexpected_status_code(response)
-      "Mojang server returned unexpected status code #{ response.status[0] }"
+      "Mojang server returned unexpected status code #{ response.response_code }"
     end
 end
