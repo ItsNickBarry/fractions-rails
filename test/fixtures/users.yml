@@ -14,16 +14,16 @@
 
 # Usernames are not guaranteed to remain unchanged; hopefully Mojang staff will
 # Do not use ItsNickBarry as a fixture; account is used for username/uuid verification testing
-<% {
-    dinnerbone: ['Dinnerbone', '61699b2ed3274a019f1e0ea8c3f06bc6'],
-    jeb: ['jeb_','853c80ef3c3749fdaa49938b674adae6'],
-    minecraftchick: ['MinecraftChick', 'c9b54008fd8047428b238787b5f2401c'],
-    notch: ['Notch', '069a79f444e94726a5befca90e38aaf5'],
-    xlson: ['xlson', 'b9583ca43e64488a9c8c4ab27e482255']
-  }.each do |name, data| %>
-<%= name %>:
-  username: <%= data[0] %>
-  uuid: <%= data[1] %>
+<% [
+    ['Dinnerbone', '61699b2ed3274a019f1e0ea8c3f06bc6'],
+    ['jeb_','853c80ef3c3749fdaa49938b674adae6'],
+    ['MinecraftChick', 'c9b54008fd8047428b238787b5f2401c'],
+    ['Notch', '069a79f444e94726a5befca90e38aaf5'],
+    ['xlson', 'b9583ca43e64488a9c8c4ab27e482255']
+  ].each do |params| %>
+<%= params[0].downcase %>:
+  username: <%= params[0] %>
+  uuid: <%= params[1] %>
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
 <% end %>

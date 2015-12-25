@@ -36,14 +36,14 @@ module Governable
     # TODO maybe this should just return the position/electorate?  is the government authorization itself really useful?
     GovernmentAuthorization.find_by_sql([<<-SQL, replacements])
       SELECT government_authorizations.*
-        FROM government_authorizations
-        JOIN :authorizee_memberships_table
-          ON :authorizee_memberships_table.:authorizee_reference_column = government_authorizations.authorizee_id
-            AND government_authorizations.authorizee_type = :authorizee_type
-        WHERE government_authorizations.authorizer_type = :authorizer_type
-          AND government_authorizations.authorizer_id = :authorizer_id
-          AND :authorizee_memberships_table.character_id = :character_id
-          #{'AND government_authorizations.authorization_type LIKE :authorization_type' if authorization_type}
+      FROM government_authorizations
+      JOIN :authorizee_memberships_table
+        ON :authorizee_memberships_table.:authorizee_reference_column = government_authorizations.authorizee_id
+          AND government_authorizations.authorizee_type = :authorizee_type
+      WHERE government_authorizations.authorizer_type = :authorizer_type
+        AND government_authorizations.authorizer_id = :authorizer_id
+        AND :authorizee_memberships_table.character_id = :character_id
+        #{'AND government_authorizations.authorization_type LIKE :authorization_type' if authorization_type}
     SQL
   end
 

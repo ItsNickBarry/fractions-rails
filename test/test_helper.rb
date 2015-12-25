@@ -24,7 +24,7 @@ class ActiveSupport::TestCase
   def mojang_staff
     [
       users(:dinnerbone),
-      users(:jeb),
+      users(:jeb_),
       users(:minecraftchick),
       users(:notch),
       users(:xlson)
