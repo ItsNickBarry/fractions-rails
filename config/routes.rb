@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :electorates, only: [:show, :index, :create, :destroy]
     resources :regions, only: [:show, :index, :create, :destroy]
     resources :government_authorizations, only: [:create, :destroy]
+    get 'user_plots/:uuid/:world_id/:x/:z', to: 'user_plots#show'
     get 'session', to: 'sessions#show'
   end
 end

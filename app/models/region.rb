@@ -22,10 +22,4 @@ class Region < ActiveRecord::Base
 
   has_many :land_authorizations
   has_many :government_authorizations, as: :authorizer
-
-  def self.land_authorization_types
-    [
-      :build
-    ]
-  end
 end

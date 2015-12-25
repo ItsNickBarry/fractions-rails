@@ -19,6 +19,13 @@ class LandAuthorization < ActiveRecord::Base
   validate :valid_authorization_type
 
   belongs_to :authorizer, class_name: 'Region'
+
+  def self.types
+    [
+      :build
+    ]
+  end
+
   def region
     authorizer
   end
