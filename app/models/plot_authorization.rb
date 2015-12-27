@@ -1,4 +1,4 @@
-class UserPlot
+class PlotAuthorization
 
   def initialize(params)
     @user = User.find_by(uuid: params[:uuid])
