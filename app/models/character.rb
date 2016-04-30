@@ -39,9 +39,8 @@ class Character < ActiveRecord::Base
   private
 
     def gender_is_valid
-      # TODO allow unspecified gender?
       unless ['F', 'M'].include? self.gender
-        errors.add(:gender, "must be \"F\" or \"M\"")
+        errors.add(:gender, 'must be "F" or "M"')
       end
     end
 end

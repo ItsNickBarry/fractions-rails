@@ -61,9 +61,8 @@ module Governable
         Fraction => [
           # inter-fraction relationships
           :child_connect,
-          :child_create, # ?
+          :child_create,
           :child_disconnect,
-          :fraction_create, # ?
 
           :parent_connect,
           :parent_disconnect,

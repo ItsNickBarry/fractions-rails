@@ -10,14 +10,100 @@
 #  updated_at :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# use Mojang staff real names
+# divide into good and evil by team
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-# one: {}
-# column: value
-#
-# two: {}
-#  column: value
+amir_moulavi:
+  name: Amir Moulavi
+  gender: M
+  user: amir343
+
+andreas_andersson:
+  name: Andreas Andersson
+  gender: M
+  user: blurpi
+
+brynjólfur_erlingsson:
+  name: Brynjólfur Erlingsson
+  gender: M
+  user: binni
+
+carl_manneh:
+  name: Carl Manneh
+  gender: M
+  user: carlmanneh
+
+daniel_rosenfeld:
+  name: Daniel Rosenfeld
+  gender: M
+  user: c418
+
+daniel_wustenhoff:
+  name: Daniel Wustenhoff
+  gender: M
+  user: darngeek
+
+erik_broes:
+  name: Erik Broes
+  gender: M
+  user: grumm
+
+# hampus_nilsson:
+#   name: Hampus Nilsson
+#   gender: M
+#   user: Hampus
+
+henrik_pettersson:
+  name: Henrik Petterson
+  gender: M
+  user: carnalizer
+
+jakob_porsér:
+  name: Jakob Porsér
+  gender: M
+  user: frukthamster
+
+jens_bergensten:
+  name: Jens Bergensten
+  gender: M
+  user: jeb_
+
+jonatan_pöljö:
+  name: Jonatan Pöljö
+  gender: M
+  user: eldrone
+
+leonard_gram:
+  name: Leonard Gram
+  gender: M
+  user: xlson
+
+lydia_winters:
+  name: Lydia Winters
+  gender: F
+  user: minecraftchick
+
+markus_persson:
+  name: Markus Persson
+  gender: M
+  user: notch
+
+# mathias_andersson:
+#   name: Mathias Andersson
+#   gender: M
+#   user: engst
+
+nathan_adams:
+  name: Nathan Adams
+  gender: M
+  user: dinnerbone
+
+owen_hill:
+  name: Owen Hill
+  gender: M
+  user: bopogamel
+
+patrick_geuder:
+  name: Patrick Geuder
+  gender: M
+  user: geuder

@@ -16,18 +16,4 @@ class ActiveSupport::TestCase
     username = user.is_a?(User) ? user.username : user
     post session_path, user: { username: username, password: password }
   end
-
-  def persisted_user
-    users(:notch)
-  end
-
-  def mojang_staff
-    [
-      users(:dinnerbone),
-      users(:jeb_),
-      users(:minecraftchick),
-      users(:notch),
-      users(:xlson)
-    ]
-  end
 end

@@ -51,6 +51,7 @@ class UserTest < ActiveSupport::TestCase
 
   test 'uuid should be present or fetched before validation if nil' do
     assert_nil @user.uuid
+    # should fetch uuid of ItsNickBarry on save
     assert @user.save!
     assert_equal 'df5903fbd8e942dcbb3d82b085af5af1', @user.uuid
     @user.uuid = ''
@@ -58,7 +59,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'uuid should be unique' do
-    other_user = persisted_user
+    other_user = users(:notch)
+    # must save to fetch uuid
     assert @user.save!
     @user.uuid = other_user.uuid
     assert_not @user.valid?
@@ -69,13 +71,14 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'session token should be unique' do
-    other_user = persisted_user
+    other_user = users(:notch)
     @user.session_token = other_user.session_token
     assert_not @user.valid?
   end
 
   test 'should be owner of current character' do
     skip 'should own current character'
+    # TODO integration?
   end
 
   test 'valid user should set conflicting usernames equal to uuids' do
