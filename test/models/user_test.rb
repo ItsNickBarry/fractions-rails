@@ -79,6 +79,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'valid user should set conflicting usernames equal to uuids' do
+    # will only change case-sensitive matches; this is probably good enough
     conflicting_user = users(:notch)
     conflicting_user.update_attribute(:username, 'ItsNickBarry')
 

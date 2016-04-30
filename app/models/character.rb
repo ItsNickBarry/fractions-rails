@@ -11,8 +11,6 @@
 #
 
 class Character < ActiveRecord::Base
-  after_initialize :ensure_gender
-
   validates :user, presence: true
   validates :name, presence: true, uniqueness: true
   validates :gender, presence: true
@@ -33,19 +31,17 @@ class Character < ActiveRecord::Base
   # has_many :land_authorizations ... TODO get this from positions/ fractions
 
   def can_found_fraction?
-    true # TODO character found fraction conditions
+    # TODO character found fraction conditions
+    last_founded_fraction = founded_fractions.order(:created_at).first
+    !last_founded_fraction || last_founded_fraction.created_at < 7.days.ago
   end
 
   private
 
-    def ensure_gender
-      self.gender ||= "UNSPECIFIED"
-    end
-
     def gender_is_valid
       # TODO allow unspecified gender?
-      unless ['FEMALE', 'MALE', 'UNSPECIFIED'].include? self.gender
-        errors.add(:gender, "must be \"FEMALE\", \"MALE\", or \"UNSPECIFIED\"")
+      unless ['F', 'M'].include? self.gender
+        errors.add(:gender, "must be \"F\" or \"M\"")
       end
     end
 end

@@ -3,7 +3,6 @@ class Api::CharactersController < ApplicationController
   before_action :find_or_initialize_character, except: [:create, :index]
 
   def create
-
     unless current_user.can_create_character?
       render json: "#{current_user.username} cannot create a character", status: 422
       return

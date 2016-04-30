@@ -32,7 +32,10 @@ Fractions.Views.FractionsNew = Backbone.View.extend({
         if (params.fraction.make_child) {
           this.childFractions.add(model);
         }
-      }.bind(this)
+      }.bind(this),
+      error: function () {
+        debugger
+      }
     });
     // var fraction = new Fractions.Models.Fraction(params['fraction']);
     //
