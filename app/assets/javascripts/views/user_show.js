@@ -21,7 +21,9 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   renderCharactersNew: function () {
-    var view = new Fractions.Views.CharactersNew({ userCharacters: this.characters });
+    var view = new Fractions.Views.CharactersNew({
+      userCharacters: this.characters
+    });
     this.addSubview('#characters-new', view);
   },
 
@@ -30,7 +32,9 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addCharacter: function (character) {
-    var view = new Fractions.Views.ListItem({ model: character });
+    var view = new Fractions.Views.ListItem({
+      model: character
+    });
     this.addSubview('#characters-list', view);
   }
 });

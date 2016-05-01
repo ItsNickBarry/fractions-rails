@@ -10,7 +10,9 @@ Fractions.Views.MapShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ map: this.map });
+    var content = this.template({
+      map: this.map
+    });
     this.$el.html(content);
 
     var d3El = d3.selectAll(this.$el.find('#map').toArray());

@@ -19,6 +19,9 @@ Fractions.Views.ListItem = Backbone.View.extend({
   },
 
   show: function (event) {
-    Backbone.history.navigate(this.model.urlFragmentRoot + '/' + this.model.get('id'), { trigger: true });
+    Backbone.history.navigate(
+      this.model.urlFragmentRoot + '/' + this.model.get('id'),
+      { trigger: true }
+    );
   }
 });

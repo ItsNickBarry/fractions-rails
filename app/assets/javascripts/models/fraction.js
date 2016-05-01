@@ -1,5 +1,5 @@
-Fractions.Models.Fraction = Backbone.Model.extend(
-Fractions.Concerns.Governable).extend({
+Fractions.Models.Fraction = Backbone.Model.extend(Fractions.Concerns.Governable)
+                                          .extend({
   class: 'Fraction',
   urlFragmentRoot: '/fractions',
   urlRoot: '/api/fractions',

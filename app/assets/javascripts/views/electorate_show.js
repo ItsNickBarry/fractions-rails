@@ -30,7 +30,9 @@ Fractions.Views.ElectorateShow = Backbone.CompositeView.extend({
   },
 
   addCharacter: function (character) {
-    var view = new Fractions.Views.ListItem({ model: character });
+    var view = new Fractions.Views.ListItem({
+      model: character
+    });
     this.addSubview('#characters-list', view);
   }
 });

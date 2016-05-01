@@ -11,7 +11,9 @@ Fractions.Views.RegionShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ region: this.model });
+    var content = this.template({
+      region: this.model
+    });
     this.$el.html(content);
     return this;
   },

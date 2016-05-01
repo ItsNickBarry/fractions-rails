@@ -1,18 +1,33 @@
 Fractions.Concerns.Governable = {
-  currentCharacterGovernmentAuthorizations: function (authorization_type, authorization_level) {
-    return this.get('current_character_government_authorizations')
-           && _.contains(this.get('current_character_government_authorizations')[authorization_level], authorization_type);
-  },
-
   executable: function (authorization_type) {
-    return this.currentCharacterGovernmentAuthorizations(authorization_type, 'executable')
+    return this._authorizes(
+      'executable',
+      authorization_type
+    );
   },
 
   callable: function (authorization_type) {
-    return this.currentCharacterGovernmentAuthorizations(authorization_type, 'callable')
+    return this._authorizes(
+      'callable',
+      authorization_type
+    );
   },
 
   votable: function (authorization_type) {
-    return this.currentCharacterGovernmentAuthorizations(authorization_type, 'votable')
+    return this._authorizes(
+      'votable',
+      authorization_type
+    );
+  },
+
+  _authorizes: function (authorization_type, authorization_level) {
+    var authorizationSet = this.get(
+      'current_character_government_authorizations'
+    );
+    return authorizationSet &&
+           _.contains(
+             authorizationSet[authorization_level],
+             authorization_type
+           );
   },
 };

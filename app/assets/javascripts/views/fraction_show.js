@@ -7,8 +7,6 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    // TODO remove global
-    window.fff = this.model;
     this.foundedFractions = this.model.foundedFractions();
     this.children = this.model.children();
     this.electorates = this.model.electorates();
@@ -46,7 +44,9 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   // renderChildNew: function () {
-  //   var view = new Fractions.Views.FractionsNew({ collection: this.children, founder: this.model });
+  //   var view = new Fractions.Views.FractionsNew({
+  // collection: this.children,
+  // founder: this.model });
   //   this.addSubview('#children-new', view);
   // },
 
@@ -55,12 +55,18 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addChild: function (child) {
-    var view = new Fractions.Views.ListItem({ model: child });
+    var view = new Fractions.Views.ListItem({
+      model: child
+    });
     this.addSubview('#children-list', view);
   },
 
   renderFoundedFractionsNew: function () {
-    var view = new Fractions.Views.FractionsNew({ childFractions: this.children, foundedFractions: this.foundedFractions, founder: this.model });
+    var view = new Fractions.Views.FractionsNew({
+      childFractions: this.children,
+      foundedFractions: this.foundedFractions,
+      founder: this.model
+    });
     this.addSubview('#founded-fractions-new', view);
   },
 
@@ -69,12 +75,17 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addFoundedFraction: function (child) {
-    var view = new Fractions.Views.ListItem({ model: child });
+    var view = new Fractions.Views.ListItem({
+      model: child
+    });
     this.addSubview('#founded-fractions-list', view);
   },
 
   renderElectoratesNew: function () {
-    var view = new Fractions.Views.ElectoratesNew({ collection: this.electorates, fraction: this.model });
+    var view = new Fractions.Views.ElectoratesNew({
+      collection: this.electorates,
+      fraction: this.model
+    });
     this.addSubview('#electorates-new', view);
   },
 
@@ -83,12 +94,17 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addElectorate: function (electorate) {
-    var view = new Fractions.Views.ListItem({ model: electorate });
+    var view = new Fractions.Views.ListItem({
+      model: electorate
+    });
     this.addSubview('#electorates-list', view);
   },
 
   renderPositionsNew: function () {
-    var view = new Fractions.Views.PositionsNew({ collection: this.positions, fraction: this.model });
+    var view = new Fractions.Views.PositionsNew({
+      collection: this.positions,
+      fraction: this.model
+    });
     this.addSubview('#positions-new', view);
   },
 
@@ -97,12 +113,17 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addPosition: function (position) {
-    var view = new Fractions.Views.ListItem({ model: position });
+    var view = new Fractions.Views.ListItem({
+      model: position
+    });
     this.addSubview('#positions-list', view);
   },
 
   renderRegionsNew: function () {
-    var view = new Fractions.Views.RegionsNew({ collection: this.regions, fraction: this.model });
+    var view = new Fractions.Views.RegionsNew({
+      collection: this.regions,
+      fraction: this.model
+    });
     this.addSubview('#regions-new', view);
   },
 
@@ -111,7 +132,9 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   },
 
   addRegion: function (region) {
-    var view = new Fractions.Views.ListItem({ model: region });
+    var view = new Fractions.Views.ListItem({
+      model: region
+    });
     this.addSubview('#regions-list', view);
   },
 

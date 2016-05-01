@@ -39,12 +39,17 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
   },
 
   addFraction: function (fraction) {
-    var view = new Fractions.Views.ListItem({ model: fraction });
+    var view = new Fractions.Views.ListItem({
+      model: fraction
+    });
     this.addSubview('#fractions-list', view);
   },
 
   renderFoundedFractionsNew: function () {
-    var view = new Fractions.Views.FractionsNew({ foundedFractions: this.foundedFractions, founder: this.model });
+    var view = new Fractions.Views.FractionsNew({
+      foundedFractions: this.foundedFractions,
+      founder: this.model
+    });
     this.addSubview('#founded-fractions-new', view);
   },
 
@@ -53,7 +58,9 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
   },
 
   addFoundedFraction: function (foundedFraction) {
-    var view = new Fractions.Views.ListItem({ model: foundedFraction });
+    var view = new Fractions.Views.ListItem({
+      model: foundedFraction
+    });
     this.addSubview('#founded-fractions-list', view);
   },
 });

@@ -12,7 +12,9 @@ Fractions.Views.ElectoratesNew = Backbone.View.extend({
 
   render: function () {
     var executable = this.fraction.executable('electorate_create')
-    var content = this.template({ executable: executable });
+    var content = this.template({
+      executable: executable
+    });
     this.$el.html(content);
     return this;
   },
