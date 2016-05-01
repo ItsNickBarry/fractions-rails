@@ -6,10 +6,10 @@ window.Fractions = {
   Views: {},
   Routers: {},
   initialize: function() {
-    // TODO keep track of currentUser/session, fetch at appropriate time
     Fractions.session = new Fractions.Models.Session();
     Fractions.session.fetch({
       success: function (model, response, options) {
+        // start Backbone only after fetching
         new Fractions.Routers.Router({ $pagesEl: $('#main') });
         Backbone.history.start();
       }
