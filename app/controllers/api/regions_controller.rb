@@ -3,7 +3,13 @@ class Api::RegionsController < ApplicationController
   before_action :find_or_initialize_region, except: [:create, :index]
 
   def create
-    @region = Fraction.find(region_params[:fraction_id]).regions.new(region_params);
+    @fraction = Fraction.find(region_params[:fraction_id])
+    @region = @fraction.regions.new(region_params)
+
+    unless @fraction.authorizes? current_character, :execute, :region_create
+      render json: "#{ @fraction.name } does not authorize #{ current_character.name } to create regions", status: 422
+      return
+    end
 
     # TODO complex region initialization, including authorizations
     if @region.save

@@ -1,6 +1,6 @@
 Fractions.Views.ElectoratesExecutableForm = Backbone.View.extend({
   template: JST['electorates_new_form'],
-  className: 'fractions-object-element fractions-object-new fractions-object-region',
+  className: 'fractions-object-element fractions-object-new fractions-object-electorate',
 
   events: {
     'submit form': 'submit'
