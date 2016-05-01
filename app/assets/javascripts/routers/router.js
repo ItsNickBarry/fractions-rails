@@ -27,45 +27,63 @@ Fractions.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
-    var user = new Fractions.Models.User({ id: id });
-    user.fetch();
-    var view = new Fractions.Views.UserShow({ model: user });
-    this.swapView(view);
+    var model = new Fractions.Models.User({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.UserShow({ model: model });
+        this.swapView(view);
+      }.bind(this)
+    });
   },
 
   characterShow: function (id) {
-    var character = new Fractions.Models.Character({ id: id });
-    character.fetch();
-    var view = new Fractions.Views.CharacterShow({ model: character });
-    this.swapView(view);
+    var model = new Fractions.Models.Character({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.CharacterShow({ model: model });
+        this.swapView(view);
+      }.bind(this)
+    });
   },
 
   electorateShow: function (id) {
-    var electorate = new Fractions.Models.Electorate({ id: id });
-    electorate.fetch();
-    var view = new Fractions.Views.ElectorateShow({ model: electorate });
-    this.swapView(view);
+    var model = new Fractions.Models.Electorate({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.ElectorateShow({ model: model });
+        this.swapView(view);
+      }.bind(this)
+    });
   },
 
   fractionShow: function (id) {
-    var fraction = new Fractions.Models.Fraction({ id: id });
-    fraction.fetch();
-    var view = new Fractions.Views.FractionShow({ model: fraction });
-    this.swapView(view);
+    var model = new Fractions.Models.Fraction({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.FractionShow({ model: model });
+        this.swapView(view);
+      }.bind(this)
+    });
   },
 
   positionShow: function (id) {
-    var position = new Fractions.Models.Position({ id: id });
-    position.fetch();
-    var view = new Fractions.Views.PositionShow({ model: position });
-    this.swapView(view);
+    var model = new Fractions.Models.Position({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.PositionShow({ model: model });
+        this.swapView(view);
+      }.bind(this)
+    });
   },
 
   regionShow: function (id) {
-    var region = new Fractions.Models.Region({ id: id });
-    region.fetch();
-    var view = new Fractions.Views.RegionShow({ model: region });
-    this.swapView(view);
+    var model = new Fractions.Models.Region({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.RegionShow({ model: model });
+        this.swapView(view);
+      }.bind(this)
+    });
   },
 
   swapView: function (view) {
