@@ -1,22 +1,42 @@
-Fractions.Views.ElectoratesNew = Backbone.View.extend({
-  template: JST['electorates_new'],
+Fractions.Views.ElectoratesNew = Backbone.CompositeView.extend({
+  template: JST['fraction_component_new'],
   className: 'fractions-object-element fractions-object-new fractions-object-electorate',
 
   events: {
+    'click button#executable': 'renderExecutable',
+    // 'click button#callable': 'renderCallable',
+    // 'click button#votable': 'renderVotable',
     'submit form': 'submit'
   },
 
   initialize: function (options) {
     this.fraction = options.fraction;
+    this.addSubViewForAuthorizationButtons();
   },
 
   render: function () {
-    var executable = this.fraction.executable('electorate_create')
-    var content = this.template({
-      executable: executable
-    });
+    var content = this.template();
     this.$el.html(content);
+    this.attachSubviews();
     return this;
+  },
+
+  addSubViewForAuthorizationButtons: function () {
+    var view = new Fractions.Views.AuthorizationButtons({
+      authorizer: this.fraction,
+      authorization_type: 'electorate_create'
+    });
+    this.addSubview('.authorization-buttons', view);
+  },
+
+  renderExecutable: function () {
+    var view = new Fractions.Views.ElectoratesExecutableForm({
+      fraction: this.fraction
+    });
+    this.subviews('.form-container').forEach(function (subview) {
+      subview.remove();
+    });
+    this.addSubview('.form-container', view);
   },
 
   submit: function (event) {

@@ -20,7 +20,7 @@ Fractions.Concerns.Governable = {
     );
   },
 
-  _authorizes: function (authorization_type, authorization_level) {
+  _authorizes: function (authorization_level, authorization_type) {
     var authorizationSet = this.get(
       'current_character_government_authorizations'
     );
