@@ -1,12 +1,11 @@
-<h5>Authorization Buttons</h5>
 <% if (authorizer.executable(authorization_type)) { %>
-  <button id="executable">executable</button>
+  <button id="executable">⇨</button>
 <% } %>
 
 <% if (authorizer.callable(authorization_type)) { %>
-  <button id="callable">callable</button>
+  <button id="callable">📣</button>
 <% } %>
 
 <% if (authorizer.votable(authorization_type)) { %>
-  <button id="votable">votable</button>
+  <button id="votable">☑</button>
 <% } %>

@@ -3,6 +3,7 @@ Fractions.Views.RegionsExecutableForm = Backbone.View.extend({
   className: 'fractions-object-element fractions-object-new fractions-object-region',
 
   events: {
+    'submit form': 'submit'
   },
 
   initialize: function (options) {
@@ -14,4 +15,18 @@ Fractions.Views.RegionsExecutableForm = Backbone.View.extend({
     this.$el.html(content);
     return this;
   },
+
+  submit: function (event) {
+    var view = this;
+    event.preventDefault();
+
+    var params = $(event.currentTarget).serializeJSON();
+    params.region.fraction_id = this.fraction.escape('id');
+    this.collection.create(params['region'], {
+      wait: true,
+      success: function () {
+        view.remove();
+      }
+    });
+  }
 });

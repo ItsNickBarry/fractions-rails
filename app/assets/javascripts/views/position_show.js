@@ -9,7 +9,8 @@ Fractions.Views.PositionShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.characters = this.model.characters();
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.characters, 'add remove', this.addCharacter);
+
+    this.addSubviewForCharacters();
   },
 
   render: function () {
@@ -17,24 +18,14 @@ Fractions.Views.PositionShow = Backbone.CompositeView.extend({
       position: this.model
     });
     this.$el.html(content);
-    // this.renderCharactersNew();
-    this.renderCharacters();
+    this.attachSubviews();
     return this;
   },
 
-  // renderCharactersNew: function () {
-  //   var view = new Positions.Views.CharactersNew({ collection: this.characters, position: this.model });
-  //   this.addSubview('#characters-new', view);
-  // },
-
-  renderCharacters: function () {
-    this.characters.each(this.addCharacter.bind(this));
-  },
-
-  addCharacter: function (character) {
-    var view = new Fractions.Views.ListItem({
-      model: character
+  addSubviewForCharacters: function () {
+    var view = new Fractions.Views.List({
+      collection: this.characters
     });
     this.addSubview('#characters-list', view);
-  }
+  },
 });

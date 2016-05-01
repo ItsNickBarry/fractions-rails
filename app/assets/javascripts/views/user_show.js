@@ -9,32 +9,29 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.characters = this.model.characters();
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.characters, 'add remove', this.addCharacter);
+
+    this.addSubviewForCharacters();
+    this.addSubviewForCharactersNew();
   },
 
   render: function () {
     var content = this.template({ user: this.model });
     this.$el.html(content);
-    this.renderCharactersNew();
-    this.renderCharacters();
+    this.attachSubviews()
     return this;
   },
 
-  renderCharactersNew: function () {
+  addSubviewForCharacters: function () {
+    var view = new Fractions.Views.List({
+      collection: this.characters
+    });
+    this.addSubview('#characters-list', view);
+  },
+
+  addSubviewForCharactersNew: function () {
     var view = new Fractions.Views.CharactersNew({
       userCharacters: this.characters
     });
     this.addSubview('#characters-new', view);
   },
-
-  renderCharacters: function () {
-    this.characters.each(this.addCharacter.bind(this));
-  },
-
-  addCharacter: function (character) {
-    var view = new Fractions.Views.ListItem({
-      model: character
-    });
-    this.addSubview('#characters-list', view);
-  }
 });

@@ -3,6 +3,7 @@ Fractions.Views.ElectoratesExecutableForm = Backbone.View.extend({
   className: 'fractions-object-element fractions-object-new fractions-object-region',
 
   events: {
+    'submit form': 'submit'
   },
 
   initialize: function (options) {
@@ -14,4 +15,18 @@ Fractions.Views.ElectoratesExecutableForm = Backbone.View.extend({
     this.$el.html(content);
     return this;
   },
+
+  submit: function (event) {
+    var view = this;
+    event.preventDefault();
+
+    var params = $(event.currentTarget).serializeJSON();
+    params.electorate.fraction_id = this.fraction.escape('id');
+    this.collection.create(params['electorate'], {
+      wait: true,
+      success: function () {
+        view.remove()
+      }
+    });
+  }
 });

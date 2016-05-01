@@ -3,15 +3,14 @@ Fractions.Views.ElectoratesNew = Backbone.CompositeView.extend({
   className: 'fractions-object-element fractions-object-new fractions-object-electorate',
 
   events: {
-    'click button#executable': 'renderExecutable',
-    // 'click button#callable': 'renderCallable',
-    // 'click button#votable': 'renderVotable',
-    'submit form': 'submit'
+    'click button#executable': 'addSubviewForElectoratesExecutableForm',
+    // 'click button#callable': 'addSubviewForElectoratesCallableForm',
+    // 'click button#votable': 'addSubviewForElectoratesVotableForm',
   },
 
   initialize: function (options) {
     this.fraction = options.fraction;
-    this.addSubViewForAuthorizationButtons();
+    this.addSubviewForAuthorizationButtons();
   },
 
   render: function () {
@@ -21,7 +20,7 @@ Fractions.Views.ElectoratesNew = Backbone.CompositeView.extend({
     return this;
   },
 
-  addSubViewForAuthorizationButtons: function () {
+  addSubviewForAuthorizationButtons: function () {
     var view = new Fractions.Views.AuthorizationButtons({
       authorizer: this.fraction,
       authorization_type: 'electorate_create'
@@ -29,23 +28,14 @@ Fractions.Views.ElectoratesNew = Backbone.CompositeView.extend({
     this.addSubview('.authorization-buttons', view);
   },
 
-  renderExecutable: function () {
+  addSubviewForElectoratesExecutableForm: function () {
     var view = new Fractions.Views.ElectoratesExecutableForm({
-      fraction: this.fraction
+      fraction: this.fraction,
+      collection: this.collection
     });
     this.subviews('.form-container').forEach(function (subview) {
       subview.remove();
     });
     this.addSubview('.form-container', view);
   },
-
-  submit: function (event) {
-    var view = this;
-    event.preventDefault();
-
-    var params = $(event.currentTarget).serializeJSON();
-    params.electorate.fraction_id = this.fraction.escape('id');
-    this.collection.create(params['electorate'], { wait: true })
-    this.render();
-  }
 });

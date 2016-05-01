@@ -3,15 +3,14 @@ Fractions.Views.RegionsNew = Backbone.CompositeView.extend({
   className: 'fractions-object-element fractions-object-new fractions-object-region',
 
   events: {
-    'click button#executable': 'renderExecutable',
-    // 'click button#callable': 'renderCallable',
-    // 'click button#votable': 'renderVotable',
-    'submit form': 'submit'
+    'click button#executable': 'addSubviewForRegionsExecutableForm',
+    // 'click button#callable': 'addSubviewForRegionsCallableForm',
+    // 'click button#votable': 'addSubviewForRegionsVotableForm',
   },
 
   initialize: function (options) {
     this.fraction = options.fraction;
-    this.addSubViewForAuthorizationButtons();
+    this.addSubviewForAuthorizationButtons();
   },
 
   render: function () {
@@ -21,7 +20,7 @@ Fractions.Views.RegionsNew = Backbone.CompositeView.extend({
     return this;
   },
 
-  addSubViewForAuthorizationButtons: function () {
+  addSubviewForAuthorizationButtons: function () {
     var view = new Fractions.Views.AuthorizationButtons({
       authorizer: this.fraction,
       authorization_type: 'region_create'
@@ -29,23 +28,14 @@ Fractions.Views.RegionsNew = Backbone.CompositeView.extend({
     this.addSubview('.authorization-buttons', view);
   },
 
-  renderExecutable: function () {
+  addSubviewForRegionsExecutableForm: function () {
     var view = new Fractions.Views.RegionsExecutableForm({
-      fraction: this.fraction
+      fraction: this.fraction,
+      collection: this.collection
     });
     this.subviews('.form-container').forEach(function (subview) {
       subview.remove();
     });
     this.addSubview('.form-container', view);
   },
-
-  submit: function (event) {
-    var view = this;
-    event.preventDefault();
-
-    var params = $(event.currentTarget).serializeJSON();
-    params.region.fraction_id = this.fraction.escape('id');
-    this.collection.create(params['region'], { wait: true })
-    this.render();
-  }
 });

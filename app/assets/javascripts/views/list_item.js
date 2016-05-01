@@ -8,7 +8,6 @@ Fractions.Views.ListItem = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.urlFragmentBase = options.urlFragmentBase;
     this.listenTo(this.model, 'sync', this.render);
   },
 

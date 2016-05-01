@@ -1,0 +1,7 @@
+<% _.each(collection.models, function(model) { %>
+  <li class="fractions-object-list-item">
+    <a href="<%='#' + model.urlFragmentRoot + '/' + model.id %>">
+      <%= model.escape('name') %>
+    </a>
+  </li>
+<% }); %>
