@@ -13,7 +13,9 @@ Fractions.Views.ListItem = Backbone.View.extend({
   },
 
   render: function () {
-    var content = this.template({ model: this.model });
+    var content = this.template({
+      model: this.model
+    });
     this.$el.html(content);
     return this;
   },
