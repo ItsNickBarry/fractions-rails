@@ -25,7 +25,7 @@ Fractions.Views.ExecutableForm = Backbone.View.extend({
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    params[this.noun].fraction_id = this.fraction.escape('id');
+    params[this.noun].fraction_id = this.fraction.get('id');
     this.collection.create(params[this.noun], {
       wait: true,
       success: function () {

@@ -22,5 +22,4 @@ class Region < ActiveRecord::Base
   has_many :plots
 
   has_many :land_authorizations, dependent: :destroy
-  has_many :government_authorizations, as: :authorizer, dependent: :destroy
 end

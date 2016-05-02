@@ -19,7 +19,6 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     this.addSubviewForFoundedFractionsNew();
     // this.addSubviewForChildNew();
     _.each(['electorate', 'position', 'region'], function (noun) {
-      debugger
       this.addSubviewForFractionComponentNew(noun);
     }.bind(this));
 

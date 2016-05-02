@@ -57,16 +57,19 @@ class Fraction < ActiveRecord::Base
 
   after_create :setup_defaults
 
-  # TODO these authorizations are delegated to all of a Fraction's positions
+  # TODO authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations, as: :authorizee, dependent: :destroy
-  has_many :government_authorizations, as: :authorizer, dependent: :destroy
+
+  def child_connect!
+    # TODO
+  end
 
   private
 
     def setup_defaults
-      electorate = electorates.create(name: 'Electors of ' + self.name)
-      position = positions.create(name: 'People of ' + self.name)
-      region = regions.create(name: 'Lands of ' + self.name)
+      electorate = electorates.create(name: "Electors of #{ self.name }")
+      position = positions.create(name: "People of #{ self.name }")
+      region = regions.create(name: "Lands of #{ self.name }")
 
       ElectorateMembership.create electorate: electorate, position: position
       if self.founder.is_a? Character

@@ -2,7 +2,7 @@ module Governable
   extend ActiveSupport::Concern
 
   included do
-    has_many :government_authorizations, as: :authorizer
+    has_many :government_authorizations, as: :authorizer, dependent: :destroy
 
     has_many :government_authorized_positions, through: :government_authorizations, source: :authorizee, source_type: 'Position'
     has_many :government_authorized_electorates, through: :government_authorizations, source: :authorizee, source_type: 'Electorate'
@@ -61,6 +61,9 @@ module Governable
 
   module ClassMethods
     def government_authorization_types
+      # TODO these should correspond to method names, so they can be easily
+      # referenced by Ballots; can then check for existence of method, rather
+      # than this list?
       {
         Electorate => [
 

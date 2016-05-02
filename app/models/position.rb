@@ -24,7 +24,7 @@ class Position < ActiveRecord::Base
   has_many :land_authorizations, as: :authorizee, dependent: :destroy
 
   # TODO differentiate between given/received authorizations
-  has_many :government_authorizations, as: :authorizer, dependent: :destroy
+  # as: :authorizer is in Governable module
   has_many :government_authorizations, as: :authorizee, dependent: :destroy
 
 end

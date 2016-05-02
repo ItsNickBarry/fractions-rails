@@ -22,6 +22,6 @@ class Electorate < ActiveRecord::Base
   has_many :members, through: :electorate_memberships
 
   # TODO differentiate between given/received authorizations
-  has_many :government_authorizations, as: :authorizer, dependent: :destroy
+  # as: :authorizer is in Governable module
   has_many :government_authorizations, as: :authorizee, dependent: :destroy
 end
