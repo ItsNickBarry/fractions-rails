@@ -11,20 +11,22 @@
 #
 
 class Character < ActiveRecord::Base
+  # TODO should not require user?  Character chould be used for NPC or historical data, too
   validates :user, presence: true
   validates :name, presence: true, uniqueness: true
   validates :gender, presence: true
   validate :gender_is_valid
 
   belongs_to :user
-  has_many :banishments
+  has_many :banishments, dependent: :destroy
   has_many :banishing_fractions, through: :banishments, source: :fraction
 
-  has_many :position_memberships
+  has_many :position_memberships, dependent: :destroy
   has_many :positions, through: :position_memberships
 
   has_many :fractions, through: :position_memberships, source: :fraction
 
+  # TODO this should not be dependent: :destroy, but Fractions will be invalid without founder
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 
   # has_many :government_authorizations ... TODO get this from positions/ electorates

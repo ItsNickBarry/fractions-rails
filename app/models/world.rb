@@ -10,4 +10,9 @@
 
 class World < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
+
+  # TODO dependent: :destroy for:
+  #   plots
+  #   regions
+  #   fractions?
 end

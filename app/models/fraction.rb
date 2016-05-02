@@ -40,21 +40,26 @@ class Fraction < ActiveRecord::Base
   # subtree          Scopes the model on descendants and itself
   # subtree_ids      Returns a list of all ids in the record's subtree
   # depth            Return the depth of the node, root nodes are at depth 0
-  has_many :banishments
+  has_many :banishments, dependent: :destroy
   has_many :banished_characters, through: :banishments, source: :character
   has_many :characters, through: :positions
+
   has_many :positions, dependent: :destroy
   has_many :electorates, dependent: :destroy
   has_many :regions, dependent: :destroy
+
   has_many :plots, through: :regions
 
   belongs_to :founder, polymorphic: true
+
+  # TODO this should not be dependent: :destroy, but Fractions will be invalid without founder
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 
   after_create :setup_defaults
 
   # TODO these authorizations are delegated to all of a Fraction's positions
-  has_many :land_authorizations, as: :authorizee
+  has_many :land_authorizations, as: :authorizee, dependent: :destroy
+  has_many :government_authorizations, as: :authorizer, dependent: :destroy
 
   private
 
