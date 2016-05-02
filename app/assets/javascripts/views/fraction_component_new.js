@@ -1,14 +1,16 @@
-Fractions.Views.RegionsNew = Backbone.CompositeView.extend({
+Fractions.Views.FractionComponentNew = Backbone.CompositeView.extend({
   template: JST['fraction_component_new'],
-  className: 'fractions-object new region',
+  className: 'fractions-object new',
 
   events: {
-    'click button#executable': 'addSubviewForRegionsExecutableForm',
-    // 'click button#callable': 'addSubviewForRegionsCallableForm',
-    // 'click button#votable': 'addSubviewForRegionsVotableForm',
+    'click button#executable': 'addSubviewForFractionComponentExecutableForm',
+    // 'click button#callable': 'addSubviewForFractionComponentCallableForm',
+    // 'click button#votable': 'addSubviewForFractionComponentVotableForm',
   },
 
   initialize: function (options) {
+    this.noun = options.noun;
+    this.className += ' ' + this.noun;
     this.fraction = options.fraction;
     this.addSubviewForAuthorizationButtons();
   },
@@ -23,15 +25,16 @@ Fractions.Views.RegionsNew = Backbone.CompositeView.extend({
   addSubviewForAuthorizationButtons: function () {
     var view = new Fractions.Views.AuthorizationButtons({
       authorizer: this.fraction,
-      authorization_type: 'region_create'
+      authorization_type: this.noun + '_create'
     });
     this.addSubview('.authorization-buttons', view);
   },
 
-  addSubviewForRegionsExecutableForm: function () {
-    var view = new Fractions.Views.RegionsExecutableForm({
+  addSubviewForFractionComponentExecutableForm: function () {
+    var view = new Fractions.Views.ExecutableForm({
       fraction: this.fraction,
-      collection: this.collection
+      collection: this.collection,
+      noun: this.noun
     });
     this.subviews('.form-container').forEach(function (subview) {
       subview.remove();

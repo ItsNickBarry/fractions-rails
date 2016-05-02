@@ -18,9 +18,10 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     // TODO add subviews in INITIALIZE for all composite views
     this.addSubviewForFoundedFractionsNew();
     // this.addSubviewForChildNew();
-    this.addSubviewForElectoratesNew();
-    this.addSubviewForPositionsNew();
-    this.addSubviewForRegionsNew();
+    _.each(['electorate', 'position', 'region'], function (noun) {
+      debugger
+      this.addSubviewForFractionComponentNew(noun);
+    }.bind(this));
 
     // create list views for collections
     [
@@ -62,27 +63,12 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     this.addSubview('#founded-fractions-new', view);
   },
 
-  addSubviewForElectoratesNew: function () {
-    var view = new Fractions.Views.ElectoratesNew({
-      collection: this.electorates,
-      fraction: this.model
+  addSubviewForFractionComponentNew: function (noun) {
+    var view = new Fractions.Views.FractionComponentNew({
+      collection: this[noun + 's'],
+      fraction: this.model,
+      noun: noun
     });
-    this.addSubview('#electorates-new', view);
-  },
-
-  addSubviewForPositionsNew: function () {
-    var view = new Fractions.Views.PositionsNew({
-      collection: this.positions,
-      fraction: this.model
-    });
-    this.addSubview('#positions-new', view);
-  },
-
-  addSubviewForRegionsNew: function () {
-    var view = new Fractions.Views.RegionsNew({
-      collection: this.regions,
-      fraction: this.model
-    });
-    this.addSubview('#regions-new', view);
-  },
+    this.addSubview('#' + noun + 's-new', view);
+  }
 });

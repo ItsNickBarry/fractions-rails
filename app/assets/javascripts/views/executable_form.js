@@ -1,13 +1,17 @@
-Fractions.Views.ElectoratesExecutableForm = Backbone.View.extend({
-  template: JST['electorates_new_form'],
-  className: 'fractions-object new electorate',
+Fractions.Views.ExecutableForm = Backbone.View.extend({
+  className: 'fractions-object new',
 
   events: {
     'submit form': 'submit'
   },
 
   initialize: function (options) {
+    this.noun = options.noun;
+    this.className += ' ' + this.noun;
     this.fraction = options.fraction;
+    this.template = function () {
+      return JST[this.noun + 's_new_form']();
+    };
   },
 
   render: function () {
@@ -21,11 +25,11 @@ Fractions.Views.ElectoratesExecutableForm = Backbone.View.extend({
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    params.electorate.fraction_id = this.fraction.escape('id');
-    this.collection.create(params['electorate'], {
+    params[this.noun].fraction_id = this.fraction.escape('id');
+    this.collection.create(params[this.noun], {
       wait: true,
       success: function () {
-        view.remove()
+        view.remove();
       }
     });
   }
