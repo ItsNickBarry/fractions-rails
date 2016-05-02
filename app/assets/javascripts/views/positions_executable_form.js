@@ -1,6 +1,6 @@
 Fractions.Views.PositionsExecutableForm = Backbone.View.extend({
   template: JST['positions_new_form'],
-  className: 'fractions-object-element fractions-object-new fractions-object-position',
+  className: 'fractions-object new position',
 
   events: {
     'submit form': 'submit'

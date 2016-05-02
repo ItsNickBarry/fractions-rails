@@ -1,6 +1,6 @@
 Fractions.Views.ElectorateShow = Backbone.CompositeView.extend({
   template: JST['electorate_show'],
-  className: 'fractions-object-element fractions-object-show fractions-object-electorate',
+  className: 'fractions-object show electorate',
 
   events: {
 

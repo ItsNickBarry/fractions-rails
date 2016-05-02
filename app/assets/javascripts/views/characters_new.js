@@ -1,6 +1,6 @@
 Fractions.Views.CharactersNew = Backbone.View.extend({
   template: JST['characters_new'],
-  className: 'fractions-object-element fractions-object-new fractions-object-character',
+  className: 'fractions-object new character',
 
   events: {
     'submit form': 'submit'

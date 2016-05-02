@@ -1,6 +1,6 @@
 Fractions.Views.RegionShow = Backbone.CompositeView.extend({
   template: JST['region_show'],
-  className: 'fractions-object-element fractions-object-show fractions-object-region',
+  className: 'fractions-object show region',
 
   events: {
 

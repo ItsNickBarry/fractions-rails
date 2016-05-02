@@ -34,42 +34,42 @@ a:hover {
   text-decoration: underline;
 }
 
-.fractions-object-list-item > a {
+.list-item > a {
   color: black;
 }
-.fractions-object-list-item > a:hover {
+.list-item > a:hover {
   font-weight: 600;
   background: white;
   text-decoration: none;
 }
 
-.fractions-object-user {
+.user {
   background-color: pink;
 }
 
-.fractions-object-character {
+.character {
   background-color: cyan;
 }
 
-.fractions-object-fraction {
+.fraction {
   background-color: green;
 }
-.fractions-object-position {
+.position {
   background-color: orange;
 }
 
-.fractions-object-electorate {
+.electorate {
   background-color: teal;
 }
 
-.fractions-object-region {
+.region {
   background-color: red;
 }
 
-.fractions-object-new {
+.new {
 
 }
 
-.fractions-object-show {
+.show {
 
 }

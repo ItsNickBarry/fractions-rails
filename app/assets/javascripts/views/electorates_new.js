@@ -1,6 +1,6 @@
 Fractions.Views.ElectoratesNew = Backbone.CompositeView.extend({
   template: JST['fraction_component_new'],
-  className: 'fractions-object-element fractions-object-new fractions-object-electorate',
+  className: 'fractions-object new electorate',
 
   events: {
     'click button#executable': 'addSubviewForElectoratesExecutableForm',

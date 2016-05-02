@@ -1,12 +1,12 @@
 <h1>Character: <%= character.get("name") %></h1>
-<div class="fractions-object-user">
+<div class="user">
   belongs to:
   <a href="<%= "#/users/" + character.user().escape("id") %>">
     <%= character.user().escape("username") %>
   </a>
 </div>
 
-<div id="fractions" class="fractions-object-fraction">
+<div id="fractions" class="fraction">
   <h3>Citizenship Fractions</h3>
   <div class="row">
     <div class="six columns">
@@ -17,7 +17,7 @@
     </div>
   </div>
 </div>
-<div id="founded-fractions" class="fractions-object-fraction">
+<div id="founded-fractions" class="fraction">
   <h3>Founded Fractions</h3>
   <div class="row">
     <div class="six columns">

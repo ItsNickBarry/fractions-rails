@@ -1,6 +1,6 @@
 Fractions.Views.UserShow = Backbone.CompositeView.extend({
   template: JST['user_show'],
-  className: 'fractions-object-element fractions-object-show fractions-object-user',
+  className: 'fractions-object show user',
 
   events: {
 

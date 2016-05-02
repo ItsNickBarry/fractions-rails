@@ -1,6 +1,6 @@
 Fractions.Views.FractionsNew = Backbone.View.extend({
   template: JST['fractions_new'],
-  className: 'fractions-object-element fractions-object-new fractions-object-fraction',
+  className: 'fractions-object new fraction',
 
   events: {
     'submit form': 'submit'

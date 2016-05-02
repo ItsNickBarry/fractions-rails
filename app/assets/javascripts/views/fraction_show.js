@@ -1,6 +1,6 @@
 Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   template: JST['fraction_show'],
-  className: 'fractions-object-element fractions-object-show fractions-object-fraction',
+  className: 'fractions-object show fraction',
 
   events: {
 

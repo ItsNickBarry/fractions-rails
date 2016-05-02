@@ -1,6 +1,6 @@
 Fractions.Views.RegionsNew = Backbone.CompositeView.extend({
   template: JST['fraction_component_new'],
-  className: 'fractions-object-element fractions-object-new fractions-object-region',
+  className: 'fractions-object new region',
 
   events: {
     'click button#executable': 'addSubviewForRegionsExecutableForm',

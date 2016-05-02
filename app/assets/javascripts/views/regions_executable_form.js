@@ -1,6 +1,6 @@
 Fractions.Views.RegionsExecutableForm = Backbone.View.extend({
   template: JST['regions_new_form'],
-  className: 'fractions-object-element fractions-object-new fractions-object-region',
+  className: 'fractions-object new region',
 
   events: {
     'submit form': 'submit'
