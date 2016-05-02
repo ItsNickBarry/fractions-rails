@@ -6,7 +6,7 @@ class Api::PositionsController < ApplicationController
     @fraction = Fraction.find(position_params[:fraction_id])
     @position = @fraction.positions.new(position_params)
 
-    unless @fraction.authorizes? current_character, :execute, :positions_create
+    unless @fraction.authorizes? current_character, :execute, :position_create
       render json: "#{ @fraction.name } does not authorize #{ current_character.name } to create positions", status: 422
       return
     end
