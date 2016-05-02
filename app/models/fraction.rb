@@ -43,9 +43,9 @@ class Fraction < ActiveRecord::Base
   has_many :banishments
   has_many :banished_characters, through: :banishments, source: :character
   has_many :characters, through: :positions
-  has_many :positions
-  has_many :electorates
-  has_many :regions
+  has_many :positions, dependent: :destroy
+  has_many :electorates, dependent: :destroy
+  has_many :regions, dependent: :destroy
   has_many :plots, through: :regions
 
   belongs_to :founder, polymorphic: true
@@ -67,5 +67,7 @@ class Fraction < ActiveRecord::Base
       if self.founder.is_a? Character
         PositionMembership.create position: position, character: founder
       end
+
+      authorize! position, :region_create
     end
 end

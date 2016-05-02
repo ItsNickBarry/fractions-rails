@@ -11,15 +11,16 @@
 
 class Region < ActiveRecord::Base
   include Governable
-  # TODO dependent destroy
   validates :fraction, :name, presence: true
   # TODO does order of scope have to match migration?
   validates :name, uniqueness: { scope: :fraction,
     message: ""}
 
   belongs_to :fraction
+  # TODO not dependent: :destroy, because plot shoudl still store culture;
+  # plot must be set to regionless, or transferred to default region
   has_many :plots
 
-  has_many :land_authorizations
-  has_many :government_authorizations, as: :authorizer
+  has_many :land_authorizations, dependent: :destroy
+  has_many :government_authorizations, as: :authorizer, dependent: :destroy
 end

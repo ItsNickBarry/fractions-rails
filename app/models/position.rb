@@ -11,7 +11,6 @@
 
 class Position < ActiveRecord::Base
   include Governable
-  # TODO dependent destroy
   validates :fraction, :name, presence: true
   # TODO does order of scope have to match migration?
   validates :name, uniqueness: { scope: :fraction,
@@ -19,13 +18,13 @@ class Position < ActiveRecord::Base
 
   belongs_to :fraction
 
-  has_many :position_memberships
+  has_many :position_memberships, dependent: :destroy
   has_many :characters, through: :position_memberships
 
-  has_many :land_authorizations, as: :authorizee
+  has_many :land_authorizations, as: :authorizee, dependent: :destroy
 
   # TODO differentiate between given/received authorizations
-  has_many :government_authorizations, as: :authorizer
-  has_many :government_authorizations, as: :authorizee
+  has_many :government_authorizations, as: :authorizer, dependent: :destroy
+  has_many :government_authorizations, as: :authorizee, dependent: :destroy
 
 end

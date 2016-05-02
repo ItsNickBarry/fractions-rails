@@ -13,6 +13,14 @@ module Governable
     # has_many :government_votable_characters, through: :government_authorized_electorates, source: :voters
   end
 
+  def authorize! (authorizee, authorization_type)
+    GovernmentAuthorization.create(
+      authorizer: self,
+      authorizee: authorizee,
+      authorization_type: authorization_type
+    )
+  end
+
   def authorizes (character, authorization_level, authorization_type = nil)
     authorizee_class = {
       execute: Position,
