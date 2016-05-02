@@ -24,4 +24,13 @@ class Electorate < ActiveRecord::Base
   # TODO differentiate between given/received authorizations
   # as: :authorizer is in Governable module
   has_many :government_authorizations, as: :authorizee, dependent: :destroy
+
+  def invest! position
+    # TODO parameters
+    ElectorateMembership.create(electorate: self, position: position)
+  end
+
+  def divest! position
+    ElectorateMembership.find_by(electorate: self, position: position).try(:destroy)
+  end
 end

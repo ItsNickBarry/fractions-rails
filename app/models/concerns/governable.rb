@@ -66,7 +66,8 @@ module Governable
       # than this list?
       {
         Electorate => [
-
+          :divest,
+          :invest
         ],
 
         Fraction => [
@@ -105,7 +106,8 @@ module Governable
         ],
 
         Position => [
-
+          :divest,
+          :invest
         ],
 
         Region => [

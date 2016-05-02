@@ -27,4 +27,11 @@ class Position < ActiveRecord::Base
   # as: :authorizer is in Governable module
   has_many :government_authorizations, as: :authorizee, dependent: :destroy
 
+  def invest! character
+    PositionMemberships.create(position: self, character: character)
+  end
+
+  def divest! character
+    PositionMemberships.find_by(position: self, character: character).try(:destroy)
+  end
 end

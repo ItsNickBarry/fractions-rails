@@ -30,7 +30,7 @@ class Api::FractionsController < ApplicationController
     end
 
     @fraction = @founder.founded_fractions.new(fraction_params);
-    # TODO complex fraction initialization, including authorizations
+    
     if params[:fraction][:make_child]
       unless @founder.authorizes? current_character, :execute, :child_connect
         render json: "#{ @founder.name } does not authorize #{ current_character.name } to connect child fractions", status: 422
