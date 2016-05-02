@@ -14,6 +14,17 @@ Backbone.Collection = Backbone.Collection.extend({
   }
 });
 
+Backbone.Model = Backbone.Model.extend({
+  urlFragment: function () {
+    return this.urlFragmentRoot
+    ?
+      '#' + this.urlFragmentRoot + '/' + this.get('id')
+    :
+      'javascript:void(0)'
+    ;
+  }
+});
+
 window.Fractions = {
   D3Views: {},
   Concerns: {},

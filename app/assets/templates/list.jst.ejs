@@ -1,5 +1,5 @@
 <% _.each(collection.models, function(model) { %>
   <li class="list-item">
-    <a href="<%= '#' + model.urlFragmentRoot + '/' + model.id %>"><%= model.escape('name') %></a>
+    <a href="<%= model.urlFragment() %>"><%= model.escape('name') %></a>
   </li>
 <% }); %>

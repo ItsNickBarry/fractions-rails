@@ -4,10 +4,6 @@ Fractions.Models.Fraction = Backbone.Model.extend(Fractions.Concerns.Governable)
   urlFragmentRoot: '/fractions',
   urlRoot: '/api/fractions',
 
-  urlFragment: function () {
-    return '#' + this.urlFragmentRoot + '/' + this.get('id');
-  },
-
   parse: function (response) {
     // TODO parse: true for founder and parent models?
     if (response.founder) {
