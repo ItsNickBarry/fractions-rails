@@ -16,6 +16,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
+    # use username with incorrect case, for case-correction tests
     @user = User.new(username: 'itsnickbarry', password: 'password')
   end
 
@@ -49,10 +50,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil @user.password_digest
   end
 
-  test "uuid should be present or fetched before validation if nil" do
+  test "uuid should be fetched before validation" do
     assert_nil @user.uuid
-    # should fetch uuid of ItsNickBarry on save
     assert @user.save!
+    # uuid for ItsNickBarry, fetched from Mojang API
     assert_equal 'df5903fbd8e942dcbb3d82b085af5af1', @user.uuid
     @user.uuid = ''
     assert_not @user.valid?
@@ -82,8 +83,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "valid user should set conflicting usernames equal to uuids" do
-    # will only change case-sensitive matches; this is probably good enough
     conflicting_user = users(:notch)
+    # use case-corrected username; case-unique usernames are not changed
     conflicting_user.update_attribute(:username, 'ItsNickBarry')
 
     assert @user.valid?

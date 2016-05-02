@@ -21,5 +21,5 @@ class Region < ActiveRecord::Base
   # plot must be set to regionless, or transferred to default region
   has_many :plots
 
-  has_many :land_authorizations, dependent: :destroy
+  has_many :land_authorizations, foreign_key: 'authorizer_id', dependent: :destroy
 end

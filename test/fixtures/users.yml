@@ -18,6 +18,11 @@
 # http://minecraft.gamepedia.com/Mojang_AB
 # https://namemc.com/cape/cb5dd34bee34018266f7
 
+admin:
+  username: admin
+  uuid: admin
+  password_digest: <%= User.digest('password') %>
+  session_token: <%= User.generate_session_token %>
 
 # lead realms developer
 amir343:

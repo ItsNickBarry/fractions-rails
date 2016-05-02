@@ -10,6 +10,10 @@
 #  updated_at :datetime         not null
 #
 
+haakon_vii:
+  name: Haakon VII
+  gender: M
+  user: admin
 # use Mojang staff real names
 # divide into good and evil by team
 

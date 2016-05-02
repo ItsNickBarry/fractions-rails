@@ -35,13 +35,29 @@ danmark: # Denmark
 
 suomi: # Finland
   id: 4
-  name: Finland
+  name: Suomi
   founder: andreas_andersson (Character)
 
 eesti: # Estonia
   id: 5
-  name: Estonia
+  name: Eesti
   founder: amir_moulavi (Character)
+
+росси́я: # Russia
+  id: 6
+  name: Росси́я
+  founder: erik_broes (Character)
+
+united_kingdom:
+  id: 7
+  name: United Kingdom
+  founder: nathan_adams (Character)
+
+united_states:
+  id: 8
+  name: United States
+  founder_id: 999 # united_kingdom
+  founder_type: Fraction
 
 # ######## ######## ######## ########
 # second level fractions
@@ -51,43 +67,57 @@ lappland:
   id: 11
   ancestry: 1
   name: Lappland
-  founder: sverige (Fraction)
+  founder_id: 1 # sverige
+  founder_type: Fraction
 
 uppland:
   id: 12
   ancestry: 1
   name: Uppland
-  founder: sverige (Fraction)
+  founder_id: 1 # sverige
+  founder_type: Fraction
 
 gotland:
   id: 13
   ancestry: 1
   name: Gotland
-  founder: sverige (Fraction)
+  founder_id: 1 # sverige
+  founder_type: Fraction
 
 oslo:
   id: 21
   ancestry: 2
   name: Oslo
-  founder: norge (Fraction)
+  founder_id: 2 # norge
+  founder_type: Fraction
 
 hovedstaden:
   id: 31
   ancestry: 3
   name: Hovedstaden
-  founder: danmark (Fraction)
+  founder_id: 3 # danmark
+  founder_type: Fraction
 
 sjælland:
   id: 32
   ancestry: 3
   name: Sjælland
-  founder: danmark (Fraction)
+  founder_id: 3 # danmark
+  founder_type: Fraction
 
 uusimaa:
   id: 41
   ancestry: 4
   name: Uusimaa
-  founder: suomi (Fraction)
+  founder_id: 4 # suomi
+  founder_type: Fraction
+
+saatse_saabas:
+  id: 61
+  ancestry: 6
+  name: Saatse Saabas
+  founder_id: 6 # росси́я
+  founder_type: Fraction
 
 # ######## ######## ######## ########
 # third level fractions
@@ -97,22 +127,26 @@ visby:
   id: 131
   ancestry: 1/13
   name: Visby
-  founder: gotland (Fraction)
+  founder_id: 13 # gotland
+  founder_type: Fraction
 
 akershus:
   id: 211
   ancestry: 2/21
   name: Akershus
-  founder: oslo (Fraction)
+  founder_id: 21 # oslo
+  founder_type: Fraction
 
 copenhagen:
   id: 311
   ancestry: 3/31
   name: Copenhagen
-  founder: hovenstaden (Fraction)
+  founder_id: 31 # hovenstaden
+  founder_type: Fraction
 
 helsinki:
   id: 411
   ancestry: 4/41
   name: Helsinki
-  founder: suomi (Fraction)
+  founder_id: 41 # suomi
+  founder_type: Fraction

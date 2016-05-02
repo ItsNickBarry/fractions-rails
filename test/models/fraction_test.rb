@@ -14,22 +14,17 @@
 require 'test_helper'
 
 class FractionTest < ActiveSupport::TestCase
-  # associations provided by Ancestry gem not tested
+  # associations provided by Ancestry gem are presumed to work
 
   def setup
     @fraction = Fraction.create({
       name: 'Canada',
       founder: characters(:lydia_winters)
     })
-    @child_fraction = Fraction.create({
-      name: 'Ontario',
-      founder: @fraction
-    })
   end
 
   test "should be valid" do
     assert @fraction.valid?
-    assert @child_fraction.valid?
   end
 
   test "name should be present" do
@@ -38,7 +33,7 @@ class FractionTest < ActiveSupport::TestCase
   end
 
   test "name should be unique" do
-    @fraction.name = @child_fraction.name
+    @fraction.name = fractions(:sverige).name
     assert_not @fraction.valid?
   end
 

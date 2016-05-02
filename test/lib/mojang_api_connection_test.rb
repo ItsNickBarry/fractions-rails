@@ -14,10 +14,4 @@ class MojangApiConnectionTest < ActiveSupport::TestCase
       assert response.is_a? String
     end
   end
-
-  # test "profile given username should raise exception for invalid username" do
-  #   ['a' * 17, 'a' * 3, 'asdf^1234', 'name with spaces'].each do |username|
-  #     assert_raise { response = MojangApiConnection.profile_given_username(username) }
-  #   end
-  # end
 end

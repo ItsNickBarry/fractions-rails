@@ -43,7 +43,10 @@ class CharacterTest < ActiveSupport::TestCase
     assert_not_nil @character.user
   end
 
-  test "should be able to found fraction" do
-    # TODO integration
+  test "should be able to found one fraction right away" do
+    @character.save!
+    assert @character.can_found_fraction?
+    @character.founded_fractions.create(name: 'a fraction')
+    assert_not @character.can_found_fraction?
   end
 end
