@@ -11,17 +11,108 @@
 #  founder_type :string           not null
 #
 
-# Pristina:
-#   Korunak:
-#     Mor Nehir:
-#
-# Serenum:
-#   Aldebaria:
-#
-# Vryko:
-#
-# Vrykolakas:
+# use regions of Europe
+# use digits of id to indicate ancestry
 
-# serenum:
-#   name: Serenum
-#   founder:
+# ######## ######## ######## ########
+# first (root) level fractions
+# ######## ######## ######## ########
+
+sverige: # Sweden
+  id: 1
+  name: Sverige
+  founder: markus_persson (Character)
+
+norge: # Norway
+  id: 2
+  name: Norge
+  founder: jens_bergensten (Character)
+
+danmark: # Denmark
+  id: 3
+  name: Danmark
+  founder: carl_manneh (Character)
+
+suomi: # Finland
+  id: 4
+  name: Finland
+  founder: andreas_andersson
+
+eesti: # Estonia
+  id: 5
+  name: Estonia
+  founder: amir_moulavi
+
+# ######## ######## ######## ########
+# second level fractions
+# ######## ######## ######## ########
+
+lappland:
+  id: 11
+  ancestry: 1
+  name: Lappland
+  founder: sverige (Fraction)
+
+uppland:
+  id: 12
+  ancestry: 1
+  name: Uppland
+  founder: sverige (Fraction)
+
+gotland:
+  id: 13
+  ancestry: 1
+  name: Gotland
+  founder: sverige (Fraction)
+
+oslo:
+  id: 21
+  ancestry: 2
+  name: Oslo
+  founder: norge (Fraction)
+
+hovedstaden:
+  id: 31
+  ancestry: 3
+  name: Hovedstaden
+  founder: danmark (Fraction)
+
+sjælland:
+  id: 32
+  ancestry: 3
+  name: Sjælland
+  founder: danmark (Fraction)
+
+uusimaa:
+  id: 41
+  ancestry: 4
+  name: Uusimaa
+  founder: suomi (Fraction)
+
+# ######## ######## ######## ########
+# third level fractions
+# ######## ######## ######## ########
+
+visby:
+  id: 131
+  ancestry: 1/13
+  name: Visby
+  founder: gotland (Fraction)
+
+akershus:
+  id: 211
+  ancestry: 2/21
+  name: Akershus
+  founder: oslo (Fraction)
+
+copenhagen:
+  id: 311
+  ancestry: 3/31
+  name: Copenhagen
+  founder: hovenstaden (Fraction)
+
+helsinki:
+  id: 411
+  ancestry: 4/41
+  name: Helsinki
+  founder: suomi (Fraction)
