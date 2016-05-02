@@ -60,16 +60,82 @@ class Fraction < ActiveRecord::Base
   # TODO authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations, as: :authorizee, dependent: :destroy
 
-  def child_connect!
+  def child_connect! (child)
+    # TODO require child to have run parent_connect!
+    child.update(parent: self)
+  end
+
+  def child_disconnect! (child)
+    child.update(parent: nil)
+  end
+
+  def fraction_create! (attributes)
+    founded_fractions.create(attributes)
+  end
+
+  def parent_connect! (parent)
+    # TODO require child to have run child_connect!
+    update(parent: parent)
+  end
+
+  def parent_disconnect!
+    update(parent: nil)
+  end
+
+  def electorate_create! attributes
+    electorates.create(attributes)
+  end
+
+  def electorate_destroy! electorate
+    electorate.destroy
+  end
+
+  def position_create! attributes
+    positions.create(attributes)
+  end
+
+  def position_destroy! position
+    position.destroy
+  end
+
+  def region_create! attributes
+    regions.create(attributes)
+  end
+
+  def region_destroy! region
+    region.destroy
+  end
+
+  def character_banish! character
+    Banishment.create(character: character, fraction: self)
+  end
+
+  def character_invite! character
     # TODO
   end
+
+  def character_unbanish! character
+    Banishment.find_by(character: character, fraction: self).try(:destroy)
+  end
+
+  # def war_declare!
+  #
+  # end
+  # 
+  # def war_join! war
+  #
+  # end
+  #
+  # def war_surrender! war
+  #
+  # end
 
   private
 
     def setup_defaults
-      electorate = electorates.create(name: "Electors of #{ self.name }")
-      position = positions.create(name: "People of #{ self.name }")
-      region = regions.create(name: "Lands of #{ self.name }")
+      electorate = electorate_create!(name: "Electors of #{ self.name }")
+      position = position_create!(name: "People of #{ self.name }")
+      region = region_create!(name: "Lands of #{ self.name }")
 
       ElectorateMembership.create electorate: electorate, position: position
       if self.founder.is_a? Character
