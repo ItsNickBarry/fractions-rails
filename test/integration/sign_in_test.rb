@@ -5,14 +5,14 @@ class SignInTest < ActionDispatch::IntegrationTest
     @user = users(:notch)
   end
 
-  test 'sign in with invalid credentials' do
+  test "sign in with invalid credentials" do
     sign_in_as(@user, '')
     assert_not flash.empty?
     get root_path
     assert flash.empty?
   end
 
-  test 'sign in with valid credentials and sign out' do
+  test "sign in with valid credentials and sign out" do
     sign_in_as(@user)
     assert is_signed_in?
 
@@ -26,14 +26,14 @@ class SignInTest < ActionDispatch::IntegrationTest
     # TODO ensure appropriate navbar links for signed-out user
   end
 
-  test 'sign in with case-insensitive username' do
+  test "sign in with case-insensitive username" do
     sign_in_as(@user.username.downcase)
     # do not display a "name has changed" message
     assert flash.empty?
     assert is_signed_in?
   end
 
-  test 'sign in with changed username' do
+  test "sign in with changed username" do
     actual_username = @user.username
     @user.update_attribute(:username, 'asdf')
 

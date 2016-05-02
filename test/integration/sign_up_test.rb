@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SignUpTest < ActionDispatch::IntegrationTest
-  test 'sign up with invalid credentials' do
+  test "sign up with invalid credentials" do
     [
       { username: 'a' * 17, password: 'password' },
       { username: 'asdf', password: '' }
@@ -18,7 +18,7 @@ class SignUpTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  test 'sign up with valid, case-insensitive credentials' do
+  test "sign up with valid, case-insensitive credentials" do
     assert_difference 'User.count' do
       post users_path, user: { username: 'itsnickbarry', password: 'password' }
     end

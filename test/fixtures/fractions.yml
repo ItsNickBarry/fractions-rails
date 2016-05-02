@@ -36,12 +36,12 @@ danmark: # Denmark
 suomi: # Finland
   id: 4
   name: Finland
-  founder: andreas_andersson
+  founder: andreas_andersson (Character)
 
 eesti: # Estonia
   id: 5
   name: Estonia
-  founder: amir_moulavi
+  founder: amir_moulavi (Character)
 
 # ######## ######## ######## ########
 # second level fractions

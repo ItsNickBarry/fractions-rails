@@ -18,32 +18,32 @@ class CharacterTest < ActiveSupport::TestCase
           .characters.new(name: 'Nick Barry', gender: 'M')
   end
 
-  test 'should be valid' do
+  test "should be valid" do
     assert @character.valid?
   end
 
-  test 'name should be present' do
+  test "name should be present" do
     @character.name = ''
     assert_not @character.valid?
   end
 
-  test 'name should be unique' do
+  test "name should be unique" do
     @character.name = characters(:markus_persson).name
     assert_not @character.valid?
   end
 
-  test 'gender should be "M" or "F"' do
+  test "gender should be 'M' or 'F'" do
     @character.gender = ''
     assert_not @character.valid?
     @character.gender = 'A'
     assert_not @character.valid?
   end
 
-  test 'user should be present' do
+  test "user should be present" do
     assert_not_nil @character.user
   end
 
-  test 'should be able to found fraction' do
+  test "should be able to found fraction" do
     # TODO integration
   end
 end

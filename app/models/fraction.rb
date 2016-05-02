@@ -51,21 +51,21 @@ class Fraction < ActiveRecord::Base
   belongs_to :founder, polymorphic: true
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 
-  after_create :setup_default_objects
+  after_create :setup_defaults
 
   # TODO these authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations, as: :authorizee
 
   private
 
-    def setup_default_objects
-      electorates.create(name: "DEFAULT")
-      positions.create(name: "DEFAULT")
-      regions.create(name: "DEFAULT")
-      assign_authorizations
-    end
+    def setup_defaults
+      electorate = electorates.create(name: 'Electors of ' + self.name)
+      position = positions.create(name: 'People of ' + self.name)
+      region = regions.create(name: 'Lands of ' + self.name)
 
-    def assign_authorizations
-      # TODO
+      ElectorateMembership.create electorate: electorate, position: position
+      if self.founder.is_a? Character
+        PositionMembership.create position: position, character: founder
+      end
     end
 end
