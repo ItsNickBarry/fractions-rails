@@ -11,8 +11,6 @@
 #
 
 class Character < ActiveRecord::Base
-  # TODO should not require user?  Character chould be used for NPC or historical data, too
-  validates :user, presence: true
   validates :name, presence: true, uniqueness: true
   validates :gender, presence: true
   validate :gender_is_valid

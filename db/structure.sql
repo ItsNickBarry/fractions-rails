@@ -4,8 +4,6 @@ CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username
 CREATE INDEX "index_users_on_username" ON "users" ("username");
 CREATE UNIQUE INDEX "index_users_on_uuid" ON "users" ("uuid");
 CREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token");
-CREATE TABLE "characters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "name" varchar NOT NULL, "gender" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
-CREATE INDEX "index_characters_on_user_id" ON "characters" ("user_id");
 CREATE TABLE "banishments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "character_id" integer NOT NULL, "fraction_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE UNIQUE INDEX "index_banishments_on_character_id_and_fraction_id" ON "banishments" ("character_id", "fraction_id");
 CREATE INDEX "index_banishments_on_fraction_id" ON "banishments" ("fraction_id");
@@ -37,9 +35,6 @@ CREATE UNIQUE INDEX "index_electorate_memberships_uniquely" ON "electorate_membe
 CREATE UNIQUE INDEX index_fractions_on_name
           ON fractions (name COLLATE nocase)
 ;
-CREATE UNIQUE INDEX index_characters_on_name
-          ON characters (name COLLATE nocase)
-;
 CREATE UNIQUE INDEX index_positions_on_name_and_fraction_id
           ON positions (name COLLATE nocase, fraction_id)
 ;
@@ -49,6 +44,9 @@ CREATE UNIQUE INDEX index_electorates_on_name_and_fraction_id
 CREATE UNIQUE INDEX index_regions_on_name_and_fraction_id
           ON regions (name COLLATE nocase, fraction_id)
 ;
+CREATE TABLE "characters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "name" varchar NOT NULL, "gender" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE INDEX "index_characters_on_user_id" ON "characters" ("user_id");
+CREATE UNIQUE INDEX "index_characters_on_name" ON "characters" ("name");
 INSERT INTO schema_migrations (version) VALUES ('20150701014936');
 
 INSERT INTO schema_migrations (version) VALUES ('20150702022821');
@@ -94,4 +92,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150909212632');
 INSERT INTO schema_migrations (version) VALUES ('20150909223605');
 
 INSERT INTO schema_migrations (version) VALUES ('20150910014110');
+
+INSERT INTO schema_migrations (version) VALUES ('20160503015856');
 

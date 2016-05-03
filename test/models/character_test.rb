@@ -39,10 +39,6 @@ class CharacterTest < ActiveSupport::TestCase
     assert_not @character.valid?
   end
 
-  test "user should be present" do
-    assert_not_nil @character.user
-  end
-
   test "should be able to found one fraction right away" do
     @character.save!
     assert @character.can_found_fraction?
