@@ -17,10 +17,7 @@ class FractionTest < ActiveSupport::TestCase
   # associations provided by Ancestry gem are presumed to work
 
   def setup
-    @fraction = Fraction.create({
-      name: 'Canada',
-      founder: characters(:lydia_winters)
-    })
+    @fraction = Fraction.create(name: 'Svalbard', founder: fractions(:norge))
   end
 
   test "should be valid" do

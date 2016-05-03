@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
 
     def owns_current_character
       return if self.current_character_id.nil?
-      unless current_character && current_character.user.id == self.id
+      unless current_character && current_character.user == self
         errors.add(:current_character_id, "does not belong to user")
       end
     end

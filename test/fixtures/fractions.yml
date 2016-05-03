@@ -17,35 +17,35 @@
 
 sverige: # Sweden
   name: Sverige
-  founder: markus_persson (Character) (Fraction)
+  founder: markus_persson (Character)
 
 norge: # Norway
   name: Norge
-  founder: jens_bergensten (Character) (Fraction)
+  founder: jens_bergensten (Character)
 
 danmark: # Denmark
   name: Danmark
-  founder: carl_manneh (Character) (Fraction)
+  founder: carl_manneh (Character)
 
 suomi: # Finland
   name: Suomi
-  founder: andreas_andersson (Character) (Fraction)
+  founder: andreas_andersson (Character)
 
 eesti: # Estonia
   name: Eesti
-  founder: amir_moulavi (Character) (Fraction)
+  founder: amir_moulavi (Character)
 
 росси́я: # Russia
   name: Росси́я
-  founder: erik_broes (Character) (Fraction)
+  founder: erik_broes (Character)
 
 united_kingdom:
   name: United Kingdom
-  founder: nathan_adams (Character) (Fraction)
+  founder: nathan_adams (Character)
 
 united_states:
   name: United States
-  founder: united_kingdom (Fraction) (Fraction)
+  founder: united_kingdom (Fraction)
 
 # ######## ######## ######## ########
 # second level fractions

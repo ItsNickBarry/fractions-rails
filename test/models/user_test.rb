@@ -78,8 +78,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should be owner of current character" do
-    skip "should own current character"
-    # TODO integration?
+    character = characters(:haakon_vii)
+    @user.current_character = character
+    assert_not @user.valid?
   end
 
   test "valid user should set conflicting usernames equal to uuids" do
