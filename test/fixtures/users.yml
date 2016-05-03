@@ -18,13 +18,6 @@
 # http://minecraft.gamepedia.com/Mojang_AB
 # https://namemc.com/cape/cb5dd34bee34018266f7
 
-admin:
-  username: admin
-  uuid: admin
-  password_digest: <%= User.digest('password') %>
-  session_token: <%= User.generate_session_token %>
-
-# lead realms developer
 amir343:
   username: amir343
   uuid: ee531ba1534a47209f692605dbf58a10
@@ -32,7 +25,6 @@ amir343:
   session_token: <%= User.generate_session_token %>
   current_character: amir_moulavi
 
-#customer support
 blurpi:
   username: Blurpi
   uuid: e0a4a12dda4c40fd80096725ed21bfb1
@@ -40,7 +32,6 @@ blurpi:
   session_token: <%= User.generate_session_token %>
   current_character: andreas_andersson
 
-# director of creative communications
 bopogamel:
   username: Bopogamel
   uuid: 89893e8f920e40a9947afbfdb93effd5
@@ -48,7 +39,6 @@ bopogamel:
   session_token: <%= User.generate_session_token %>
   current_character: owen_hill
 
-# data warehouse manager
 binni:
   username: Binni
   uuid: 17d349da73ff4e6d94de49d64258d39e
@@ -56,7 +46,6 @@ binni:
   session_token: <%= User.generate_session_token %>
   current_character: brynjólfur_erlingsson
 
-# music
 c418:
   username: C418
   uuid: 0b8b22458018456c945d4282121e1b1e
@@ -64,7 +53,6 @@ c418:
   session_token: <%= User.generate_session_token %>
   current_character: daniel_rosenfeld
 
-# former ceo
 carlmanneh:
   username: carlmanneh
   uuid: 3ce72668b8f9497fbfb4809e47365e17
@@ -72,7 +60,6 @@ carlmanneh:
   session_token: <%= User.generate_session_token %>
   current_character: carl_manneh
 
-# artist for scrolls
 carnalizer:
   username: carnalizer
   uuid: f96f3d63fc7f46a7964386eb0b3d66cb
@@ -80,7 +67,6 @@ carnalizer:
   session_token: <%= User.generate_session_token %>
   current_character: henrik_pettersson
 
-# minecraft pocket developer
 darngeek:
   username: darngeek
   uuid: 63b31801739e40579c7a88482c3aacc8
@@ -88,7 +74,6 @@ darngeek:
   session_token: <%= User.generate_session_token %>
   current_character: daniel_wustenhoff
 
-# game developer
 dinnerbone:
   username: Dinnerbone
   uuid: 61699b2ed3274a019f1e0ea8c3f06bc6
@@ -96,7 +81,6 @@ dinnerbone:
   session_token: <%= User.generate_session_token %>
   current_character: nathan_adams
 
-# artist
 eldrone:
   username: eldrone
   uuid: ed4da3aba7e14b44b91322eb38fdae4b
@@ -104,7 +88,6 @@ eldrone:
   session_token: <%= User.generate_session_token %>
   current_character: jonatan_pöljö
 
-# # brand enforcer
 # engst:
 #   username: engst
 #   uuid: 6bef7b0487cf40458cd1fe1ef23c427d
@@ -112,7 +95,6 @@ eldrone:
 #   session_token: <%= User.generate_session_token %>
 #   current_character: mathias_andersson
 
-# scrolls lead designer
 frukthamster:
   username: FruktHamster
   uuid: a7ec08830ab449b3acc4cdcf9ab44cf4
@@ -120,7 +102,6 @@ frukthamster:
   session_token: <%= User.generate_session_token %>
   current_character: jakob_porsér
 
-# data analyst
 geuder:
   username: geuder
   uuid: 235101390b124101bbcf686fea2e5559
@@ -128,7 +109,6 @@ geuder:
   session_token: <%= User.generate_session_token %>
   current_character: patrick_geuder
 
-# game developer
 grumm:
   username: Grumm
   uuid: e6b5c088068044df9e1b9bf11792291b
@@ -136,7 +116,6 @@ grumm:
   session_token: <%= User.generate_session_token %>
   current_character: erik_broes
 
-# # customer support manager
 # hampus:
 #   username: Hampus
 #   uuid: 4e1256f5c48d4e4b8dadf248108ee2ee
@@ -144,7 +123,6 @@ grumm:
 #   session_token: <%= User.generate_session_token %>
 #   current_character: hampus_nilsson
 
-# lead designer
 jeb_:
   username: jeb_
   uuid: 853c80ef3c3749fdaa49938b674adae6
@@ -152,7 +130,6 @@ jeb_:
   session_token: <%= User.generate_session_token %>
   current_character: jens_bergensten
 
-# brand director
 minecraftchick:
   username: MinecraftChick
   uuid: c9b54008fd8047428b238787b5f2401c
@@ -167,7 +144,6 @@ notch:
   session_token: <%= User.generate_session_token %>
   current_character: markus_persson
 
-# web developer
 xlson:
   username: xlson
   uuid: b9583ca43e64488a9c8c4ab27e482255

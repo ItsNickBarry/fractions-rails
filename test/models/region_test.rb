@@ -12,7 +12,27 @@
 require 'test_helper'
 
 class RegionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @fraction = fractions(:visby)
+    @region = Region.new(name: 'Axelsro', fraction: @fraction)
+  end
+
+  test "should be valid" do
+    assert @region.valid?
+  end
+
+  test "should have name" do
+    @region.name = ''
+    assert_not @region.valid?
+  end
+
+  test "should have fraction" do
+    @region.fraction = nil
+    assert_not @region.valid?
+  end
+
+  test "name should be unique within scope of fraction" do
+    @region.name = @fraction.regions.first.name
+    assert_not @region.valid?
+  end
 end
