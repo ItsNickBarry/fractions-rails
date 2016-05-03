@@ -28,6 +28,7 @@ class Position < ActiveRecord::Base
   has_many :government_authorizations, as: :authorizee, dependent: :destroy
 
   def invest! character
+    # TODO parameters: term-length
     PositionMembership.create(position: self, character: character)
   end
 

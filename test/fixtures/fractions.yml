@@ -11,9 +11,6 @@
 #  founder_type :string           not null
 #
 
-# use regions of Europe
-# use digits of id to indicate ancestry
-
 # ######## ######## ######## ########
 # first (root) level fractions
 # ######## ######## ######## ########
@@ -123,7 +120,7 @@ washington:
   id: 81
   ancestry: 8
   name: Washington, D.C.
-  founder_id: 8
+  founder_id: 8 # united_states
   founder_type: Fraction
 
 # ######## ######## ######## ########
@@ -155,5 +152,5 @@ helsinki:
   id: 411
   ancestry: 4/41
   name: Helsinki
-  founder_id: 41 # suomi
+  founder_id: 41 # uusimaa
   founder_type: Fraction
