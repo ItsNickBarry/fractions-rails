@@ -27,4 +27,4 @@ stockholm_residents:
 
 uppland_people_of_uppland:
   name: 'People of Uppland'
-  fraction_id: 12
+  fraction: uppland

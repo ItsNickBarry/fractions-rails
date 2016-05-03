@@ -11,12 +11,12 @@
 
 danmark_folketing:
   name: 'Folketing'
-  fraction_id: 3
+  fraction: danmark
 
 united_states_electoral_college:
   name: 'Electoral College'
-  fraction_id: 8
+  fraction: united_states
 
 uusimaa_electors_of_uusimaa:
   name: 'Electors of Uusimaa'
-  fraction_id: 41
+  fraction: uusimaa

@@ -4,6 +4,14 @@ require 'rails/test_help'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true, slow_count: 5)]
 
+module FixtureHelpers
+  def ancestry_for *labels
+    labels.map { |label| ActiveRecord::FixtureSet.identify label }.join('/')
+  end
+end
+
+ActiveRecord::FixtureSet.context_class.include FixtureHelpers
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
