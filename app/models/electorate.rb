@@ -19,7 +19,7 @@ class Electorate < ActiveRecord::Base
   belongs_to :fraction
 
   has_many :electorate_memberships, dependent: :destroy
-  has_many :members, through: :electorate_memberships
+  has_many :members, through: :electorate_memberships, source: :position
 
   # TODO differentiate between given/received authorizations
   # as: :authorizer is in Governable module

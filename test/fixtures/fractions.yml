@@ -119,6 +119,13 @@ saatse_saabas:
   founder_id: 6 # росси́я
   founder_type: Fraction
 
+washington:
+  id: 81
+  ancestry: 8
+  name: Washington, D.C.
+  founder_id: 8
+  founder_type: Fraction
+
 # ######## ######## ######## ########
 # third level fractions
 # ######## ######## ######## ########

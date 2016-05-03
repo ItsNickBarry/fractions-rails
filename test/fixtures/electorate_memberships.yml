@@ -1,0 +1,34 @@
+# == Schema Information
+#
+# Table name: electorate_memberships
+#
+#  id            :integer          not null, primary key
+#  electorate_id :integer          not null
+#  position_id   :integer          not null
+#  caller        :boolean          default(FALSE), not null
+#  electoral     :boolean          default(FALSE), not null
+#  absolute      :boolean          default(FALSE), not null
+#  weight        :float            default(1.0), not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+# one: {}
+# column: value
+#
+# two: {}
+#  column: value
+
+danmark_folketing_danmark_folketing:
+  electorate: danmark_folketing
+  position: danmark_folketing
+
+united_states_electoral_college_washington_representatives:
+  electorate: united_states_electoral_college
+  position: washington_representatives
