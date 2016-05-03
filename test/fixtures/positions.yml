@@ -16,3 +16,11 @@ danmark_folketing:
 washington_representatives:
   name: 'Representatives'
   fraction: washington
+
+copenhagen_residents:
+  name: 'Residents'
+  fraction: copenhagen
+
+stockholm_residents:
+  name: 'Residents'
+  fraction: stockholm

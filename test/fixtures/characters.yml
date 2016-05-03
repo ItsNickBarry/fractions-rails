@@ -14,6 +14,12 @@ haakon_vii:
   name: Haakon VII
   gender: M
   user: admin
+
+george_de_hevesy:
+  name: George de Hevesy
+  gender: M
+  user: admin
+
 # use Mojang staff real names
 # divide into good and evil by team
 

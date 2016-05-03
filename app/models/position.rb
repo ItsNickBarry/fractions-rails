@@ -19,7 +19,7 @@ class Position < ActiveRecord::Base
   belongs_to :fraction
 
   has_many :position_memberships, dependent: :destroy
-  has_many :characters, through: :position_memberships
+  has_many :members, through: :position_memberships, source: :character
 
   has_many :land_authorizations, as: :authorizee, dependent: :destroy
 
@@ -28,10 +28,10 @@ class Position < ActiveRecord::Base
   has_many :government_authorizations, as: :authorizee, dependent: :destroy
 
   def invest! character
-    PositionMemberships.create(position: self, character: character)
+    PositionMembership.create(position: self, character: character)
   end
 
   def divest! character
-    PositionMemberships.find_by(position: self, character: character).try(:destroy)
+    PositionMembership.find_by(position: self, character: character).try(:destroy)
   end
 end
