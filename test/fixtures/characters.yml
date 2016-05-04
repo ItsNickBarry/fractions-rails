@@ -10,6 +10,10 @@
 #  updated_at :datetime         not null
 #
 
+elizabeth_ii:
+  name: Elizabeth II
+  gender: F
+  
 haakon_vii:
   name: Haakon VII
   gender: M
@@ -17,6 +21,24 @@ haakon_vii:
 george_de_hevesy:
   name: George de Hevesy
   gender: M
+
+
+# Folketing
+pia_adelsteen:
+  name: Pia Adelsteen
+  gender: F
+
+karina_adsbøl:
+  name: Karina Adsbøl
+  gender: F
+
+hans_andersen:
+  name: Hans Andersen
+  gender: M
+
+ida_auken:
+  name: Ida Auken
+  gender: F
 
 # use Mojang staff real names
 # divide into good and evil by team

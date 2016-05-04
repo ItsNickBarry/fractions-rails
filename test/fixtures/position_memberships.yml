@@ -12,3 +12,23 @@
 copenhagen_residents_george_de_hevesy:
   position: copenhagen_residents
   character: george_de_hevesy
+
+danmark_folketing_pia_adelsteen:
+  position: danmark_folketing
+  character: pia_adelsteen
+
+danmark_folketing_karina_adsbøl:
+  position: danmark_folketing
+  character: karina_adsbøl
+
+danmark_folketing_hans_andersen:
+  position: danmark_folketing
+  character: hans_andersen
+
+danmark_folketing_ida_auken:
+  position: danmark_folketing
+  character: ida_auken
+
+united_kingdom_monarch_elizabeth_ii:
+  position: united_kingdom_monarch
+  character: elizabeth_ii

@@ -13,6 +13,10 @@ danmark_folketing:
   name: 'Folketing'
   fraction: danmark
 
+sverige_electors_of_sverige:
+  name: Electors of Sverige
+  fraction: sverige
+
 united_states_electoral_college:
   name: 'Electoral College'
   fraction: united_states

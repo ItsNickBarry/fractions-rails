@@ -12,14 +12,38 @@
 #  authorization_type :string           not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+fraction_danmark_danmark_folketing_electorate_create:
+  authorizer: danmark (Fraction)
+  authorizee: danmark_folketing (Electorate)
+  authorization_type: electorate_create
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-# one: {}
-# column: value
-#
-# two: {}
-#  column: value
+fraction_danmark_danmark_folketing_electorate_destroy:
+  authorizer: danmark (Fraction)
+  authorizee: danmark_folketing (Electorate)
+  authorization_type: electorate_destroy
+
+fraction_danmark_danmark_folketing_position_create:
+  authorizer: danmark (Fraction)
+  authorizee: danmark_folketing (Electorate)
+  authorization_type: position_create
+
+fraction_danmark_danmark_folketing_position_destroy:
+  authorizer: danmark (Fraction)
+  authorizee: danmark_folketing (Electorate)
+  authorization_type: position_destroy
+
+fraction_danmark_danmark_folketing_region_create:
+  authorizer: danmark (Fraction)
+  authorizee: danmark_folketing (Electorate)
+  authorization_type: region_create
+
+fraction_danmark_danmark_folketing_region_destroy:
+  authorizer: danmark (Fraction)
+  authorizee: danmark_folketing (Electorate)
+  authorization_type: region_destroy
+
+
+fraction_united_kingdom_monarch_authorize:
+  authorizer: united_kingdom (Fraction)
+  authorizee: united_kingdom_monarch (Position)
+  authorization_type: authorize

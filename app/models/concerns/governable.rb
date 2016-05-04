@@ -8,7 +8,7 @@ module Governable
     has_many :government_authorized_electorates, through: :government_authorizations, source: :authorizee, source_type: 'Electorate'
 
     # collections of characters who can execute, call for a vote, or vote
-    has_many :government_executable_characters, through: :government_authorized_positions, source: :characters
+    has_many :government_executable_characters, through: :government_authorized_positions, source: :members
     # has_many :government_callable_characters, through: :government_authorized_electorates, source: :callers
     # has_many :government_votable_characters, through: :government_authorized_electorates, source: :voters
   end
@@ -74,6 +74,8 @@ module Governable
         ],
 
         Fraction => [
+          # :root # TODO use explicit 'root' authorization?
+
           # inter-fraction relationships
           :child_connect,
           :child_disconnect,
@@ -101,11 +103,6 @@ module Governable
           :war_declare,
           :war_join,
           :war_surrender,
-
-          # self
-          :self_manage,
-
-          :root # TODO use explicit 'root' authorization?
         ],
 
         Position => [
@@ -116,7 +113,7 @@ module Governable
         Region => [
 
         ]
-      }[self]
+      }[self] + [ :authorize, :deauthorize ]
     end
   end
 end
