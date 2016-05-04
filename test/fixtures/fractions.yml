@@ -47,9 +47,18 @@ united_states:
   name: United States
   founder: united_kingdom (Fraction)
 
+україна: # Ukraine
+  name: Україна
+  founder: brynjólfur_erlingsson (Character)
+
 # ######## ######## ######## ########
 # second level fractions
 # ######## ######## ######## ########
+
+кри́мський_піво́стрів: # Crimea
+  name: Кри́мський піво́стрів
+  ancestry: <%= ancestry_for :україна %>
+  founder: україна (Fraction)
 
 lappland:
   name: Lappland
@@ -70,6 +79,11 @@ oslo:
   name: Oslo
   ancestry: <%= ancestry_for :norge %>
   founder: norge (Fraction)
+
+florida:
+  name: Florida
+  ancestry: <%= ancestry_for :united_states %>
+  founder: united_states (Fraction)
 
 hovedstaden:
   name: Hovedstaden
@@ -100,6 +114,11 @@ washington:
 # third level fractions
 # ######## ######## ######## ########
 
+донецьк: # Donetsk
+  name: Донецьк
+  ancestry: <%= ancestry_for :україна, :кри́мський_піво́стрів %>
+  founder: кри́мський_піво́стрів (Fraction)
+
 visby:
   name: Visby
   ancestry: <%= ancestry_for :sverige, :gotland %>
@@ -112,10 +131,15 @@ akershus:
 
 copenhagen:
   name: Copenhagen
-  ancestry: <%= ancestry_for :danmark, :hovenstaden %>
-  founder: hovenstaden (Fraction)
+  ancestry: <%= ancestry_for :danmark, :hovedstaden %>
+  founder: hovedstaden (Fraction)
 
 helsinki:
   name: Helsinki
   ancestry: <%= ancestry_for :suomi, :uusimaa %>
   founder: uusimaa (Fraction)
+
+stockholm:
+  name: Stockholm
+  ancestry: <%= ancestry_for :sverige, :uppland %>
+  founder: sverige (Fraction)

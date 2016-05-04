@@ -52,6 +52,7 @@ class Fraction < ActiveRecord::Base
 
   belongs_to :founder, polymorphic: true
 
+  has_many :fraction_invitations, dependent: :destroy
   # TODO this should not be dependent: :destroy, but Fractions will be invalid without founder
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 
@@ -60,22 +61,33 @@ class Fraction < ActiveRecord::Base
   # TODO authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations, as: :authorizee, dependent: :destroy
 
-  def child_connect! child
-    # TODO require child to have run parent_connect!
-    child.update(parent: self)
+  def child_connect! fraction
+    request = FractionConnectionRequest.find_by(requester: fraction, offer: 'child')
+    if request
+      request.destroy
+      fraction.update(parent: self)
+    else
+      FractionConnectionRequest.create(requester: self, requestee: fraction, offer: 'parent')
+    end
   end
 
-  def child_disconnect! child
-    child.update(parent: nil)
+  def child_disconnect! fraction
+    fraction.update(parent: nil)
   end
 
   def fraction_create! attributes
     founded_fractions.create(attributes)
   end
 
-  def parent_connect! parent
-    # TODO require child to have run child_connect!
-    update(parent: parent)
+  def parent_connect! fraction
+    request = FractionConnectionRequest.find_by(requester: fraction, offer: 'parent')
+    if request && self.parent.nil?
+      # TODO report error if child already has parent
+      request.destroy
+      update(parent: fraction)
+    else
+      FractionConnectionRequest.create(requester: self, requestee: fraction, offer: 'child')
+    end
   end
 
   def parent_disconnect!
@@ -111,7 +123,7 @@ class Fraction < ActiveRecord::Base
   end
 
   def character_invite! character
-    # TODO
+    FractionInvitation.create(character: character, fraction: self)
   end
 
   def character_unbanish! character

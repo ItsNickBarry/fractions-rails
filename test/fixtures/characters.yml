@@ -13,13 +13,21 @@
 elizabeth_ii:
   name: Elizabeth II
   gender: F
-  
-haakon_vii:
-  name: Haakon VII
+
+barack_obama:
+  name: Barack Obama
   gender: M
 
 george_de_hevesy:
   name: George de Hevesy
+  gender: M
+
+haakon_vii:
+  name: Haakon VII
+  gender: M
+
+wernher_von_braun:
+  name: Wernher von Braun
   gender: M
 
 

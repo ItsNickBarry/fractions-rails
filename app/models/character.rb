@@ -24,6 +24,8 @@ class Character < ActiveRecord::Base
 
   has_many :fractions, through: :position_memberships, source: :fraction
 
+  has_many :fraction_invitations, dependent: :destroy
+
   # TODO this should not be dependent: :destroy, but Fractions will be invalid without founder
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 

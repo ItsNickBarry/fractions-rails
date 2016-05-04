@@ -47,6 +47,12 @@ CREATE UNIQUE INDEX index_regions_on_name_and_fraction_id
 CREATE TABLE "characters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "name" varchar NOT NULL, "gender" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE INDEX "index_characters_on_user_id" ON "characters" ("user_id");
 CREATE UNIQUE INDEX "index_characters_on_name" ON "characters" ("name");
+CREATE TABLE "fraction_connection_requests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "requester_id" integer NOT NULL, "requestee_id" integer NOT NULL, "offer" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE UNIQUE INDEX "index_fraction_connection_requests_uniquely" ON "fraction_connection_requests" ("requester_id", "requestee_id");
+CREATE INDEX "index_fraction_connection_requests_on_requestee_id" ON "fraction_connection_requests" ("requestee_id");
+CREATE TABLE "fraction_invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "character_id" integer NOT NULL, "fraction_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE UNIQUE INDEX "index_fraction_invitations_on_character_id_and_fraction_id" ON "fraction_invitations" ("character_id", "fraction_id");
+CREATE INDEX "index_fraction_invitations_on_fraction_id" ON "fraction_invitations" ("fraction_id");
 INSERT INTO schema_migrations (version) VALUES ('20150701014936');
 
 INSERT INTO schema_migrations (version) VALUES ('20150702022821');
@@ -94,4 +100,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150909223605');
 INSERT INTO schema_migrations (version) VALUES ('20150910014110');
 
 INSERT INTO schema_migrations (version) VALUES ('20160503015856');
+
+INSERT INTO schema_migrations (version) VALUES ('20160504032115');
+
+INSERT INTO schema_migrations (version) VALUES ('20160504040629');
 

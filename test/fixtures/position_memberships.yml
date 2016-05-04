@@ -44,3 +44,7 @@ oslo_people_of_oslo_haakon_vii:
 united_kingdom_monarch_elizabeth_ii:
   position: united_kingdom_monarch
   character: elizabeth_ii
+
+united_states_president_barack_obama:
+  position: united_states_president
+  character: barack_obama

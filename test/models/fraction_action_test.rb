@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class FractionActionTest < ActiveSupport::TestCase
-  test "should connect and disconnect child" do
-    # TODO child must also disconnect parent
+  test "should connect child and parent by mutual agreement" do
+    # TODO ensure correct behavior if the child attempts to connect first
     # https://en.wikipedia.org/wiki/Saatse_Boot
     old_parent = fractions(:росси́я)
     new_parent = fractions(:eesti)
@@ -15,8 +15,48 @@ class FractionActionTest < ActiveSupport::TestCase
 
     count = new_parent.children.count
     new_parent.child_connect! child
+    assert_nil child.parent
+    assert_equal count, new_parent.children.count
+
+    child.parent_connect! new_parent
     assert_equal new_parent, child.parent
     assert_equal count + 1, new_parent.children.count
+  end
+
+  test "should disconnect child without consent" do
+    parent = fractions(:united_states)
+    child = fractions(:florida)
+    # bye
+    count = parent.children.count
+    assert_equal parent, child.parent
+    parent.child_disconnect! child
+    assert_nil child.parent
+    assert_equal count - 1, parent.children.count
+  end
+
+  test "should disconnect parent without consent" do
+    # https://en.wikipedia.org/wiki/Donetsk#Events_in_2014
+    child = fractions(:донецьк)
+    parent = fractions(:кри́мський_піво́стрів)
+    # 2014
+    count = parent.children.count
+    assert_equal parent, child.parent
+    child.parent_disconnect!
+    assert_nil child.parent
+    assert_equal count - 1, parent.children.count
+  end
+
+  test "should not replace connected parent" do
+    # TODO should child with parent be allowed to request parent at all?
+    # https://en.wikipedia.org/wiki/Annexation_of_Crimea_by_the_Russian_Federation
+    old_parent = fractions(:україна)
+    new_parent = fractions(:росси́я)
+    child = fractions(:кри́мський_піво́стрів)
+    # 2014
+    assert_equal old_parent, child.parent
+    new_parent.child_connect! child
+    child.parent_connect! new_parent
+    assert_equal old_parent, child.parent
   end
 
   test "should create fraction" do
@@ -103,11 +143,12 @@ class FractionActionTest < ActiveSupport::TestCase
 
   test "should invite character" do
     # https://en.wikipedia.org/wiki/Haakon_VII_of_Norway#Government_in_exile
-    united_kingdom = fractions(:united_kingdom)
+    fraction = fractions(:united_kingdom)
     character = characters(:haakon_vii)
     # 1940
-    united_kingdom.character_invite! character
-    skip 'assert invitation exists'
-    skip 'assert invitation count increased'
+    count = fraction.fraction_invitations.count
+    fraction.character_invite! character
+    assert_not_nil fraction.fraction_invitations.find_by character: character
+    assert_equal count + 1, fraction.fraction_invitations.count
   end
 end
