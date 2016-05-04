@@ -10,7 +10,6 @@
 #
 
 class PositionMembership < ActiveRecord::Base
-  # TODO dependent destroy
   validates :character, :position, presence: true
   # TODO add message
   validates :character, uniqueness: { scope: :position,

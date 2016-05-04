@@ -14,13 +14,16 @@ class FractionActionTest < ActiveSupport::TestCase
     assert_equal count - 1, old_parent.children.count
 
     count = new_parent.children.count
+    request_count = FractionConnectionRequest.count
     new_parent.child_connect! child
     assert_nil child.parent
     assert_equal count, new_parent.children.count
+    assert_equal request_count + 1, FractionConnectionRequest.count
 
     child.parent_connect! new_parent
     assert_equal new_parent, child.parent
     assert_equal count + 1, new_parent.children.count
+    assert_equal request_count, FractionConnectionRequest.count
   end
 
   test "should disconnect child without consent" do
