@@ -9,6 +9,10 @@
 #  updated_at   :datetime         not null
 #
 
+akershus_people_of_akershus_haakon_vii:
+  position: akershus_people_of_akershus
+  character: haakon_vii
+
 copenhagen_residents_george_de_hevesy:
   position: copenhagen_residents
   character: george_de_hevesy
@@ -28,6 +32,14 @@ danmark_folketing_hans_andersen:
 danmark_folketing_ida_auken:
   position: danmark_folketing
   character: ida_auken
+
+norge_monarch_haakon_vii:
+  position: norge_monarch
+  character: haakon_vii
+
+oslo_people_of_oslo_haakon_vii:
+  position: oslo_people_of_oslo
+  character: haakon_vii
 
 united_kingdom_monarch_elizabeth_ii:
   position: united_kingdom_monarch

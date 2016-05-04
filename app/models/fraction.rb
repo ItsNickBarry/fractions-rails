@@ -42,7 +42,7 @@ class Fraction < ActiveRecord::Base
   # depth            Return the depth of the node, root nodes are at depth 0
   has_many :banishments, dependent: :destroy
   has_many :banished_characters, through: :banishments, source: :character
-  has_many :characters, through: :positions
+  has_many :characters, through: :positions, source: :members
 
   has_many :positions, dependent: :destroy
   has_many :electorates, dependent: :destroy
@@ -60,20 +60,20 @@ class Fraction < ActiveRecord::Base
   # TODO authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations, as: :authorizee, dependent: :destroy
 
-  def child_connect! (child)
+  def child_connect! child
     # TODO require child to have run parent_connect!
     child.update(parent: self)
   end
 
-  def child_disconnect! (child)
+  def child_disconnect! child
     child.update(parent: nil)
   end
 
-  def fraction_create! (attributes)
+  def fraction_create! attributes
     founded_fractions.create(attributes)
   end
 
-  def parent_connect! (parent)
+  def parent_connect! parent
     # TODO require child to have run child_connect!
     update(parent: parent)
   end
@@ -121,7 +121,7 @@ class Fraction < ActiveRecord::Base
   # def war_declare!
   #
   # end
-  # 
+  #
   # def war_join! war
   #
   # end

@@ -10,11 +10,10 @@
 #
 
 class Banishment < ActiveRecord::Base
-  # TODO npc soldiers will attack banished characters on sight, npc laborers will run away
-  # toggle "hostile"/"peaceful" banishment with attribute?
-  # TODO realm-wide banishments?  option related to fraction centralization?
+  # TODO banishment types:
+  #   local vs realm-wide: banish from only one fraction vs all descendants
+  #   hostile vs peaceful: NPC characters will attack and run away vs ignore
   # TODO on create, kick character from fraction's positions
-  # TODO dependent destroy
   validates :character, :fraction, presence: true
   # TODO add message
   validates :character, uniqueness: { scope: :fraction,
@@ -22,4 +21,17 @@ class Banishment < ActiveRecord::Base
 
   belongs_to :character
   belongs_to :fraction
+
+  after_create :remove_from_positions
+
+  private
+
+    def remove_from_positions
+      # TODO use SQL to do this more efficiently
+      fraction.subtree.each do |fraction|
+        fraction.positions.each do |position|
+          position.divest! character
+        end
+      end
+    end
 end

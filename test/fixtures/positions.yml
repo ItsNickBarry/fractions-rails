@@ -9,26 +9,38 @@
 #  updated_at  :datetime         not null
 #
 
+akershus_people_of_akershus:
+  name: People of Akershus
+  fraction: akershus
+
 copenhagen_residents:
-  name: 'Residents'
+  name: Residents
   fraction: copenhagen
 
 danmark_folketing:
-  name: 'Folketing'
+  name: Folketing
   fraction: danmark
 
+norge_monarch:
+  name: Monarcy
+  fraction: norge
+
+oslo_people_of_oslo:
+  name: People of Oslo
+  fraction: oslo
+
 stockholm_residents:
-  name: 'Residents'
+  name: Residents
   fraction: stockholm
 
 united_kingdom_monarch:
-  name: 'Monarch'
+  name: Monarch
   fraction: united_kingdom
 
 uppland_people_of_uppland:
-  name: 'People of Uppland'
+  name: People of Uppland
   fraction: uppland
 
 washington_representatives:
-  name: 'Representatives'
+  name: Representatives
   fraction: washington

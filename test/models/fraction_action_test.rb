@@ -84,13 +84,14 @@ class FractionActionTest < ActiveSupport::TestCase
   end
 
   test "should banish and unbanish character" do
-    # TODO remove banished character from positions and electorates
     # https://en.wikipedia.org/wiki/Haakon_VII_of_Norway#Government_in_exile
     fraction = fractions(:norge)
     character = characters(:haakon_vii)
     # 1940
     count = fraction.banished_characters.count
+    assert_not_nil fraction.characters.find_by name: character.name
     fraction.character_banish! character
+    assert_nil fraction.characters.find_by name: character.name
     assert_not_nil fraction.banished_characters.find_by name: character.name
     assert_equal count + 1, fraction.banished_characters.count
     # 1945
@@ -101,12 +102,12 @@ class FractionActionTest < ActiveSupport::TestCase
   end
 
   test "should invite character" do
-    # TODO store invitation, assert invitation count
     # https://en.wikipedia.org/wiki/Haakon_VII_of_Norway#Government_in_exile
     united_kingdom = fractions(:united_kingdom)
     character = characters(:haakon_vii)
     # 1940
     united_kingdom.character_invite! character
     skip 'assert invitation exists'
+    skip 'assert invitation count increased'
   end
 end
