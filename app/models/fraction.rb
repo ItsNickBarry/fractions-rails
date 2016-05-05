@@ -61,6 +61,10 @@ class Fraction < ActiveRecord::Base
   # TODO authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations, as: :authorizee, dependent: :destroy
 
+  def fraction_create! attributes
+    founded_fractions.create(attributes)
+  end
+
   def child_connect! fraction
     request = FractionConnectionRequest.find_by(requester: fraction, offer: 'child')
     if request
@@ -73,10 +77,6 @@ class Fraction < ActiveRecord::Base
 
   def child_disconnect! fraction
     fraction.update(parent: nil)
-  end
-
-  def fraction_create! attributes
-    founded_fractions.create(attributes)
   end
 
   def parent_connect! fraction
@@ -119,15 +119,19 @@ class Fraction < ActiveRecord::Base
   end
 
   def character_banish! character
-    Banishment.create(character: character, fraction: self)
-  end
-
-  def character_invite! character
-    FractionInvitation.create(character: character, fraction: self)
+    banishments.create(character: character)
   end
 
   def character_unbanish! character
-    Banishment.find_by(character: character, fraction: self).try(:destroy)
+    banishments.find_by(character: character).try(:destroy)
+  end
+
+  def character_invite! character
+    fraction_invitations.create(character: character)
+  end
+
+  def character_uninvite! character
+    fraction_invitations.find_by(character: character).try(:destroy)
   end
 
   # def war_declare!

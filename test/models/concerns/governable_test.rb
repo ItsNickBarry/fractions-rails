@@ -2,11 +2,6 @@ require 'test_helper'
 
 class GovernableTest < ActiveSupport::TestCase
 
-  # has_many:
-  #   government_authorizations, as: :authorizer
-  #   government_authorized_[posiitons, electorates]
-  #   government_[executable, callable, votable]_characters
-
   test "should grant authorization to electorate or position" do
     # https://en.wikipedia.org/wiki/Referendums_in_Sweden
     governable = fractions(:sverige)

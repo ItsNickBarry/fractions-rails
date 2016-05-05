@@ -97,8 +97,9 @@ module Governable
 
 
           :character_banish,
-          :character_invite,
           :character_unbanish,
+          :character_invite,
+          :character_uninvite,
 
           :war_declare,
           :war_join,

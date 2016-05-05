@@ -156,7 +156,8 @@ class FractionActionTest < ActiveSupport::TestCase
     end
   end
 
-  test "should invite character" do
+  test "should invite and uninvite character" do
+    # TODO uninvite
     # https://en.wikipedia.org/wiki/Haakon_VII_of_Norway#Government_in_exile
     fraction = fractions(:united_kingdom)
     character = characters(:haakon_vii)
@@ -164,6 +165,11 @@ class FractionActionTest < ActiveSupport::TestCase
     assert_difference 'fraction.fraction_invitations.count', 1 do
       fraction.character_invite! character
       refute_nil fraction.fraction_invitations.find_by character: character
+    end
+    # ????
+    assert_difference 'fraction.fraction_invitations.count', -1 do
+      fraction.character_uninvite! character
+      assert_nil fraction.fraction_invitations.find_by character: character
     end
   end
 end
