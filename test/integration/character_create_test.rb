@@ -39,7 +39,7 @@ class CharacterCreateTest < ActionDispatch::IntegrationTest
 
   test "submit multiple characters" do
     # sign_in_as @user
-    # assert_difference 'Character.count' do
+    # assert_difference 'Character.count', 1 do
     #   post api_characters_url, character: { name: 'Carl Manneh', gender: 'M' }
     #   assert_response 200
     # end

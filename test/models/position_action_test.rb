@@ -8,16 +8,16 @@ class ElectorateActionTest < ActiveSupport::TestCase
     new_position = positions(:stockholm_residents)
     character = characters(:george_de_hevesy)
     # 1943
-    count = old_position.members.count
-    assert_not_nil old_position.members.find_by name: character.name
-    old_position.divest! character
-    assert_nil old_position.members.find_by name: character.name
-    assert_equal count - 1, old_position.members.count
+    assert_difference 'old_position.members.count', -1 do
+      assert_not_nil old_position.members.find_by name: character.name
+      old_position.divest! character
+      assert_nil old_position.members.find_by name: character.name
+    end
 
-    count = new_position.members.count
-    assert_nil new_position.members.find_by name: character.name
-    new_position.invest! character
-    assert_not_nil new_position.members.find_by name: character.name
-    assert_equal count + 1, new_position.members.count
+    assert_difference 'new_position.members.count', 1 do
+      assert_nil new_position.members.find_by name: character.name
+      new_position.invest! character
+      assert_not_nil new_position.members.find_by name: character.name
+    end
   end
 end

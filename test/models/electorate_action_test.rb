@@ -6,14 +6,14 @@ class ElectorateActionTest < ActiveSupport::TestCase
     electorate = electorates(:united_states_electoral_college)
     position = positions(:washington_representatives)
     # 1788
-    count = electorate.members.count
-    electorate.divest! position
-    assert_nil electorate.members.find_by name: position.name
-    assert_equal count - 1, electorate.members.count
+    assert_difference 'electorate.members.count', -1 do
+      electorate.divest! position
+      assert_nil electorate.members.find_by name: position.name
+    end
     # 1961
-    count = electorate.members.count
-    electorate.invest! position
-    assert_not_nil electorate.members.find_by name: position.name
-    assert_equal count + 1, electorate.members.count
+    assert_difference 'electorate.members.count', 1 do
+      electorate.invest! position
+      assert_not_nil electorate.members.find_by name: position.name
+    end
   end
 end

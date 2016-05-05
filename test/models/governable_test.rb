@@ -12,10 +12,10 @@ class GovernableTest < ActiveSupport::TestCase
     governable = fractions(:sverige)
     authorizee = electorates(:sverige_electors_of_sverige)
     # 1994
-    count = governable.government_authorized_electorates.count
-    governable.authorize! authorizee, :parent_connect
-    assert_not_nil governable.government_authorized_electorates.find_by name: authorizee.name
-    assert_equal count + 1, governable.government_authorized_electorates.count
+    assert_difference 'governable.government_authorized_electorates.count', 1 do
+      governable.authorize! authorizee, :parent_connect
+      assert_not_nil governable.government_authorized_electorates.find_by name: authorizee.name
+    end
   end
 
   test "should authorize character through electorate" do
