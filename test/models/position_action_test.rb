@@ -9,7 +9,7 @@ class ElectorateActionTest < ActiveSupport::TestCase
     character = characters(:george_de_hevesy)
     # 1943
     assert_difference 'old_position.members.count', -1 do
-      assert_not_nil old_position.members.find_by name: character.name
+      refute_nil old_position.members.find_by name: character.name
       old_position.divest! character
       assert_nil old_position.members.find_by name: character.name
     end
@@ -17,7 +17,7 @@ class ElectorateActionTest < ActiveSupport::TestCase
     assert_difference 'new_position.members.count', 1 do
       assert_nil new_position.members.find_by name: character.name
       new_position.invest! character
-      assert_not_nil new_position.members.find_by name: character.name
+      refute_nil new_position.members.find_by name: character.name
     end
   end
 end

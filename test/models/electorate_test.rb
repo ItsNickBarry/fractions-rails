@@ -23,16 +23,16 @@ class ElectorateTest < ActiveSupport::TestCase
 
   test "should have name" do
     @electorate.name = ''
-    assert_not @electorate.valid?
+    refute @electorate.valid?
   end
 
   test "should have fraction" do
     @electorate.fraction = nil
-    assert_not @electorate.valid?
+    refute @electorate.valid?
   end
 
   test "name should be unique within scope of fraction" do
     @electorate.name = @fraction.electorates.first.name
-    assert_not @electorate.valid?
+    refute @electorate.valid?
   end
 end

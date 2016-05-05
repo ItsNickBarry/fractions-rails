@@ -23,16 +23,16 @@ class RegionTest < ActiveSupport::TestCase
 
   test "should have name" do
     @region.name = ''
-    assert_not @region.valid?
+    refute @region.valid?
   end
 
   test "should have fraction" do
     @region.fraction = nil
-    assert_not @region.valid?
+    refute @region.valid?
   end
 
   test "name should be unique within scope of fraction" do
     @region.name = @fraction.regions.first.name
-    assert_not @region.valid?
+    refute @region.valid?
   end
 end

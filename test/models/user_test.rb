@@ -26,7 +26,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "username should be present" do
     @user.username = ''
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test "username with corrected case should be fetched before validation if uuid is nil" do
@@ -38,16 +38,16 @@ class UserTest < ActiveSupport::TestCase
 
   test "password should not match username" do
     @user.password = @user.username
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test "password should not be too short" do
     @user.password = 'a' * 7
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test "password digest should be present" do
-    assert_not_nil @user.password_digest
+    refute_nil @user.password_digest
   end
 
   test "uuid should be fetched before validation" do
@@ -56,7 +56,7 @@ class UserTest < ActiveSupport::TestCase
     # uuid for ItsNickBarry, fetched from Mojang API
     assert_equal 'df5903fbd8e942dcbb3d82b085af5af1', @user.uuid
     @user.uuid = ''
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test "uuid should be unique" do
@@ -64,23 +64,23 @@ class UserTest < ActiveSupport::TestCase
     # must save to fetch uuid
     assert @user.save!
     @user.uuid = other_user.uuid
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test "session token should be present" do
-    assert_not_nil @user.session_token
+    refute_nil @user.session_token
   end
 
   test "session token should be unique" do
     other_user = users(:notch)
     @user.session_token = other_user.session_token
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test "should be owner of current character" do
     character = characters(:haakon_vii)
     @user.current_character = character
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test "valid user should set conflicting usernames equal to uuids" do

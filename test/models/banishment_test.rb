@@ -27,12 +27,12 @@ class BanishmentTest < ActiveSupport::TestCase
 
   test "should have character" do
     @banishment.character = nil
-    assert_not @banishment.valid?
+    refute @banishment.valid?
   end
 
   test "should have fraction" do
     @banishment.fraction = nil
-    assert_not @banishment.valid?
+    refute @banishment.valid?
   end
 
   test "should have expiration date" do
@@ -45,7 +45,7 @@ class BanishmentTest < ActiveSupport::TestCase
       fraction: @banishment.fraction,
       character: @banishment.character
     )
-    assert_not duplicate_banishment.valid?
+    refute duplicate_banishment.valid?
   end
 
   test "should prevent invitation to fraction and descendants" do
@@ -54,8 +54,8 @@ class BanishmentTest < ActiveSupport::TestCase
 
   test "should remove character from positions in fraction and descendants" do
     descendant_fraction = fractions(:akershus)
-    assert_not_nil @fraction.characters.find_by name: @character.name
-    assert_not_nil descendant_fraction.characters.find_by name: @character.name
+    refute_nil @fraction.characters.find_by name: @character.name
+    refute_nil descendant_fraction.characters.find_by name: @character.name
     @banishment.save!
     assert_nil @fraction.characters.find_by name: @character.name
     assert_nil descendant_fraction.characters.find_by name: @character.name
@@ -64,6 +64,6 @@ class BanishmentTest < ActiveSupport::TestCase
   test "should not remove character from positions in ancestor fraction" do
     parent_fraction = fractions(:norge)
     @banishment.save!
-    assert_not_nil parent_fraction.characters.find_by name: @character.name
+    refute_nil parent_fraction.characters.find_by name: @character.name
   end
 end

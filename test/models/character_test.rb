@@ -24,30 +24,30 @@ class CharacterTest < ActiveSupport::TestCase
 
   test "name should be present" do
     @character.name = ''
-    assert_not @character.valid?
+    refute @character.valid?
   end
 
   test "name should be unique" do
     @character.name = characters(:markus_persson).name
-    assert_not @character.valid?
+    refute @character.valid?
   end
 
   test "name should be unique, insensitive of case" do
     @character.name = characters(:markus_persson).name.swapcase
-    assert_not @character.valid?
+    refute @character.valid?
   end
 
   test "gender should be 'M' or 'F'" do
     @character.gender = ''
-    assert_not @character.valid?
+    refute @character.valid?
     @character.gender = 'A'
-    assert_not @character.valid?
+    refute @character.valid?
   end
 
   test "should be able to found one fraction right away" do
     @character.save!
     assert @character.can_found_fraction?
     @character.founded_fractions.create(name: 'a fraction')
-    assert_not @character.can_found_fraction?
+    refute @character.can_found_fraction?
   end
 end

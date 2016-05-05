@@ -14,7 +14,7 @@ class GovernableTest < ActiveSupport::TestCase
     # 1994
     assert_difference 'governable.government_authorized_electorates.count', 1 do
       governable.authorize! authorizee, :parent_connect
-      assert_not_nil governable.government_authorized_electorates.find_by name: authorizee.name
+      refute_nil governable.government_authorized_electorates.find_by name: authorizee.name
     end
   end
 
@@ -24,8 +24,8 @@ class GovernableTest < ActiveSupport::TestCase
     # 2011 - 2015
     assert governable.authorizes? character, :vote, :region_create
     # TODO governable.government_votable_characters
-    # assert_not_nil governable.government_votable_characters.find_by name: character.name
-    assert_not governable.authorizes? character, :execute, :region_create
+    # refute_nil governable.government_votable_characters.find_by name: character.name
+    refute governable.authorizes? character, :execute, :region_create
     assert_nil governable.government_executable_characters.find_by name: character.name
   end
 
@@ -35,7 +35,7 @@ class GovernableTest < ActiveSupport::TestCase
     character = characters(:elizabeth_ii)
 
     assert governable.authorizes? character, :execute, :authorize
-    assert_not_nil governable.government_executable_characters.find_by name: character.name
+    refute_nil governable.government_executable_characters.find_by name: character.name
   end
 
   test "should find authorizations for character" do

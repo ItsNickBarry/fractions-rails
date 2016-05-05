@@ -14,7 +14,7 @@ class CharacterCreateTest < ActionDispatch::IntegrationTest
   end
 
   test "submit character while not signed in" do
-    assert_not is_signed_in?
+    refute is_signed_in?
     assert_no_difference 'Character.count' do
       post api_characters_url, character: { name: 'Carl Manneh', gender: 'M' }
       assert_response 401

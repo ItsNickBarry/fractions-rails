@@ -10,8 +10,8 @@ class SignUpTest < ActionDispatch::IntegrationTest
         post users_path, user: user
       end
       assert_template 'users/new'
-      assert_not flash.empty?
-      assert_not_nil assigns(:user).username
+      refute flash.empty?
+      refute_nil assigns(:user).username
     end
 
     get root_path
@@ -24,7 +24,7 @@ class SignUpTest < ActionDispatch::IntegrationTest
     end
     user = assigns(:user)
 
-    assert_not is_signed_in?
+    refute is_signed_in?
 
     skip 'assert not activated'
     skip 'assert activation instructions page'

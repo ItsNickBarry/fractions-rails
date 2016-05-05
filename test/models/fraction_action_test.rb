@@ -77,10 +77,10 @@ class FractionActionTest < ActiveSupport::TestCase
     # 1822
     assert_difference 'fraction.founded_fractions.count', 1 do
       child = fraction.fraction_create! name: 'Liberia'
-      assert_not_nil fraction.founded_fractions.find_by name: 'Liberia'
+      refute_nil fraction.founded_fractions.find_by name: 'Liberia'
       assert child.persisted?
       assert_equal fraction, child.founder
-      assert_not_equal fraction, child.parent
+      refute_equal fraction, child.parent
     end
   end
 
@@ -91,14 +91,14 @@ class FractionActionTest < ActiveSupport::TestCase
     electorate = nil
     assert_difference 'fraction.electorates.count', 1 do
       electorate = fraction.electorate_create! name: 'Rigsdagen'
-      assert_not_nil fraction.electorates.find_by name: 'Rigsdagen'
+      refute_nil fraction.electorates.find_by name: 'Rigsdagen'
       assert electorate.persisted?
     end
     # 1953
     assert_difference 'fraction.electorates.count', -1 do
       fraction.electorate_destroy! electorate
       assert_nil fraction.electorates.find_by name: 'Rigsdagen'
-      assert_not electorate.persisted?
+      refute electorate.persisted?
     end
   end
 
@@ -109,14 +109,14 @@ class FractionActionTest < ActiveSupport::TestCase
     position = nil
     assert_difference 'fraction.positions.count', 1 do
       position = fraction.position_create! name: 'Sicherheitspolizei'
-      assert_not_nil fraction.positions.find_by name: 'Sicherheitspolizei'
+      refute_nil fraction.positions.find_by name: 'Sicherheitspolizei'
       assert position.persisted?
     end
     # 1939
     assert_difference 'fraction.positions.count', -1 do
       fraction.position_destroy! position
       assert_nil fraction.positions.find_by name: 'Sicherheitspolizei'
-      assert_not position.persisted?
+      refute position.persisted?
     end
   end
 
@@ -127,14 +127,14 @@ class FractionActionTest < ActiveSupport::TestCase
     region = nil
     assert_difference 'fraction.regions.count', 1 do
       region = fraction.region_create! name: 'Svenska Guldkusten'
-      assert_not_nil fraction.regions.find_by name: 'Svenska Guldkusten'
+      refute_nil fraction.regions.find_by name: 'Svenska Guldkusten'
       assert region.persisted?
     end
     # 1663
     assert_difference 'fraction.regions.count', -1 do
       fraction.region_destroy! region
       assert_nil fraction.regions.find_by name: 'Svenska Guldkusten'
-      assert_not region.persisted?
+      refute region.persisted?
     end
   end
 
@@ -144,10 +144,10 @@ class FractionActionTest < ActiveSupport::TestCase
     character = characters(:haakon_vii)
     # 1940
     assert_difference 'fraction.banished_characters.count', 1 do
-      assert_not_nil fraction.characters.find_by name: character.name
+      refute_nil fraction.characters.find_by name: character.name
       fraction.character_banish! character
       assert_nil fraction.characters.find_by name: character.name
-      assert_not_nil fraction.banished_characters.find_by name: character.name
+      refute_nil fraction.banished_characters.find_by name: character.name
     end
     # 1945
     assert_difference 'fraction.banished_characters.count', -1 do
@@ -163,7 +163,7 @@ class FractionActionTest < ActiveSupport::TestCase
     # 1940
     assert_difference 'fraction.fraction_invitations.count', 1 do
       fraction.character_invite! character
-      assert_not_nil fraction.fraction_invitations.find_by character: character
+      refute_nil fraction.fraction_invitations.find_by character: character
     end
   end
 end

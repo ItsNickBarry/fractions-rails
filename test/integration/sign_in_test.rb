@@ -7,7 +7,7 @@ class SignInTest < ActionDispatch::IntegrationTest
 
   test "sign in with invalid credentials" do
     sign_in_as(@user, '')
-    assert_not flash.empty?
+    refute flash.empty?
     get root_path
     assert flash.empty?
   end
@@ -20,7 +20,7 @@ class SignInTest < ActionDispatch::IntegrationTest
     delete session_path
     follow_redirect!
     assert_template 'static_pages/root'
-    assert_not is_signed_in?
+    refute is_signed_in?
   end
 
   test "sign in with case-insensitive username" do
@@ -39,13 +39,13 @@ class SignInTest < ActionDispatch::IntegrationTest
     sign_in_as(actual_username)
 
     assert is_signed_in?
-    assert_not_nil User.find_by(username: actual_username)
+    refute_nil User.find_by(username: actual_username)
     follow_redirect!
-    assert_not flash.empty?
+    refute flash.empty?
   end
 
   test "signed-out user should have 'sign-up' and 'sign-in' links" do
-    assert_not is_signed_in?
+    refute is_signed_in?
     get root_path
     assert_template 'static_pages/root'
     assert_select 'a[href=?]', session_url,     count: 0

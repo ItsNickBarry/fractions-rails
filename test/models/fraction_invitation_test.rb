@@ -17,12 +17,12 @@ class FractionInvitationTest < ActiveSupport::TestCase
 
   test "should have fraction" do
     @fraction_invitation.fraction = nil
-    assert_not @fraction_invitation.valid?
+    refute @fraction_invitation.valid?
   end
 
   test "should have character" do
     @fraction_invitation.character = nil
-    assert_not @fraction_invitation.valid?
+    refute @fraction_invitation.valid?
   end
 
   test "character should be unique in scope of fraction" do
@@ -31,11 +31,11 @@ class FractionInvitationTest < ActiveSupport::TestCase
       fraction: @fraction_invitation.fraction,
       character: @fraction_invitation.character
     )
-    assert_not duplicate_fraction_invitation.valid?
+    refute duplicate_fraction_invitation.valid?
   end
 
   test "invitation of current member should not be valid" do
     @fraction_invitation.character = characters(:barack_obama)
-    assert_not @fraction_invitation.valid?
+    refute @fraction_invitation.valid?
   end
 end

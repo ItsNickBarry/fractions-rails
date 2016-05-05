@@ -23,16 +23,16 @@ class PositionTest < ActiveSupport::TestCase
 
   test "should have name" do
     @position.name = ''
-    assert_not @position.valid?
+    refute @position.valid?
   end
 
   test "should have fraction" do
     @position.fraction = nil
-    assert_not @position.valid?
+    refute @position.valid?
   end
 
   test "name should be unique within scope of fraction" do
     @position.name = @fraction.positions.first.name
-    assert_not @position.valid?
+    refute @position.valid?
   end
 end

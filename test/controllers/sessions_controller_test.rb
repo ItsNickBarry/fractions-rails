@@ -5,6 +5,6 @@ class SessionsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
     assert_template 'sessions/new'
-    assert_not_nil assigns(:user)
+    refute_nil assigns(:user)
   end
 end

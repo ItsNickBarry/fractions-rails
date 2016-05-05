@@ -26,22 +26,22 @@ class FractionTest < ActiveSupport::TestCase
 
   test "name should be present" do
     @fraction.name = ''
-    assert_not @fraction.valid?
+    refute @fraction.valid?
   end
 
   test "name should be unique" do
     @fraction.name = fractions(:sverige).name
-    assert_not @fraction.valid?
+    refute @fraction.valid?
   end
 
   test "name should be unique, insensitive of case" do
     @fraction.name = fractions(:sverige).name.swapcase
-    assert_not @fraction.valid?
+    refute @fraction.valid?
   end
 
   test "founder should be present" do
     @fraction.founder = nil
-    assert_not @fraction.valid?
+    refute @fraction.valid?
   end
 
   test "should have component objects" do

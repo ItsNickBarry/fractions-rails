@@ -13,7 +13,7 @@ class ElectorateActionTest < ActiveSupport::TestCase
     # 1961
     assert_difference 'electorate.members.count', 1 do
       electorate.invest! position
-      assert_not_nil electorate.members.find_by name: position.name
+      refute_nil electorate.members.find_by name: position.name
     end
   end
 end
