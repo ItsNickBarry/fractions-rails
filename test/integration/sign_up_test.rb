@@ -27,5 +27,6 @@ class SignUpTest < ActionDispatch::IntegrationTest
     assert_not is_signed_in?
 
     skip 'assert not activated'
+    skip 'assert activation instructions page'
   end
 end

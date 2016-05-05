@@ -43,11 +43,12 @@ class FractionConnectionRequestTest < ActiveSupport::TestCase
   end
 
   test "complimentary request should not be valid" do
+    offer = @fraction_connection_request.offer == 'parent' ? 'child' : 'parent'
     @fraction_connection_request.save!
     complimentary_request = FractionConnectionRequest.new(
       requester: @fraction_connection_request.requestee,
       requestee: @fraction_connection_request.requester,
-      offer: @fraction_connection_request.offer = 'parent' ? 'child' : 'parent'
+      offer: offer
     )
     assert_not complimentary_request.valid?
   end

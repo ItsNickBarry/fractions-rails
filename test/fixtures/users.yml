@@ -58,7 +58,6 @@ carlmanneh:
   uuid: 3ce72668b8f9497fbfb4809e47365e17
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
-  current_character: carl_manneh
 
 carnalizer:
   username: carnalizer

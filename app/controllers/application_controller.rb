@@ -36,10 +36,12 @@ class ApplicationController < ActionController::Base
 
   def must_be_signed_in
     unless signed_in?
-      # TODO is this relevent for the single-page application?
       # TODO display flash message
       # TODO friendly forwarding
-      redirect_to new_session_url
+      respond_to do |format|
+        format.json { render json: "Must be signed in", status: 401 }
+        format.html { redirect_to new_session_url }
+      end
     end
   end
 

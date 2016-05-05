@@ -11,7 +11,8 @@
 #
 
 class Character < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+  # TODO probably need to collate nocase for case-insensitive name validation
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :gender, presence: true
   validate :gender_is_valid
 

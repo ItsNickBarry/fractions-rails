@@ -18,6 +18,8 @@ class ActiveSupport::TestCase
 
   def is_signed_in?
     !!session[:session_token]
+  rescue
+    false
   end
 
   def sign_in_as(user, password = 'password')

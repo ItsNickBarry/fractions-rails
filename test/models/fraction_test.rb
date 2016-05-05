@@ -34,6 +34,11 @@ class FractionTest < ActiveSupport::TestCase
     assert_not @fraction.valid?
   end
 
+  test "name should be unique, insensitive of case" do
+    @fraction.name = fractions(:sverige).name.swapcase
+    assert_not @fraction.valid?
+  end
+
   test "founder should be present" do
     @fraction.founder = nil
     assert_not @fraction.valid?

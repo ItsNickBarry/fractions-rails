@@ -32,6 +32,11 @@ class CharacterTest < ActiveSupport::TestCase
     assert_not @character.valid?
   end
 
+  test "name should be unique, insensitive of case" do
+    @character.name = characters(:markus_persson).name.swapcase
+    assert_not @character.valid?
+  end
+
   test "gender should be 'M' or 'F'" do
     @character.gender = ''
     assert_not @character.valid?

@@ -14,16 +14,13 @@ class SignInTest < ActionDispatch::IntegrationTest
 
   test "sign in with valid credentials and sign out" do
     sign_in_as(@user)
+    follow_redirect!
     assert is_signed_in?
-
-    # TODO ensure appropriate navbar links for signed-in user
 
     delete session_path
     follow_redirect!
-
+    assert_template 'static_pages/root'
     assert_not is_signed_in?
-
-    # TODO ensure appropriate navbar links for signed-out user
   end
 
   test "sign in with case-insensitive username" do
@@ -35,6 +32,7 @@ class SignInTest < ActionDispatch::IntegrationTest
 
   test "sign in with changed username" do
     actual_username = @user.username
+    # save incorrect username to database, to simulate outdated username
     @user.update_attribute(:username, 'asdf')
 
     assert_nil User.find_by(username: actual_username)
@@ -44,5 +42,23 @@ class SignInTest < ActionDispatch::IntegrationTest
     assert_not_nil User.find_by(username: actual_username)
     follow_redirect!
     assert_not flash.empty?
+  end
+
+  test "signed-out user should have 'sign-up' and 'sign-in' links" do
+    assert_not is_signed_in?
+    get root_path
+    assert_template 'static_pages/root'
+    assert_select 'a[href=?]', session_url,     count: 0
+    assert_select 'a[href=?]', new_user_url,    count: 1
+    assert_select 'a[href=?]', new_session_url, count: 1
+  end
+
+  test "signed-in user should have 'sign-out' link" do
+    sign_in_as @user
+    follow_redirect!
+    assert_template 'static_pages/root'
+    assert_select 'a[href=?]', session_url,     count: 1
+    assert_select 'a[href=?]', new_user_url,    count: 0
+    assert_select 'a[href=?]', new_session_url, count: 0
   end
 end

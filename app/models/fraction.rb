@@ -13,7 +13,7 @@
 
 class Fraction < ActiveRecord::Base
   include Governable
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :founder, presence: true
 
   # TODO add orphan_strategy and cache_depth
