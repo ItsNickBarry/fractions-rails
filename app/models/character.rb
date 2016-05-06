@@ -39,6 +39,13 @@ class Character < ActiveRecord::Base
     !last_founded_fraction || last_founded_fraction.created_at < 7.days.ago
   end
 
+  def fraction_join! fraction
+    if invitation = fraction_invitations.find_by(fraction: fraction)
+      fraction.default_position.invest! self
+      invitation.destroy
+    end
+  end
+
   private
 
     def gender_is_valid

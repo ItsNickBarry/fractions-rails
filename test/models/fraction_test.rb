@@ -44,9 +44,16 @@ class FractionTest < ActiveSupport::TestCase
     refute @fraction.valid?
   end
 
-  test "should have component objects" do
+  test "should have default component objects" do
     assert @fraction.electorates.count > 0
     assert @fraction.positions.count > 0
     assert @fraction.regions.count > 0
+    refute_nil @fraction.default_electorate
+    refute_nil @fraction.default_position
+    refute_nil @fraction.default_region
+  end
+
+  test "should authorize component objects" do
+    skip 'should authorize'
   end
 end

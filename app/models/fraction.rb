@@ -48,6 +48,18 @@ class Fraction < ActiveRecord::Base
   has_many :electorates, dependent: :destroy
   has_many :regions, dependent: :destroy
 
+  def default_electorate
+    electorates.first
+  end
+
+  def default_position
+    positions.first
+  end
+
+  def default_region
+    regions.first
+  end
+
   has_many :plots, through: :regions
 
   belongs_to :founder, polymorphic: true
