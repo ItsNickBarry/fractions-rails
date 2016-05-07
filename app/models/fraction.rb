@@ -78,7 +78,7 @@ class Fraction < ActiveRecord::Base
   end
 
   def child_connect! fraction
-    request = FractionConnectionRequest.find_by(requester: fraction, offer: 'child')
+    request = FractionConnectionRequest.find_by(requester: fraction, requestee: self, offer: 'child')
     if request
       request.destroy
       fraction.update(parent: self)
@@ -92,7 +92,7 @@ class Fraction < ActiveRecord::Base
   end
 
   def parent_connect! fraction
-    request = FractionConnectionRequest.find_by(requester: fraction, offer: 'parent')
+    request = FractionConnectionRequest.find_by(requester: fraction, requestee: self, offer: 'parent')
     if request && self.parent.nil?
       # TODO report error if child already has parent
       request.destroy
