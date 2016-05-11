@@ -17,9 +17,9 @@ class Region < ActiveRecord::Base
     message: ""}
 
   belongs_to :fraction
-  # TODO not dependent: :destroy, because plot shoudl still store culture;
+  # TODO not dependent: :destroy, because plot should still store culture;
   # plot must be set to regionless, or transferred to default region
   has_many :plots
 
-  has_many :land_authorizations, foreign_key: 'authorizer_id', dependent: :destroy
+  has_many :land_authorizations_given, class_name: 'LandAuthorization', foreign_key: 'authorizer_id', dependent: :destroy
 end

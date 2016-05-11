@@ -2,10 +2,10 @@ module Governable
   extend ActiveSupport::Concern
 
   included do
-    has_many :government_authorizations, as: :authorizer, dependent: :destroy
+    has_many :government_authorizations_given, as: :authorizer, class_name: 'GovernmentAuthorization', dependent: :destroy
 
-    has_many :government_authorized_positions, through: :government_authorizations, source: :authorizee, source_type: 'Position'
-    has_many :government_authorized_electorates, through: :government_authorizations, source: :authorizee, source_type: 'Electorate'
+    has_many :government_authorized_positions, through: :government_authorizations_given, source: :authorizee, source_type: 'Position'
+    has_many :government_authorized_electorates, through: :government_authorizations_given, source: :authorizee, source_type: 'Electorate'
 
     # collections of characters who can execute, call for a vote, or vote
     has_many :government_executable_characters, through: :government_authorized_positions, source: :members

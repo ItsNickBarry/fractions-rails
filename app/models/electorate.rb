@@ -23,7 +23,7 @@ class Electorate < ActiveRecord::Base
 
   # TODO differentiate between given/received authorizations
   # as: :authorizer is in Governable module
-  has_many :government_authorizations, as: :authorizee, dependent: :destroy
+  has_many :government_authorizations_received, as: :authorizee, class_name: 'GovernmentAuthorization', dependent: :destroy
 
   def invest! position
     # TODO parameters

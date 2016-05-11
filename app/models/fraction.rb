@@ -71,7 +71,7 @@ class Fraction < ActiveRecord::Base
   after_create :setup_defaults
 
   # TODO authorizations are delegated to all of a Fraction's positions
-  has_many :land_authorizations, as: :authorizee, dependent: :destroy
+  has_many :land_authorizations_received, as: :authorizee, dependent: :destroy
 
   def fraction_create! attributes
     founded_fractions.create(attributes)
