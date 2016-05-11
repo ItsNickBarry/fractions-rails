@@ -11,6 +11,7 @@
 #
 
 class Character < ActiveRecord::Base
+  after_create :ensure_user_has_current_character
   # TODO probably need to collate nocase for case-insensitive name validation
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :gender, presence: true
@@ -47,6 +48,12 @@ class Character < ActiveRecord::Base
   end
 
   private
+
+    def ensure_user_has_current_character
+      unless user.current_character
+        user.update(current_character: self)
+      end
+    end
 
     def gender_is_valid
       unless ['F', 'M'].include? self.gender

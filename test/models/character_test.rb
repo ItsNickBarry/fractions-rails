@@ -14,8 +14,8 @@ require 'test_helper'
 
 class CharacterTest < ActiveSupport::TestCase
   def setup
-    @character = User.new(username: 'ItsNickBarry', password: 'password')
-          .characters.new(name: 'Nick Barry', gender: 'M')
+    @user = User.new(username: 'ItsNickBarry', password: 'password')
+    @character = @user.characters.new(name: 'Nick Barry', gender: 'M')
   end
 
   test "should be valid" do
@@ -49,5 +49,11 @@ class CharacterTest < ActiveSupport::TestCase
     assert @character.can_found_fraction?
     @character.founded_fractions.create(name: 'a fraction')
     refute @character.can_found_fraction?
+  end
+
+  test "should be set to user's default character if not already set" do
+    assert_nil @user.current_character
+    @character.save!
+    assert_equal @character, @user.current_character
   end
 end
