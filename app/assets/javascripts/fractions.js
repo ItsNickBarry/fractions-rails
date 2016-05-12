@@ -1,3 +1,5 @@
+_.mixin(s.exports());
+
 Backbone.Collection = Backbone.Collection.extend({
   getOrFetch: function (id) {
     var collection = this;

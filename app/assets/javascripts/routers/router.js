@@ -7,6 +7,8 @@ Fractions.Routers.Router = Backbone.Router.extend({
     'fractions/:id/electorates': 'fractionElectoratesIndex',
     'fractions/:id/positions': 'fractionPositionsIndex',
     'fractions/:id/regions': 'fractionRegionsIndex',
+    'fractions/:id/children': 'fractionChildrenIndex',
+    'fractions/:id/founded_fractions': 'fractionFoundedFractionsIndex',
     'fractions/:id': 'fractionShow',
     'positions/:id': 'positionShow',
     'regions/:id': 'regionShow',
@@ -70,22 +72,30 @@ Fractions.Routers.Router = Backbone.Router.extend({
   },
 
   fractionElectoratesIndex: function (id) {
-    this.fractionComponentsIndex(id, 'electorate');
+    this.fractionNestedIndex(id, 'electorates');
   },
 
   fractionPositionsIndex: function (id) {
-    this.fractionComponentsIndex(id, 'position');
+    this.fractionNestedIndex(id, 'positions');
   },
 
   fractionRegionsIndex: function (id) {
-    this.fractionComponentsIndex(id, 'region');
+    this.fractionNestedIndex(id, 'regions');
   },
 
-  fractionComponentsIndex: function (id, noun) {
+  fractionChildrenIndex: function (id) {
+    this.fractionNestedIndex(id, 'children');
+  },
+
+  fractionFoundedFractionsIndex: function (id) {
+    this.fractionNestedIndex(id, 'founded fractions');
+  },
+
+  fractionNestedIndex: function (id, name) {
     var model = new Fractions.Models.Fraction({ id: id });
     model.fetch({
       success: function () {
-        var view = new Fractions.Views.FractionComponentIndex({ model: model, noun: noun });
+        var view = new Fractions.Views.NestedIndex({ model: model, name: name });
         this.swapView(view);
       }.bind(this)
     });

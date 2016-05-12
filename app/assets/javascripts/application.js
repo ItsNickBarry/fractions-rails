@@ -14,13 +14,15 @@
 //= require jquery_ujs
 //= require jquery.serializejson.min
 //= require underscore
+//= require underscore.inflection
+//= require underscore.string
 //= require backbone
 //= require d3
 //= require composite_view
 //= require shallow_nested_model
 //= require fractions
 //= require_tree ../templates
-//= require_tree ./models/concerns
+//= require_tree ./concerns
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views

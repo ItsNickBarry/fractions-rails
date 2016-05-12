@@ -18,17 +18,11 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     // TODO add subviews in INITIALIZE for all composite views
     this.addSubviewForFoundedFractionsNew();
     // this.addSubviewForChildNew();
-    _.each(['electorate', 'position', 'region'], function (noun) {
-      this.addSubviewForFractionComponentNew(noun);
-    }.bind(this));
 
     // create list views for collections
     [
       [this.children, '#children-list'],
-      [this.electorates, '#electorates-list'],
       [this.foundedFractions, '#founded-fractions-list'],
-      [this.positions, '#positions-list'],
-      [this.regions, '#regions-list']
     ].forEach(function (pair) {
       var view = new Fractions.Views.List({
         collection: pair[0]
@@ -61,13 +55,4 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     });
     this.addSubview('#founded-fractions-new', view);
   },
-
-  addSubviewForFractionComponentNew: function (noun) {
-    var view = new Fractions.Views.FractionComponentNew({
-      collection: this[noun + 's'],
-      fraction: this.model,
-      noun: noun
-    });
-    this.addSubview('#' + noun + 's-new', view);
-  }
 });

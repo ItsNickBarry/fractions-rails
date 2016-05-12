@@ -39,37 +39,5 @@ a:hover {
 }
 .list-item > a:hover {
   font-weight: 600;
-  background: white;
   text-decoration: none;
-}
-
-.user {
-  background-color: pink;
-}
-
-.character {
-  background-color: cyan;
-}
-
-.fraction {
-  background-color: green;
-}
-.position {
-  background-color: orange;
-}
-
-.electorate {
-  background-color: teal;
-}
-
-.region {
-  background-color: red;
-}
-
-.new {
-
-}
-
-.show {
-
 }

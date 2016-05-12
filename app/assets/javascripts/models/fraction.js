@@ -3,6 +3,7 @@ Fractions.Models.Fraction = Backbone.Model.extend(
 ).extend(
   Fractions.Concerns.Routable
 ).extend({
+
   class: 'Fraction',
   urlFragmentRoot: '/fractions',
   urlRoot: '/api/fractions',
@@ -21,26 +22,36 @@ Fractions.Models.Fraction = Backbone.Model.extend(
       this.root().set(response.root);
       delete response.root;
     }
-    if (response.founded_fractions) {
-      this.foundedFractions().set(response.founded_fractions, { parse: true });
-      delete response.founded_fractions;
-    }
-    if (response.children) {
-      this.children().set(response.children, { parse: true });
-      delete response.children;
-    }
-    if (response.electorates) {
-      this.electorates().set(response.electorates, { parse: true });
-      delete response.electorates;
-    }
-    if (response.positions) {
-      this.positions().set(response.positions, { parse: true });
-      delete response.positions;
-    }
-    if (response.regions) {
-      this.regions().set(response.regions, { parse: true });
-      delete response.regions;
-    }
+
+    // parse and create accessor functions for NestedCollections
+    [
+      { name: 'electorates' },
+      { name: 'positions' },
+      { name: 'regions' },
+      { name: 'children', noun: 'fraction' },
+      { name: 'founded fractions', noun: 'fraction'}
+    ].forEach(function (object) {
+      var name = object.name;
+      var noun = object.noun || _.singularize(name);
+      var privateName = '_' + _.camelize(name);
+      var snakeName = _.underscored(name);
+      this[_.camelize(name)] = function () {
+        if (!this[privateName]) {
+          this[privateName] = new Fractions.Collections.NestedCollection({
+            model: Fractions.Models[_.titleize(noun)],
+            parentModel: this,
+            name: name,
+          });
+        }
+        return this[privateName];
+      };
+
+      // parse the collection
+      this[_.camelize(name)]().set(response[name], { parse: true });
+      delete response[name];
+
+    }.bind(this));
+
     return response;
   },
 
@@ -63,40 +74,5 @@ Fractions.Models.Fraction = Backbone.Model.extend(
       this._root = new Fractions.Models.Fraction();
     }
     return this._root;
-  },
-
-  foundedFractions: function () {
-    if (!this._founded_fractions) {
-      this._founded_fractions = new Fractions.Collections.Fractions();
-    }
-    return this._founded_fractions;
-  },
-
-  children: function () {
-    if (!this._children) {
-      this._children = new Fractions.Collections.Fractions();
-    }
-    return this._children;
-  },
-
-  electorates: function () {
-    if (!this._electorates) {
-      this._electorates = new Fractions.Collections.FractionElectorates({ fraction: this });
-    }
-    return this._electorates;
-  },
-
-  positions: function () {
-    if (!this._positions) {
-      this._positions = new Fractions.Collections.FractionPositions({ fraction: this });
-    }
-    return this._positions;
-  },
-
-  regions: function () {
-    if (!this._regions) {
-      this._regions = new Fractions.Collections.FractionRegions({ fraction: this });
-    }
-    return this._regions;
   },
 });

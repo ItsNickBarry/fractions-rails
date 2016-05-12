@@ -16,58 +16,64 @@
 <a href=<%= fraction.founder().urlFragment() %>><%= fraction.founder().escape("name") %></a>
 </h2>
 
-<div id="electorates" class="electorate">
-  <h3>Electorates</h3>
-  <div class="row">
-    <div class="six columns">
-      <div id="electorates-list"></div>
+<div class="row">
+  <div class="four columns">
+    <div>
+      <h3><%= fraction.electorates().a('Electorates') %></h3>
     </div>
-    <div class="six columns">
-      <div id="electorates-new"></div>
+    <div>
+      <h3><%= fraction.positions().a('Positions') %></h3>
     </div>
+    <div>
+      <h3><%= fraction.regions().a('Regions') %></h3>
+    </div>
+    <div>
+      <h3><%= fraction.children().a('Children') %></h3>
+    </div>
+    <div>
+      <h3><%= fraction.foundedFractions().a('Founded Fractions') %></h3>
+    </div>
+    <ul>
+      <li>population</li>
+      <li>culture</li>
+      <li>realm size</li>
+      <li>founded date</li>
+      <li>founder</li>
+      <li>government authorizations</li>
+    </ul>
+    <p>
+      Perhaps this column should remain fixed on the page as the user scrolls down on the right column.
+    </p>
   </div>
-</div>
-<div id="positions" class="position">
-  <h3>Positions</h3>
-  <div class="row">
-    <div class="six columns">
-      <div id="positions-list"></div>
+  <div class="eight columns">
+    <div class="row">
+      <h3>Description</h3>
+      <p>
+        Provident maxime iusto qui maiores impedit. Ipsam accusantium adipisci alias expedita quaerat quae iusto voluptates. Sed placeat delectus consequatur ut id praesentium. Autem at eos et sed officiis alias. Vero dolorem vero minima ut. Expedita consequatur pariatur ab fugit reiciendis vel perferendis
+      </p>
+      <p>
+        Provident maxime iusto qui maiores impedit. Ipsam accusantium adipisci alias expedita quaerat quae iusto voluptates. Sed placeat delectus consequatur ut id praesentium. Autem at eos et sed officiis alias. Vero dolorem vero minima ut. Expedita consequatur pariatur ab fugit reiciendis vel perferendis
+      </p>
     </div>
-    <div class="six columns">
-      <div id="positions-new"></div>
+    <div class="row">
+      <h3>Events</h3>
+      <ul>
+        <li>new electorates, positions, regions</li>
+        <li>completed ballots</li>
+        <li>completed wars</li>
+      </ul>
     </div>
-  </div>
-</div>
-<div id="regions" class="region">
-  <h3>Regions</h3>
-  <div class="row">
-    <div class="six columns">
-      <div id="regions-list"></div>
+    <div class="row">
+      <h3>Ballots</h3>
+      <p>
+        A display of all ongoing ballots, with icon indicating whether current character can participate
+      </p>
     </div>
-    <div class="six columns">
-      <div id="regions-new"></div>
-    </div>
-  </div>
-</div>
-<div id="children" class="fraction">
-  <h3>Child Fractions</h3>
-  <div class="row">
-    <div class="six columns">
-      <div id="children-list"></div>
-    </div>
-    <div class="six columns">
-      <div id="children-new"></div>
-    </div>
-  </div>
-</div>
-<div id="founded-fractions" class="fraction">
-  <h3>Founded Fractions</h3>
-  <div class="row">
-    <div class="six columns">
-      <div id="founded-fractions-list"></div>
-    </div>
-    <div class="six columns">
-      <div id="founded-fractions-new"></div>
+    <div class="row">
+      <h3>Wars</h3>
+      <p>
+        A display of all ongoing wars
+      </p>
     </div>
   </div>
 </div>

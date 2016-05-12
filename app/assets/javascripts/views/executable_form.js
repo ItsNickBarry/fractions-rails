@@ -7,10 +7,9 @@ Fractions.Views.ExecutableForm = Backbone.View.extend({
 
   initialize: function (options) {
     this.noun = options.noun;
-    this.className += ' ' + this.noun;
     this.fraction = options.fraction;
     this.template = function () {
-      return JST[this.noun + 's_new_form']();
+      return JST[_.pluralize(this.noun) + '_new_form']();
     };
   },
 

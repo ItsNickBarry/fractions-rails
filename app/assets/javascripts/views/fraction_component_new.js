@@ -1,6 +1,5 @@
 Fractions.Views.FractionComponentNew = Backbone.CompositeView.extend({
   template: JST['fraction_component_new'],
-  className: 'fractions-object new',
 
   events: {
     'click button#executable': 'addSubviewForFractionComponentExecutableForm',
@@ -9,8 +8,7 @@ Fractions.Views.FractionComponentNew = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    this.noun = options.noun;
-    this.className += ' ' + this.noun;
+    this.noun = _.singularize(options.noun);
     this.fraction = options.fraction;
     this.addSubviewForAuthorizationButtons();
   },

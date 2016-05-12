@@ -11,7 +11,9 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
 
     this.addSubviewForCharacters();
-    this.addSubviewForCharactersNew();
+    if (this.model.get('id') === Fractions.session.currentUser().get('id')){
+      this.addSubviewForCharactersNew();
+    }
   },
 
   render: function () {
