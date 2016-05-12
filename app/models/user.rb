@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8, allow_nil: true }
   validate :owns_current_character
   validate :password_must_not_match_username
-  # TODO validate :password_is_not_among_top_10000
 
   has_many :characters
   belongs_to :current_character, class_name: 'Character'

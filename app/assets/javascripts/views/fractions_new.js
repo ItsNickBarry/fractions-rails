@@ -22,7 +22,7 @@ Fractions.Views.FractionsNew = Backbone.View.extend({
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    params.fraction.founder_id = this.founder.escape('id');
+    params.fraction.founder_id = this.founder.get('id');
     params.fraction.founder_type = this.founder.class;
     // TODO make sure to add to child/member fractions, non necessarily the founded_fractions collection
     // TODO make sure to add to founded_fractions collection, non necessarily the child/member fractions

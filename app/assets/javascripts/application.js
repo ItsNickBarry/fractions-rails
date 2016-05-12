@@ -17,6 +17,7 @@
 //= require backbone
 //= require d3
 //= require composite_view
+//= require shallow_nested_model
 //= require fractions
 //= require_tree ../templates
 //= require_tree ./models/concerns

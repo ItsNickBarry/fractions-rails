@@ -1,4 +1,6 @@
-Fractions.Models.Position = Backbone.Model.extend({
+Fractions.Models.Position = Backbone.ShallowNestedModel.extend(
+  Fractions.Concerns.Routable
+).extend({
   urlFragmentRoot: '/positions',
   urlRoot: '/api/positions',
 

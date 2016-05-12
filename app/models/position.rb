@@ -20,6 +20,9 @@ class Position < ActiveRecord::Base
 
   has_many :position_memberships, dependent: :destroy
   has_many :members, through: :position_memberships, source: :character
+  def characters
+    members
+  end
 
   has_many :land_authorizations_received, as: :authorizee, class_name: 'LandAuthorization', dependent: :destroy
 

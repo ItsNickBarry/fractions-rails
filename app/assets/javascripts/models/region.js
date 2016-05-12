@@ -1,4 +1,6 @@
-Fractions.Models.Region = Backbone.Model.extend({
+Fractions.Models.Region = Backbone.ShallowNestedModel.extend(
+  Fractions.Concerns.Routable
+).extend({
   urlFragmentRoot: '/regions',
   urlRoot: '/api/regions',
 

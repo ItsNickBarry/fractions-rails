@@ -3,7 +3,7 @@ class Api::RegionsController < ApplicationController
   before_action :find_or_initialize_region, except: [:create, :index]
 
   def create
-    @fraction = Fraction.find(region_params[:fraction_id])
+    @fraction = Fraction.find(params[:fraction_id])
     @region = @fraction.regions.new(region_params)
 
     unless @fraction.authorizes? current_character, :execute, :region_create

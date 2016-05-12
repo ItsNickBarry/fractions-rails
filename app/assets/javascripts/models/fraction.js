@@ -1,5 +1,8 @@
-Fractions.Models.Fraction = Backbone.Model.extend(Fractions.Concerns.Governable)
-                                          .extend({
+Fractions.Models.Fraction = Backbone.Model.extend(
+  Fractions.Concerns.Governable
+).extend(
+  Fractions.Concerns.Routable
+).extend({
   class: 'Fraction',
   urlFragmentRoot: '/fractions',
   urlRoot: '/api/fractions',
@@ -45,7 +48,7 @@ Fractions.Models.Fraction = Backbone.Model.extend(Fractions.Concerns.Governable)
     if (!this._founder) {
       this._founder = new Fractions.Models.Founder();
     }
-    return this._founder
+    return this._founder;
   },
 
   parent: function () {
@@ -78,21 +81,21 @@ Fractions.Models.Fraction = Backbone.Model.extend(Fractions.Concerns.Governable)
 
   electorates: function () {
     if (!this._electorates) {
-      this._electorates = new Fractions.Collections.Electorates();
+      this._electorates = new Fractions.Collections.FractionElectorates({ fraction: this });
     }
     return this._electorates;
   },
 
   positions: function () {
     if (!this._positions) {
-      this._positions = new Fractions.Collections.Positions();
+      this._positions = new Fractions.Collections.FractionPositions({ fraction: this });
     }
     return this._positions;
   },
 
   regions: function () {
     if (!this._regions) {
-      this._regions = new Fractions.Collections.Regions();
+      this._regions = new Fractions.Collections.FractionRegions({ fraction: this });
     }
     return this._regions;
   },

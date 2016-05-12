@@ -1,4 +1,6 @@
-Fractions.Models.Character = Backbone.Model.extend({
+Fractions.Models.Character = Backbone.Model.extend(
+  Fractions.Concerns.Routable
+).extend({
   class: 'Character',
   urlFragmentRoot: '/characters',
   urlRoot: '/api/characters',
@@ -18,13 +20,6 @@ Fractions.Models.Character = Backbone.Model.extend({
     }
     return response;
   },
-
-  // electorates: function () {
-  //   if (!this._electorates) {
-  //     this._electorates = new Fractions.Collections.Electorates();
-  //   }
-  //   return this._electorates;
-  // },
 
   foundedFractions: function () {
     if (!this._founded_fractions) {
