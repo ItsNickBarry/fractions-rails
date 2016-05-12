@@ -4,6 +4,9 @@ Fractions.Routers.Router = Backbone.Router.extend({
     'map': 'mapShow',
     'characters/:id': 'characterShow',
     'electorates/:id': 'electorateShow',
+    'fractions/:id/electorates': 'fractionElectoratesIndex',
+    'fractions/:id/positions': 'fractionPositionsIndex',
+    'fractions/:id/regions': 'fractionRegionsIndex',
     'fractions/:id': 'fractionShow',
     'positions/:id': 'positionShow',
     'regions/:id': 'regionShow',
@@ -61,6 +64,28 @@ Fractions.Routers.Router = Backbone.Router.extend({
     model.fetch({
       success: function () {
         var view = new Fractions.Views.FractionShow({ model: model });
+        this.swapView(view);
+      }.bind(this)
+    });
+  },
+
+  fractionElectoratesIndex: function (id) {
+    this.fractionComponentsIndex(id, 'electorate');
+  },
+
+  fractionPositionsIndex: function (id) {
+    this.fractionComponentsIndex(id, 'position');
+  },
+
+  fractionRegionsIndex: function (id) {
+    this.fractionComponentsIndex(id, 'region');
+  },
+
+  fractionComponentsIndex: function (id, noun) {
+    var model = new Fractions.Models.Fraction({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.FractionComponentIndex({ model: model, noun: noun });
         this.swapView(view);
       }.bind(this)
     });
