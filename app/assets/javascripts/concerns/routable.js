@@ -13,7 +13,7 @@ Fractions.Concerns.Routable = {
 
   _collectionUrlFragment: function () {
     // TODO generalized url fragment for nested/non-nested collection
-    return this.parentModel.urlFragment() + '/' + this.name;
+    return this.parentModel.urlFragment() + '/' + _.underscored(this.name);
   },
 
   _modelUrlFragment: function () {

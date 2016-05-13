@@ -9,9 +9,9 @@ Fractions.Models.Fraction = Backbone.Model.extend(
   urlRoot: '/api/fractions',
 
   parse: function (response) {
-    // TODO parse: true for founder and parent models?
     if (response.founder) {
-      this.founder().set(response.founder);
+      this.founder(response.founder_type).set(response.founder);
+      delete response.founder_type;
       delete response.founder;
     }
     if (response.parent) {
@@ -47,17 +47,17 @@ Fractions.Models.Fraction = Backbone.Model.extend(
       };
 
       // parse the collection
-      this[_.camelize(name)]().set(response[name], { parse: true });
-      delete response[name];
+      this[_.camelize(name)]().set(response[_.underscored(name)], { parse: true });
+      delete response[_.underscored(name)];
 
     }.bind(this));
 
     return response;
   },
 
-  founder: function () {
-    if (!this._founder) {
-      this._founder = new Fractions.Models.Founder();
+  founder: function (founder_type) {
+    if (!this._founder && founder_type) {
+      this._founder = new Fractions.Models[founder_type]();
     }
     return this._founder;
   },

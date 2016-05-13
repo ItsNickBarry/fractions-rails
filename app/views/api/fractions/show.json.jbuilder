@@ -13,7 +13,6 @@ if @fraction.parent
 end
 
 json.founder do
-  json.class @fraction.founder_type
   json.extract! @fraction.founder, :id, :name
 end
 json.founded_at @fraction.created_at
