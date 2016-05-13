@@ -1,6 +1,6 @@
 <div class="row">
-  <span class="title"><%= fraction.escape('name') %></span><br>
-  <span class="subtitle">
+  <h1><%= fraction.escape('name') %></h1>
+  <h2>
     <% if (fraction.parent().escape('id')) { %>
       a fraction of <%= fraction.parent().a(fraction.parent().escape('name')) %>
       <% if (fraction.parent().escape('id') !== fraction.root().escape('id')) { %>
@@ -14,7 +14,7 @@
       the fraction
     <% } %>
     <%= fraction.founder().a(fraction.founder().escape('name')) %>
-  </span>
+  </h2>
 </div>
 
 <div class="row">
