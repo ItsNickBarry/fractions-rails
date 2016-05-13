@@ -1,6 +1,7 @@
 Fractions.Models.Character = Backbone.Model.extend(
   Fractions.Concerns.Routable
 ).extend({
+  
   class: 'Character',
   urlFragmentRoot: '/characters',
   urlRoot: '/api/characters',

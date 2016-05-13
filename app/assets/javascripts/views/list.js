@@ -1,11 +1,6 @@
 Fractions.Views.List = Backbone.View.extend({
   template: JST['list'],
-  className: 'list',
   tagName: 'ul',
-
-  events: {
-    // click li
-  },
 
   initialize: function (options) {
     // TODO pagination or overflow

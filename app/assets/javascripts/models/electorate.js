@@ -1,6 +1,8 @@
 Fractions.Models.Electorate = Backbone.ShallowNestedModel.extend(
   Fractions.Concerns.Routable
 ).extend({
+  
+  class: 'Electorate',
   urlFragmentRoot: '/electorates',
   urlRoot: '/api/electorates',
 

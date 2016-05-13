@@ -4,25 +4,22 @@ Fractions.Views.ExecutableForm = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.noun = options.noun;
-    this.fraction = options.fraction;
     this.template = function (options) {
-      return JST[_.pluralize(this.noun) + '_new_form'](options);
+      return JST[_.pluralize(this.collection.model.prototype.class.toLowerCase()) + '_new_form'](options);
     };
   },
 
   render: function () {
     var content = this.template({
-      fraction: this.fraction
+      model: this.model
     });
     this.$el.html(content);
     return this;
   },
 
   submit: function (event) {
-    var view = this;
     event.preventDefault();
-
+    var view = this;
     var params = $(event.currentTarget).serializeJSON();
     this.collection.create(params, {
       wait: true,

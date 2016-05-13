@@ -1,19 +1,14 @@
 Fractions.Routers.Router = Backbone.Router.extend({
   routes: {
-    '': 'root',
-    'map': 'mapShow',
-    'characters/:id': 'characterShow',
-    'electorates/:id': 'electorateShow',
-    'fractions/:id/electorates': 'fractionElectoratesIndex',
-    'fractions/:id/positions': 'fractionPositionsIndex',
-    'fractions/:id/regions': 'fractionRegionsIndex',
-    'fractions/:id/children': 'fractionChildrenIndex',
-    'fractions/:id/founded_fractions': 'fractionFoundedFractionsIndex',
-    'fractions/:id': 'fractionShow',
-    'positions/:id': 'positionShow',
-    'regions/:id': 'regionShow',
-    // 'plots/:id': 'plotShow'
-    'users/:id': 'userShow',
+    '':                            'root',
+    'map':                         'mapShow',
+    'characters/:id':              'characterShow',
+    'electorates/:id':             'electorateShow',
+    'fractions/:id/:nested_index': 'fractionNestedIndex',
+    'fractions/:id':               'fractionShow',
+    'positions/:id':               'positionShow',
+    'regions/:id':                 'regionShow',
+    'users/:id':                   'userShow',
   },
 
   initialize: function (options) {
@@ -37,7 +32,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
       success: function () {
         var view = new Fractions.Views.UserShow({ model: model });
         this.swapView(view);
-      }.bind(this)
+      }.bind(this),
     });
   },
 
@@ -47,7 +42,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
       success: function () {
         var view = new Fractions.Views.CharacterShow({ model: model });
         this.swapView(view);
-      }.bind(this)
+      }.bind(this),
     });
   },
 
@@ -57,7 +52,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
       success: function () {
         var view = new Fractions.Views.ElectorateShow({ model: model });
         this.swapView(view);
-      }.bind(this)
+      }.bind(this),
     });
   },
 
@@ -67,37 +62,21 @@ Fractions.Routers.Router = Backbone.Router.extend({
       success: function () {
         var view = new Fractions.Views.FractionShow({ model: model });
         this.swapView(view);
-      }.bind(this)
+      }.bind(this),
     });
   },
 
-  fractionElectoratesIndex: function (id) {
-    this.fractionNestedIndex(id, 'electorates');
-  },
-
-  fractionPositionsIndex: function (id) {
-    this.fractionNestedIndex(id, 'positions');
-  },
-
-  fractionRegionsIndex: function (id) {
-    this.fractionNestedIndex(id, 'regions');
-  },
-
-  fractionChildrenIndex: function (id) {
-    this.fractionNestedIndex(id, 'children');
-  },
-
-  fractionFoundedFractionsIndex: function (id) {
-    this.fractionNestedIndex(id, 'founded fractions', 'fraction');
-  },
-
-  fractionNestedIndex: function (id, name, noun) {
+  fractionNestedIndex: function (id, nested_index) {
     var model = new Fractions.Models.Fraction({ id: id });
     model.fetch({
       success: function () {
-        var view = new Fractions.Views.NestedIndex({ model: model, name: name, noun: noun });
+        var collection = model[_.camelize(nested_index)]();
+        var view = new Fractions.Views.NestedIndex({
+          model: model,
+          collection: collection,
+        });
         this.swapView(view);
-      }.bind(this)
+      }.bind(this),
     });
   },
 
@@ -107,7 +86,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
       success: function () {
         var view = new Fractions.Views.PositionShow({ model: model });
         this.swapView(view);
-      }.bind(this)
+      }.bind(this),
     });
   },
 
@@ -117,7 +96,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
       success: function () {
         var view = new Fractions.Views.RegionShow({ model: model });
         this.swapView(view);
-      }.bind(this)
+      }.bind(this),
     });
   },
 
