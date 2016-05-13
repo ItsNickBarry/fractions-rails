@@ -1,5 +1,4 @@
-json.id @user.id
-json.username @user.username
+json.extract! @user, :id, :username, :uuid
 
 # json.current_user true if @user.id == current_user.id
 

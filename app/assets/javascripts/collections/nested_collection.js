@@ -6,6 +6,6 @@ Fractions.Collections.NestedCollection = Backbone.Collection.extend(
     this.name = options.name;
     this.model = options.model;
     this.parentModel = options.parentModel;
-    this.url = this.parentModel.url() + '/' + this.name;
+    this.url = this.parentModel.url() + '/' + _.underscored(this.name);
   }
 });

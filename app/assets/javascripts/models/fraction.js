@@ -28,17 +28,17 @@ Fractions.Models.Fraction = Backbone.Model.extend(
       { name: 'electorates' },
       { name: 'positions' },
       { name: 'regions' },
-      { name: 'children', noun: 'fraction' },
-      { name: 'founded fractions', noun: 'fraction'}
+      { name: 'children', type: 'Fraction' },
+      { name: 'founded fractions', type: 'Fraction'}
     ].forEach(function (object) {
       var name = object.name;
-      var noun = object.noun || _.singularize(name);
+      var type = _.titleize(object.type || _.singularize(name));
       var privateName = '_' + _.camelize(name);
       var snakeName = _.underscored(name);
       this[_.camelize(name)] = function () {
         if (!this[privateName]) {
           this[privateName] = new Fractions.Collections.NestedCollection({
-            model: Fractions.Models[_.titleize(noun)],
+            model: Fractions.Models[type],
             parentModel: this,
             name: name,
           });

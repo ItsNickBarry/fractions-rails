@@ -1,11 +1,19 @@
-<h1>User: <%= user.get("username") %></h1>
-<div id="characters" class="character">
-  <div class="row">
-    <div class="six columns">
-      <div id="characters-list"></div>
+<div class="row">
+  <span class="title"><%= user.escape('username') %></span>
+</div>
+<div class="row">
+  <div class="four columns">
+    <div class="avatar">
+      <img class="avatar" src="https://crafatar.com/renders/body/<%= user.escape('uuid') %>?overlay=true&scale=10" alt="<%= user.escape('username') %>" />
     </div>
-    <div class="six columns">
-      <div id="characters-new"><div>
-    </div>
+    <ul>
+      <li>last seen</li>
+      <li>contact information</li>
+    </ul>
+  </div>
+  <div class="eight columns">
+    <h3>Characters</h3>
+    <div id="characters-list"></div>
+    <div id="characters-new"><div>
   </div>
 </div>

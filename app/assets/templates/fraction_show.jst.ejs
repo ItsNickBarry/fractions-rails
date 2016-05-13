@@ -1,20 +1,21 @@
-<h1><%= fraction.escape("name") %>,
-<% if (fraction.parent().escape('id')) { %>
-  a fraction of <a href=<%= fraction.parent().urlFragment() %>><%= fraction.parent().escape("name") %></a>
-  <% if (fraction.parent().escape('id') !== fraction.root().escape('id')) { %>
-   in the realm of <a href=<%= fraction.root().urlFragment() %>><%= fraction.root().escape("name") %></a>
-  <% } %>
-<% } else { %>
-  an independent realm
-<% } %>
-</h1>
-
-<h2>Founded by
-<% if (fraction.get('founder_type') === 'Fraction') { %>
-  the fraction
-<% } %>
-<a href=<%= fraction.founder().urlFragment() %>><%= fraction.founder().escape("name") %></a>
-</h2>
+<div class="row">
+  <span class="title"><%= fraction.escape('name') %></span><br>
+  <span class="subtitle">
+    <% if (fraction.parent().escape('id')) { %>
+      a fraction of <%= fraction.parent().a(fraction.parent().escape('name')) %>
+      <% if (fraction.parent().escape('id') !== fraction.root().escape('id')) { %>
+       in the realm of <%= fraction.root().a(fraction.root().escape('name')) %>
+      <% } %>
+    <% } else { %>
+      an independent realm
+    <% } %>
+    founded by
+    <% if (fraction.get('founder_type') === 'Fraction') { %>
+      the fraction
+    <% } %>
+    <%= fraction.founder().a(fraction.founder().escape('name')) %>
+  </span>
+</div>
 
 <div class="row">
   <div class="four columns">
@@ -41,9 +42,6 @@
       <li>founder</li>
       <li>government authorizations</li>
     </ul>
-    <p>
-      Perhaps this column should remain fixed on the page as the user scrolls down on the right column.
-    </p>
   </div>
   <div class="eight columns">
     <div class="row">

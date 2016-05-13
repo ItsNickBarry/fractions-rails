@@ -41,3 +41,27 @@ a:hover {
   font-weight: 600;
   text-decoration: none;
 }
+
+span.title {
+  font-size: 50px;
+}
+span.subtitle {
+  font-size: 30px;
+}
+div.avatar {
+  padding: 5px;
+  background: #eeeeee;
+}
+img.avatar {
+  display: block;
+  margin: 0 auto;
+}
+
+.flipped {
+  -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}

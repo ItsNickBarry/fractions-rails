@@ -13,7 +13,10 @@ Fractions.Views.NestedIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ fraction: this.model, name: this.name });
+    var content = this.template({
+      parentModel: this.model,
+      name: _.titleize(this.name)
+    });
     this.$el.html(content);
     this.attachSubviews();
     return this;
