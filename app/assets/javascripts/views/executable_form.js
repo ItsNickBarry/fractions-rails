@@ -1,6 +1,4 @@
 Fractions.Views.ExecutableForm = Backbone.View.extend({
-  className: 'fractions-object new',
-
   events: {
     'submit form': 'submit'
   },
@@ -8,13 +6,15 @@ Fractions.Views.ExecutableForm = Backbone.View.extend({
   initialize: function (options) {
     this.noun = options.noun;
     this.fraction = options.fraction;
-    this.template = function () {
-      return JST[_.pluralize(this.noun) + '_new_form']();
+    this.template = function (options) {
+      return JST[_.pluralize(this.noun) + '_new_form'](options);
     };
   },
 
   render: function () {
-    var content = this.template();
+    var content = this.template({
+      fraction: this.fraction
+    });
     this.$el.html(content);
     return this;
   },
@@ -24,7 +24,7 @@ Fractions.Views.ExecutableForm = Backbone.View.extend({
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    this.collection.create(params[this.noun], {
+    this.collection.create(params, {
       wait: true,
       success: function () {
         view.remove();

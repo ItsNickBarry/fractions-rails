@@ -1,10 +1,5 @@
 Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
   template: JST['character_show'],
-  className: 'fractions-object show character',
-
-  events: {
-
-  },
 
   initialize: function () {
     this.fractions = this.model.fractions();
@@ -41,8 +36,7 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
 
   addSubviewForFoundedFractionsNew: function () {
     var view = new Fractions.Views.FractionsNew({
-      foundedFractions: this.foundedFractions,
-      founder: this.model
+      collection: this.foundedFractions
     });
     this.addSubview('#founded-fractions-new', view);
   },

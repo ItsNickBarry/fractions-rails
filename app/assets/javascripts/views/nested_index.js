@@ -7,9 +7,10 @@ Fractions.Views.NestedIndex = Backbone.CompositeView.extend({
     // TODO not just for Fraction components
 
     this.name = options.name;
+    this.noun = options.noun || this.name;
     this.collection = this.model[_.camelize(this.name)]();
-    this.addSubviewForFractionComponentList();
-    this.addSubviewForFractionComponentNew();
+    this.addSubviewForList();
+    this.addSubviewForNew();
   },
 
   render: function () {
@@ -22,16 +23,17 @@ Fractions.Views.NestedIndex = Backbone.CompositeView.extend({
     return this;
   },
 
-  addSubviewForFractionComponentList: function () {
+  addSubviewForList: function () {
     var view = new Fractions.Views.List({ collection: this.collection });
     this.addSubview('.list', view);
   },
 
-  addSubviewForFractionComponentNew: function () {
+  addSubviewForNew: function () {
     var view = new Fractions.Views.FractionComponentNew({
       collection: this.collection,
       fraction: this.model,
-      noun: this.name
+      name: this.name,
+      noun: this.noun
     });
     this.addSubview('.fraction-component-new', view);
   }

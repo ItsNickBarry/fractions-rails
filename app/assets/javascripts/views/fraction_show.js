@@ -40,17 +40,9 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  // addSubviewForChildNew: function () {
-  //   var view = new Fractions.Views.FractionsNew({
-  // collection: this.children,
-  // founder: this.model });
-  //   this.addSubview('#children-new', view);
-  // },
-
   addSubviewForFoundedFractionsNew: function () {
     var view = new Fractions.Views.FractionsNew({
-      childFractions: this.children,
-      foundedFractions: this.foundedFractions,
+      collection: this.foundedFractions,
       founder: this.model
     });
     this.addSubview('#founded-fractions-new', view);

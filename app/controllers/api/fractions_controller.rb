@@ -8,18 +8,16 @@ class Api::FractionsController < ApplicationController
   end
 
   def create
-    @founder = params[:fraction][:founder_type].constantize.find(params[:fraction][:founder_id])
+    @founder = founder_params[:id] ? Fraction.find_by(founder_params) : current_character
+    @fraction = @founder.founded_fractions.new(fraction_params)
 
     if @founder.is_a? Fraction
       unless @founder.authorizes? current_character, :execute, :fraction_create
         render json: "#{ @founder.name } does not authorize #{ current_character.name } to create child fractions on its behalf", status: 422
         return
       end
+      @fraction.assign_attributes parent: @founder
     elsif @founder.is_a? Character
-      unless @founder.id == current_character.id
-        render json: "#{ current_character.name } cannot found a fraction on behalf of #{ @founder.name }", status: 422
-        return
-      end
       unless @founder.can_found_fraction?
         render json: "#{ @founder.name } cannot found a fraction", status: 422
         return
@@ -27,16 +25,6 @@ class Api::FractionsController < ApplicationController
     else
       render json: "Invalid founder type", status: 422
       return
-    end
-
-    @fraction = @founder.founded_fractions.new(fraction_params);
-
-    if params[:fraction][:make_child]
-      unless @founder.authorizes? current_character, :execute, :child_connect
-        render json: "#{ @founder.name } does not authorize #{ current_character.name } to connect child fractions", status: 422
-        return
-      end
-      @fraction.assign_attributes parent: @founder
     end
 
     if @fraction.save
@@ -53,6 +41,10 @@ class Api::FractionsController < ApplicationController
 
     def fraction_params
       params.require(:fraction).permit(:name)
+    end
+
+    def founder_params
+      params.require(:founder).permit(:id)
     end
 
     def find_or_initialize_fraction

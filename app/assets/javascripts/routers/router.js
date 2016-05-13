@@ -88,14 +88,14 @@ Fractions.Routers.Router = Backbone.Router.extend({
   },
 
   fractionFoundedFractionsIndex: function (id) {
-    this.fractionNestedIndex(id, 'founded fractions');
+    this.fractionNestedIndex(id, 'founded fractions', 'fraction');
   },
 
-  fractionNestedIndex: function (id, name) {
+  fractionNestedIndex: function (id, name, noun) {
     var model = new Fractions.Models.Fraction({ id: id });
     model.fetch({
       success: function () {
-        var view = new Fractions.Views.NestedIndex({ model: model, name: name });
+        var view = new Fractions.Views.NestedIndex({ model: model, name: name, noun: noun });
         this.swapView(view);
       }.bind(this)
     });

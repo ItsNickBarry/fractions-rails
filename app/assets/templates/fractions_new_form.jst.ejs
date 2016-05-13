@@ -1,8 +1,9 @@
-<h4>Found New Fraction</h4>
+<h4>New Fraction</h4>
 <form>
   <div class="row">
     <label for="fraction-name-input">Name</label>
     <input id="fraction-name-input" type="text" name="fraction[name]">
+    <input type="hidden" name="founder[id]" value="<%= fraction.get('id') %>">
   </div>
   <input class="button-primary" value="Submit" type="submit">
 </form>

@@ -8,7 +8,8 @@ Fractions.Views.FractionComponentNew = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    this.noun = _.singularize(options.noun);
+    this.name = _.singularize(options.name);
+    this.noun = options.noun;
     this.fraction = options.fraction;
     this.addSubviewForAuthorizationButtons();
   },
@@ -23,7 +24,7 @@ Fractions.Views.FractionComponentNew = Backbone.CompositeView.extend({
   addSubviewForAuthorizationButtons: function () {
     var view = new Fractions.Views.AuthorizationButtons({
       authorizer: this.fraction,
-      authorization_type: this.noun + '_create'
+      authorization_type: _.singularize(this.noun) + '_create'
     });
     this.addSubview('.authorization-buttons', view);
   },
