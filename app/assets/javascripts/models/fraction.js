@@ -1,9 +1,9 @@
 Fractions.Models.Fraction = Backbone.Model.extend(
+  Fractions.Concerns.Associable
+).extend(
   Fractions.Concerns.Governable
 ).extend(
   Fractions.Concerns.Routable
-).extend(
-  Fractions.Concerns.Associable
 ).extend({
 
   class: 'Fraction',

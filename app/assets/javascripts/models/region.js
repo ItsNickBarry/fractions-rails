@@ -1,4 +1,6 @@
 Fractions.Models.Region = Backbone.ShallowNestedModel.extend(
+  Fractions.Concerns.Associable
+).extend(
   Fractions.Concerns.Routable
 ).extend({
 
@@ -6,18 +8,7 @@ Fractions.Models.Region = Backbone.ShallowNestedModel.extend(
   urlFragmentRoot: '/regions',
   urlRoot: '/api/regions',
 
-  parse: function (response) {
-    if (response.fraction) {
-      this.fraction().set(response.fraction, { parse: true });
-      delete response.fraction;
-    }
-    return response;
+  initialize: function () {
+    this.belongsTo('fraction');
   },
-
-  fraction: function () {
-    if (!this._fraction) {
-      this._fraction = new Fractions.Models.Fraction();
-    }
-    return this._fraction;
-  }
 });

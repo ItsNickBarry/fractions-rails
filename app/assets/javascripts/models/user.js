@@ -1,4 +1,6 @@
 Fractions.Models.User = Backbone.Model.extend(
+  Fractions.Concerns.Associable
+).extend(
   Fractions.Concerns.Routable
 ).extend({
 
@@ -6,18 +8,7 @@ Fractions.Models.User = Backbone.Model.extend(
   urlFragmentRoot: '/users',
   urlRoot: '/api/users',
 
-  parse: function (response) {
-    if (response.characters) {
-      this.characters().set(response.characters, { parse: true });
-      delete response.characters;
-    }
-    return response;
+  initialize: function () {
+    this.hasMany('characters');
   },
-
-  characters: function () {
-    if (!this._characters) {
-      this._characters = new Fractions.Collections.Characters();
-    }
-    return this._characters;
-  }
 });
