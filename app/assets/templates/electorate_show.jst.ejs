@@ -1,4 +1,20 @@
-<h1>Electorate in <%= electorate.fraction().escape("name") %>: <%= electorate.get("name") %></h1>
-<div id="positions">
-  <ul id="positions-list"></ul>
+<div class="row">
+  <h1><%= model.escape('name') %></h1>
+  <h2>Electorate in <%= model.fraction().a(model.fraction().escape('name')) %></h2>
+</div>
+<div class="row">
+  <div class="four columns">
+    <div>
+      <ul>
+        <li>voters</li>
+        <li>callers</li>
+        <li>authorizations given</li>
+        <li>authorizations received</li>
+      </ul>
+    </div>
+  </div>
+  <div class="eight columns">
+    <h3>Positions</h3>
+    <div id="positions-list"></div>
+  </div>
 </div>

@@ -8,7 +8,9 @@ Fractions.Views.ElectorateShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ electorate: this.model });
+    var content = this.template({
+      model: this.model
+    });
     this.$el.html(content);
     this.attachSubviews();
     return this;

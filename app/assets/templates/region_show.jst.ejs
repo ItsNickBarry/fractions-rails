@@ -1,1 +1,16 @@
-<h1>Region in <%= region.fraction().escape("name") %>: <%= region.escape("name") %></h1>
+<div class="row">
+  <h1><%= model.escape('name') %></h1>
+  <h2>Region in <%= model.fraction().a(model.fraction().escape('name')) %></h2>
+</div>
+<div class="row">
+  <div class="four columns">
+    <ul>
+      <li>member positions</li>
+      <li>government authorizations given</li>
+      <li>land authorizations given</li>
+    </ul>
+  </div>
+  <div class="eight columns">
+    <h3>Some sort of list?</h3>
+  </div>
+</div>

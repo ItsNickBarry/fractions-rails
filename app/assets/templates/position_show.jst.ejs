@@ -1,6 +1,17 @@
-<h1>Position: <%= position.escape("name") %></h1>
-<a href=<%= "#/fractions/" + position.fraction().escape("id") %>><%= position.fraction().escape("name") %></a>
-<div id="characters" class="character">
-  <div id="characters-new"></div>
-  <div id="characters-list"></div>
+<div class="row">
+  <h1><%= model.escape('name') %></h1>
+  <h2>Position in <%= model.fraction().a(model.fraction().escape('name')) %></h2>
+</div>
+<div class="row">
+  <div class="four columns">
+    <ul>
+      <li>members</li>
+      <li>authorizations given</li>
+      <li>authorizations received</li>
+    </ul>
+  </div>
+  <div class="eight columns">
+    <h3>Characters</h3>
+    <div id="characters-list"></div>
+  </div>
 </div>

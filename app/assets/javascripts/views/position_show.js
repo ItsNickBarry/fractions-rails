@@ -1,10 +1,5 @@
 Fractions.Views.PositionShow = Backbone.CompositeView.extend({
   template: JST['position_show'],
-  className: 'fractions-object show position',
-
-  events: {
-
-  },
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
@@ -14,7 +9,7 @@ Fractions.Views.PositionShow = Backbone.CompositeView.extend({
 
   render: function () {
     var content = this.template({
-      position: this.model
+      model: this.model
     });
     this.$el.html(content);
     this.attachSubviews();
