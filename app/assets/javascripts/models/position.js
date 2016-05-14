@@ -11,5 +11,5 @@ var Position = Fractions.Models.Position = Backbone.ShallowNestedModel.extend(
 
 (function () {
   this.belongsTo('fraction');
-  this.hasMany('characters');
+  this.hasMany('members', { className: 'Character' });
 }).call(Position.prototype);

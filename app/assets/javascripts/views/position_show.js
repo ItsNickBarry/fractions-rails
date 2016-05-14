@@ -7,7 +7,6 @@ Fractions.Views.PositionShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    this.characters = this.model.characters();
     this.listenTo(this.model, 'sync', this.render);
 
     this.addSubviewForCharacters();
@@ -24,7 +23,7 @@ Fractions.Views.PositionShow = Backbone.CompositeView.extend({
 
   addSubviewForCharacters: function () {
     var view = new Fractions.Views.List({
-      collection: this.characters
+      collection: this.model.members()
     });
     this.addSubview('#characters-list', view);
   },

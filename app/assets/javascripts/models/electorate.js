@@ -11,5 +11,5 @@ var Electorate = Fractions.Models.Electorate = Backbone.ShallowNestedModel.exten
 
 (function () {
   this.belongsTo('fraction');
-  this.hasMany('characters');
+  this.hasMany('members', { className: 'Position' });
 }).call(Electorate.prototype);

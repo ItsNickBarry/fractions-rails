@@ -1,16 +1,10 @@
 Fractions.Views.ElectorateShow = Backbone.CompositeView.extend({
   template: JST['electorate_show'],
-  className: 'fractions-object show electorate',
-
-  events: {
-
-  },
 
   initialize: function () {
-    this.characters = this.model.characters();
     this.listenTo(this.model, 'sync', this.render);
 
-    this.addSubviewForCharacters();
+    this.addSubviewForPositions();
   },
 
   render: function () {
@@ -20,10 +14,10 @@ Fractions.Views.ElectorateShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  addSubviewForCharacters: function () {
+  addSubviewForPositions: function () {
     var view = new Fractions.Views.List({
-      collection: this.characters
+      collection: this.model.members()
     });
-    this.addSubview('#characters-list', view);
+    this.addSubview('#positions-list', view);
   },
 });

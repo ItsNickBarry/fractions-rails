@@ -1,8 +1,7 @@
-json.id @position.id
-json.name @position.name
+json.extract! @position, :id, :name
 
-json.characters @position.characters do |character|
-  json.extract! character, :id, :name
+json.members @position.members do |member|
+  json.extract! member, :id, :name
 end
 
 json.fraction do
