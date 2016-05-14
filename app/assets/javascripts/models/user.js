@@ -1,4 +1,4 @@
-Fractions.Models.User = Backbone.Model.extend(
+var User = Fractions.Models.User = Backbone.Model.extend(
   Fractions.Concerns.Associable
 ).extend(
   Fractions.Concerns.Routable
@@ -7,8 +7,8 @@ Fractions.Models.User = Backbone.Model.extend(
   class: 'User',
   urlFragmentRoot: '/users',
   urlRoot: '/api/users',
-
-  initialize: function () {
-    this.hasMany('characters');
-  },
 });
+
+(function () {
+  this.hasMany('characters');
+}).call(User.prototype);

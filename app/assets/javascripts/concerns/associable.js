@@ -38,13 +38,15 @@ Fractions.Concerns.Associable = {
 
   parse: function (response) {
     _.each(this._associations(), function (options, name) {
-      var polymorphic_type;
-      if (options.polymorphic) {
-        polymorphic_type = response[name + '_type'];
-        delete response[name + '_type'];
+      if (response[options.responseIndex]) {
+        var polymorphic_type;
+        if (options.polymorphic) {
+          polymorphic_type = response[name + '_type'];
+          delete response[name + '_type'];
+        }
+        this[name](polymorphic_type).set(response[options.responseIndex], { parse: true });
+        delete response[options.responseIndex];
       }
-      this[name](polymorphic_type).set(response[options.responseIndex], { parse: true });
-      delete response[options.responseIndex];
     }.bind(this));
 
     return response;
