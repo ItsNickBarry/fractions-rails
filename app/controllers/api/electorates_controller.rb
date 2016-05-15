@@ -3,7 +3,7 @@ class Api::ElectoratesController < ApplicationController
   before_action :find_or_initialize_electorate, except: [:create, :index]
 
   def create
-    @fraction = Fraction.find(electorate_params[:fraction_id])
+    @fraction = Fraction.find(params[:fraction_id])
     @electorate = @fraction.electorates.new(electorate_params)
 
     unless @fraction.authorizes? current_character, :execute, :electorate_create
@@ -25,7 +25,7 @@ class Api::ElectoratesController < ApplicationController
   private
 
     def electorate_params
-      params.require(:electorate).permit(:name, :fraction_id)
+      params.require(:electorate).permit(:name)
     end
 
     def find_or_initialize_electorate

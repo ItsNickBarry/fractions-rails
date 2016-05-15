@@ -25,7 +25,7 @@ class Api::RegionsController < ApplicationController
   private
 
     def region_params
-      params.require(:region).permit(:name, :fraction_id)
+      params.require(:region).permit(:name)
     end
 
     def find_or_initialize_region

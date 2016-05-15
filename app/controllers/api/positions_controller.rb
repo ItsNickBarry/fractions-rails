@@ -3,7 +3,7 @@ class Api::PositionsController < ApplicationController
   before_action :find_or_initialize_position, except: [:create, :index]
 
   def create
-    @fraction = Fraction.find(position_params[:fraction_id])
+    @fraction = Fraction.find(params[:fraction_id])
     @position = @fraction.positions.new(position_params)
 
     unless @fraction.authorizes? current_character, :execute, :position_create
@@ -25,7 +25,7 @@ class Api::PositionsController < ApplicationController
   private
 
     def position_params
-      params.require(:position).permit(:name, :fraction_id)
+      params.require(:position).permit(:name)
     end
 
     def find_or_initialize_position
