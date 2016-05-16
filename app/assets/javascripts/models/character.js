@@ -1,4 +1,4 @@
-var Character = Fractions.Models.Character = Backbone.Model.extend(
+Fractions.Models.Character = Backbone.Model.extend(
   Fractions.Concerns.Associable
 ).extend(
   Fractions.Concerns.Routable
@@ -13,4 +13,4 @@ var Character = Fractions.Models.Character = Backbone.Model.extend(
   this.belongsTo('user');
   this.hasMany('foundedFractions', { className: 'Fraction' });
   this.hasMany('fractions');
-}).call(Character.prototype);
+}).call(Fractions.Models.Character.prototype);

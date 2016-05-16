@@ -1,4 +1,4 @@
-var Position = Fractions.Models.Position = Backbone.ShallowNestedModel.extend(
+Fractions.Models.Position = Backbone.ShallowNestedModel.extend(
   Fractions.Concerns.Associable
 ).extend(
   Fractions.Concerns.Routable
@@ -12,4 +12,4 @@ var Position = Fractions.Models.Position = Backbone.ShallowNestedModel.extend(
 (function () {
   this.belongsTo('fraction');
   this.hasMany('members', { className: 'Character' });
-}).call(Position.prototype);
+}).call(Fractions.Models.Position.prototype);

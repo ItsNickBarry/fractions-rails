@@ -1,4 +1,4 @@
-var Fraction = Fractions.Models.Fraction = Backbone.Model.extend(
+Fractions.Models.Fraction = Backbone.Model.extend(
   Fractions.Concerns.Associable
 ).extend(
   Fractions.Concerns.Governable
@@ -20,4 +20,4 @@ var Fraction = Fractions.Models.Fraction = Backbone.Model.extend(
   this.hasMany('regions');
   this.hasMany('children', { className: 'Fraction' });
   this.hasMany('foundedFractions', { className: 'Fraction' });
-}).call(Fraction.prototype);
+}).call(Fractions.Models.Fraction.prototype);

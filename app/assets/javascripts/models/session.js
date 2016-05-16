@@ -1,4 +1,4 @@
-var Session = Fractions.Models.Session = Backbone.Model.extend(
+Fractions.Models.Session = Backbone.Model.extend(
   Fractions.Concerns.Associable
 ).extend({
 
@@ -8,4 +8,4 @@ var Session = Fractions.Models.Session = Backbone.Model.extend(
 (function () {
   this.belongsTo('currentCharacter', { className: 'Character' });
   this.belongsTo('currentUser', { className: 'User' });
-}).call(Session.prototype);
+}).call(Fractions.Models.Session.prototype);

@@ -1,4 +1,4 @@
-var Region = Fractions.Models.Region = Backbone.ShallowNestedModel.extend(
+Fractions.Models.Region = Backbone.ShallowNestedModel.extend(
   Fractions.Concerns.Associable
 ).extend(
   Fractions.Concerns.Routable
@@ -11,4 +11,4 @@ var Region = Fractions.Models.Region = Backbone.ShallowNestedModel.extend(
 
 (function () {
   this.belongsTo('fraction');
-}).call(Region.prototype);
+}).call(Fractions.Models.Region.prototype);

@@ -1,4 +1,4 @@
-var Electorate = Fractions.Models.Electorate = Backbone.ShallowNestedModel.extend(
+Fractions.Models.Electorate = Backbone.ShallowNestedModel.extend(
   Fractions.Concerns.Associable
 ).extend(
   Fractions.Concerns.Routable
@@ -12,4 +12,4 @@ var Electorate = Fractions.Models.Electorate = Backbone.ShallowNestedModel.exten
 (function () {
   this.belongsTo('fraction');
   this.hasMany('members', { className: 'Position' });
-}).call(Electorate.prototype);
+}).call(Fractions.Models.Electorate.prototype);

@@ -1,4 +1,4 @@
-var User = Fractions.Models.User = Backbone.Model.extend(
+Fractions.Models.User = Backbone.Model.extend(
   Fractions.Concerns.Associable
 ).extend(
   Fractions.Concerns.Routable
@@ -11,4 +11,4 @@ var User = Fractions.Models.User = Backbone.Model.extend(
 
 (function () {
   this.hasMany('characters');
-}).call(User.prototype);
+}).call(Fractions.Models.User.prototype);
