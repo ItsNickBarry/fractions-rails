@@ -1,3 +1,4 @@
+// use Underscore.string as Underscore plugin
 _.mixin(s.exports());
 
 Backbone.Collection = Backbone.Collection.extend({
@@ -30,7 +31,9 @@ window.Fractions = {
         // start Backbone only after fetching
         new Fractions.Routers.Router({ $pagesEl: $('#main') });
         Backbone.history.start();
-      }
+
+        new Fractions.Views.SessionView({ model: model });
+      },
     });
   }
 };
