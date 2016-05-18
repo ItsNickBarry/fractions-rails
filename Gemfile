@@ -14,25 +14,18 @@ platform :ruby do
   # gem 'libv8', '3.16.14.7'
 end
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'bcrypt', '~> 3.1.7'
-
-gem 'backbone-on-rails'
-gem 'd3-rails'
 gem 'ancestry'
+gem 'bcrypt', '~> 3.1.7'
+gem 'backbone-on-rails'
 gem 'curb'
+gem 'd3-rails'
 
 # TODO don't use WEBrick
 # Use Unicorn as the app server
@@ -42,20 +35,27 @@ gem 'curb'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+  gem 'guard'
+  gem 'guard-minitest'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+end
+
+group :test do
+  gem 'simplecov'
 end
 
 group :development, :test do
   platform :ruby do
     gem 'byebug'
-    # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-    gem 'spring'
     gem 'better_errors'
     gem 'binding_of_caller'
-    gem 'pry-rails'
-    gem 'seed_dump'
+    gem 'capybara'
+    gem 'capybara-webkit'
     gem 'minitest-reporters'
+    gem 'pry-rails'
+    # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+    gem 'spring'
   end
 end
 

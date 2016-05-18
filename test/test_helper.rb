@@ -1,6 +1,10 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'capybara/rails'
+
+require 'simplecov'
+SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true, slow_count: 5)]
 
@@ -25,5 +29,16 @@ class ActiveSupport::TestCase
   def sign_in_as(user, password = 'password')
     username = user.is_a?(User) ? user.username : user
     post session_path, user: { username: username, password: password }
+  end
+end
+
+Capybara.default_driver = :webkit
+
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+
+  def teardown
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
   end
 end
