@@ -29,4 +29,13 @@ class SignUpTest < ActionDispatch::IntegrationTest
     skip 'assert not activated'
     skip 'assert activation instructions page'
   end
+
+  test "signed-in user should not sign up" do
+    sign_in_as users(:notch)
+    follow_redirect!
+    assert_no_difference 'User.count' do
+      post users_path, user: { username: 'itsnickbarry', password: 'password' }
+    end
+    assert_response 422
+  end
 end

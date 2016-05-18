@@ -47,8 +47,7 @@ class ApplicationController < ActionController::Base
 
   def must_not_be_signed_in
     if signed_in?
-      # TODO display flash message
-      redirect_to root_url
+      render json: "Must not be signed in", status: 422
     end
   end
 

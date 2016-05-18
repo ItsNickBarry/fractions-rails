@@ -61,4 +61,11 @@ class SignInTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', new_user_url,    count: 0
     assert_select 'a[href=?]', new_session_url, count: 0
   end
+
+  test "signed-in user should not sign in" do
+    sign_in_as @user
+    follow_redirect!
+    sign_in_as @user
+    assert_response 422
+  end
 end
