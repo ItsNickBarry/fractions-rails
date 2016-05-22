@@ -1,8 +1,7 @@
 require 'test_helper'
 
 class FractionActionTest < ActiveSupport::TestCase
-  test "should connect child and parent by mutual agreement" do
-    # TODO ensure correct behavior if the child attempts to connect first
+  test "should connect child to parent by mutual agreement" do
     # https://en.wikipedia.org/wiki/Saatse_Boot
     old_parent = fractions(:росси́я)
     new_parent = fractions(:eesti)
@@ -23,6 +22,32 @@ class FractionActionTest < ActiveSupport::TestCase
     assert_difference 'new_parent.children.count', 1 do
       assert_difference 'FractionConnectionRequest.count', -1 do
         child.parent_connect! new_parent
+        assert_equal new_parent, child.parent
+      end
+    end
+  end
+
+  test "should connect parent to child by mutual agreement" do
+    # https://en.wikipedia.org/wiki/Saatse_Boot
+    old_parent = fractions(:росси́я)
+    new_parent = fractions(:eesti)
+    child = fractions(:saatse_saabas)
+
+    assert_difference 'old_parent.children.count', -1 do
+      old_parent.child_disconnect! child
+      assert_nil child.parent
+    end
+
+    assert_no_difference 'new_parent.children.count' do
+      assert_difference 'FractionConnectionRequest.count', 1 do
+        child.parent_connect! new_parent
+        assert_nil child.parent
+      end
+    end
+
+    assert_difference 'new_parent.children.count', 1 do
+      assert_difference 'FractionConnectionRequest.count', -1 do
+        new_parent.child_connect! child
         assert_equal new_parent, child.parent
       end
     end
