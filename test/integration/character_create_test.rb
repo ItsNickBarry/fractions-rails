@@ -2,51 +2,62 @@ require 'test_helper'
 
 class CharacterCreateTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:carlmanneh)
+    sign_in_as users(:carlmanneh)
   end
 
-  test "submit valid character" do
-    sign_in_as @user
-    assert_difference 'Character.count' do
-      post api_characters_url, character: { name: 'Carl Manneh', gender: 'M' }
-      assert_response 200
+  test "submit valid characters" do
+    click_link 'Account'
+
+    within '#character-form' do
+      fill_in 'character[name]', with: 'Carl Manneh'
+      choose 'M'
+      click_button 'Submit'
     end
-  end
 
-  test "submit character while not signed in" do
-    refute is_signed_in?
-    assert_no_difference 'Character.count' do
-      post api_characters_url, character: { name: 'Carl Manneh', gender: 'M' }
-      assert_response 401
+    within '#characters-list' do
+      assert_text 'Carl Manneh'
     end
-  end
 
-  test "submit character with duplicate name" do
-    sign_in_as @user
-    assert_no_difference 'Character.count' do
-      post api_characters_url, character: { name: characters(:haakon_vii).name, gender: 'M' }
-      assert_response 422
+    within '#character-form' do
+      fill_in 'character[name]', with: 'Karl Manneh'
+      choose 'M'
+      click_button 'Submit'
     end
-  end
 
-  test "submit character with case-insensitive duplicate name" do
-    sign_in_as @user
-    assert_no_difference 'Character.count' do
-      post api_characters_url, character: { name: characters(:haakon_vii).name.swapcase, gender: 'M' }
-      assert_response 422
-    end
-  end
-
-  test "submit multiple characters" do
-    # sign_in_as @user
-    # assert_difference 'Character.count', 1 do
-    #   post api_characters_url, character: { name: 'Carl Manneh', gender: 'M' }
-    #   assert_response 200
-    # end
-    # assert_no_difference 'Character.count' do
-    #   post api_characters_url, character: { name: 'Karl Manneh', gender: 'M' }
-    #   assert_response 422
-    # end
     skip 'should limit number of creatable characters'
+
+    skip 'should display error'
+
+    within '#characters-list' do
+      assert_no_text 'Karl Manneh'
+    end
+  end
+
+  test 'submit characters with duplicate names' do
+    persisted_name = characters(:haakon_vii).name
+
+    click_link 'Account'
+
+    within '#character-form' do
+      fill_in 'character[name]', with: persisted_name
+      choose 'M'
+      click_button 'Submit'
+    end
+
+    within '#characters-list' do
+      assert_no_text persisted_name
+    end
+
+    within '#character-form' do
+      fill_in 'character[name]', with: persisted_name.swapcase
+      choose 'M'
+      click_button 'Submit'
+    end
+
+    within '#characters-list' do
+      assert_no_text persisted_name.swapcase
+    end
+
+    skip 'assert error messages'
   end
 end

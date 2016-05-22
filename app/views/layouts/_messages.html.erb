@@ -1,10 +1,12 @@
-<% flash.each do |name, messages| %>
-  <% messages.each do |message| %>
-    <div>
-      <%= content_tag :div, message, id: "flash-#{name}" %>
-    </div>
+<div id="flash-messages">
+  <% flash.each do |name, messages| %>
+    <% messages.each do |message| %>
+      <div>
+        <%= content_tag :div, message, id: "flash-#{name}" %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 
 <!-- TODO structure doesn't make any sense -->

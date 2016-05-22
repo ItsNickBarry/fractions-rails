@@ -1,41 +1,52 @@
 require 'test_helper'
 
-class SignUpTest < ActionDispatch::IntegrationTest
+class CapybaraSignUpTest < ActionDispatch::IntegrationTest
   test "sign up with invalid credentials" do
-    [
-      { username: 'a' * 17, password: 'password' },
-      { username: 'asdf', password: '' }
-    ].each do |user|
-      assert_no_difference 'User.count' do
-        post users_path, user: user
-      end
-      assert_template 'users/new'
-      refute flash.empty?
-      refute_nil assigns(:user).username
+    visit root_path
+    click_link 'Sign Up'
+
+    within '#flash-messages' do
+      refute_selector 'div'
     end
 
-    get root_path
-    assert flash.empty?
+    within '#user-form' do
+      fill_in 'user[username]', with: 'itsnickbarry'
+      fill_in 'user[password]', with: ''
+      click_button 'Submit'
+    end
+
+    within '#flash-messages' do
+      assert_text 'Password is too short'
+    end
+
+    within '#user-form' do
+      fill_in 'user[username]', with: 'a' * 17
+      fill_in 'user[password]', with: 'password'
+      click_button 'Submit'
+    end
+
+    within '#flash-messages' do
+      assert_text 'Not a Minecraft username'
+    end
+
+    visit root_path
+
+    within '#flash-messages' do
+      refute_selector 'div'
+    end
   end
 
   test "sign up with valid, case-insensitive credentials" do
-    assert_difference 'User.count' do
-      post users_path, user: { username: 'itsnickbarry', password: 'password' }
-    end
-    user = assigns(:user)
+    visit root_path
+    click_link 'Sign Up'
 
-    refute is_signed_in?
+    within '#user-form' do
+      fill_in 'user[username]', with: 'itsnickbarry'
+      fill_in 'user[password]', with: 'password'
+      click_button 'Submit'
+    end
 
     skip 'assert not activated'
     skip 'assert activation instructions page'
-  end
-
-  test "signed-in user should not sign up" do
-    sign_in_as users(:notch)
-    follow_redirect!
-    assert_no_difference 'User.count' do
-      post users_path, user: { username: 'itsnickbarry', password: 'password' }
-    end
-    assert_response 422
   end
 end

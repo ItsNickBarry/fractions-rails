@@ -6,66 +6,80 @@ class SignInTest < ActionDispatch::IntegrationTest
   end
 
   test "sign in with invalid credentials" do
-    sign_in_as(@user, '')
-    refute flash.empty?
-    get root_path
-    assert flash.empty?
+    visit root_path
+    click_link 'Sign In'
+
+    within '#flash-messages' do
+      refute_selector 'div'
+    end
+
+    within '#user-form' do
+      fill_in 'user[username]', with: @user.username
+      fill_in 'user[password]', with: ''
+      click_button 'Submit'
+    end
+
+    within '#flash-messages' do
+      assert_text 'The combination of username and password you have provided is invalid.'
+    end
+
+    visit root_path
+
+    within '#flash-messages' do
+      refute_selector 'div'
+    end
   end
 
   test "sign in with valid credentials and sign out" do
     sign_in_as(@user)
-    follow_redirect!
-    assert is_signed_in?
-
-    delete session_path
-    follow_redirect!
-    assert_template 'static_pages/root'
+    click_link 'Sign Out'
     refute is_signed_in?
   end
 
   test "sign in with case-insensitive username" do
-    sign_in_as(@user.username.downcase)
+    sign_in_as(@user.username.swapcase)
     # do not display a "name has changed" message
-    assert flash.empty?
+    within '#flash-messages' do
+      refute_selector 'div'
+    end
     assert is_signed_in?
   end
 
   test "sign in with changed username" do
-    actual_username = @user.username
+    persisted_username = 'asdf'
+    current_username = @user.username
     # save incorrect username to database, to simulate outdated username
-    @user.update_attribute(:username, 'asdf')
+    @user.update_attribute(:username, persisted_username)
 
-    assert_nil User.find_by(username: actual_username)
-    sign_in_as(actual_username)
-
+    sign_in_as(current_username)
     assert is_signed_in?
-    refute_nil User.find_by(username: actual_username)
-    follow_redirect!
-    refute flash.empty?
+
+    assert_text current_username
+    assert_no_text persisted_username
+
+    within '#flash-messages' do
+      assert_text 'Your username appears to have changed; you are now logged in as'
+    end
   end
 
   test "signed-out user should have 'sign-up' and 'sign-in' links" do
-    refute is_signed_in?
-    get root_path
-    assert_template 'static_pages/root'
-    assert_select 'a[href=?]', session_url,     count: 0
-    assert_select 'a[href=?]', new_user_url,    count: 1
-    assert_select 'a[href=?]', new_session_url, count: 1
+    visit root_path
+    assert page.has_selector? '#sign-up'
+    assert page.has_selector? '#sign-in'
+    assert page.has_no_selector? '#sign-out'
   end
 
   test "signed-in user should have 'sign-out' link" do
     sign_in_as @user
-    follow_redirect!
-    assert_template 'static_pages/root'
-    assert_select 'a[href=?]', session_url,     count: 1
-    assert_select 'a[href=?]', new_user_url,    count: 0
-    assert_select 'a[href=?]', new_session_url, count: 0
+    assert page.has_no_selector? '#sign-up'
+    assert page.has_no_selector? '#sign-in'
+    assert page.has_selector? '#sign-out'
   end
 
-  test "signed-in user should not sign in" do
+  test "sign out" do
     sign_in_as @user
-    follow_redirect!
-    sign_in_as @user
-    assert_response 422
+    assert is_signed_in?
+    click_link 'Sign Out'
+    refute is_signed_in?
   end
 end

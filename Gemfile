@@ -1,19 +1,5 @@
 source 'https://rubygems.org'
 
-platform :jruby do
-  # Use jdbcsqlite3 as the database for Active Record
-  gem 'activerecord-jdbcsqlite3-adapter'
-  # See https://github.com/rails/execjs#readme for more supported runtimes
-  gem 'therubyrhino'
-end
-
-platform :ruby do
-  gem 'sqlite3'
-  # TODO sort out therubyracer problems
-  gem 'therubyracer', '0.12.1'
-  # gem 'libv8', '3.16.14.7'
-end
-
 gem 'rails', '4.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -42,6 +28,11 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'minitest-reporters'
+  gem 'selenium-webdriver'
   gem 'simplecov'
 end
 
@@ -50,13 +41,24 @@ group :development, :test do
     gem 'byebug'
     gem 'better_errors'
     gem 'binding_of_caller'
-    gem 'capybara'
-    gem 'capybara-webkit'
-    gem 'minitest-reporters'
     gem 'pry-rails'
     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
     gem 'spring'
   end
+end
+
+platform :jruby do
+  # Use jdbcsqlite3 as the database for Active Record
+  gem 'activerecord-jdbcsqlite3-adapter'
+  # See https://github.com/rails/execjs#readme for more supported runtimes
+  gem 'therubyrhino'
+end
+
+platform :ruby do
+  gem 'sqlite3'
+  # TODO sort out therubyracer problems
+  gem 'therubyracer', '0.12.1'
+  # gem 'libv8', '3.16.14.7'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
