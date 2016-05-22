@@ -10,6 +10,11 @@
 #  updated_at :datetime         not null
 #
 
+# the founder of fixture Fractions
+gaia:
+  name: Gaia
+  gender: F
+
 elizabeth_ii:
   name: Elizabeth II
   gender: F
@@ -24,6 +29,10 @@ george_de_hevesy:
 
 haakon_vii:
   name: Haakon VII
+  gender: M
+
+james_monroe:
+  name: James Monroe
   gender: M
 
 wernher_von_braun:

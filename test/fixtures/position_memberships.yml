@@ -48,3 +48,7 @@ united_kingdom_monarch_elizabeth_ii:
 united_states_president_barack_obama:
   position: united_states_president
   character: barack_obama
+
+united_states_president_james_monroe:
+  position: united_states_president
+  character: james_monroe

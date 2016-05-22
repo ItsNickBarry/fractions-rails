@@ -17,31 +17,31 @@
 
 sverige: # Sweden
   name: Sverige
-  founder: markus_persson (Character)
+  founder: gaia (Character)
 
 norge: # Norway
   name: Norge
-  founder: jens_bergensten (Character)
+  founder: gaia (Character)
 
 danmark: # Denmark
   name: Danmark
-  founder: carl_manneh (Character)
+  founder: gaia (Character)
 
 suomi: # Finland
   name: Suomi
-  founder: andreas_andersson (Character)
+  founder: gaia (Character)
 
 eesti: # Estonia
   name: Eesti
-  founder: amir_moulavi (Character)
+  founder: gaia (Character)
 
 росси́я: # Russia
   name: Росси́я
-  founder: erik_broes (Character)
+  founder: gaia (Character)
 
 united_kingdom:
   name: United Kingdom
-  founder: nathan_adams (Character)
+  founder: gaia (Character)
 
 united_states:
   name: United States
@@ -49,7 +49,7 @@ united_states:
 
 україна: # Ukraine
   name: Україна
-  founder: brynjólfur_erlingsson (Character)
+  founder: gaia (Character)
 
 # ######## ######## ######## ########
 # second level fractions

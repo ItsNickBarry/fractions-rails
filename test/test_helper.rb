@@ -11,6 +11,10 @@ DatabaseCleaner.strategy = :transaction
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true, slow_count: 5)]
 SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
 
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+end
+
 module FixtureHelpers
   def ancestry_for *labels
     labels.map { |label| ActiveRecord::FixtureSet.identify label }.join('/')
@@ -20,11 +24,18 @@ ActiveRecord::FixtureSet.context_class.include FixtureHelpers
 
 class ActiveSupport::TestCase
   fixtures :all
+end
 
-  def is_signed_in?
-    !!session[:session_token]
-  rescue
-    false
+class ActionController::TestCase
+  def parse response
+    JSON.parse(response.body)
+  end
+
+  def act_as character
+    raise 'Must have current user!' if @current_user.nil?
+    character.update(user: @current_user)
+    @current_user.update(current_character: character)
+    @current_character = character
   end
 
   def sign_in_as(user, password = 'password')
@@ -32,6 +43,13 @@ class ActiveSupport::TestCase
       username = "#{ user }" COLLATE NOCASE
     SQL
     session[:session_token] = user.session_token
+    @current_user = user
+  end
+
+  def is_signed_in?
+    !!session[:session_token]
+  rescue
+    false
   end
 end
 

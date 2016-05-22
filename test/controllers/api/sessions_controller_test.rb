@@ -5,15 +5,15 @@ class Api::SessionsControllerTest < ActionController::TestCase
     sign_in_as users(:notch)
     get :show, format: :json
     assert_response 200
-    response_body = JSON.parse(response.body)
-    refute_nil response_body['current_user']
-    refute_nil response_body['current_character']
+    json = parse response
+    refute_nil json['current_user']
+    refute_nil json['current_character']
   end
 
   test "show while not signed in" do
     get :show, format: :json
     assert_response 200
-    response_body = JSON.parse(response.body)
-    assert response_body.empty?
+    json = parse response
+    assert json.empty?
   end
 end

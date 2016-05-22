@@ -42,8 +42,12 @@ fraction_danmark_danmark_folketing_region_destroy:
   authorizee: danmark_folketing (Electorate)
   authorization_type: region_destroy
 
-
 fraction_united_kingdom_monarch_authorize:
   authorizer: united_kingdom (Fraction)
   authorizee: united_kingdom_monarch (Position)
   authorization_type: authorize
+
+fraction_united_states_fraction_create:
+  authorizer: united_states (Fraction)
+  authorizee: united_states_president (Position)
+  authorization_type: fraction_create
