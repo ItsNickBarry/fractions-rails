@@ -45,20 +45,20 @@ class SignInTest < ActionDispatch::IntegrationTest
     assert is_signed_in?
   end
 
-  test "sign in with changed username" do
-    persisted_username = 'asdf'
-    current_username = @user.username
+  test "sign in with updated username" do
+    outdated_username = 'asdf'
+    updated_username = @user.username
     # save incorrect username to database, to simulate outdated username
-    @user.update_attribute(:username, persisted_username)
+    @user.update_attribute(:username, outdated_username)
 
-    sign_in_as(current_username)
+    sign_in_as(updated_username)
     assert is_signed_in?
 
-    assert_text current_username
-    assert_no_text persisted_username
+    assert_text updated_username
+    assert_no_text outdated_username
 
     within '#flash-messages' do
-      assert_text 'Your username appears to have changed; you are now logged in as'
+      assert_text "Your username appears to have changed; you are now signed in as #{ updated_username }."
     end
   end
 

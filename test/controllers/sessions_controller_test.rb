@@ -30,16 +30,21 @@ class SessionsControllerTest < ActionController::TestCase
     assert is_signed_in?
   end
 
-  test "create with changed username" do
-    actual_username = @user.username
+  test "create with updated username" do
+    outdated_username = 'asdf'
+    updated_username = @user.username
     # save incorrect username to database, to simulate outdated username
-    @user.update_attribute(:username, 'asdf')
+    @user.update_attribute(:username, outdated_username)
 
-    assert_nil User.find_by(username: actual_username)
-    post :create, user: { username: actual_username, password: 'password' }
+    refute_nil User.find_by(username: outdated_username)
+    assert_nil User.find_by(username: updated_username)
 
+    post :create, user: { username: updated_username, password: 'password' }
     assert is_signed_in?
-    refute_nil User.find_by(username: actual_username)
+
+    assert_nil User.find_by(username: outdated_username)
+    refute_nil User.find_by(username: updated_username)
+    
     refute flash.empty?
   end
 

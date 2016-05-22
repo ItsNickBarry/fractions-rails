@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if @user
         if @user.username != response[:username]
           @user.update_attributes(username: response[:username])
-          flash[:notice] = ["Your username appears to have changed; you are now logged in as #{ @user.username }"]
+          flash[:notice] = ["Your username appears to have changed; you are now signed in as #{ @user.username }."]
         end
         sign_in! @user
         redirect_to root_url
