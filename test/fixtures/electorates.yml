@@ -10,17 +10,21 @@
 #
 
 danmark_folketing:
-  name: 'Folketing'
+  name: Folketing
   fraction: danmark
+
+norge_electors_of_norge:
+  name: Electors of Norge
+  fraction: norge
 
 sverige_electors_of_sverige:
   name: Electors of Sverige
   fraction: sverige
 
 united_states_electoral_college:
-  name: 'Electoral College'
+  name: Electoral College
   fraction: united_states
 
 uusimaa_electors_of_uusimaa:
-  name: 'Electors of Uusimaa'
+  name: Electors of Uusimaa
   fraction: uusimaa

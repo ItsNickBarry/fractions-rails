@@ -25,6 +25,10 @@ norge_monarch:
   name: Monarcy
   fraction: norge
 
+norge_people_of_norge:
+  name: People of Norge
+  fraction: norge
+
 oslo_people_of_oslo:
   name: People of Oslo
   fraction: oslo

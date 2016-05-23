@@ -12,42 +12,57 @@
 #  authorization_type :string           not null
 #
 
-fraction_danmark_danmark_folketing_electorate_create:
+fraction_danmark_electorate_danmark_folketing_electorate_create:
   authorizer: danmark (Fraction)
   authorizee: danmark_folketing (Electorate)
   authorization_type: electorate_create
 
-fraction_danmark_danmark_folketing_electorate_destroy:
+fraction_danmark_electorate_danmark_folketing_electorate_destroy:
   authorizer: danmark (Fraction)
   authorizee: danmark_folketing (Electorate)
   authorization_type: electorate_destroy
 
-fraction_danmark_danmark_folketing_position_create:
+fraction_danmark_electorate_danmark_folketing_position_create:
   authorizer: danmark (Fraction)
   authorizee: danmark_folketing (Electorate)
   authorization_type: position_create
 
-fraction_danmark_danmark_folketing_position_destroy:
+fraction_danmark_electorate_danmark_folketing_position_destroy:
   authorizer: danmark (Fraction)
   authorizee: danmark_folketing (Electorate)
   authorization_type: position_destroy
 
-fraction_danmark_danmark_folketing_region_create:
+fraction_danmark_electorate_danmark_folketing_region_create:
   authorizer: danmark (Fraction)
   authorizee: danmark_folketing (Electorate)
   authorization_type: region_create
 
-fraction_danmark_danmark_folketing_region_destroy:
+fraction_danmark_electorate_danmark_folketing_region_destroy:
   authorizer: danmark (Fraction)
   authorizee: danmark_folketing (Electorate)
   authorization_type: region_destroy
 
-fraction_united_kingdom_monarch_authorize:
+fraction_norge_position_norge_monarch_electorate_create:
+  authorizer: norge (Fraction)
+  authorizee: norge_monarch (Position)
+  authorization_type: electorate_create
+
+fraction_norge_position_norge_monarch_position_create:
+  authorizer: norge (Fraction)
+  authorizee: norge_monarch (Position)
+  authorization_type: position_create
+
+fraction_norge_position_norge_monarch_region_create:
+  authorizer: norge (Fraction)
+  authorizee: norge_monarch (Position)
+  authorization_type: region_create
+
+fraction_united_kingdom_position_monarch_authorize:
   authorizer: united_kingdom (Fraction)
   authorizee: united_kingdom_monarch (Position)
   authorization_type: authorize
 
-fraction_united_states_fraction_create:
+fraction_united_states_position_fraction_create:
   authorizer: united_states (Fraction)
   authorizee: united_states_president (Position)
   authorization_type: fraction_create

@@ -7,7 +7,7 @@ class Api::RegionsController < ApplicationController
     @region = @fraction.regions.new(region_params)
 
     unless @fraction.authorizes? current_character, :execute, :region_create
-      render json: "#{ @fraction.name } does not authorize #{ current_character.name } to create regions", status: 422
+      render json: "#{ @fraction.name } does not authorize #{ current_character.name } to create regions", status: 403
       return
     end
 

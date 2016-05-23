@@ -4,11 +4,11 @@ class Api::UsersControllerTest < ActionController::TestCase
   test "show" do
     get :show, id: users(:notch).id, format: :json
     assert_response 200
-    json = parse response
-    refute_nil json['id']
-    refute_nil json['uuid']
-    refute_nil json['username']
+    parse response
+    refute_nil @json['id']
+    refute_nil @json['uuid']
+    refute_nil @json['username']
 
-    refute_nil json['characters']
+    refute_nil @json['characters']
   end
 end

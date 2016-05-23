@@ -9,6 +9,10 @@
 #  updated_at  :datetime         not null
 #
 
+norge_lands_of_norge:
+  name: Lands of Norge
+  fraction: norge
+  
 visby_lands_of_visby:
   name: Lands of Visby
   fraction: visby

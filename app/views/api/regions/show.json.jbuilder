@@ -1,7 +1,7 @@
-json.id @region.id
-json.name @region.name
+json.extract! @region, :id, :name, :created_at
 
 json.fraction do
-  json.id @region.fraction.id
-  json.name @region.fraction.name
+  json.extract! @region.fraction, :id, :name
 end
+
+json.partial! 'api/government_authorizations/current_character_government_authorizations', authorizer: @region

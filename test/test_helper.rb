@@ -28,7 +28,7 @@ end
 
 class ActionController::TestCase
   def parse response
-    JSON.parse(response.body)
+    @json = JSON.parse(response.body)
   end
 
   def act_as character
@@ -44,6 +44,7 @@ class ActionController::TestCase
     SQL
     session[:session_token] = user.session_token
     @current_user = user
+    @current_character = user.current_character
   end
 
   def is_signed_in?

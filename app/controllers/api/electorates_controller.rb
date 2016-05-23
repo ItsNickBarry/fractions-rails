@@ -7,7 +7,7 @@ class Api::ElectoratesController < ApplicationController
     @electorate = @fraction.electorates.new(electorate_params)
 
     unless @fraction.authorizes? current_character, :execute, :electorate_create
-      render json: "#{ @fraction.name } does not authorize #{ current_character.name } to create electorates", status: 422
+      render json: "#{ @fraction.name } does not authorize #{ current_character.name } to create electorates", status: 403
       return
     end
 
