@@ -1,6 +1,6 @@
 class Api::ElectoratesController < ApplicationController
-  before_action :must_be_signed_in, except: [:show, :index]
-  before_action :find_or_initialize_electorate, except: [:create, :index]
+  before_action :must_be_signed_in, only: [:create]
+  before_action :must_have_current_character, only: [:create]
 
   def create
     @fraction = Fraction.find(params[:fraction_id])
@@ -20,15 +20,12 @@ class Api::ElectoratesController < ApplicationController
   end
 
   def show
+    @electorate = Electorate.find(params[:id])
   end
 
   private
 
     def electorate_params
       params.require(:electorate).permit(:name)
-    end
-
-    def find_or_initialize_electorate
-      @electorate = params[:id] ? Electorate.find(params[:id]) : Electorate.new
     end
 end

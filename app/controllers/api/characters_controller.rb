@@ -1,6 +1,5 @@
 class Api::CharactersController < ApplicationController
-  before_action :must_be_signed_in, except: [:show, :index]
-  before_action :find_or_initialize_character, except: [:create, :index]
+  before_action :must_be_signed_in, only: [:create]
 
   def create
     unless current_user.can_create_character?
@@ -17,15 +16,12 @@ class Api::CharactersController < ApplicationController
   end
 
   def show
+    @character = Character.find(params[:id])
   end
 
   private
 
     def character_params
       params.require(:character).permit(:name, :gender)
-    end
-
-    def find_or_initialize_character
-      @character = params[:id] ? Character.find(params[:id]) : Character.new
     end
 end

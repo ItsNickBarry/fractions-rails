@@ -1,6 +1,6 @@
 class Api::RegionsController < ApplicationController
-  before_action :must_be_signed_in, except: [:show, :index]
-  before_action :find_or_initialize_region, except: [:create, :index]
+  before_action :must_be_signed_in, only: [:create]
+  before_action :must_have_current_character, only: [:create]
 
   def create
     @fraction = Fraction.find(params[:fraction_id])
@@ -20,15 +20,12 @@ class Api::RegionsController < ApplicationController
   end
 
   def show
+    @region = Region.find(params[:id])
   end
 
   private
 
     def region_params
       params.require(:region).permit(:name)
-    end
-
-    def find_or_initialize_region
-      @region = params[:id] ? Region.find(params[:id]) : Region.new
     end
 end

@@ -1,5 +1,4 @@
 class Api::PlotAuthorizationsController < ApplicationController
-
   def show
     # TODO rewrite all PlotAuthorization logic in the Java plugin
     @plot_authorization = PlotAuthorization.new(plot_authorization_params)

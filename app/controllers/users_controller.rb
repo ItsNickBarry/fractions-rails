@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :must_not_be_signed_in, only: [:new, :create]
 
   def new

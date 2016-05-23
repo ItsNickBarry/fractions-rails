@@ -5,6 +5,24 @@ class Api::CharactersControllerTest < ActionController::TestCase
     @user = users(:carlmanneh)
   end
 
+  test "show" do
+    character = characters(:amir_moulavi)
+    get :show, id: character.id, format: :json
+    assert_response 200
+
+    parse response
+
+    assert_equal character.id,                       @json['id']
+    assert_equal character.name,                     @json['name']
+    assert_equal character.gender,                   @json['gender']
+
+    assert_equal character.user.id,                  @json['user']['id']
+    assert_equal character.user.username,            @json['user']['username']
+
+    assert_equal character.fractions.length,         @json['fractions'].length
+    assert_equal character.founded_fractions.length, @json['founded_fractions'].length
+  end
+
   test "create" do
     sign_in_as @user
     assert_difference 'Character.count', 1 do
@@ -49,10 +67,5 @@ class Api::CharactersControllerTest < ActionController::TestCase
       post :create, character: { name: characters(:haakon_vii).name.swapcase, gender: 'M' }, format: :json
       assert_response 422
     end
-  end
-
-  test "show" do
-    get :show, id: characters(:amir_moulavi).id, format: :json
-    skip 'json?'
   end
 end

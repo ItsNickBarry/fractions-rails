@@ -1,6 +1,6 @@
 class Api::PositionsController < ApplicationController
-  before_action :must_be_signed_in, except: [:show, :index]
-  before_action :find_or_initialize_position, except: [:create, :index]
+  before_action :must_be_signed_in, only: [:create]
+  before_action :must_have_current_character, only: [:create]
 
   def create
     @fraction = Fraction.find(params[:fraction_id])
@@ -20,15 +20,12 @@ class Api::PositionsController < ApplicationController
   end
 
   def show
+    @position = Position.find(params[:id])
   end
 
   private
 
     def position_params
       params.require(:position).permit(:name)
-    end
-
-    def find_or_initialize_position
-      @position = params[:id] ? Position.find(params[:id]) : Position.new
     end
 end

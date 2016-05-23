@@ -1,7 +1,6 @@
 class Api::FractionsController < ApplicationController
-  before_action :must_be_signed_in, except: [:show, :index]
-  before_action :must_have_current_character, except: [:show, :index]
-  before_action :find_or_initialize_fraction, except: [:create, :index]
+  before_action :must_be_signed_in, only: [:create]
+  before_action :must_have_current_character, only: [:create]
 
   def index
     @fractions = Fraction.roots
@@ -32,6 +31,7 @@ class Api::FractionsController < ApplicationController
   end
 
   def show
+    @fraction = Fraction.find(params[:id])
   end
 
   private
@@ -42,9 +42,5 @@ class Api::FractionsController < ApplicationController
 
     def founder_params
       params.require(:founder).permit(:id)
-    end
-
-    def find_or_initialize_fraction
-      @fraction = params[:id] ? Fraction.find(params[:id]) : Fraction.new
     end
 end

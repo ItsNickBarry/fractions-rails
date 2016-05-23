@@ -1,6 +1,5 @@
 class Api::GovernmentAuthorizationsController < ApplicationController
   before_action :must_be_signed_in
-  before_action :find_or_initialize_government_authorization, except: [:create, :index]
 
   def create
 

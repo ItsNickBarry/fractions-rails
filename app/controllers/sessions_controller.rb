@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   before_action :must_not_be_signed_in, only: [:new, :create]
   before_action :must_be_signed_in, only: [:destroy]
 
