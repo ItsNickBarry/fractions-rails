@@ -13,7 +13,7 @@ class Electorate < ActiveRecord::Base
   include Governable
   validates :fraction, :name, presence: true
   # TODO does order of scope have to match migration?
-  validates :name, uniqueness: { scope: :fraction,
+  validates :name, uniqueness: { scope: :fraction, case_sensitive: false,
     message: ""}
 
   belongs_to :fraction

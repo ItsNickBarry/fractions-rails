@@ -31,8 +31,10 @@ class PositionTest < ActiveSupport::TestCase
     refute @position.valid?
   end
 
-  test "name should be unique within scope of fraction" do
+  test "name should be unique within scope of fraction regardless of case" do
     @position.name = @fraction.positions.first.name
+    refute @position.valid?
+    @position.name.swapcase!
     refute @position.valid?
   end
 end

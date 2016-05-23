@@ -31,8 +31,10 @@ class RegionTest < ActiveSupport::TestCase
     refute @region.valid?
   end
 
-  test "name should be unique within scope of fraction" do
+  test "name should be unique within scope of fraction regardless of case" do
     @region.name = @fraction.regions.first.name
+    refute @region.valid?
+    @region.name.swapcase!
     refute @region.valid?
   end
 end

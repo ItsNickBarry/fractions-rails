@@ -31,8 +31,10 @@ class ElectorateTest < ActiveSupport::TestCase
     refute @electorate.valid?
   end
 
-  test "name should be unique within scope of fraction" do
+  test "name should be unique within scope of fraction regardless of case" do
     @electorate.name = @fraction.electorates.first.name
+    refute @electorate.valid?
+    @electorate.name.swapcase!
     refute @electorate.valid?
   end
 end
