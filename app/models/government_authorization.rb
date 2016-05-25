@@ -13,10 +13,9 @@
 #
 
 class GovernmentAuthorization < ActiveRecord::Base
-  # TODO reference authorization type/name
-  # TODO validate uniqueness in scope of authorizer/authorizee/authorization_type
+  validates :authorization_type, uniqueness: { scope: [:authorizer, :authorizee],
+    message: ""}
   validates :authorizer, :authorizee, :authorization_type, presence: true
-
   validate :authorizer_has_government_authorization_type
 
   belongs_to :authorizer, polymorphic: true
@@ -31,8 +30,8 @@ class GovernmentAuthorization < ActiveRecord::Base
   private
 
     def authorizer_has_government_authorization_type
-      # if authorization_type is nil, invalidation has already occurred
-      return if authorization_type.nil?
+      # if authorization_type or authorzer is nil, invalidation has already occurred
+      return if authorization_type.nil? || authorizer.nil?
       unless authorizer.class.government_authorization_types.include? self.authorization_type.to_sym
         errors.add(:authorization_type, "is not valid for authorizer")
       end

@@ -1,15 +1,16 @@
+require 'simplecov'
+SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 require 'capybara/rails'
 require 'database_cleaner'
-require 'simplecov'
 
 Capybara.default_driver = :webkit
 DatabaseCleaner.strategy = :transaction
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true, slow_count: 5)]
-SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
 
 Capybara::Webkit.configure do |config|
   config.block_unknown_urls
