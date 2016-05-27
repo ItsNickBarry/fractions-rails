@@ -1,6 +1,7 @@
 Fractions.Views.SessionView = Backbone.View.extend({
   initialize: function () {
     this.listenTo(this.model.currentCharacter(), 'change', this.render);
+    this.render();
   },
 
   render: function () {

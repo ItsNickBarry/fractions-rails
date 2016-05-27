@@ -20,14 +20,19 @@ Fractions.Views.FractionsNew = Backbone.View.extend({
     event.preventDefault();
 
     var params = $(event.currentTarget).serializeJSON();
-    params.founder = { id: this.founder ? this.founder.get('id') : null };
+    params.founder = { id: this.founder.class === 'Fraction' ? this.founder.get('id') : null };
     this.collection.create(params, {
       wait: true,
       success: function (model) {
-        if (this.founder) {
-          founder.childFractions().add(model);
+        switch (this.founder.class) {
+          case 'Character':
+            this.founder.fractions().add(model);
+            break;
+          case 'Fraction':
+            this.founder.childFractions().add(model);
+            break;
         }
-      }.bind(this)
+      }.bind(this),
     });
-  }
+  },
 });

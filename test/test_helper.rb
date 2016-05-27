@@ -76,5 +76,10 @@ class ActionDispatch::IntegrationTest
       fill_in 'user[password]', with: password
       click_button 'Submit'
     end
+
+    @current_user = User.where(<<-SQL).first
+      username = "#{ user }" COLLATE NOCASE
+    SQL
+    @current_character = @current_user.current_character if @current_user
   end
 end

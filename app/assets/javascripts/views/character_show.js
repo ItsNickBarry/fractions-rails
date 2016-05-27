@@ -14,7 +14,9 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ character: this.model });
+    var content = this.template({
+      character: this.model,
+    });
     this.$el.html(content);
     this.attachSubviews();
     return this;
@@ -22,21 +24,22 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
 
   addSubviewForFractions: function () {
     var view = new Fractions.Views.List({
-      collection: this.fractions
+      collection: this.fractions,
     });
     this.addSubview('#fractions-list', view);
   },
 
   addSubviewForFoundedFractions: function () {
     var view = new Fractions.Views.List({
-      collection: this.foundedFractions
+      collection: this.foundedFractions,
     });
     this.addSubview('#founded-fractions-list', view);
   },
 
   addSubviewForFoundedFractionsNew: function () {
     var view = new Fractions.Views.FractionsNew({
-      collection: this.foundedFractions
+      collection: this.foundedFractions,
+      founder: this.model,
     });
     this.addSubview('#founded-fractions-new', view);
   },
