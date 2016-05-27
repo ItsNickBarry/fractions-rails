@@ -31,6 +31,8 @@ class CharacterCreateTest < ActionDispatch::IntegrationTest
     within '#characters-list' do
       assert_no_text 'Karl Manneh'
     end
+
+    skip 'should have link to current_user page'
   end
 
   test 'submit characters with duplicate names' do

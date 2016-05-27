@@ -6,10 +6,8 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 require 'capybara/rails'
-require 'database_cleaner'
 
 Capybara.default_driver = :webkit
-DatabaseCleaner.strategy = :transaction
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true, slow_count: 5)]
 
 Capybara::Webkit.configure do |config|
@@ -25,16 +23,16 @@ ActiveRecord::FixtureSet.context_class.include FixtureHelpers
 
 class ActiveSupport::TestCase
   fixtures :all
+
+  def act_as character
+    character.user.update(current_character: character)
+    sign_in_as character.user
+  end
 end
 
 class ActionController::TestCase
   def parse response
     @json = JSON.parse(response.body)
-  end
-
-  def act_as character
-    character.user.update(current_character: character)
-    sign_in_as character.user
   end
 
   def sign_in_as(user, password = 'password')
@@ -58,12 +56,7 @@ class ActionDispatch::IntegrationTest
 
   self.use_transactional_fixtures = false
 
-  def setup
-    DatabaseCleaner.start
-  end
-
   def teardown
-    DatabaseCleaner.clean
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end

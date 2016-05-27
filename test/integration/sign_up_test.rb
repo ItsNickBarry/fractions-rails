@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CapybaraSignUpTest < ActionDispatch::IntegrationTest
+class SignUpTest < ActionDispatch::IntegrationTest
   test "sign up with invalid credentials" do
     visit root_path
     click_link 'Sign Up'

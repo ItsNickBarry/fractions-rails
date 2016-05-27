@@ -30,7 +30,6 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'database_cleaner'
   gem 'minitest-reporters'
   gem 'selenium-webdriver'
   gem 'simplecov'
