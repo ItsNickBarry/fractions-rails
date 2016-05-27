@@ -1,10 +1,5 @@
 Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   template: JST['fraction_show'],
-  className: 'fractions-object show fraction',
-
-  events: {
-
-  },
 
   initialize: function () {
     this.foundedFractions = this.model.foundedFractions();
@@ -14,10 +9,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     this.regions = this.model.regions();
 
     this.listenTo(this.model, 'sync', this.render);
-
-    // TODO add subviews in INITIALIZE for all composite views
     this.addSubviewForFoundedFractionsNew();
-    // this.addSubviewForChildNew();
 
     // create list views for collections
     [

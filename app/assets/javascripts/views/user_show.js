@@ -1,10 +1,5 @@
 Fractions.Views.UserShow = Backbone.CompositeView.extend({
   template: JST['user_show'],
-  className: 'fractions-object show user',
-
-  events: {
-
-  },
 
   initialize: function () {
     this.characters = this.model.characters();

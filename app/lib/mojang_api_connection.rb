@@ -1,7 +1,7 @@
 class MojangApiConnection
 
   def self.profile_given_username(username)
-    Rails.cache.fetch(profile_url(username), expires_in: 5.minutes) do
+    Rails.cache.fetch(profile_url(username.downcase), expires_in: 5.minutes) do
       query_profile_given_username(username)
     end
   end
