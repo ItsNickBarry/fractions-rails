@@ -10,52 +10,66 @@
 #  updated_at :datetime         not null
 #
 
+DEFAULTS: &DEFAULTS
+  user: nashor
+
 # the founder of fixture Fractions
 gaia:
   name: Gaia
   gender: F
+  <<: *DEFAULTS
 
 elizabeth_ii:
   name: Elizabeth II
   gender: F
+  <<: *DEFAULTS
 
 barack_obama:
   name: Barack Obama
   gender: M
+  <<: *DEFAULTS
 
 george_de_hevesy:
   name: George de Hevesy
   gender: M
+  <<: *DEFAULTS
 
 haakon_vii:
   name: Haakon VII
   gender: M
+  <<: *DEFAULTS
 
 james_monroe:
   name: James Monroe
   gender: M
+  <<: *DEFAULTS
 
 wernher_von_braun:
   name: Wernher von Braun
   gender: M
+  <<: *DEFAULTS
 
 
 # Folketing
 pia_adelsteen:
   name: Pia Adelsteen
   gender: F
+  <<: *DEFAULTS
 
 karina_adsbøl:
   name: Karina Adsbøl
   gender: F
+  <<: *DEFAULTS
 
 hans_andersen:
   name: Hans Andersen
   gender: M
+  <<: *DEFAULTS
 
 ida_auken:
   name: Ida Auken
   gender: F
+  <<: *DEFAULTS
 
 # use Mojang staff real names
 # divide into good and evil by team

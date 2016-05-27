@@ -18,6 +18,12 @@
 # http://minecraft.gamepedia.com/Mojang_AB
 # https://namemc.com/cape/cb5dd34bee34018266f7
 
+nashor:
+  username: Nashor
+  uuid: 5d86f9747bd846a18e9be8b994f89ab0
+  password_digest: <%= User.digest('password') %>
+  session_token: <%= User.generate_session_token %>
+
 amir343:
   username: amir343
   uuid: ee531ba1534a47209f692605dbf58a10
