@@ -33,10 +33,8 @@ class ActionController::TestCase
   end
 
   def act_as character
-    raise 'Must have current user!' if @current_user.nil?
-    character.update(user: @current_user)
-    @current_user.update(current_character: character)
-    @current_character = character
+    character.user.update(current_character: character)
+    sign_in_as character.user
   end
 
   def sign_in_as(user, password = 'password')

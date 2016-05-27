@@ -28,7 +28,6 @@ class Api::RegionsControllerTest < ActionController::TestCase
 
   test "create" do
     fraction = fractions(:norge)
-    sign_in_as users(:notch)
     act_as characters(:haakon_vii)
     assert_difference 'fraction.regions.count', 1 do
       assert_difference 'Region.count', 1 do
@@ -41,7 +40,6 @@ class Api::RegionsControllerTest < ActionController::TestCase
 
   test "create duplicate" do
     fraction = fractions(:norge)
-    sign_in_as users(:notch)
     act_as characters(:haakon_vii)
     assert_no_difference 'fraction.regions.count' do
       assert_no_difference 'Region.count' do
@@ -53,7 +51,6 @@ class Api::RegionsControllerTest < ActionController::TestCase
 
   test "create without authorization" do
     fraction = fractions(:norge)
-    sign_in_as users(:notch)
     act_as characters(:elizabeth_ii)
     assert_no_difference 'fraction.regions.count' do
       assert_no_difference 'Region.count' do

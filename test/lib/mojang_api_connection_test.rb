@@ -16,7 +16,8 @@ class MojangApiConnectionTest < ActiveSupport::TestCase
   end
 
   test "profile given username should return errors as strings" do
-    ['a' * 17, 'a' * 3, 'asdf^1234', 'with spaces'].each do |username|
+    # this test will fail if someone decides to register username 'mixmBhW40KZaA8a9'
+    ['a' * 17, 'a' * 3, 'asdf^1234', 'with spaces', 'mixmBhW40KZaA8a9'].each do |username|
       uncache username
       response = MojangApiConnection.profile_given_username(username)
       assert_equal "Not a Minecraft username: #{ username }", response

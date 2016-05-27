@@ -37,7 +37,6 @@ class Api::FractionsControllerTest < ActionController::TestCase
   end
 
   test "show while signed in" do
-    sign_in_as users(:minecraftchick)
     act_as characters(:ida_auken)
     fraction = fractions(:danmark)
     get :show, id: fraction.id, format: :json
@@ -69,7 +68,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
   end
 
   test "create as character" do
-    sign_in_as users(:minecraftchick)
+    act_as characters(:ida_auken)
     assert_difference 'Fraction.count', 1 do
       post :create, fraction: { name: 'Pristina' }, founder: { id: nil }, format: :json
       assert_response 200
@@ -77,7 +76,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
   end
 
   test "create multiple as character" do
-    sign_in_as users(:minecraftchick)
+    act_as characters(:ida_auken)
 
     assert_no_difference 'Fraction.count' do
       post :create, fraction: { name: fractions(:eesti).name }, founder: { id: nil }, format: :json
@@ -100,9 +99,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
   test "create as fraction" do
     # https://en.wikipedia.org/wiki/Liberia#Early_settlement
     fraction = fractions(:united_states)
-    user = users(:minecraftchick)
 
-    sign_in_as user
     act_as characters(:james_monroe)
     # 1822
     assert_difference 'fraction.founded_fractions.count', 1 do
@@ -115,9 +112,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
 
   test "create as fraction without authorization" do
     fraction = fractions(:united_states)
-    user = users(:minecraftchick)
 
-    sign_in_as user
     act_as characters(:haakon_vii)
     assert_no_difference 'fraction.founded_fractions.count' do
       assert_no_difference 'Fraction.count' do

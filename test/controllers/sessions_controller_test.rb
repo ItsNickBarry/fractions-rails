@@ -12,9 +12,17 @@ class SessionsControllerTest < ActionController::TestCase
     refute_nil assigns(:user)
   end
 
-  test "create with invalid credentials" do
+  test "create with invalid username" do
+    post :create, user: { username: '', password: 'password' }
+    refute flash.empty?
+    assert_template :new
+    refute is_signed_in?
+  end
+
+  test "create with invalid password" do
     post :create, user: { username: @user.username, password: '' }
     refute flash.empty?
+    assert_template :new
     refute is_signed_in?
   end
 
@@ -44,7 +52,7 @@ class SessionsControllerTest < ActionController::TestCase
 
     assert_nil User.find_by(username: outdated_username)
     refute_nil User.find_by(username: updated_username)
-    
+
     refute flash.empty?
   end
 
