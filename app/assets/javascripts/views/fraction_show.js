@@ -1,42 +1,51 @@
 Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   template: JST['fraction_show'],
 
+  events: {
+    'click .tab a': 'displayTab'
+  },
+
   initialize: function () {
-    this.foundedFractions = this.model.foundedFractions();
     this.children = this.model.children();
     this.electorates = this.model.electorates();
     this.positions = this.model.positions();
     this.regions = this.model.regions();
 
     this.listenTo(this.model, 'sync', this.render);
-    this.addSubviewForFoundedFractionsNew();
-
-    // create list views for collections
-    [
-      [this.children, '#children-list'],
-      [this.foundedFractions, '#founded-fractions-list'],
-    ].forEach(function (pair) {
-      var view = new Fractions.Views.List({
-        collection: pair[0]
-      });
-      this.addSubview(pair[1], view);
-    }.bind(this))
   },
 
   render: function () {
     var content = this.template({
-      fraction: this.model
+      fraction: this.model,
     });
     this.$el.html(content);
     this.attachSubviews();
     return this;
   },
 
-  addSubviewForFoundedFractionsNew: function () {
-    var view = new Fractions.Views.FractionsNew({
-      collection: this.foundedFractions,
-      founder: this.model
+  displayTab: function (event) {
+    event.preventDefault();
+    $('.tab.selected').removeClass('selected');
+    $(event.target.parentElement.parentElement).addClass('selected');
+
+    var view;
+    switch (event.target.innerHTML) {
+      case 'Information':
+        // TODO fraction information view
+        break;
+      case 'Children':
+      case 'Electorates':
+      case 'Positions':
+      case 'Regions':
+        view = new Fractions.Views.NestedIndex({
+          model: this.model,
+          collection: this.model[event.target.innerHTML.toLowerCase()](),
+        });
+        break;
+    }
+    this.subviews('.tab-content').forEach(function (subview) {
+      subview.remove();
     });
-    this.addSubview('#founded-fractions-new', view);
+    this.addSubview('.tab-content', view);
   },
 });

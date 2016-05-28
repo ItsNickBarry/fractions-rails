@@ -6,8 +6,15 @@ Fractions.Views.NestedIndex = Backbone.CompositeView.extend({
     // TODO make list sortable
     // TODO not just for Fraction components
 
-    this.addSubviewForList(options);
-    this.addSubviewForNestedModelFormContainer(options);
+    this.addSubview(
+      '.list',
+      new Fractions.Views.List(options)
+    );
+
+    this.addSubview(
+      '.form-container',
+      new Fractions.Views.AuthorizableForm(options)
+    );
   },
 
   render: function () {
@@ -19,14 +26,4 @@ Fractions.Views.NestedIndex = Backbone.CompositeView.extend({
     this.attachSubviews();
     return this;
   },
-
-  addSubviewForList: function (options) {
-    var view = new Fractions.Views.List(options);
-    this.addSubview('.list', view);
-  },
-
-  addSubviewForNestedModelFormContainer: function (options) {
-    var view = new Fractions.Views.NestedModelFormContainer(options);
-    this.addSubview('.form-container', view);
-  }
 });

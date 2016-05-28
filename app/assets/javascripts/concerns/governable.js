@@ -1,4 +1,6 @@
 Fractions.Concerns.Governable = {
+  governable: true,
+  
   executable: function (authorization_type) {
     return this._authorizes(
       'executable',

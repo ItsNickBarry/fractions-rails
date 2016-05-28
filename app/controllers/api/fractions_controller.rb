@@ -7,7 +7,7 @@ class Api::FractionsController < ApplicationController
   end
 
   def create
-    @founder = founder_params[:id] ? Fraction.find_by(founder_params) : current_character
+    @founder = founder_params[:id].blank? ? current_character : Fraction.find_by(founder_params)
     @fraction = @founder.founded_fractions.new(fraction_params)
 
     if @founder.is_a? Fraction

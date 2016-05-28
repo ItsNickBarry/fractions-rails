@@ -19,20 +19,17 @@
 
 <div class="row">
   <div class="four columns">
-    <div>
+    <div class="tab">
       <h3><%= fraction.electorates().a('Electorates') %></h3>
     </div>
-    <div>
+    <div class="tab">
       <h3><%= fraction.positions().a('Positions') %></h3>
     </div>
-    <div>
+    <div class="tab">
       <h3><%= fraction.regions().a('Regions') %></h3>
     </div>
-    <div>
+    <div class="tab">
       <h3><%= fraction.children().a('Children') %></h3>
-    </div>
-    <div>
-      <h3><%= fraction.foundedFractions().a('Founded Fractions') %></h3>
     </div>
     <ul>
       <li>population</li>
@@ -44,34 +41,29 @@
     </ul>
   </div>
   <div class="eight columns">
-    <div class="row">
-      <h3>Description</h3>
-      <p>
-        Provident maxime iusto qui maiores impedit. Ipsam accusantium adipisci alias expedita quaerat quae iusto voluptates. Sed placeat delectus consequatur ut id praesentium. Autem at eos et sed officiis alias. Vero dolorem vero minima ut. Expedita consequatur pariatur ab fugit reiciendis vel perferendis
-      </p>
-      <p>
-        Provident maxime iusto qui maiores impedit. Ipsam accusantium adipisci alias expedita quaerat quae iusto voluptates. Sed placeat delectus consequatur ut id praesentium. Autem at eos et sed officiis alias. Vero dolorem vero minima ut. Expedita consequatur pariatur ab fugit reiciendis vel perferendis
-      </p>
-    </div>
-    <div class="row">
-      <h3>Events</h3>
-      <ul>
-        <li>new electorates, positions, regions</li>
-        <li>completed ballots</li>
-        <li>completed wars</li>
-      </ul>
-    </div>
-    <div class="row">
-      <h3>Ballots</h3>
-      <p>
-        A display of all ongoing ballots, with icon indicating whether current character can participate
-      </p>
-    </div>
-    <div class="row">
-      <h3>Wars</h3>
-      <p>
-        A display of all ongoing wars
-      </p>
-    </div>
+    <div class="tab-content"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="four columns">
+    <h3>Events</h3>
+    <ul>
+      <li>new electorates, positions, regions</li>
+      <li>completed ballots</li>
+      <li>completed wars</li>
+    </ul>
+  </div>
+  <div class="four columns">
+    <h3>Ballots</h3>
+    <p>
+      A display of all ongoing ballots, with icon indicating whether current character can participate
+    </p>
+  </div>
+  <div class="four columns">
+    <h3>Wars</h3>
+    <p>
+      A display of all ongoing wars
+    </p>
   </div>
 </div>

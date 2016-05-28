@@ -1,0 +1,14 @@
+<button class="tab expand">+</button>
+<form class="hidden">
+  <h4>New <%= _.titleize(_.singularize(collection.model.prototype.class)) %></h4>
+  <div class="row">
+    <%= formInputs %>
+  </div>
+  <h5>Select Actor</h5>
+  <ul>
+    <%= executable ? '<li>executable</li>' : '' %>
+    <%= callable   ? '<li>callable</li>'   : '' %>
+    <%= votable    ? '<li>votable</li>'    : '' %>
+  </ul>
+  <input class="button-primary" value="Submit" type="submit">
+</form>

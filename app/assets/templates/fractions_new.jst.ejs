@@ -1,8 +1,3 @@
-<h4>New Fraction</h4>
-<form id="fraction-form">
-  <div class="row">
-    <label for="fraction-name-input">Name</label>
-    <input id="fraction-name-input" type="text" name="fraction[name]">
-  </div>
-  <input class="button-primary" value="Submit" type="submit">
-</form>
+<label for="fraction-name-input">Name</label>
+<input id="fraction-name-input" type="text" name="fraction[name]">
+<input type="hidden" name="founder[id]" value="<%= authorizer.class === 'Fraction' ? authorizer.get('id') : null %>">
