@@ -2,7 +2,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   template: JST['fraction_show'],
 
   events: {
-    'click .tab a': 'displayTab'
+    'click .tab a': 'clickTab'
   },
 
   initialize: function () {
@@ -23,29 +23,32 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  displayTab: function (event) {
+  clickTab: function (event) {
     event.preventDefault();
     $('.tab.selected').removeClass('selected');
     $(event.target.parentElement.parentElement).addClass('selected');
 
-    var view;
-    switch (event.target.innerHTML) {
-      case 'Information':
-        // TODO fraction information view
-        break;
-      case 'Children':
-      case 'Electorates':
-      case 'Positions':
-      case 'Regions':
-        view = new Fractions.Views.NestedIndex({
-          model: this.model,
-          collection: this.model[event.target.innerHTML.toLowerCase()](),
-        });
-        break;
-    }
+    var name = event.target.innerHTML.toLowerCase();
+
     this.subviews('.tab-content').forEach(function (subview) {
       subview.remove();
     });
+
+    var view;
+    switch (name) {
+      case 'information':
+        // TODO fraction information view
+        break;
+      case 'children':
+      case 'electorates':
+      case 'positions':
+      case 'regions':
+        view = new Fractions.Views.NestedIndex({
+          model: this.model,
+          collection: this.model[name](),
+        });
+        break;
+    }
     this.addSubview('.tab-content', view);
   },
 });

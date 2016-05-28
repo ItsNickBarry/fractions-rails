@@ -82,4 +82,8 @@ class ActionDispatch::IntegrationTest
     SQL
     @current_character = @current_user.current_character if @current_user
   end
+
+  def path_for object
+    "#/#{ object.class.to_s.downcase.pluralize }/#{ object.id }"
+  end
 end

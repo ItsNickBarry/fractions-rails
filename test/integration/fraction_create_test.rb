@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FractionCreateTest < ActionDispatch::IntegrationTest
   test "found fraction as character" do
-    fraction_name = 'Pristina'
+    fraction_name = 'Svalbard'
     act_as characters(:haakon_vii)
     visit root_path
 
@@ -14,7 +14,6 @@ class FractionCreateTest < ActionDispatch::IntegrationTest
 
     within '#founded-fractions-list' do
       assert_text fraction_name
-
       click_link fraction_name
     end
     assert_text "founded by #{ @current_character.name }"
@@ -40,7 +39,6 @@ class FractionCreateTest < ActionDispatch::IntegrationTest
 
     within '.list' do
       assert_text fraction_name
-
       click_link fraction_name
     end
     assert_text "founded by #{ parent_name }"
