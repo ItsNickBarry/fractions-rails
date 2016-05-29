@@ -41,8 +41,8 @@ Fractions.Concerns.Associable = {
       if (response[options.responseIndex]) {
         var polymorphic_type;
         if (options.polymorphic) {
-          polymorphic_type = response[name + '_type'];
-          delete response[name + '_type'];
+          polymorphic_type = response[name]['type'];
+          delete response[name]['type'];
         }
         this[name](polymorphic_type).set(response[options.responseIndex], { parse: true });
         delete response[options.responseIndex];

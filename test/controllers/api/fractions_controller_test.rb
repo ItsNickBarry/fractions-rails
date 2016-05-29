@@ -18,11 +18,11 @@ class Api::FractionsControllerTest < ActionController::TestCase
     assert_equal fraction.id,                       @json['id']
     assert_equal fraction.name,                     @json['name']
     assert_equal fraction.description,              @json['description']
-    assert_equal fraction.founder_type,             @json['founder_type']
     assert_equal fraction.created_at,               @json['created_at']
 
     assert_equal fraction.founder.id,               @json['founder']['id']
     assert_equal fraction.founder.name,             @json['founder']['name']
+    assert_equal fraction.founder.class.to_s,       @json['founder']['type']
 
     assert_equal fraction.founded_fractions.length, @json['founded_fractions'].length
     assert_equal fraction.children.length,          @json['children'].length
