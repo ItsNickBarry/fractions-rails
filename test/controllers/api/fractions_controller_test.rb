@@ -124,7 +124,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
     end
   end
 
-  test "update description" do
+  test "update" do
     fraction_id = ActiveRecord::FixtureSet.identify(:united_states)
     description = 'Great again?'
 
@@ -136,7 +136,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
     assert_equal description, Fraction.find(fraction_id).description
   end
 
-  test "update description without authorization" do
+  test "update without authorization" do
     fraction_id = ActiveRecord::FixtureSet.identify(:united_states)
     description = 'Great again?'
 
@@ -145,5 +145,16 @@ class Api::FractionsControllerTest < ActionController::TestCase
     patch :update, id: fraction_id, fraction: { description: description }, format: :json
     assert_response 403
     refute_equal description, Fraction.find(fraction_id).description
+  end
+
+  test "update with invalid parameters" do
+    fraction_id = ActiveRecord::FixtureSet.identify(:united_states)
+    name = fractions(:eesti).name
+
+    act_as characters(:barack_obama)
+
+    patch :update, id: fraction_id, fraction: { name: name }, format: :json
+    assert_response 422
+    refute_equal name, Fraction.find(fraction_id).name
   end
 end

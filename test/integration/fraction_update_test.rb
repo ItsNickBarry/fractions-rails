@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FractionCreateTest < ActionDispatch::IntegrationTest
+class FractionUpdateTest < ActionDispatch::IntegrationTest
   test "update fraction description" do
     skip 'update fraction description'
   end

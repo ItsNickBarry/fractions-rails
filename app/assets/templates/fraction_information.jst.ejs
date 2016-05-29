@@ -1,7 +1,7 @@
 <i>
-  <% if (fraction.parent().escape('id')) { %>
+  <% if (fraction.parent().get('id')) { %>
     a fraction of <%= fraction.parent().a(fraction.parent().escape('name')) %>
-    <% if (fraction.parent().escape('id') !== fraction.root().escape('id')) { %>
+    <% if (fraction.parent().get('id') !== fraction.root().get('id')) { %>
      in the realm of <%= fraction.root().a(fraction.root().escape('name')) %>
     <% } %>
   <% } else { %>
@@ -16,7 +16,7 @@
   <% } %>
   <%= fraction.founder().a(fraction.founder().escape('name')) %>
 </i>
-<!-- <%= markdown.toHTML(fraction.escape('description')) %> -->
+
 <div class="fraction-description">
   <%= description %>
 </div>
