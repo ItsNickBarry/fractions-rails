@@ -10,7 +10,7 @@ Fractions.Views.FractionInformation = Backbone.View.extend({
   render: function () {
     var content = this.template({
       fraction: this.model,
-      description: markdown.toHTML(this.model.get('description')),
+      description: markdown.toHTML(this.model.get('description') || ''),
     });
     this.$el.html(content);
     return this;

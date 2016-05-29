@@ -7,7 +7,6 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
-    window.fr = this.model;
   },
 
   render: function () {
