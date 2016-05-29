@@ -2,8 +2,8 @@ Fractions.Routers.Router = Backbone.Router.extend({
   routes: {
     '':                            'root',
     'map':                         'mapShow',
-    ':object/:id':                 'objectShow',
-    'fractions/:id/:nested_index': 'fractionNestedIndex',
+    ':object/:id':                 'modelShow',
+    'fractions/:id/:nested_index': 'fractionCollectionIndex',
   },
 
   initialize: function (options) {
@@ -15,7 +15,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
     this.swapView(view);
   },
 
-  objectShow: function (object, id) {
+  modelShow: function (object, id) {
     var className = _.capitalize(_.camelize(_.singularize(object)));
     var model = new Fractions.Models[className]({ id: id });
     model.fetch({
@@ -32,7 +32,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
     this.swapView(view);
   },
 
-  fractionNestedIndex: function (id, nested_index) {
+  fractionCollectionIndex: function (id, nested_index) {
     var model = new Fractions.Models.Fraction({ id: id });
     model.fetch({
       success: function () {

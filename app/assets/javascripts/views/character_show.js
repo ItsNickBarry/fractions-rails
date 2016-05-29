@@ -8,9 +8,19 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, 'sync', this.render);
 
-    this.addSubviewForFractions();
-    this.addSubviewForFoundedFractions();
-    this.addSubviewForFoundedFractionsNew();
+    this.addSubview('#fractions-list', new Fractions.Views.List({
+      collection: this.fractions,
+    }));
+
+    this.addSubview('#founded-fractions-list', new Fractions.Views.List({
+      collection: this.foundedFractions,
+    }));
+
+    this.addSubview('#founded-fractions-new', new Fractions.Views.AuthorizableForm({
+      collection: this.foundedFractions,
+      model: this.model,
+      subFormTemplate: 'fractions_new'
+    }));
   },
 
   render: function () {
@@ -20,27 +30,5 @@ Fractions.Views.CharacterShow = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     return this;
-  },
-
-  addSubviewForFractions: function () {
-    var view = new Fractions.Views.List({
-      collection: this.fractions,
-    });
-    this.addSubview('#fractions-list', view);
-  },
-
-  addSubviewForFoundedFractions: function () {
-    var view = new Fractions.Views.List({
-      collection: this.foundedFractions,
-    });
-    this.addSubview('#founded-fractions-list', view);
-  },
-
-  addSubviewForFoundedFractionsNew: function () {
-    var view = new Fractions.Views.AuthorizableForm({
-      collection: this.foundedFractions,
-      model: this.model,
-    });
-    this.addSubview('#founded-fractions-new', view);
   },
 });

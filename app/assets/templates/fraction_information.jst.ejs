@@ -1,0 +1,36 @@
+<i>
+  <% if (fraction.parent().escape('id')) { %>
+    a fraction of <%= fraction.parent().a(fraction.parent().escape('name')) %>
+    <% if (fraction.parent().escape('id') !== fraction.root().escape('id')) { %>
+     in the realm of <%= fraction.root().a(fraction.root().escape('name')) %>
+    <% } %>
+  <% } else { %>
+    an independent realm
+  <% } %>
+</i>
+<br>
+<i>
+  founded by
+  <% if (fraction.get('founder_type') === 'Fraction') { %>
+    the fraction
+  <% } %>
+  <%= fraction.founder().a(fraction.founder().escape('name')) %>
+</i>
+<!-- <%= markdown.toHTML(fraction.escape('description')) %> -->
+<div class="fraction-description">
+  <%= description %>
+</div>
+
+<ul>
+  <li>population</li>
+  <li>culture</li>
+  <li>realm size</li>
+  <li>government authorizations</li>
+</ul>
+<button class="edit" type="button">Edit</button>
+<form>
+  <textarea name="fraction[description]" rows="8" cols="40"><%= fraction.escape('description') %></textarea>
+  <br>
+  <button class="preview" type="button">Preview</button>
+  <input class="button-primary" value="Submit" type="submit">
+</form>

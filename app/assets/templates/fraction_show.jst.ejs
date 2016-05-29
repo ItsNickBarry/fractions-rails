@@ -1,24 +1,12 @@
 <div class="row">
   <h1><%= fraction.escape('name') %></h1>
-  <h2>
-    <% if (fraction.parent().escape('id')) { %>
-      a fraction of <%= fraction.parent().a(fraction.parent().escape('name')) %>
-      <% if (fraction.parent().escape('id') !== fraction.root().escape('id')) { %>
-       in the realm of <%= fraction.root().a(fraction.root().escape('name')) %>
-      <% } %>
-    <% } else { %>
-      an independent realm
-    <% } %>
-    founded by
-    <% if (fraction.get('founder_type') === 'Fraction') { %>
-      the fraction
-    <% } %>
-    <%= fraction.founder().a(fraction.founder().escape('name')) %>
-  </h2>
 </div>
 
 <div class="row">
   <div class="four columns">
+    <div class="tab">
+      <h3><a href="#">Information</a></h3>
+    </div>
     <div class="tab">
       <h3><%= fraction.electorates().a('Electorates') %></h3>
     </div>
@@ -31,14 +19,6 @@
     <div class="tab">
       <h3><%= fraction.children().a('Children') %></h3>
     </div>
-    <ul>
-      <li>population</li>
-      <li>culture</li>
-      <li>realm size</li>
-      <li>founded date</li>
-      <li>founder</li>
-      <li>government authorizations</li>
-    </ul>
   </div>
   <div class="eight columns">
     <div class="tab-content"></div>

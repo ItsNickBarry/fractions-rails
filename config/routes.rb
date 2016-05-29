@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     resource :session, only: [:show]
 
     resources :users, only: [:show]
-    
+
     resources :characters, only: [:show, :index, :create], shallow: true do
       resources :fraction_invitations, only: [:show, :index, :destroy]
     end
 
-    resources :fractions, only: [:show, :index, :create], shallow: true do
+    resources :fractions, only: [:show, :index, :create, :update], shallow: true do
       resources :electorates, only: [:show, :index, :create, :destroy]
       resources :positions,   only: [:show, :index, :create, :destroy]
       resources :regions,     only: [:show, :index, :create, :destroy]

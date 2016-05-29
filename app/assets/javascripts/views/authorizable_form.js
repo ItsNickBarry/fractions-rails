@@ -7,23 +7,19 @@ Fractions.Views.AuthorizableForm = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    // this.template = function (options) {
-    //   return JST[_.pluralize(this.collection.model.prototype.class.toLowerCase()) + '_new'](options);
-    // };
+    this.authorizationType = options.authorizationType;
+    this.subFormTemplate = options.subFormTemplate;
   },
 
   render: function () {
-    var noun = this.collection.model.prototype.class.toLowerCase();
-    var authorization_type = noun + '_create';
-
     // TODO separate form for non-governable
     var content = this.template({
       authorizer: this.model,
-      executable: this.model.governable && this.model.executable(authorization_type),
-      callable:   this.model.governable && this.model.callable(authorization_type),
-      votable:    this.model.governable && this.model.votable(authorization_type),
+      executable: this.model.governable && this.model.executable(this.authorizationType),
+      callable:   this.model.governable && this.model.callable(this.authorizationType),
+      votable:    this.model.governable && this.model.votable(this.authorizationType),
       collection: this.collection,
-      formInputs: JST[_.pluralize(noun) + '_new']({
+      formInputs: JST[this.subFormTemplate]({
         authorizer: this.model,
       }),
     });

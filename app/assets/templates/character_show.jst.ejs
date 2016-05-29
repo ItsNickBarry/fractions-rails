@@ -1,9 +1,6 @@
-<h1>Character: <%= character.get("name") %></h1>
+<h1><%= character.get("name") %></h1>
 <div class="user">
-  belongs to:
-  <a href="<%= "#/users/" + character.user().escape("id") %>">
-    <%= character.user().escape("username") %>
-  </a>
+  character of <%= character.user().a(character.user().escape('username')) %>
 </div>
 
 <div id="fractions">

@@ -2,16 +2,12 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
   template: JST['fraction_show'],
 
   events: {
-    'click .tab a': 'clickTab'
+    'click .tab a': 'clickTab',
   },
 
   initialize: function () {
-    this.children = this.model.children();
-    this.electorates = this.model.electorates();
-    this.positions = this.model.positions();
-    this.regions = this.model.regions();
-
     this.listenTo(this.model, 'sync', this.render);
+    window.fr = this.model;
   },
 
   render: function () {
@@ -19,6 +15,10 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
       fraction: this.model,
     });
     this.$el.html(content);
+
+    this.setSubview('.tab-content', new Fractions.Views.FractionInformation({
+      model: this.model,
+    }));
     this.attachSubviews();
     return this;
   },
@@ -30,14 +30,12 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
 
     var name = event.target.innerHTML.toLowerCase();
 
-    this.subviews('.tab-content').forEach(function (subview) {
-      subview.remove();
-    });
-
     var view;
     switch (name) {
       case 'information':
-        // TODO fraction information view
+        view = new Fractions.Views.FractionInformation({
+          model: this.model,
+        });
         break;
       case 'children':
       case 'electorates':
@@ -49,6 +47,6 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
         });
         break;
     }
-    this.addSubview('.tab-content', view);
+    this.setSubview('.tab-content', view);
   },
 });

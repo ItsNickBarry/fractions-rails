@@ -1,4 +1,4 @@
-json.extract! @fraction, :id, :name, :founder_type, :created_at
+json.extract! @fraction, :id, :name, :description, :founder_type, :created_at
 
 unless @fraction.root?
   json.root do

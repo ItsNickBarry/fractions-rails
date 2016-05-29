@@ -1,6 +1,6 @@
 class Api::FractionsController < ApplicationController
-  before_action :must_be_signed_in, only: [:create]
-  before_action :must_have_current_character, only: [:create]
+  before_action :must_be_signed_in, only: [:create, :update]
+  before_action :must_have_current_character, only: [:create, :update]
 
   def index
     @fractions = Fraction.roots
@@ -34,10 +34,19 @@ class Api::FractionsController < ApplicationController
     @fraction = Fraction.find(params[:id])
   end
 
+  def update
+    @fraction = Fraction.find(params[:id])
+    if @fraction.update(fraction_params)
+      render :show
+    else
+      render json: @fraction.errors.full_messages, status: 422
+    end
+  end
+
   private
 
     def fraction_params
-      params.require(:fraction).permit(:name)
+      params.require(:fraction).permit(:name, :description)
     end
 
     def founder_params

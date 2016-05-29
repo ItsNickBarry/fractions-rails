@@ -83,7 +83,7 @@ module.exports = function(str, substr) {
   substr = makeString(substr);
 
   if (str.length === 0 || substr.length === 0) return 0;
-  
+
   return str.split(substr).length - 1;
 };
 
@@ -108,7 +108,7 @@ var makeString = _dereq_('./helper/makeString');
 function getIndent(str) {
   var matches = str.match(/^[\s\\t]*/gm);
   var indent = matches[0].length;
-  
+
   for (var i = 1; i < matches.length; i++) {
     indent = Math.min(matches[i].length, indent);
   }
@@ -210,7 +210,7 @@ s.chars            = _dereq_('./chars');
 s.swapCase         = _dereq_('./swapCase');
 s.escapeHTML       = _dereq_('./escapeHTML');
 s.unescapeHTML     = _dereq_('./unescapeHTML');
-s.splice           = _dereq_('./splice');
+// s.splice           = _dereq_('./splice');
 s.insert           = _dereq_('./insert');
 s.replaceAll       = _dereq_('./replaceAll');
 s.include          = _dereq_('./include');
@@ -469,7 +469,7 @@ module.exports = function levenshtein(str1, str2) {
   str1 = makeString(str1);
   str2 = makeString(str2);
 
-  // Short cut cases  
+  // Short cut cases
   if (str1 === str2) return 0;
   if (!str1 || !str2) return Math.max(str1.length, str2.length);
 
@@ -1101,7 +1101,7 @@ module.exports = function wrap(str, options){
 		current_column = 0;
 
 		while(words.length > 0){
-			
+
 			// if adding a space and the next word would cause this line to be longer than width...
 			if(1 + words[0].length + current_column > width){
 				//start a new line if this line is not already empty
@@ -1116,7 +1116,7 @@ module.exports = function wrap(str, options){
 						while(current_column < width){
 							result += ' ';
 							current_column++;
-						}						
+						}
 					}
 					//start new line
 					result += seperator;
@@ -1142,7 +1142,7 @@ module.exports = function wrap(str, options){
 			while(current_column < width){
 				result += ' ';
 				current_column++;
-			}						
+			}
 		}
 
 		return result;
@@ -1168,9 +1168,9 @@ module.exports = function wrap(str, options){
 			while(index % width > 0){
 				result += ' ';
 				index++;
-			}						
+			}
 		}
-		
+
 		return result;
 	}
 };

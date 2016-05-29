@@ -22,7 +22,7 @@ CREATE UNIQUE INDEX "index_plots_on_world_id_and_x_and_z" ON "plots" ("world_id"
 CREATE INDEX "index_plots_on_x" ON "plots" ("x");
 CREATE INDEX "index_plots_on_z" ON "plots" ("z");
 CREATE TABLE "worlds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
-CREATE TABLE "fractions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "ancestry" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "founder_id" integer NOT NULL, "founder_type" varchar NOT NULL);
+CREATE TABLE "fractions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "ancestry" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "founder_id" integer NOT NULL, "founder_type" varchar NOT NULL, "description" text);
 CREATE INDEX "index_fractions_on_ancestry" ON "fractions" ("ancestry");
 CREATE INDEX "index_fractions_on_founder_type_and_founder_id" ON "fractions" ("founder_type", "founder_id");
 CREATE TABLE "government_authorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "authorizer_id" integer NOT NULL, "authorizer_type" varchar NOT NULL, "authorizee_id" integer NOT NULL, "authorizee_type" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "authorization_type" varchar NOT NULL);
@@ -104,4 +104,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160503015856');
 INSERT INTO schema_migrations (version) VALUES ('20160504032115');
 
 INSERT INTO schema_migrations (version) VALUES ('20160504040629');
+
+INSERT INTO schema_migrations (version) VALUES ('20160528232230');
 

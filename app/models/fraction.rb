@@ -69,6 +69,7 @@ class Fraction < ActiveRecord::Base
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
 
   after_create :setup_defaults
+  after_create :set_description
 
   # TODO authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations_received, as: :authorizee, class_name: 'LandAuthorization', dependent: :destroy
@@ -159,6 +160,10 @@ class Fraction < ActiveRecord::Base
   # end
 
   private
+
+    def set_description
+      self.description = "#{ self.name } has no description."
+    end
 
     def setup_defaults
       electorate = electorate_create!(name: "Electors of #{ self.name }")

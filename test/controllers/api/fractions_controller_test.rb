@@ -17,6 +17,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
 
     assert_equal fraction.id,                       @json['id']
     assert_equal fraction.name,                     @json['name']
+    assert_equal fraction.description,              @json['description']
     assert_equal fraction.founder_type,             @json['founder_type']
     assert_equal fraction.created_at,               @json['created_at']
 
@@ -106,6 +107,7 @@ class Api::FractionsControllerTest < ActionController::TestCase
       assert_difference 'Fraction.count', 1 do
         post :create, fraction: { name: 'Liberia' }, founder: { id: fraction.id }, format: :json
         assert_response 200
+        assert_template :show
       end
     end
   end
@@ -120,5 +122,28 @@ class Api::FractionsControllerTest < ActionController::TestCase
         assert_response 403
       end
     end
+  end
+
+  test "update description" do
+    fraction_id = ActiveRecord::FixtureSet.identify(:united_states)
+    description = 'Great again?'
+
+    act_as characters(:barack_obama)
+
+    patch :update, id: fraction_id, fraction: { description: description }, format: :json
+    assert_response 200
+    assert_template :show
+    assert_equal description, Fraction.find(fraction_id).description
+  end
+
+  test "update description without authorization" do
+    fraction_id = ActiveRecord::FixtureSet.identify(:united_states)
+    description = 'Great again?'
+
+    act_as characters(:ida_auken)
+
+    patch :update, id: fraction_id, fraction: { description: description }, format: :json
+    assert_response 403
+    refute_equal description, Fraction.find(fraction_id).description
   end
 end

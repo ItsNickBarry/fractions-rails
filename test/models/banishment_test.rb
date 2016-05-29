@@ -53,17 +53,16 @@ class BanishmentTest < ActiveSupport::TestCase
   end
 
   test "should remove character from positions in fraction and descendants" do
-    descendant_fraction = fractions(:akershus)
     refute_nil @fraction.characters.find_by name: @character.name
-    refute_nil descendant_fraction.characters.find_by name: @character.name
+    assert @fraction.children.any? { |child| child.characters.find_by name: @character.name }
     @banishment.save!
     assert_nil @fraction.characters.find_by name: @character.name
-    assert_nil descendant_fraction.characters.find_by name: @character.name
+    refute @fraction.children.any? { |child| child.characters.find_by name: @character.name }
   end
 
   test "should not remove character from positions in ancestor fraction" do
-    parent_fraction = fractions(:norge)
+    refute_nil @fraction.parent.characters.find_by name: @character.name
     @banishment.save!
-    refute_nil parent_fraction.characters.find_by name: @character.name
+    refute_nil @fraction.parent.characters.find_by name: @character.name
   end
 end

@@ -16,7 +16,7 @@ class FractionCreateTest < ActionDispatch::IntegrationTest
       assert_text fraction_name
       click_link fraction_name
     end
-    assert_text "founded by #{ @current_character.name }"
+    assert_text fraction_name
   end
 
   test "found fraction as fraction" do
@@ -41,6 +41,6 @@ class FractionCreateTest < ActionDispatch::IntegrationTest
       assert_text fraction_name
       click_link fraction_name
     end
-    assert_text "founded by #{ parent_name }"
+    assert_text fraction_name
   end
 end
