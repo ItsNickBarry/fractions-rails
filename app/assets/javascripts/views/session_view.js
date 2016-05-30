@@ -5,11 +5,12 @@ Fractions.Views.SessionView = Backbone.View.extend({
   },
 
   render: function () {
-    $('span.current-character-header-link').html(
-      '| ' + this.model.currentCharacter().a(
-        this.model.currentCharacter().escape('name')
-      )
-    );
+    var character = this.model.currentCharacter();
+    if (character.get('id')) {
+      $('span.current-character-header-link').html(
+        '| ' + character.a(character.escape('name'))
+      );
+    }
     return this;
   },
 });

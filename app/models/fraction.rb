@@ -170,9 +170,9 @@ class Fraction < ActiveRecord::Base
       position = position_create!(name: "People of #{ self.name }")
       region = region_create!(name: "Lands of #{ self.name }")
 
-      ElectorateMembership.create electorate: electorate, position: position
+      electorate.memberships.create member: position
       if self.founder.is_a? Character
-        PositionMembership.create position: position, character: founder
+        position.memberships.create member: founder
       end
 
       authorize! position, :region_create

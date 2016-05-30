@@ -11,44 +11,44 @@
 
 akershus_people_of_akershus_haakon_vii:
   position: akershus_people_of_akershus
-  character: haakon_vii
+  member: haakon_vii
 
 copenhagen_residents_george_de_hevesy:
   position: copenhagen_residents
-  character: george_de_hevesy
+  member: george_de_hevesy
 
 danmark_folketing_pia_adelsteen:
   position: danmark_folketing
-  character: pia_adelsteen
+  member: pia_adelsteen
 
 danmark_folketing_karina_adsbøl:
   position: danmark_folketing
-  character: karina_adsbøl
+  member: karina_adsbøl
 
 danmark_folketing_hans_andersen:
   position: danmark_folketing
-  character: hans_andersen
+  member: hans_andersen
 
 danmark_folketing_ida_auken:
   position: danmark_folketing
-  character: ida_auken
+  member: ida_auken
 
 norge_monarch_haakon_vii:
   position: norge_monarch
-  character: haakon_vii
+  member: haakon_vii
 
 oslo_people_of_oslo_haakon_vii:
   position: oslo_people_of_oslo
-  character: haakon_vii
+  member: haakon_vii
 
 united_kingdom_monarch_elizabeth_ii:
   position: united_kingdom_monarch
-  character: elizabeth_ii
+  member: elizabeth_ii
 
 united_states_president_barack_obama:
   position: united_states_president
-  character: barack_obama
+  member: barack_obama
 
 united_states_president_james_monroe:
   position: united_states_president
-  character: james_monroe
+  member: james_monroe

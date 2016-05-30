@@ -44,6 +44,11 @@ james_monroe:
   gender: M
   <<: *DEFAULTS
 
+villy_søvndal:
+  name: Villy Søvndal
+  gender: M
+  <<: *DEFAULTS
+
 wernher_von_braun:
   name: Wernher von Braun
   gender: M

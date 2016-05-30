@@ -15,12 +15,12 @@
 
 danmark_folketing_danmark_folketing:
   electorate: danmark_folketing
-  position: danmark_folketing
+  member: danmark_folketing
 
 sverige_electors_of_sverige_sverige_people_of_sverige:
   electorate: electors_of_sverige
-  position: people_of_sverige
+  member: people_of_sverige
 
 united_states_electoral_college_washington_representatives:
   electorate: united_states_electoral_college
-  position: washington_representatives
+  member: washington_representatives

@@ -10,12 +10,12 @@
 #
 
 class PositionMembership < ActiveRecord::Base
-  validates :character, :position, presence: true
+  validates :member, :position, presence: true
   # TODO add message
-  validates :character, uniqueness: { scope: :position,
+  validates :member, uniqueness: { scope: :position,
     message: ""}
 
-  belongs_to :character
+  belongs_to :member, class_name: 'Character', foreign_key: :character_id
   belongs_to :position
 
   has_one :fraction, through: :position

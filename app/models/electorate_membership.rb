@@ -16,12 +16,12 @@
 class ElectorateMembership < ActiveRecord::Base
   # TODO problem: weight of "absolute" memberships
   # TODO dependent destroy
-  validates :position, :electorate, presence: true
+  validates :member, :electorate, presence: true
   # TODO add message
-  validates :position, uniqueness: { scope: :electorate,
+  validates :member, uniqueness: { scope: :electorate,
     message: ""}
 
-  belongs_to :position
+  belongs_to :member, class_name: 'Position', foreign_key: :position_id
   belongs_to :electorate
 
   has_one :fraction, through: :electorate

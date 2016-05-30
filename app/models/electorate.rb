@@ -11,26 +11,12 @@
 
 class Electorate < ActiveRecord::Base
   include Governable
+  include Investable
   validates :fraction, :name, presence: true
-  # TODO does order of scope have to match migration?
   validates :name, uniqueness: { scope: :fraction, case_sensitive: false,
     message: ""}
 
   belongs_to :fraction
 
-  has_many :electorate_memberships, dependent: :destroy
-  has_many :members, through: :electorate_memberships, source: :position
-
-  # TODO differentiate between given/received authorizations
-  # as: :authorizer is in Governable module
   has_many :government_authorizations_received, as: :authorizee, class_name: 'GovernmentAuthorization', dependent: :destroy
-
-  def invest! position
-    # TODO parameters
-    ElectorateMembership.create(electorate: self, position: position)
-  end
-
-  def divest! position
-    ElectorateMembership.find_by(electorate: self, position: position).try(:destroy)
-  end
 end

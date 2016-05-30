@@ -21,6 +21,10 @@ danmark_folketing:
   name: Folketing
   fraction: danmark
 
+florida_representatives:
+  name: Representatives
+  fraction: florida
+
 norge_monarch:
   name: Monarcy
   fraction: norge
