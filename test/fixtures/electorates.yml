@@ -13,6 +13,10 @@ danmark_folketing:
   name: Folketing
   fraction: danmark
 
+eesti_riigikogu:
+  name: Riigikogu
+  fraction: eesti
+
 norge_electors_of_norge:
   name: Electors of Norge
   fraction: norge

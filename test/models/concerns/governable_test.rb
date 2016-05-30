@@ -29,7 +29,7 @@ class GovernableTest < ActiveSupport::TestCase
     governable = fractions(:united_kingdom)
     character = characters(:elizabeth_ii)
 
-    assert governable.authorizes? character, :execute, :authorize
+    assert governable.authorizes? character, :execute, :government_authorization_create
     refute_nil governable.government_executable_characters.find_by name: character.name
   end
 

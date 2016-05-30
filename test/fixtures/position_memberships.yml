@@ -33,6 +33,10 @@ danmark_folketing_ida_auken:
   position: danmark_folketing
   member: ida_auken
 
+eesti_prime_minister_taavi_rõivas:
+  position: eesti_prime_minister
+  member: taavi_rõivas
+
 norge_monarch_haakon_vii:
   position: norge_monarch
   member: haakon_vii

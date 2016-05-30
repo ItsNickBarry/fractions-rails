@@ -21,12 +21,20 @@ danmark_folketing:
   name: Folketing
   fraction: danmark
 
+eesti_prime_miniter:
+  name: Prime Minister
+  fraction: eesti
+
+eesti_riigikogu:
+  name: Riigikogu
+  fraction: eesti
+
 florida_representatives:
   name: Representatives
   fraction: florida
 
 norge_monarch:
-  name: Monarcy
+  name: Monarch
   fraction: norge
 
 norge_people_of_norge:
@@ -44,6 +52,10 @@ stockholm_residents:
 united_kingdom_monarch:
   name: Monarch
   fraction: united_kingdom
+
+united_states_department_of_homeland_security:
+  name: Department of Homeland Security
+  fraction: united_states
 
 united_states_president:
   name: President

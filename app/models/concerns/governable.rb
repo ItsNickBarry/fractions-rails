@@ -114,7 +114,7 @@ module Governable
         Region => [
 
         ]
-      }[self] + [ :authorize, :deauthorize ]
+      }[self] + [ :government_authorization_create, :government_authorization_destroy ]
     end
   end
 end

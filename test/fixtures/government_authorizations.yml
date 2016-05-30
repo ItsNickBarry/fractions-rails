@@ -57,12 +57,22 @@ fraction_norge_position_norge_monarch_region_create:
   authorizee: norge_monarch (Position)
   authorization_type: region_create
 
-fraction_united_kingdom_position_monarch_authorize:
+fraction_united_kingdom_position_united_kingdom_monarch_government_authorization_create:
   authorizer: united_kingdom (Fraction)
   authorizee: united_kingdom_monarch (Position)
-  authorization_type: authorize
+  authorization_type: government_authorization_create
 
-fraction_united_states_position_fraction_create:
+fraction_united_states_position_united_states_president_government_authorization_create:
+  authorizer: united_states (Fraction)
+  authorizee: united_states_president (Position)
+  authorization_type: government_authorization_create
+
+fraction_united_states_position_united_states_president_government_authorization_destroy:
+  authorizer: united_states (Fraction)
+  authorizee: united_states_president (Position)
+  authorization_type: government_authorization_destroy
+
+fraction_united_states_position_united_states_president_fraction_create:
   authorizer: united_states (Fraction)
   authorizee: united_states_president (Position)
   authorization_type: fraction_create

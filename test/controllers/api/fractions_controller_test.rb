@@ -24,11 +24,11 @@ class Api::FractionsControllerTest < ActionController::TestCase
     assert_equal fraction.founder.name,             @json['founder']['name']
     assert_equal fraction.founder.class.to_s,       @json['founder']['type']
 
-    assert_equal fraction.founded_fractions.length, @json['founded_fractions'].length
-    assert_equal fraction.children.length,          @json['children'].length
-    assert_equal fraction.electorates.length,       @json['electorates'].length
-    assert_equal fraction.positions.length,         @json['positions'].length
-    assert_equal fraction.regions.length,           @json['regions'].length
+    assert_equal fraction.founded_fractions.count,  @json['founded_fractions'].length
+    assert_equal fraction.children.count,           @json['children'].length
+    assert_equal fraction.electorates.count,        @json['electorates'].length
+    assert_equal fraction.positions.count,          @json['positions'].length
+    assert_equal fraction.regions.count,            @json['regions'].length
 
     authorizations = @json['current_character_government_authorizations']
 

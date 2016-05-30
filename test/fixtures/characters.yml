@@ -44,6 +44,11 @@ james_monroe:
   gender: M
   <<: *DEFAULTS
 
+taavi_rõivas:
+  name: Taavi Rõivas
+  gender: M
+  <<: *DEFAULTS
+
 villy_søvndal:
   name: Villy Søvndal
   gender: M

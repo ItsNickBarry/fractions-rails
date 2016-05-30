@@ -13,8 +13,6 @@ class Api::SessionsControllerTest < ActionController::TestCase
     assert_equal @current_user.username,  @json['current_user']['username']
     assert_equal @current_character.id,   @json['current_character']['id']
     assert_equal @current_character.name, @json['current_character']['name']
-
-    skip 'assert uuid and gender ?'
   end
 
   test "show while not signed in" do
