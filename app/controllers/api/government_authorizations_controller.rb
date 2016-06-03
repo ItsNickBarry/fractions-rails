@@ -1,10 +1,9 @@
 class Api::GovernmentAuthorizationsController < ApplicationController
   before_action :must_be_signed_in, only: [:create, :destroy]
   before_action :must_have_current_character, only: [:create, :destroy]
+  before_action :find_governable, only: [:index, :create]
 
   def index
-    find_governable
-
     @government_authorizations_given = @governable.government_authorizations_given
     if @governable.is_a?(Electorate) || @governable.is_a?(Position)
       @government_authorizations_received = @governable.government_authorizations_received
@@ -12,10 +11,8 @@ class Api::GovernmentAuthorizationsController < ApplicationController
   end
 
   def create
-    find_governable
-
     unless @governable.authorizes? current_character, :execute, :government_authorization_create
-      render json: "#{ @governable.name } does not authorize #{ current_character.name } to grant authorizations", status: 403
+      render json: ["#{ @governable.name } does not authorize #{ current_character.name } to grant authorizations"], status: 403
       return
     end
 
@@ -36,7 +33,7 @@ class Api::GovernmentAuthorizationsController < ApplicationController
        @government_authorization.destroy
        render json: nil, status: 204
      else
-       render json: "#{ @governable.name } does not authorize #{ current_character.name } to revoke authorizations", status: 403
+       render json: ["#{ @governable.name } does not authorize #{ current_character.name } to revoke authorizations"], status: 403
      end
   end
 
@@ -53,6 +50,8 @@ class Api::GovernmentAuthorizationsController < ApplicationController
       when params[:region_id]
         Region.find(params[:region_id])
       end
+    rescue
+      render json: ["Not found"], status: 404
     end
 
     def government_authorization_params

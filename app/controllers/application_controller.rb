@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
       # TODO display flash message
       # TODO friendly forwarding
       respond_to do |format|
-        format.json { render json: "Must be signed in", status: 401 }
+        format.json { render json: ["Must be signed in"], status: 401 }
         format.html { redirect_to new_session_url }
       end
     end
@@ -40,13 +40,13 @@ class ApplicationController < ActionController::Base
 
   def must_not_be_signed_in
     if signed_in?
-      render json: "Must not be signed in", status: 422
+      render json: ["Must not be signed in"], status: 422
     end
   end
 
   def must_have_current_character
     unless signed_in? && current_user.current_character
-      render json: "Must have current character", status: 403
+      render json: ["Must have current character"], status: 403
     end
   end
 end

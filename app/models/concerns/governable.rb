@@ -22,11 +22,12 @@ module Governable
   end
 
   def authorizations_for (character, authorization_level, authorization_type = nil)
-    authorizee_type = {
-      execute: 'Position',
-      call: 'Electorate',
-      vote: 'Electorate'
-    }[authorization_level] || (raise "Invalid authorization level")
+    authorizee_type = case authorization_level
+      when :execute then 'Position'
+      when :call    then 'Electorate'
+      when :vote    then 'Electorate'
+      else raise "Invalid authorization level"
+    end
 
     replacements = {
       authorization_type:         authorization_type,
