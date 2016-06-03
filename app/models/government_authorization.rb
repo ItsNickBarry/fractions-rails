@@ -13,7 +13,8 @@
 #
 
 class GovernmentAuthorization < ActiveRecord::Base
-  validates :authorization_type, uniqueness: { scope: [:authorizer, :authorizee],
+  validates :authorization_type, uniqueness: {
+    scope: [:authorizer_id, :authorizer_type, :authorizee_id, :authorizee_type],
     message: ""}
   validates :authorizer, :authorizee, :authorization_type, presence: true
   validate :authorizer_has_government_authorization_type

@@ -10,5 +10,15 @@
     <%= callable   ? '<li>callable</li>'   : '' %>
     <%= votable    ? '<li>votable</li>'    : '' %>
   </ul>
+  <% if (executable && callable) { %>
+    <select class="authorizee-type" name="authorizee-type">
+      <option value="position">Position</option>
+      <option value="electorate">Electorate</option>
+    </select>
+  <% } else if (executable) { %>
+    <i>Position:</i>
+  <% } else if (callable) { %>
+    <i>Electorate:</i>
+  <% } %>
   <input class="button-primary" value="Submit" type="submit">
 </form>

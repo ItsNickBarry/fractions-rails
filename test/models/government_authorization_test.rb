@@ -61,9 +61,9 @@ class GovernmentAuthorizationTest < ActiveSupport::TestCase
 
     duplicate.authorizer = fractions(:eesti)
     assert duplicate.valid?
-    
+
     duplicate = copy @government_authorization
-    duplicate.authorizee = positions(:united_kingdom_monarch)
+    duplicate.authorizee = electorates(:united_states_electoral_college)
     assert duplicate.valid?
 
     duplicate = copy @government_authorization

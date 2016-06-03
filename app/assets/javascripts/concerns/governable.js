@@ -1,25 +1,16 @@
 Fractions.Concerns.Governable = {
   governable: true,
-  
+
   executable: function (authorization_type) {
-    return this._authorizes(
-      'executable',
-      authorization_type
-    );
+    return this._authorizes('executable', authorization_type);
   },
 
   callable: function (authorization_type) {
-    return this._authorizes(
-      'callable',
-      authorization_type
-    );
+    return this._authorizes('callable', authorization_type);
   },
 
   votable: function (authorization_type) {
-    return this._authorizes(
-      'votable',
-      authorization_type
-    );
+    return this._authorizes('votable', authorization_type);
   },
 
   _authorizes: function (authorization_level, authorization_type) {
