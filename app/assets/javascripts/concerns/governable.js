@@ -14,9 +14,7 @@ Fractions.Concerns.Governable = {
   },
 
   _authorizes: function (authorization_level, authorization_type) {
-    var authorizationSet = this.get(
-      'current_character_government_authorizations'
-    );
+    var authorizationSet = this.get('currentCharacterGovernmentAuthorizations');
     return authorizationSet &&
            _.contains(
              authorizationSet[authorization_level],

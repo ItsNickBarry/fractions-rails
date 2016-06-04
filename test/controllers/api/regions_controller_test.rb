@@ -10,12 +10,12 @@ class Api::RegionsControllerTest < ActionController::TestCase
 
     assert_equal region.id,             @json['id']
     assert_equal region.name,           @json['name']
-    assert_equal region.created_at,     @json['created_at']
+    assert_equal region.created_at,     @json['createdAt']
 
     assert_equal region.fraction.id,    @json['fraction']['id']
     assert_equal region.fraction.name,  @json['fraction']['name']
 
-    authorizations = @json['current_character_government_authorizations']
+    authorizations = @json['currentCharacterGovernmentAuthorizations']
 
     assert authorizations['executable'].empty?
     assert authorizations['callable'].empty?

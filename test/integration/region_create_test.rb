@@ -9,9 +9,11 @@ class RegionCreateTest < ActionDispatch::IntegrationTest
 
     click_link 'Regions'
 
-    click_button '+'
-    fill_in 'region[name]', with: region_name
-    click_button 'Submit'
+    within '.tab-content' do
+      click_button '+'
+      fill_in 'region[name]', with: region_name
+      click_button 'Submit'
+    end
 
     within '.list' do
       assert_text region_name

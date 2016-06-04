@@ -7,6 +7,10 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
+
+    this.setSubview('.fraction-information', new Fractions.Views.FractionInformation({
+      model: this.model,
+    }));
   },
 
   render: function () {
@@ -14,10 +18,6 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
       fraction: this.model,
     });
     this.$el.html(content);
-
-    this.setSubview('.tab-content', new Fractions.Views.FractionInformation({
-      model: this.model,
-    }));
     this.attachSubviews();
     return this;
   },
@@ -27,25 +27,10 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
     $('.tab.selected').removeClass('selected');
     $(event.target.parentElement.parentElement).addClass('selected');
 
-    var name = event.target.innerHTML.toLowerCase();
-
-    var view;
-    switch (name) {
-      case 'information':
-        view = new Fractions.Views.FractionInformation({
-          model: this.model,
-        });
-        break;
-      case 'children':
-      case 'electorates':
-      case 'positions':
-      case 'regions':
-        view = new Fractions.Views.NestedIndex({
-          model: this.model,
-          collection: this.model[name](),
-        });
-        break;
-    }
+    var view = new Fractions.Views.NestedIndex({
+      model: this.model,
+      collection: this.model[event.target.innerHTML.toLowerCase()](),
+    });
     this.setSubview('.tab-content', view);
   },
 });

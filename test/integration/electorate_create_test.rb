@@ -9,9 +9,11 @@ class ElectorateCreateTest < ActionDispatch::IntegrationTest
 
     click_link 'Electorates'
 
-    click_button '+'
-    fill_in 'electorate[name]', with: electorate_name
-    click_button 'Submit'
+    within '.tab-content' do
+      click_button '+'
+      fill_in 'electorate[name]', with: electorate_name
+      click_button 'Submit'
+    end
 
     within '.list' do
       assert_text electorate_name

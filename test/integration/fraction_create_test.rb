@@ -33,9 +33,11 @@ class FractionCreateTest < ActionDispatch::IntegrationTest
 
     click_link 'Children'
 
-    click_button '+'
-    fill_in 'fraction[name]', with: fraction_name
-    click_button 'Submit'
+    within '.tab-content' do
+      click_button '+'
+      fill_in 'fraction[name]', with: fraction_name
+      click_button 'Submit'
+    end
 
     within '.list' do
       assert_text fraction_name

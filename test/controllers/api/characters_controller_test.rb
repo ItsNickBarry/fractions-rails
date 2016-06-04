@@ -20,7 +20,7 @@ class Api::CharactersControllerTest < ActionController::TestCase
     assert_equal character.user.username,            @json['user']['username']
 
     assert_equal character.fractions.length,         @json['fractions'].length
-    assert_equal character.founded_fractions.length, @json['founded_fractions'].length
+    assert_equal character.founded_fractions.length, @json['foundedFractions'].length
   end
 
   test "create" do

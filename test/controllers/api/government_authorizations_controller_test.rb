@@ -9,10 +9,10 @@ class Api::GovernmentAuthorizationsControllerTest < ActionController::TestCase
     parse response
 
     assert_equal fraction.government_authorizations_given.count,
-                 @json['government_authorizations_given'].length
+                 @json['governmentAuthorizationsGiven'].length
   end
 
-  test "index should find any governable type" do
+  test "index should find any governable authorizer type" do
     [
       Fraction,
       Electorate,
@@ -20,7 +20,7 @@ class Api::GovernmentAuthorizationsControllerTest < ActionController::TestCase
       Region
     ].each do |type|
       get :index, "#{ type.to_s.downcase }_id" => type.first.id, format: :json
-      assert assigns(:governable).is_a? type
+      assert assigns(:authorizer).is_a? type
       assert_response 200
     end
   end

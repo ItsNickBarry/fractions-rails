@@ -12,7 +12,7 @@ Fractions.Concerns.Associable = {
     };
     this._associations()[association] = {
       polymorphic: options.polymorphic,
-      responseIndex: _.underscored(association),
+      responseIndex: association,
     };
   },
 
@@ -32,7 +32,7 @@ Fractions.Concerns.Associable = {
     };
     this._associations()[association] = {
       polymorphic: options.polymorphic,
-      responseIndex: _.underscored(association),
+      responseIndex: association,
     };
   },
 

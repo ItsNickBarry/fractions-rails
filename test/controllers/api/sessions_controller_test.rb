@@ -6,13 +6,13 @@ class Api::SessionsControllerTest < ActionController::TestCase
     get :show, format: :json
     assert_response 200
     parse response
-    refute_nil @json['current_user']
-    refute_nil @json['current_character']
+    refute_nil @json['currentUser']
+    refute_nil @json['currentCharacter']
 
-    assert_equal @current_user.id,        @json['current_user']['id']
-    assert_equal @current_user.username,  @json['current_user']['username']
-    assert_equal @current_character.id,   @json['current_character']['id']
-    assert_equal @current_character.name, @json['current_character']['name']
+    assert_equal @current_user.id,        @json['currentUser']['id']
+    assert_equal @current_user.username,  @json['currentUser']['username']
+    assert_equal @current_character.id,   @json['currentCharacter']['id']
+    assert_equal @current_character.name, @json['currentCharacter']['name']
   end
 
   test "show while not signed in" do

@@ -9,9 +9,11 @@ class PositionCreateTest < ActionDispatch::IntegrationTest
 
     click_link 'Positions'
 
-    click_button '+'
-    fill_in 'position[name]', with: position_name
-    click_button 'Submit'
+    within '.tab-content' do
+      click_button '+'
+      fill_in 'position[name]', with: position_name
+      click_button 'Submit'
+    end
 
     within '.list' do
       assert_text position_name

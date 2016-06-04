@@ -1,22 +1,22 @@
 class Api::GovernmentAuthorizationsController < ApplicationController
   before_action :must_be_signed_in, only: [:create, :destroy]
   before_action :must_have_current_character, only: [:create, :destroy]
-  before_action :find_governable, only: [:index, :create]
+  before_action :find_authorizer, only: [:index, :create]
 
   def index
-    @government_authorizations_given = @governable.government_authorizations_given
-    if @governable.is_a?(Electorate) || @governable.is_a?(Position)
-      @government_authorizations_received = @governable.government_authorizations_received
+    @government_authorizations_given = @authorizer.government_authorizations_given
+    if @authorizer.is_a?(Electorate) || @authorizer.is_a?(Position)
+      @government_authorizations_received = @authorizer.government_authorizations_received
     end
   end
 
   def create
-    unless @governable.authorizes? current_character, :execute, :government_authorization_create
-      render json: ["#{ @governable.name } does not authorize #{ current_character.name } to grant authorizations"], status: 403
+    unless @authorizer.authorizes? current_character, :execute, :government_authorization_create
+      render json: ["#{ @authorizer.name } does not authorize #{ current_character.name } to grant authorizations"], status: 403
       return
     end
 
-    @government_authorization = @governable.government_authorizations_given.new(
+    @government_authorization = @authorizer.government_authorizations_given.new(
       government_authorization_params
     )
     if @government_authorization.save
@@ -28,19 +28,19 @@ class Api::GovernmentAuthorizationsController < ApplicationController
 
   def destroy
     @government_authorization = GovernmentAuthorization.find(params[:id])
-    @governable = @government_authorization.authorizer
-     if @governable.authorizes? current_character, :execute, :government_authorization_destroy
-       @government_authorization.destroy
-       render json: nil, status: 204
-     else
-       render json: ["#{ @governable.name } does not authorize #{ current_character.name } to revoke authorizations"], status: 403
-     end
+    @authorizer = @government_authorization.authorizer
+    if @authorizer.authorizes? current_character, :execute, :government_authorization_destroy
+      @government_authorization.destroy
+      render json: nil, status: 204
+    else
+      render json: ["#{ @authorizer.name } does not authorize #{ current_character.name } to revoke authorizations"], status: 403
+    end
   end
 
   private
 
-    def find_governable
-      @governable = case
+    def find_authorizer
+      @authorizer = case
       when params[:fraction_id]
         Fraction.find(params[:fraction_id])
       when params[:electorate_id]

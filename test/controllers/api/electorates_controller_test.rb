@@ -10,14 +10,14 @@ class Api::ElectoratesControllerTest < ActionController::TestCase
 
     assert_equal electorate.id,             @json['id']
     assert_equal electorate.name,           @json['name']
-    assert_equal electorate.created_at,     @json['created_at']
+    assert_equal electorate.created_at,     @json['createdAt']
 
     assert_equal electorate.fraction.id,    @json['fraction']['id']
     assert_equal electorate.fraction.name,  @json['fraction']['name']
 
     assert_equal electorate.members.length, @json['members'].length
 
-    authorizations = @json['current_character_government_authorizations']
+    authorizations = @json['currentCharacterGovernmentAuthorizations']
 
     assert authorizations['executable'].empty?
     assert authorizations['callable'].empty?
