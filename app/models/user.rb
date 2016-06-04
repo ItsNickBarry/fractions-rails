@@ -57,8 +57,8 @@ class User < ActiveRecord::Base
   end
 
   def can_create_character?
-    # TODO user create character conditions
-    characters.length < 10
+    last = characters.order(:created_at).last
+    !last || last.created_at < (characters.count * 7).days.ago
   end
 
   def overwrite_username!

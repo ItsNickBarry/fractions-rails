@@ -36,8 +36,8 @@ class Character < ActiveRecord::Base
 
   def can_found_fraction?
     # TODO character found fraction conditions
-    last_founded_fraction = founded_fractions.order(:created_at).first
-    !last_founded_fraction || last_founded_fraction.created_at < 7.days.ago
+    last = founded_fractions.order(:created_at).last
+    !last || last.created_at < (founded_fractions.count * 7).days.ago
   end
 
   def fraction_join! fraction
