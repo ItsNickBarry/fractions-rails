@@ -1,6 +1,4 @@
-# TODO this is not being used
-
-json.array! @government_authorizations.map do |authorization|
+json.government_authorizations_given authorizer.government_authorizations_given do |authorization|
   json.extract! authorization, :authorization_type
   json.authorizee do
     json.extract! authorization.authorizee, :id, :name

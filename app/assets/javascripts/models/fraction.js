@@ -20,4 +20,7 @@ Fractions.Models.Fraction = Backbone.Model.extend(
   this.hasMany('regions');
   this.hasMany('children', { className: 'Fraction' });
   this.hasMany('foundedFractions', { className: 'Fraction' });
+
+  // TODO add governmentAuthorizationsGiven association via Governable concern
+  this.hasMany('governmentAuthorizationsGiven', { className: 'GovernmentAuthorization' });
 }).call(Fractions.Models.Fraction.prototype);

@@ -4,10 +4,7 @@ class Api::GovernmentAuthorizationsController < ApplicationController
   before_action :find_authorizer, only: [:index, :create]
 
   def index
-    @government_authorizations_given = @authorizer.government_authorizations_given
-    if @authorizer.is_a?(Electorate) || @authorizer.is_a?(Position)
-      @government_authorizations_received = @authorizer.government_authorizations_received
-    end
+    @government_authorizations = @authorizer.government_authorizations_given.order :authorization_type
   end
 
   def create

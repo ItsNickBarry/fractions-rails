@@ -14,7 +14,7 @@ Fractions.Views.NestedIndex = Backbone.CompositeView.extend({
       model: this.model,
       collection: this.collection,
       authorizationType: this.collection.model.prototype.class.toLowerCase() + '_create',
-      subFormTemplate: _.pluralize(this.collection.model.prototype.class.toLowerCase()) + '_new',
+      subFormTemplate: _.pluralize(_.underscored(this.collection.model.prototype.class).toLowerCase()) + '_new',
     }));
   },
 

@@ -1,0 +1,13 @@
+<h1>Government Authorizations for <%= authorizer.a(authorizer.escape('name')) %></h1>
+<div class="list">
+  <ul>
+    <% _.each(collection.models, function(model) { %>
+      <li class="list-item">
+      <%= model.escape('authorizationType') %> |
+      <%= model.authorizer().a(model.authorizer().escape('name')) %> |
+      <%= model.authorizee().a(model.authorizee().escape('name')) %>
+        <br>
+      </li>
+    <% }); %>
+  </ul>
+</div>

@@ -1,9 +1,10 @@
 Fractions.Routers.Router = Backbone.Router.extend({
   routes: {
-    '':                            'root',
-    'map':                         'mapShow',
-    ':object/:id':                 'modelShow',
-    'fractions/:id/:nested_index': 'fractionCollectionIndex',
+    '':                                        'root',
+    'map':                                     'mapShow',
+    ':object/:id':                             'modelShow',
+    'fractions/:id/government_authorizations': 'fractionGovernmentAuthorizations',
+    'fractions/:id/:nested_index':             'fractionCollectionIndex',
   },
 
   initialize: function (options) {
@@ -36,10 +37,22 @@ Fractions.Routers.Router = Backbone.Router.extend({
     var model = new Fractions.Models.Fraction({ id: id });
     model.fetch({
       success: function () {
-        var collection = model[_.camelize(nested_index)]();
         var view = new Fractions.Views.NestedIndex({
           model: model,
-          collection: collection,
+          collection: model[_.camelize(nested_index)](),
+        });
+        this.swapView(view);
+      }.bind(this),
+    });
+  },
+
+  fractionGovernmentAuthorizations: function (id) {
+    var model = new Fractions.Models.Fraction({ id: id });
+    model.fetch({
+      success: function () {
+        var view = new Fractions.Views.GovernmentAuthorizationIndex({
+          model: model,
+          collection: model.governmentAuthorizationsGiven(),
         });
         this.swapView(view);
       }.bind(this),

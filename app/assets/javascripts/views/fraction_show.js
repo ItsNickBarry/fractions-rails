@@ -29,7 +29,7 @@ Fractions.Views.FractionShow = Backbone.CompositeView.extend({
 
     var view = new Fractions.Views.NestedIndex({
       model: this.model,
-      collection: this.model[event.target.innerHTML.toLowerCase()](),
+      collection: this.model[_.camelize(event.target.innerHTML.toLowerCase())](),
     });
     this.setSubview('.tab-content', view);
   },

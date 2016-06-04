@@ -37,4 +37,6 @@ json.regions @fraction.regions do |region|
   json.extract! region, :id, :name
 end
 
+json.partial! 'api/government_authorizations/government_authorizations_given', authorizer: @fraction
+
 json.partial! 'api/government_authorizations/current_character_government_authorizations', authorizer: @fraction

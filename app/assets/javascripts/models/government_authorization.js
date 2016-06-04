@@ -10,5 +10,4 @@ Fractions.Models.GovernmentAuthorization = Backbone.Model.extend(
 (function () {
   this.belongsTo('authorizee', { polymorphic: true });
   this.belongsTo('authorizer', { polymorphic: true });
-
 }).call(Fractions.Models.GovernmentAuthorization.prototype);
