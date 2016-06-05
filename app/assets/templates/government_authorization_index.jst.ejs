@@ -1,13 +1,32 @@
-<h1>Government Authorizations for <%= authorizer.a(authorizer.escape('name')) %></h1>
-<div class="list">
-  <ul>
-    <% _.each(collection.models, function(model) { %>
-      <li class="list-item">
-      <%= model.escape('authorizationType') %> |
-      <%= model.authorizer().a(model.authorizer().escape('name')) %> |
-      <%= model.authorizee().a(model.authorizee().escape('name')) %>
-        <br>
-      </li>
-    <% }); %>
-  </ul>
+<h1>Administration of <%= model.a(model.escape('name')) %></h1>
+<h5>TODO</h5>
+<ul>
+  <li>add/remove</li>
+  <li>sort by foreign/domestic authorizee</li>
+  <li>display currentCharacter membership</li>
+  <li>tooltip for each authorization</li>
+  <li>filter by authorizee name</li>
+  <li>...</li>
+</ul>
+
+<div class="form-container"></div>
+
+<div class="row">
+  <div class="eight columns offset-by-four">
+    <input type="text" name="name" value="" placeholder="filter authorizee" style="width:100%;">
+  </div>
 </div>
+
+<div class="row">
+  <div class="four columns">
+    <h3>Authorization</h3>
+  </div>
+  <div class="four columns">
+    <h3>Positions</h3>
+  </div>
+  <div class="four columns">
+    <h3>Electorates</h3>
+  </div>
+</div>
+
+<div class="list"></div>

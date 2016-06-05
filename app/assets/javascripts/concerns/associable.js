@@ -5,8 +5,10 @@ Fractions.Concerns.Associable = {
     var privateName = '_' + association;
     this[association] = function (polymorphic_type) {
       if (!this[privateName]) {
-        options;
-        this[privateName] = new Fractions.Models[polymorphic_type || className]();
+        var Model = Fractions.Models[polymorphic_type || className];
+        if (Model) {
+          this[privateName] = new Model();
+        }
       }
       return this[privateName];
     };
@@ -20,7 +22,7 @@ Fractions.Concerns.Associable = {
     options = options ? options : {};
     var className = options.className || _.capitalize(_.singularize(association));
     var privateName = '_' + association;
-    this[association] = function (polymorphic_type) {
+    this[association] = function () {
       if (!this[privateName]) {
         this[privateName] = new Fractions.Collections.NestedCollection({
           model: Fractions.Models[className],
@@ -31,7 +33,6 @@ Fractions.Concerns.Associable = {
       return this[privateName];
     };
     this._associations()[association] = {
-      polymorphic: options.polymorphic,
       responseIndex: association,
     };
   },
@@ -53,9 +54,6 @@ Fractions.Concerns.Associable = {
   },
 
   _associations: function () {
-    if (typeof this._associationSet === 'undefined') {
-      this._associationSet = {};
-    }
-    return this._associationSet;
+    return this._associationSet || (this._associationSet = {});
   },
 };

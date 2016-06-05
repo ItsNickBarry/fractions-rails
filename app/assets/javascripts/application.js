@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.autocomplete
 //= require jquery.serializejson.min
 //= require underscore
 //= require underscore.inflection

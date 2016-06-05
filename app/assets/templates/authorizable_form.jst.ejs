@@ -1,6 +1,6 @@
 <button class="tab expand">+</button>
 <form class="hidden">
-  <h4>New <%= _.titleize(_.singularize(collection.model.prototype.class)) %></h4>
+  <h4>New <%= _.titleize(_.humanize(collection.model.prototype.class)) %></h4>
   <div class="row">
     <%= formInputs %>
   </div>

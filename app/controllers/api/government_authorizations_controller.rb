@@ -52,6 +52,7 @@ class Api::GovernmentAuthorizationsController < ApplicationController
     end
 
     def government_authorization_params
-      params.require(:government_authorization).permit(:authorizee_id, :authorizee_type, :authorization_type)
+      # TODO do not use authorizee_name
+      params.require(:government_authorization).permit(:authorizee_type, :authorizee_name, :authorization_type)
     end
 end

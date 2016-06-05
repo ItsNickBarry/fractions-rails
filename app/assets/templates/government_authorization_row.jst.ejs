@@ -1,0 +1,23 @@
+<div class="authorization-type row">
+  <div class="four columns">
+    <%= authorizationType %>
+  </div>
+  <div class="four columns">
+    <ul>
+      <% _.each(positions, function (authorizee) { %>
+        <li class="row">
+          <%= authorizee.a(authorizee.escape('name')) %>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+  <div class="four columns">
+    <ul>
+      <% _.each(electorates, function (authorizee) { %>
+        <li class="row">
+          <%= authorizee.a(authorizee.escape('name')) %>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+</div>

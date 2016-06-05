@@ -1,7 +1,6 @@
-Fractions.Models.GovernmentAuthorization = Backbone.Model.extend(
+Fractions.Models.GovernmentAuthorization = Backbone.ShallowNestedModel.extend(
   Fractions.Concerns.Associable
 ).extend({
-
   class: 'GovernmentAuthorization',
   urlFragmentRoot: '/government_authorizations',
   urlRoot: '/api/government_authorizations',

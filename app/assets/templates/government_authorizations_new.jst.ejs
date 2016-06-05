@@ -1,0 +1,17 @@
+<select class="authorization-type" name="government_authorization[authorization_type]">
+  <% _.each(authorizer.governmentAuthorizationTypes(), function (type) { %>
+    <option value="<%= type %>"><%= type %></option>
+  <% }); %>
+</select>
+<select class="authorizee-type" name="government_authorization[authorizee_type]">
+  <option value="Electorate">Electorate</option>
+  <option value="Position">Position</option>
+</select>
+<input id="authorizee-search" type="text" name="government_authorization[authorizee_name]" value="" placeholder="authorizee name">
+<script type="text/javascript">
+  $('#authorizee-search').autocomplete({
+    serviceUrl: '/api/search',
+    dataType: 'json',
+    groupBy: 'category',
+  });
+</script>
