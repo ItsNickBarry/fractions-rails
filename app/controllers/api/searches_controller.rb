@@ -1,7 +1,21 @@
 class Api::SearchesController < ApplicationController
   def index
-    @result = Electorate.joins(:fraction).limit(10).pluck('electorates.name', 'fractions.name') +
-              Position.joins(:fraction).limit(10).pluck('positions.name', 'fractions.name')
-    render :index
+    # TODO cache
+    suggestions = []
+    (params['classes'] || []).each do |class_name|
+      # TODO ask someone if this is a terrible idea
+      query = (params['query'] || '').split('').join('%')
+      results = class_name.constantize.where("name LIKE '%#{ query }%'")
+      suggestions += results.map do |result|
+        {
+          value: result.name,
+          data: {
+            id: result.id,
+            category: class_name.pluralize,
+          }
+        }
+      end
+    end
+    render json: { suggestions: suggestions }
   end
 end
