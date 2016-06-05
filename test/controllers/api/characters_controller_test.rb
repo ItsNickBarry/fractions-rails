@@ -17,7 +17,7 @@ class Api::CharactersControllerTest < ActionController::TestCase
     assert_equal character.gender,                   @json['gender']
 
     assert_equal character.user.id,                  @json['user']['id']
-    assert_equal character.user.username,            @json['user']['username']
+    assert_equal character.user.name,            @json['user']['name']
 
     assert_equal character.fractions.length,         @json['fractions'].length
     assert_equal character.founded_fractions.length, @json['foundedFractions'].length

@@ -14,7 +14,7 @@ require 'test_helper'
 
 class CharacterTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(username: 'ItsNickBarry', password: 'password')
+    @user = User.new(name: 'ItsNickBarry', password: 'password')
     @character = @user.characters.new(name: 'Nick Barry', gender: 'M')
   end
 

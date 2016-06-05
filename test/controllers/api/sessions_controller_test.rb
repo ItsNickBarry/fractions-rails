@@ -10,7 +10,7 @@ class Api::SessionsControllerTest < ActionController::TestCase
     refute_nil @json['currentCharacter']
 
     assert_equal @current_user.id,        @json['currentUser']['id']
-    assert_equal @current_user.username,  @json['currentUser']['username']
+    assert_equal @current_user.name,  @json['currentUser']['name']
     assert_equal @current_character.id,   @json['currentCharacter']['id']
     assert_equal @current_character.name, @json['currentCharacter']['name']
   end

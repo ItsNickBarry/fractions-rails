@@ -37,7 +37,7 @@ class ActionController::TestCase
 
   def sign_in_as(user, password = 'password')
     user.is_a?(User) || (user = User.where(<<-SQL).first)
-      username = "#{ user }" COLLATE NOCASE
+      name = "#{ user }" COLLATE NOCASE
     SQL
     session[:session_token] = user.session_token
     @current_user = user
@@ -67,18 +67,18 @@ class ActionDispatch::IntegrationTest
   end
 
   def sign_in_as(user, password = 'password')
-    user.is_a?(String) || (user = user.username)
+    user.is_a?(String) || (user = user.name)
 
     visit new_session_path
 
     within '#user-form' do
-      fill_in 'user[username]', with: user
+      fill_in 'user[name]', with: user
       fill_in 'user[password]', with: password
       click_button 'Submit'
     end
 
     @current_user = User.where(<<-SQL).first
-      username = "#{ user }" COLLATE NOCASE
+      name = "#{ user }" COLLATE NOCASE
     SQL
     @current_character = @current_user.current_character if @current_user
   end

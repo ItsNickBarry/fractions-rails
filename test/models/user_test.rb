@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                   :integer          not null, primary key
-#  username             :string
+#  name             :string
 #  uuid                 :string           not null
 #  password_digest      :string           not null
 #  session_token        :string           not null
@@ -16,28 +16,28 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    # use username with incorrect case, for case-correction tests
-    @user = User.new(username: 'itsnickbarry', password: 'password')
+    # use name with incorrect case, for case-correction tests
+    @user = User.new(name: 'itsnickbarry', password: 'password')
   end
 
   test "should be valid" do
     assert @user.valid?
   end
 
-  test "username should be present" do
-    @user.username = ''
+  test "name should be present" do
+    @user.name = ''
     refute @user.valid?
   end
 
-  test "username with corrected case should be fetched before validation if uuid is nil" do
+  test "name with corrected case should be fetched before validation if uuid is nil" do
     assert_nil @user.uuid
-    assert_equal 'itsnickbarry', @user.username
+    assert_equal 'itsnickbarry', @user.name
     @user.valid?
-    assert_equal 'ItsNickBarry', @user.username
+    assert_equal 'ItsNickBarry', @user.name
   end
 
-  test "password should not match username" do
-    @user.password = @user.username
+  test "password should not match name" do
+    @user.password = @user.name
     refute @user.valid?
   end
 
@@ -83,13 +83,13 @@ class UserTest < ActiveSupport::TestCase
     refute @user.valid?
   end
 
-  test "valid user should set conflicting usernames equal to uuids" do
+  test "valid user should set conflicting names equal to uuids" do
     conflicting_user = users(:notch)
-    # use case-corrected username; case-unique usernames are not changed
-    conflicting_user.update_attribute(:username, 'ItsNickBarry')
+    # use case-corrected name; case-unique names are not changed
+    conflicting_user.update_attribute(:name, 'ItsNickBarry')
 
     assert @user.valid?
 
-    assert_equal conflicting_user.uuid, User.find(conflicting_user.id).username
+    assert_equal conflicting_user.uuid, User.find(conflicting_user.id).name
   end
 end

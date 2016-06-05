@@ -7,7 +7,7 @@ class Api::UsersControllerTest < ActionController::TestCase
     parse response
     refute_nil @json['id']
     refute_nil @json['uuid']
-    refute_nil @json['username']
+    refute_nil @json['name']
 
     refute_nil @json['characters']
   end

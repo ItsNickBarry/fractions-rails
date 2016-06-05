@@ -12,53 +12,53 @@ class SessionsControllerTest < ActionController::TestCase
     refute_nil assigns(:user)
   end
 
-  test "create with invalid username" do
-    post :create, user: { username: '', password: 'password' }
+  test "create with invalid name" do
+    post :create, user: { name: '', password: 'password' }
     refute flash.empty?
     assert_template :new
     refute is_signed_in?
   end
 
   test "create with invalid password" do
-    post :create, user: { username: @user.username, password: '' }
+    post :create, user: { name: @user.name, password: '' }
     refute flash.empty?
     assert_template :new
     refute is_signed_in?
   end
 
   test "create with valid credentials" do
-    post :create, user: { username: @user.username, password: 'password' }
+    post :create, user: { name: @user.name, password: 'password' }
     assert is_signed_in?
   end
 
-  test "create with case-insensitive username" do
-    sign_in_as(@user.username.swapcase)
+  test "create with case-insensitive name" do
+    sign_in_as(@user.name.swapcase)
     # do not display a "name has changed" message
     assert flash.empty?
     assert is_signed_in?
   end
 
-  test "create with updated username" do
-    outdated_username = 'asdf'
-    updated_username = @user.username
-    # save incorrect username to database, to simulate outdated username
-    @user.update_attribute(:username, outdated_username)
+  test "create with updated name" do
+    outdated_name = 'asdf'
+    updated_name = @user.name
+    # save incorrect name to database, to simulate outdated name
+    @user.update_attribute(:name, outdated_name)
 
-    refute_nil User.find_by(username: outdated_username)
-    assert_nil User.find_by(username: updated_username)
+    refute_nil User.find_by(name: outdated_name)
+    assert_nil User.find_by(name: updated_name)
 
-    post :create, user: { username: updated_username, password: 'password' }
+    post :create, user: { name: updated_name, password: 'password' }
     assert is_signed_in?
 
-    assert_nil User.find_by(username: outdated_username)
-    refute_nil User.find_by(username: updated_username)
+    assert_nil User.find_by(name: outdated_name)
+    refute_nil User.find_by(name: updated_name)
 
     refute flash.empty?
   end
 
   test "create while already signed-in" do
     sign_in_as @user
-    post :create, user: { username: @user.username, password: 'password' }
+    post :create, user: { name: @user.name, password: 'password' }
     assert_response 422
   end
 

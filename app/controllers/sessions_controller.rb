@@ -7,19 +7,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    response = MojangApiConnection.profile_given_username(user_params[:username])
+    response = MojangApiConnection.profile_given_name(user_params[:name])
     if response.is_a? Hash
       @user = User.find_by_credentials(response[:uuid], user_params[:password])
       if @user
-        if @user.username != response[:username]
-          @user.update_attributes(username: response[:username])
-          flash[:notice] = ["Your username appears to have changed; you are now signed in as #{ @user.username }."]
+        if @user.name != response[:name]
+          @user.update_attributes(name: response[:name])
+          flash[:notice] = ["Your name appears to have changed; you are now signed in as #{ @user.name }."]
         end
         sign_in! @user
         redirect_to root_url
       else
         @user = User.new(user_params)
-        flash.now[:errors] = ["The combination of username and password you have provided is invalid."]
+        flash.now[:errors] = ["The combination of name and password you have provided is invalid."]
         render :new
       end
     else
@@ -37,6 +37,6 @@ class SessionsController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:username, :password)
+      params.require(:user).permit(:name, :password)
     end
 end

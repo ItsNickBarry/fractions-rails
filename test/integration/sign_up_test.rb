@@ -10,7 +10,7 @@ class SignUpTest < ActionDispatch::IntegrationTest
     end
 
     within '#user-form' do
-      fill_in 'user[username]', with: 'itsnickbarry'
+      fill_in 'user[name]', with: 'itsnickbarry'
       fill_in 'user[password]', with: ''
       click_button 'Submit'
     end
@@ -20,13 +20,13 @@ class SignUpTest < ActionDispatch::IntegrationTest
     end
 
     within '#user-form' do
-      fill_in 'user[username]', with: 'a' * 17
+      fill_in 'user[name]', with: 'a' * 17
       fill_in 'user[password]', with: 'password'
       click_button 'Submit'
     end
 
     within '#flash-messages' do
-      assert_text 'Not a Minecraft username'
+      assert_text 'Not a Minecraft name'
     end
 
     visit root_path
@@ -41,7 +41,7 @@ class SignUpTest < ActionDispatch::IntegrationTest
     click_link 'Sign Up'
 
     within '#user-form' do
-      fill_in 'user[username]', with: 'itsnickbarry'
+      fill_in 'user[name]', with: 'itsnickbarry'
       fill_in 'user[password]', with: 'password'
       click_button 'Submit'
     end

@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                   :integer          not null, primary key
-#  username             :string
+#  name             :string
 #  uuid                 :string           not null
 #  password_digest      :string           not null
 #  session_token        :string           not null
@@ -14,13 +14,13 @@
 
 class User < ActiveRecord::Base
   after_initialize :ensure_session_token
-  before_validation :ensure_username_and_uuid
+  before_validation :ensure_name_and_uuid
 
-  validates :username, presence: true
+  validates :name, presence: true
   validates :uuid, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
   validate :owns_current_character
-  validate :password_must_not_match_username
+  validate :password_must_not_match_name
 
   has_many :characters
   belongs_to :current_character, class_name: 'Character'
@@ -61,8 +61,8 @@ class User < ActiveRecord::Base
     !last || last.created_at < (characters.count * 7).days.ago
   end
 
-  def overwrite_username!
-    self.update_attributes(username: self.uuid)
+  def overwrite_name!
+    self.update_attributes(name: self.uuid)
   end
 
   private
@@ -71,15 +71,15 @@ class User < ActiveRecord::Base
       self.session_token ||= User.generate_session_token
     end
 
-    def ensure_username_and_uuid
+    def ensure_name_and_uuid
       unless self.persisted?
-        response = MojangApiConnection.profile_given_username(self.username)
+        response = MojangApiConnection.profile_given_name(self.name)
 
         if response.is_a? Hash
-          self.username = response[:username]
+          self.name = response[:name]
           self.uuid = response[:uuid]
 
-          User.find_by(username: self.username).try(:overwrite_username!)
+          User.find_by(name: self.name).try(:overwrite_name!)
         else
           errors.add(:base, response)
         end
@@ -93,9 +93,9 @@ class User < ActiveRecord::Base
       end
     end
 
-    def password_must_not_match_username
-      if self.password && self.password.downcase == self.username.downcase
-        errors.add(:password, "must not match username")
+    def password_must_not_match_name
+      if self.password && self.password.downcase == self.name.downcase
+        errors.add(:password, "must not match name")
       end
     end
 end

@@ -3,7 +3,7 @@ class Api::CharactersController < ApplicationController
 
   def create
     unless current_user.can_create_character?
-      render json: ["#{ current_user.username } cannot create a character"], status: 403
+      render json: ["#{ current_user.name } cannot create a character"], status: 403
       return
     end
 

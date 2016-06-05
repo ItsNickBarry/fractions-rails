@@ -1,7 +1,7 @@
 json.extract! @character, :id, :name, :gender
 
 json.user do
-  json.extract! @character.user, :id, :username
+  json.extract! @character.user, :id, :name
 end
 
 json.fractions @character.fractions do |fraction|

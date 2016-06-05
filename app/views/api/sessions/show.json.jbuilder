@@ -1,6 +1,6 @@
 if signed_in?
   json.current_user do
-    json.extract! @current_user, :id, :username
+    json.extract! @current_user, :id, :name
   end
 
   if current_character

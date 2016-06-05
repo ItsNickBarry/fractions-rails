@@ -1,9 +1,5 @@
 CREATE TABLE "schema_migrations" ("version" varchar NOT NULL);
 CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
-CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "uuid" varchar NOT NULL, "password_digest" varchar NOT NULL, "session_token" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "current_character_id" integer);
-CREATE INDEX "index_users_on_username" ON "users" ("username");
-CREATE UNIQUE INDEX "index_users_on_uuid" ON "users" ("uuid");
-CREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token");
 CREATE TABLE "banishments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "character_id" integer NOT NULL, "fraction_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE UNIQUE INDEX "index_banishments_on_character_id_and_fraction_id" ON "banishments" ("character_id", "fraction_id");
 CREATE INDEX "index_banishments_on_fraction_id" ON "banishments" ("fraction_id");
@@ -53,6 +49,10 @@ CREATE INDEX "index_fraction_connection_requests_on_requestee_id" ON "fraction_c
 CREATE TABLE "fraction_invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "character_id" integer NOT NULL, "fraction_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE UNIQUE INDEX "index_fraction_invitations_on_character_id_and_fraction_id" ON "fraction_invitations" ("character_id", "fraction_id");
 CREATE INDEX "index_fraction_invitations_on_fraction_id" ON "fraction_invitations" ("fraction_id");
+CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "uuid" varchar NOT NULL, "password_digest" varchar NOT NULL, "session_token" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "current_character_id" integer);
+CREATE UNIQUE INDEX "index_users_on_uuid" ON "users" ("uuid");
+CREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token");
+CREATE INDEX "index_users_on_name" ON "users" ("name");
 INSERT INTO schema_migrations (version) VALUES ('20150701014936');
 
 INSERT INTO schema_migrations (version) VALUES ('20150702022821');
@@ -106,4 +106,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160504032115');
 INSERT INTO schema_migrations (version) VALUES ('20160504040629');
 
 INSERT INTO schema_migrations (version) VALUES ('20160528232230');
+
+INSERT INTO schema_migrations (version) VALUES ('20160605101146');
 

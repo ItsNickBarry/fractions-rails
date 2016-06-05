@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                   :integer          not null, primary key
-#  username             :string
+#  name             :string
 #  uuid                 :string           not null
 #  password_digest      :string           not null
 #  session_token        :string           not null
@@ -12,145 +12,145 @@
 #  current_character_id :integer
 #
 
-# use Mojang staff usernames because they're unlikely to change
+# use Mojang staff names because they're unlikely to change
 
 # sort by team
 # http://minecraft.gamepedia.com/Mojang_AB
 # https://namemc.com/cape/cb5dd34bee34018266f7
 
 nashor:
-  username: Nashor
+  name: Nashor
   uuid: 5d86f9747bd846a18e9be8b994f89ab0
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
 
 amir343:
-  username: amir343
+  name: amir343
   uuid: ee531ba1534a47209f692605dbf58a10
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: amir_moulavi
 
 blurpi:
-  username: Blurpi
+  name: Blurpi
   uuid: e0a4a12dda4c40fd80096725ed21bfb1
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: andreas_andersson
 
 bopogamel:
-  username: Bopogamel
+  name: Bopogamel
   uuid: 89893e8f920e40a9947afbfdb93effd5
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: owen_hill
 
 binni:
-  username: Binni
+  name: Binni
   uuid: 17d349da73ff4e6d94de49d64258d39e
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: brynjólfur_erlingsson
 
 c418:
-  username: C418
+  name: C418
   uuid: 0b8b22458018456c945d4282121e1b1e
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: daniel_rosenfeld
 
 carlmanneh:
-  username: carlmanneh
+  name: carlmanneh
   uuid: 3ce72668b8f9497fbfb4809e47365e17
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
 
 carnalizer:
-  username: carnalizer
+  name: carnalizer
   uuid: f96f3d63fc7f46a7964386eb0b3d66cb
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: henrik_pettersson
 
 darngeek:
-  username: darngeek
+  name: darngeek
   uuid: 63b31801739e40579c7a88482c3aacc8
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: daniel_wustenhoff
 
 dinnerbone:
-  username: Dinnerbone
+  name: Dinnerbone
   uuid: 61699b2ed3274a019f1e0ea8c3f06bc6
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: nathan_adams
 
 eldrone:
-  username: eldrone
+  name: eldrone
   uuid: ed4da3aba7e14b44b91322eb38fdae4b
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: jonatan_pöljö
 
 # engst:
-#   username: engst
+#   name: engst
 #   uuid: 6bef7b0487cf40458cd1fe1ef23c427d
 #   password_digest: <%= User.digest('password') %>
 #   session_token: <%= User.generate_session_token %>
 #   current_character: mathias_andersson
 
 frukthamster:
-  username: FruktHamster
+  name: FruktHamster
   uuid: a7ec08830ab449b3acc4cdcf9ab44cf4
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: jakob_porsér
 
 geuder:
-  username: geuder
+  name: geuder
   uuid: 235101390b124101bbcf686fea2e5559
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: patrick_geuder
 
 grumm:
-  username: Grumm
+  name: Grumm
   uuid: e6b5c088068044df9e1b9bf11792291b
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: erik_broes
 
 # hampus:
-#   username: Hampus
+#   name: Hampus
 #   uuid: 4e1256f5c48d4e4b8dadf248108ee2ee
 #   password_digest: <%= User.digest('password') %>
 #   session_token: <%= User.generate_session_token %>
 #   current_character: hampus_nilsson
 
 jeb_:
-  username: jeb_
+  name: jeb_
   uuid: 853c80ef3c3749fdaa49938b674adae6
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: jens_bergensten
 
 minecraftchick:
-  username: MinecraftChick
+  name: MinecraftChick
   uuid: c9b54008fd8047428b238787b5f2401c
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: lydia_winters
 
 notch:
-  username: Notch
+  name: Notch
   uuid: 069a79f444e94726a5befca90e38aaf5
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>
   current_character: markus_persson
 
 xlson:
-  username: xlson
+  name: xlson
   uuid: b9583ca43e64488a9c8c4ab27e482255
   password_digest: <%= User.digest('password') %>
   session_token: <%= User.generate_session_token %>

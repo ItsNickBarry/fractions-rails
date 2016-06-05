@@ -14,13 +14,13 @@ class SignInTest < ActionDispatch::IntegrationTest
     end
 
     within '#user-form' do
-      fill_in 'user[username]', with: @user.username
+      fill_in 'user[name]', with: @user.name
       fill_in 'user[password]', with: ''
       click_button 'Submit'
     end
 
     within '#flash-messages' do
-      assert_text 'The combination of username and password you have provided is invalid.'
+      assert_text 'The combination of name and password you have provided is invalid.'
     end
 
     visit root_path
@@ -36,8 +36,8 @@ class SignInTest < ActionDispatch::IntegrationTest
     refute is_signed_in?
   end
 
-  test "sign in with case-insensitive username" do
-    sign_in_as(@user.username.swapcase)
+  test "sign in with case-insensitive name" do
+    sign_in_as(@user.name.swapcase)
     # do not display a "name has changed" message
     within '#flash-messages' do
       refute_selector 'div'
@@ -45,20 +45,20 @@ class SignInTest < ActionDispatch::IntegrationTest
     assert is_signed_in?
   end
 
-  test "sign in with updated username" do
-    outdated_username = 'asdf'
-    updated_username = @user.username
-    # save incorrect username to database, to simulate outdated username
-    @user.update_attribute(:username, outdated_username)
+  test "sign in with updated name" do
+    outdated_name = 'asdf'
+    updated_name = @user.name
+    # save incorrect name to database, to simulate outdated name
+    @user.update_attribute(:name, outdated_name)
 
-    sign_in_as(updated_username)
+    sign_in_as(updated_name)
     assert is_signed_in?
 
-    assert_text updated_username
-    assert_no_text outdated_username
+    assert_text updated_name
+    assert_no_text outdated_name
 
     within '#flash-messages' do
-      assert_text "Your username appears to have changed; you are now signed in as #{ updated_username }."
+      assert_text "Your name appears to have changed; you are now signed in as #{ updated_name }."
     end
   end
 
