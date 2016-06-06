@@ -7,8 +7,8 @@ class Api::SearchesController < ApplicationController
       # TODO enable inclusion of name of relation in query:
       #      example: 'pristina people' -> 'People of Pristina'
       # TODO let Jquery.Autocomplete highlight query in results which include class name
-      query = (params['query'] || '').split('').join('%')
-      results = class_name.constantize.where("'#{ class_name }' || name LIKE '%#{ query }%'").limit(12)
+      query = "%#{ (params['query'] || '').split('').join('%') }%"
+      results = class_name.constantize.where("? || name LIKE ?", class_name, query).limit(12)
       suggestions += results.map do |result|
         {
           value: result.name,
