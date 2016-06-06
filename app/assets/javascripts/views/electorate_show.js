@@ -4,7 +4,9 @@ Fractions.Views.ElectorateShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
 
-    this.addSubviewForPositions();
+    this.addSubview('#positions-list', new Fractions.Views.List({
+      collection: this.model.members()
+    }));
   },
 
   render: function () {
@@ -14,12 +16,5 @@ Fractions.Views.ElectorateShow = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     return this;
-  },
-
-  addSubviewForPositions: function () {
-    var view = new Fractions.Views.List({
-      collection: this.model.members()
-    });
-    this.addSubview('#positions-list', view);
   },
 });

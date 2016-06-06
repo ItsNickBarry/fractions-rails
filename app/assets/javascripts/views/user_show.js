@@ -2,12 +2,16 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
   template: JST['user_show'],
 
   initialize: function () {
-    this.characters = this.model.characters();
     this.listenTo(this.model, 'sync', this.render);
 
-    this.addSubviewForCharacters();
+    this.addSubview('#characters-list', new Fractions.Views.List({
+      collection: this.model.characters()
+    }));
+
     if (this.model.get('id') === Fractions.session.currentUser().get('id')){
-      this.addSubviewForCharactersNew();
+      this.addSubview('#characters-new', new Fractions.Views.CharactersNew({
+        collection: this.model.characters()
+      }));
     }
   },
 
@@ -16,19 +20,5 @@ Fractions.Views.UserShow = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews()
     return this;
-  },
-
-  addSubviewForCharacters: function () {
-    var view = new Fractions.Views.List({
-      collection: this.characters
-    });
-    this.addSubview('#characters-list', view);
-  },
-
-  addSubviewForCharactersNew: function () {
-    var view = new Fractions.Views.CharactersNew({
-      userCharacters: this.characters
-    });
-    this.addSubview('#characters-new', view);
   },
 });

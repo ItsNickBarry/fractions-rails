@@ -5,10 +5,6 @@ Fractions.Views.CharactersNew = Backbone.View.extend({
     'submit form': 'submit',
   },
 
-  initialize: function (options) {
-    this.userCharacters = options.userCharacters;
-  },
-
   render: function () {
     var content = this.template();
     this.$el.html(content);
@@ -20,7 +16,7 @@ Fractions.Views.CharactersNew = Backbone.View.extend({
 
     var params = $(event.currentTarget).serializeJSON();
 
-    this.userCharacters.create(params, {
+    this.collection.create(params, {
       wait: true,
       success: function (model) {
         if (Fractions.session.currentCharacter().isNew()) {

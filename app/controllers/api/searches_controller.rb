@@ -19,6 +19,6 @@ class Api::SearchesController < ApplicationController
         }
       end
     end
-    render json: { query: 'e', suggestions: suggestions }
+    render json: { suggestions: suggestions }
   end
 end

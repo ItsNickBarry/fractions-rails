@@ -8,21 +8,8 @@
     | <%= link_to "Sign Up", new_user_url,    id: 'sign-up' %>
     | <%= link_to "Sign In", new_session_url, id: 'sign-in' %>
   <% end %>
-  <input id="search" type="text" value="" placeholder="search">
-  <script type="text/javascript">
-    $('#search').autocomplete({
-      serviceUrl: '/api/search',
-      dataType: 'json',
-      groupBy: 'category',
-      params: {
-        classes: ['Character', 'Electorate', 'Fraction', 'Position', 'Region', 'User'],
-        // classes: ['Fraction']
-      },
-      onSelect: function (suggestion) {
-        Backbone.history.navigate(
-          '#/' + suggestion.data.category + '/' + suggestion.data.id
-        );
-      },
-    });
-  </script>
+  <br>
+  <div class="search">
+    <input type="text" placeholder="search" onfocus="Fractions.nameSearch(event)">
+  </div>
 </header>

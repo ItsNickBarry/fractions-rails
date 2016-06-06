@@ -86,6 +86,8 @@ GEM
     ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.3)
+      i18n (~> 0.5)
     ffi (1.9.10)
     formatador (0.2.5)
     globalid (0.3.6)
@@ -245,6 +247,7 @@ DEPENDENCIES
   capybara-webkit
   curb
   d3-rails
+  faker
   guard
   guard-minitest
   jbuilder (~> 2.0)

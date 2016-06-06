@@ -3,7 +3,7 @@ Fractions.Routers.Router = Backbone.Router.extend({
     '':                             'root',
     'map':                          'mapShow',
     ':object/:id':                  'modelShow',
-    'fractions/:id/administration': 'fractionAdministration',
+    ':table/:id/administration':    'authorizerAdministration',
     'fractions/:id/:nested_index':  'fractionCollectionIndex',
   },
 
@@ -33,8 +33,11 @@ Fractions.Routers.Router = Backbone.Router.extend({
     this.swapView(view);
   },
 
-  fractionAdministration: function (id) {
-    var model = new Fractions.Models.Fraction({ id: id });
+  authorizerAdministration: function (table, id) {
+    debugger
+    var model = new Fractions.Models[_.singularize(_.camelize(_.titleize(table.toLowerCase())))]({
+      id: id
+    });
     model.fetch({
       success: function () {
         var view = new Fractions.Views.GovernmentAuthorizationIndex({
