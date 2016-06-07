@@ -21,6 +21,9 @@ class Character < ActiveRecord::Base
   has_many :banishments, dependent: :destroy
   has_many :banishing_fractions, through: :banishments, source: :fraction
 
+  has_many :electorate_memberships, through: :positions
+  has_many :electorates, through: :electorate_memberships
+
   has_many :position_memberships, dependent: :destroy
   has_many :positions, through: :position_memberships
 

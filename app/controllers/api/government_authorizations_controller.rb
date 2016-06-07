@@ -1,11 +1,7 @@
 class Api::GovernmentAuthorizationsController < ApplicationController
   before_action :must_be_signed_in, only: [:create, :destroy]
   before_action :must_have_current_character, only: [:create, :destroy]
-  before_action :find_authorizer, only: [:index, :create]
-
-  def index
-    @government_authorizations = @authorizer.government_authorizations_given.order :authorization_type
-  end
+  before_action :find_authorizer, only: [:create]
 
   def create
     unless @authorizer.authorizes? current_character, :execute, :government_authorization_create
@@ -52,7 +48,6 @@ class Api::GovernmentAuthorizationsController < ApplicationController
     end
 
     def government_authorization_params
-      # TODO do not use authorizee_name
-      params.require(:government_authorization).permit(:authorizee_type, :authorizee_name, :authorization_type)
+      params.require(:government_authorization).permit(:authorizee_id, :authorizee_type, :authorization_type)
     end
 end

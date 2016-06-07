@@ -34,7 +34,6 @@ Fractions.Routers.Router = Backbone.Router.extend({
   },
 
   authorizerAdministration: function (table, id) {
-    debugger
     var model = new Fractions.Models[_.singularize(_.camelize(_.titleize(table.toLowerCase())))]({
       id: id
     });

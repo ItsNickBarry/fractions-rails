@@ -1,24 +1,30 @@
 <button class="tab expand">+</button>
 <form class="hidden">
   <h4>New <%= _.titleize(_.humanize(collection.model.prototype.class)) %></h4>
-  <div class="row">
-    <%= formInputs %>
-  </div>
-  <h5>Select Actor</h5>
-  <ul>
-    <%= executable ? '<li>executable</li>' : '' %>
-    <%= callable   ? '<li>callable</li>'   : '' %>
-    <%= votable    ? '<li>votable</li>'    : '' %>
-  </ul>
-  <% if (executable && callable) { %>
-    <select class="authorizee-type" name="authorizee-type">
-      <option value="position">Position</option>
-      <option value="electorate">Electorate</option>
-    </select>
-  <% } else if (executable) { %>
-    <i>Position:</i>
-  <% } else if (callable) { %>
-    <i>Electorate:</i>
+  <% if (executable || callable) { %>
+    <div class="row">
+      <%= formInputs %>
+    </div>
+    <p>
+      acting on behalf of:
+    </p>
+    <% if (executable && callable) { %>
+      <select class="authorizee-type" name="authorizee-type">
+        <option value="position">Position</option>
+        <option value="electorate">Electorate</option>
+      </select>
+    <% } else if (executable) { %>
+      <i>Position:</i>
+    <% } else if (callable) { %>
+      <i>Electorate:</i>
+    <% } %>
+    <div class="search">
+      <input type="text"placeholder="search" onfocus="Fractions.authorizeeSearch(event)">
+    </div>
+    <input class="button-primary" value="Submit" type="submit">
+  <% } else { %>
+    <p>
+      You do not have authorization.
+    </p>
   <% } %>
-  <input class="button-primary" value="Submit" type="submit">
 </form>

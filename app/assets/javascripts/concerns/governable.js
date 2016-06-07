@@ -2,7 +2,7 @@ Fractions.Concerns.Governable = {
   governable: true,
 
   governmentAuthorizationTypes: function () {
-    // TODO fetch authorizations from server 
+    // TODO fetch authorizations from server
     return {
       'Fraction': [
         'child_connect',
@@ -38,24 +38,40 @@ Fractions.Concerns.Governable = {
     ]);
   },
 
-  executable: function (authorization_type) {
-    return this._authorizes('executable', authorization_type);
+  executable: function (authorizationType) {
+    return this._authorizes('executable', authorizationType);
   },
 
-  callable: function (authorization_type) {
-    return this._authorizes('callable', authorization_type);
+  callable: function (authorizationType) {
+    return this._authorizes('callable', authorizationType);
   },
 
-  votable: function (authorization_type) {
-    return this._authorizes('votable', authorization_type);
+  votable: function (authorizationType) {
+    return this._authorizes('votable', authorizationType);
   },
 
-  _authorizes: function (authorization_level, authorization_type) {
-    var authorizationSet = this.get('currentCharacterGovernmentAuthorizations');
-    return authorizationSet &&
-           _.contains(
-             authorizationSet[authorization_level],
-             authorization_type
-           );
+  _authorizes: function (authorizationLevel, authorizationType) {
+    var privateName = '_' + authorizationLevel + '_' + authorizationType;
+    if (typeof this[privateName] === 'undefined') {
+      this[privateName] = this.governmentAuthorizationsGiven().any(function (authorization) {
+        return authorization.get('currentCharacter') &&
+          authorization.get('authorizationType') === authorizationType &&
+          authorization.authorizee().class === {
+            executable: 'Position',
+            callable: 'Electorate',
+            votable: 'Electorate',
+          }[authorizationLevel];
+      });
+    }
+    return this[privateName];
   },
+
+  // _authorizes: function (authorizationLevel, authorizationType) {
+  //   var authorizationSet = this.get('currentCharacterGovernmentAuthorizations');
+  //   return authorizationSet &&
+  //          _.contains(
+  //            authorizationSet[authorizationLevel],
+  //            authorizationType
+  //          );
+  // },
 };

@@ -16,12 +16,9 @@ class Api::PositionsControllerTest < ActionController::TestCase
     assert_equal position.fraction.name,  @json['fraction']['name']
 
     assert_equal position.members.length, @json['members'].length
-
-    authorizations = @json['currentCharacterGovernmentAuthorizations']
-
-    assert authorizations['executable'].empty?
-    assert authorizations['callable'].empty?
-    assert authorizations['votable'].empty?
+    
+    assert_equal position.government_authorizations_given.count,
+                 @json['governmentAuthorizationsGiven'].length
   end
 
   test "show while signed in" do

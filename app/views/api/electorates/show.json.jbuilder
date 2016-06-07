@@ -8,4 +8,4 @@ json.members @electorate.members do |member|
   json.extract! member, :id, :name
 end
 
-json.partial! 'api/government_authorizations/current_character_government_authorizations', authorizer: @electorate
+json.partial! 'api/government_authorizations/government_authorizations_given', authorizer: @electorate

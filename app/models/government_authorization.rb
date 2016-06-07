@@ -28,11 +28,6 @@ class GovernmentAuthorization < ActiveRecord::Base
   # has_many :delegated_authorizees, through: :delegated_government_authorizations
   # ####
 
-  def authorizee_name=(name)
-    # TODO do not use authorizee_name
-    self.authorizee_id = self.authorizee_type.constantize.find_by(name: name).id
-  end
-
   private
 
     def authorizer_has_government_authorization_type

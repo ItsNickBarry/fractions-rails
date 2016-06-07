@@ -22,17 +22,17 @@ Rails.application.routes.draw do
       resources :positions,   only: [:show, :index, :create, :destroy]
       resources :regions,     only: [:show, :index, :create, :destroy]
 
-      resources :government_authorizations, only: [:index, :create, :destroy]
+      resources :government_authorizations, only: [:create, :destroy]
     end
 
     resources :electorates, only: [], shallow: true do
-      resources :government_authorizations, only: [:index]
+      resources :government_authorizations, only: [:create, :destroy]
     end
     resources :positions, only: [], shallow: true do
-      resources :government_authorizations, only: [:index]
+      resources :government_authorizations, only: [:create, :destroy]
     end
     resources :regions, only: [], shallow: true do
-      resources :government_authorizations, only: [:index]
+      resources :government_authorizations, only: [:create, :destroy]
     end
 
     # resources :government_authorizations, only: [:create, :destroy]

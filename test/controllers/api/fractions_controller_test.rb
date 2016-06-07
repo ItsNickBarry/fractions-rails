@@ -30,11 +30,8 @@ class Api::FractionsControllerTest < ActionController::TestCase
     assert_equal fraction.positions.count,          @json['positions'].length
     assert_equal fraction.regions.count,            @json['regions'].length
 
-    authorizations = @json['currentCharacterGovernmentAuthorizations']
-
-    assert authorizations['executable'].empty?
-    assert authorizations['callable'].empty?
-    assert authorizations['votable'].empty?
+    assert_equal fraction.government_authorizations_given.count,
+                 @json['governmentAuthorizationsGiven'].length
   end
 
   test "show while signed in" do
@@ -45,27 +42,9 @@ class Api::FractionsControllerTest < ActionController::TestCase
 
     parse response
 
-    authorizations = @json['currentCharacterGovernmentAuthorizations']
+    authorizations = @json['governmentAuthorizationsGiven']
 
-
-    assert_equal fraction.authorizations_for(@current_character, :execute).length,
-                 authorizations['executable'].length
-    assert_equal fraction.authorizations_for(@current_character, :call).length,
-                 authorizations['callable'].length
-    assert_equal fraction.authorizations_for(@current_character, :vote).length,
-                 authorizations['votable'].length
-
-    authorizations['executable'].each do |authorization_type|
-      assert fraction.authorizes? @current_character, :execute, authorization_type
-    end
-
-    authorizations['callable'].each do |authorization_type|
-      assert fraction.authorizes? @current_character, :call, authorization_type
-    end
-
-    authorizations['votable'].each do |authorization_type|
-      assert fraction.authorizes? @current_character, :vote, authorization_type
-    end
+    skip 'assert currentCharacter boolean on authorizations given'
   end
 
   test "create as character" do

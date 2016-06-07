@@ -39,18 +39,32 @@ window.Fractions = {
 Fractions.authorizeeSearch = function (event) {
   Fractions.search(
     event,
-    ['Electorate', 'Position']
+    ['Electorate', 'Position'],
+    {
+      onSelect: function (suggestion) {
+        $form = $(event.target.parentElement.parentElement);
+        $form.find('[name="government_authorization[authorizee_id]"]').val(suggestion.data.id)
+        $form.find('[name="government_authorization[authorizee_type]"]').val(
+          _.singularize(suggestion.data.category)
+        );
+      },
+    }
   );
 },
 
 Fractions.nameSearch = function (event) {
   Fractions.search(
     event,
-    ['Character', 'Electorate', 'Fraction', 'Position', 'Region', 'User']
+    ['Character', 'Electorate', 'Fraction', 'Position', 'Region', 'User'],
+    {
+      onSelect: function (suggestion) {
+        window.location = '/#/' + suggestion.data.category + '/' + suggestion.data.id
+      },
+    }
   );
 },
 
-Fractions.search = function (event, classes) {
+Fractions.search = function (event, classes, options) {
   // autocomplete is reinitialized whenever field is focused, causing cache
   // to be cleared; cache is therefore only used when backspacing
   $(event.target).autocomplete({
@@ -61,9 +75,7 @@ Fractions.search = function (event, classes) {
     params: {
       classes: classes,
     },
-    onSelect: function (suggestion) {
-      window.location = '/#/' + suggestion.data.category + '/' + suggestion.data.id
-    },
+    onSelect: options.onSelect,
   });
 };
 

@@ -1,30 +1,6 @@
 require 'test_helper'
 
 class Api::GovernmentAuthorizationsControllerTest < ActionController::TestCase
-  test "index" do
-    fraction = fractions(:danmark)
-    get :index, fraction_id: fraction.id, format: :json
-    assert_response 200
-
-    parse response
-
-    assert_equal fraction.government_authorizations_given.count,
-                 @json['governmentAuthorizationsGiven'].length
-  end
-
-  test "index should find any governable authorizer type" do
-    [
-      Fraction,
-      Electorate,
-      Position,
-      Region
-    ].each do |type|
-      get :index, "#{ type.to_s.downcase }_id" => type.first.id, format: :json
-      assert assigns(:authorizer).is_a? type
-      assert_response 200
-    end
-  end
-
   test "create" do
     act_as characters(:barack_obama)
     authorizer = fractions(:united_states)
@@ -37,6 +13,19 @@ class Api::GovernmentAuthorizationsControllerTest < ActionController::TestCase
         authorization_type: 'character_banish'
       }, format: :json
       assert_response 200
+    end
+  end
+
+  test "create should find any governable authorizer type" do
+    act_as characters(:barack_obama)
+    [
+      Fraction,
+      Electorate,
+      Position,
+      Region
+    ].each do |type|
+      post :create, "#{ type.to_s.downcase }_id" => type.first.id, format: :json
+      assert assigns(:authorizer).is_a? type
     end
   end
 

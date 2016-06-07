@@ -15,11 +15,8 @@ class Api::RegionsControllerTest < ActionController::TestCase
     assert_equal region.fraction.id,    @json['fraction']['id']
     assert_equal region.fraction.name,  @json['fraction']['name']
 
-    authorizations = @json['currentCharacterGovernmentAuthorizations']
-
-    assert authorizations['executable'].empty?
-    assert authorizations['callable'].empty?
-    assert authorizations['votable'].empty?
+    assert_equal region.government_authorizations_given.count,
+                 @json['governmentAuthorizationsGiven'].length
   end
 
   test "show while signed in" do
