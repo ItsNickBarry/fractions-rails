@@ -2,6 +2,7 @@
   <h1><%= model.escape('name') %></h1>
   <h2>Electorate in <%= model.fraction().a(model.fraction().escape('name')) %></h2>
 </div>
+
 <div class="row">
   <div class="four columns">
     <div>
@@ -17,4 +18,10 @@
     <h3>Positions</h3>
     <div id="positions-list"></div>
   </div>
+</div>
+
+<div class="row">
+  <p>
+    D3 visualization of vote weight distribution
+  </p>
 </div>

@@ -60,7 +60,8 @@ Fractions.Concerns.Governable = {
             executable: 'Position',
             callable: 'Electorate',
             votable: 'Electorate',
-          }[authorizationLevel];
+          }[authorizationLevel] &&
+          (authorizationLevel !== 'callable' || authorization.callable === true);
       });
     }
     return this[privateName];

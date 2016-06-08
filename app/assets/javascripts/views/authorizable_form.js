@@ -4,6 +4,7 @@ Fractions.Views.AuthorizableForm = Backbone.View.extend({
   events: {
     'submit form': 'submit',
     'click button.expand': 'toggleForm',
+    'focus .search input': 'initializeAuthorizeeSearch',
   },
 
   initialize: function (options) {
@@ -41,5 +42,27 @@ Fractions.Views.AuthorizableForm = Backbone.View.extend({
   toggleForm: function () {
     this.$el.find('form').toggleClass('hidden');
     this.$el.find('button.expand').toggleClass('selected');
+  },
+
+  initializeAuthorizeeSearch: function (event) {
+
+    // TODO use local data
+
+    var $formEl = this.$el;
+    $(event.target).autocomplete({
+      serviceUrl: '/api/search',
+      dataType: 'json',
+      groupBy: 'category',
+      minChars: 3,
+      params: {
+        classes: ['Electorate', 'Position'],
+      },
+      onSelect: function (suggestion) {
+        $formEl.find('[name="authorizee[id]"]').val(suggestion.data.id);
+        $formEl.find('[name="authorizee[type]"]').val(
+          _.titleize(_.singularize(suggestion.data.category))
+        );
+      },
+    });
   },
 });

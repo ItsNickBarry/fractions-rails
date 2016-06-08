@@ -8,19 +8,11 @@
     <p>
       acting on behalf of:
     </p>
-    <% if (executable && callable) { %>
-      <select class="authorizee-type" name="authorizee-type">
-        <option value="position">Position</option>
-        <option value="electorate">Electorate</option>
-      </select>
-    <% } else if (executable) { %>
-      <i>Position:</i>
-    <% } else if (callable) { %>
-      <i>Electorate:</i>
-    <% } %>
     <div class="search">
-      <input type="text"placeholder="search" onfocus="Fractions.authorizeeSearch(event)">
+      <input type="text"placeholder="search">
     </div>
+    <input type="hidden" name="authorizee[id]">
+    <input type="hidden" name="authorizee[type]">
     <input class="button-primary" value="Submit" type="submit">
   <% } else { %>
     <p>
