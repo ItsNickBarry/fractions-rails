@@ -1,7 +1,7 @@
 <form id="user-form" action="<%= url %>" method="post">
-  <input type="text" name="user[name]" value="<%= @user.name %>" placeholder="name" autofocus="true">
+  <input type="text" name="user[name]" value="<%= @user.name %>" placeholder="name" autofocus="true" required>
   <br>
-  <input type="password" name="user[password]" placeholder="password">
+  <input type="password" name="user[password]" placeholder="password" required>
   <br>
   <input class="button-primary" type="submit" value="Submit">
 

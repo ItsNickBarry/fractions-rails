@@ -1,11 +1,9 @@
 <h4>New Character</h4>
 <form id="character-form">
   <div class="row">
-    <input id="character-name-input" type="text" name="character[name]" placeholder="name">
-    <label for="character-gender-input-f">Female</label>
-    <input id="character-gender-input-f" type="radio" name="character[gender]" value="F">
-    <label for="character-gender-input-m">Male</label>
-    <input id="character-gender-input-m" type="radio" name="character[gender]" value="M">
+    <input type="text" name="character[name]" placeholder="name" required>
+    <label><input type="radio" name="character[gender]" value="F" required>Female</label>
+    <label><input type="radio" name="character[gender]" value="M" required>Male</label>
   </div>
   <input class="button-primary" value="Submit" type="submit">
 </form>

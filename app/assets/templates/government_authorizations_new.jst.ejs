@@ -3,13 +3,13 @@
     <option value="<%= type %>"><%= type %></option>
   <% }); %>
 </select>
-<select class="authorizee-type" name="government_authorization[authorizee_type]">
+<select class="authorizee-type" name="government_authorization[authorizee_type]" required>
   <option value="Electorate">Electorate</option>
   <option value="Position">Position</option>
 </select>
 
 <div class="search">
-  <input type="text" placeholder="authorizee name" onfocus="Fractions.authorizeeSearch(event)">
+  <input type="search" placeholder="authorizee name" onfocus="Fractions.authorizeeSearch(event)" required>
 </div>
 
 <input type="hidden" name="government_authorization[authorizee_id]">

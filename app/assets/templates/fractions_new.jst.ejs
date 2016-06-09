@@ -1,3 +1,2 @@
-<label for="fraction-name-input">Name</label>
-<input id="fraction-name-input" type="text" name="fraction[name]">
+<label>Name <input type="text" name="fraction[name]" required></label>
 <input type="hidden" name="founder[id]" value="<%= authorizer.class === 'Fraction' ? authorizer.get('id') : null %>">

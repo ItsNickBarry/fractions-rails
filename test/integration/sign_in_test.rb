@@ -15,7 +15,7 @@ class SignInTest < ActionDispatch::IntegrationTest
 
     within '#user-form' do
       fill_in 'user[name]', with: @user.name
-      fill_in 'user[password]', with: ''
+      fill_in 'user[password]', with: 'wrong password'
       click_button 'Submit'
     end
 
