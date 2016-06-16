@@ -16,6 +16,9 @@ class Fraction < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :founder, presence: true
 
+  before_create :set_description
+  after_create :setup_defaults
+
   # TODO add orphan_strategy and cache_depth
   has_ancestry
   # parent           Returns the parent of the record, nil for a root node
@@ -67,9 +70,6 @@ class Fraction < ActiveRecord::Base
   has_many :fraction_invitations, dependent: :destroy
   # TODO this should not be dependent: :destroy, but Fractions will be invalid without founder
   has_many :founded_fractions, as: :founder, class_name: 'Fraction'
-
-  after_create :setup_defaults
-  after_create :set_description
 
   # TODO authorizations are delegated to all of a Fraction's positions
   has_many :land_authorizations_received, as: :authorizee, class_name: 'LandAuthorization', dependent: :destroy
@@ -162,7 +162,7 @@ class Fraction < ActiveRecord::Base
   private
 
     def set_description
-      self.description = "#{ self.name } has no description."
+      self.description ||= "#{ self.name } has no description."
     end
 
     def setup_defaults
