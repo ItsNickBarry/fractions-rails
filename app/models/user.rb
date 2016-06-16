@@ -14,12 +14,12 @@
 
 class User < ActiveRecord::Base
   after_initialize :ensure_session_token
-  before_validation :ensure_name_and_uuid
+  before_validation :ensure_name_and_uuid, on: :create
 
   validates :name, presence: true
   validates :uuid, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
-  validate :owns_current_character
+  validate :owns_current_character, if: :current_character_id
   validate :password_must_not_match_name
 
   has_many :characters
@@ -72,22 +72,19 @@ class User < ActiveRecord::Base
     end
 
     def ensure_name_and_uuid
-      unless self.persisted?
-        response = MojangApiConnection.profile_given_name(self.name)
+      response = MojangApiConnection.profile_given_name(self.name)
 
-        if response.is_a? Hash
-          self.name = response[:name]
-          self.uuid = response[:uuid]
+      if response.is_a? Hash
+        self.name = response[:name]
+        self.uuid = response[:uuid]
 
-          User.find_by(name: self.name).try(:overwrite_name!)
-        else
-          errors.add(:base, response)
-        end
+        User.find_by(name: self.name).try(:overwrite_name!)
+      else
+        errors.add(:base, response)
       end
     end
 
     def owns_current_character
-      return if self.current_character_id.nil?
       unless current_character && current_character.user == self
         errors.add(:current_character_id, "does not belong to user")
       end

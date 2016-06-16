@@ -16,7 +16,7 @@ class LandAuthorization < ActiveRecord::Base
   # TODO validate uniqueness in scope of region/authorizee/type
   validates :authorizer, :authorizee, :authorization_type, presence: true
 
-  validate :valid_authorization_type
+  validate :authorization_type_exists, if: :authorization_type
 
   belongs_to :authorizer, class_name: 'Region'
 
@@ -34,8 +34,7 @@ class LandAuthorization < ActiveRecord::Base
 
   private
 
-    def valid_authorization_type
-      return if authorization_type.nil?
+    def authorization_type_exists
       unless authorizer.class.land_authorization_types.include? self.authorization_type.to_sym
         errors.add(:authorization_type, "is not valid")
       end

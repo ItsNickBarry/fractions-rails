@@ -17,7 +17,7 @@ class GovernmentAuthorization < ActiveRecord::Base
     scope: [:authorizer_id, :authorizer_type, :authorizee_id, :authorizee_type],
     message: ""}
   validates :authorizer, :authorizee, :authorization_type, presence: true
-  validate :authorizer_has_government_authorization_type
+  validate :authorization_type_exists, if: [:authorization_type, :authorizer]
 
   belongs_to :authorizer, polymorphic: true
   belongs_to :authorizee, polymorphic: true
@@ -30,9 +30,7 @@ class GovernmentAuthorization < ActiveRecord::Base
 
   private
 
-    def authorizer_has_government_authorization_type
-      # if authorization_type or authorzer is nil, invalidation has already occurred
-      return if authorization_type.nil? || authorizer.nil?
+    def authorization_type_exists
       unless authorizer.class.government_authorization_types.include? self.authorization_type.to_sym
         errors.add(:authorization_type, "is not valid for authorizer")
       end

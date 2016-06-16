@@ -3,10 +3,10 @@ class FractionConnectionRequest < ActiveRecord::Base
   validates :requester, uniqueness: { scope: :requestee,
     message: "" }
   validate :complimentary_request_does_not_exist
-  validate :connection_does_not_exist
+  validate :connection_does_not_exist, if: [:requester, :requestee]
   validate :offer_is_valid
-  validate :request_does_not_overwrite_parent
-  validate :request_does_not_cause_loop
+  validate :request_does_not_overwrite_parent, if: :requester
+  validate :request_does_not_cause_loop, if: [:requester, :requestee]
 
   belongs_to :requester, class_name: 'Fraction'
   belongs_to :requestee, class_name: 'Fraction'
@@ -20,7 +20,6 @@ class FractionConnectionRequest < ActiveRecord::Base
     end
 
     def connection_does_not_exist
-      return if requestee.nil? || requester.nil?
       if requester.parent == requestee
         errors.add(:requestee, 'is already parent of requester')
       elsif requestee.parent == requester
@@ -29,7 +28,6 @@ class FractionConnectionRequest < ActiveRecord::Base
     end
 
     def request_does_not_overwrite_parent
-      return if requester.nil?
       if requester.parent && offer == 'child'
         errors.add(:requester, 'already has a parent')
       end
@@ -42,7 +40,6 @@ class FractionConnectionRequest < ActiveRecord::Base
     end
 
     def request_does_not_cause_loop
-      return if requestee.nil? || requester.nil?
       case self.offer
       when 'child'
         if requester.descendants.find_by name: requestee.name
